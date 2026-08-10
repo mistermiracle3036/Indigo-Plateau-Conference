@@ -1,0 +1,19 @@
+{
+  "id": "indigo_conference",
+  "name": "Indigo Plateau Conference",
+  "version": "0.1.0",
+  "api": 2,
+  "entry": "main.lua",
+  "profile": "content",
+  "category": "QUEST",
+  "game_version": ">=0.1.75 <2.0.0",
+  "priority": 100,
+  "affects_link": false,
+  "permissions": [
+    "engine_internals"
+  ],
+  "dependencies": [],
+  "optional_dependencies": [],
+  "conflicts": [],
+  "description": "A repeatable post-Elite-Four tournament. Register on Route 22 and fight three rounds against guest challengers drawn from a tiered pool. v0.1.0: scaffold only -- the mod loads and announces its version; no Conference content yet."
+}

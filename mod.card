@@ -1,0 +1,10 @@
+return {
+  summary = "A repeatable post-Elite-Four tournament on Route 22: three rounds against guest challengers drawn from a tiered pool.",
+  author = "Mister Miracle",
+  tags = { "quest", "tournament", "postgame" },
+  differences = {
+    "v0.1.0 is a scaffold: the mod loads and announces its version, and adds no Conference content yet",
+  },
+  credits = { "pret/pokered research", "gen1recomp engine" },
+  compat = "No vanilla maps, NPCs, scripts or trainers are modified.",
+}
