@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.6.1"
+  local VERSION = "0.6.2"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -97,6 +97,11 @@ return function(mod)
       intro = "A.J.: My gym\nnever lost.\fNeither do I.",
       win  = "My streak...\fFine. Take it.",
       loss = "The streak lives.\fGo home.",
+      -- overworld lines for talking to them AFTER the battle, before the
+      -- escort takes you out -- the developer's ask: characters first,
+      -- announcer only once you move
+      afterWin  = "A.J.: Rematch.\fSomeday.",
+      afterLoss = "A.J.: 100 wins,\nzero losses.",
       party = { { species = "SANDSLASH", delta = 0 },
                 { species = "BUTTERFREE", delta = -1 },
                 { species = "PRIMEAPE", delta = 0 } } },
@@ -106,6 +111,8 @@ return function(mod)
       intro = "GISELLE: Top class,\ntop school.\fDo keep up.",
       win  = "Top marks.\fFor today.",
       loss = "Study harder.\fClass dismissed.",
+      afterWin  = "GISELLE: It won't\nhappen twice.",
+      afterLoss = "GISELLE: POKeMON\nTECH standards.",
       party = { { species = "CUBONE", delta = -1 },
                 { species = "GRAVELER", delta = 0 },
                 { species = "WIGGLYTUFF", delta = 0 } } },
@@ -123,6 +130,8 @@ return function(mod)
       intro = "BROCK: PEWTER's\nleader, out here?\fI travel too.",
       win  = "Rock solid.\fPEWTER would be\nproud of that.",
       loss = "Sunk like a stone.\fTrain harder.",
+      afterWin  = "BROCK: Go say hi\nto MISTY for me.",
+      afterLoss = "BROCK: Defense\nwins matches.",
       party = { { species = "GRAVELER", delta = -1 },
                 { species = "RHYHORN", delta = 0 },
                 { species = "KABUTOPS", delta = 0 },
@@ -135,6 +144,8 @@ return function(mod)
       -- Gen 1, where his team had to be the three original Eeveelutions.
       win  = "...ORRE breeds\ntough trainers.\fSo does JOHTO.",
       loss = "Not even close.\fFind me when\nyou're ready.",
+      afterWin  = "WES: JOHTO's\nstronger than\fI heard.",
+      afterLoss = "WES: Go train.\fI'll wait.",
       party = { { species = "ESPEON", delta = 0 },
                 { species = "UMBREON", delta = 0 },
                 { species = "JOLTEON", delta = 0 },
@@ -1010,12 +1021,29 @@ return function(mod)
         local h = objectNamed(world, LOBBY, HOST_NAME)
         if h and h.x == ev.x and h.y == ev.y then return talkHost() end
       elseif ev.mapId == ARENA then
-        -- With an escort pending, ANY A press gets the announcer -- most
-        -- importantly one aimed at the just-fought challenger, whose
-        -- def.trainer was stripped so the press lands here instead of in
-        -- the cart's battle script. This is what closes the instant-
-        -- rebattle: talk or step, either way you are walked out.
-        if escortPending then return runEscort() end
+        -- With an escort pending, an A press on the just-fought challenger
+        -- -- whose def.trainer was stripped, so the press lands here rather
+        -- than in the cart's battle script -- gets THEIR after-battle line,
+        -- as many times as the player likes. Only MOVEMENT hands them to
+        -- the announcer (world.stepped below): characters first, escort on
+        -- the first step. A press on anything else while pending escorts
+        -- immediately, so no input path reaches a rematch.
+        if escortPending then
+          local f = objectNamed(world, ARENA, FOE_NAME)
+          if f and f.x == ev.x and f.y == ev.y then
+            local foe
+            for _, c in ipairs(CARD) do
+              if c.key == spawnedFoeKey then foe = c break end
+            end
+            local line = foe and (escortPending == "win" and foe.afterWin
+                                  or foe.afterLoss)
+            if line then
+              mod.world:queueScript({ { "text", line } })
+              return
+            end
+          end
+          return runEscort()
+        end
         -- otherwise the floor may be a round out of date; make it match
         pcall(fillArena, world)
       end
