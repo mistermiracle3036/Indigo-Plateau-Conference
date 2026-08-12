@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.3.1"
+  local VERSION = "0.3.2"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -381,16 +381,36 @@ return function(mod)
       if name ~= HOST_NAME and obj.x == ARENA_DOOR_X
          and (obj.y == ARENA_DOOR_Y or obj.y == ARENA_DOOR_Y + 1) then
         local handle = mod.world:npc(LOBBY, obj.name or i)
-        if handle then
-          local ok, err = handle:scriptMove("left", 1, function()
-            doorCleared = true
-          end)
-          probe("STEP %s\n%s", ok and "OK" or "FAIL",
-                ok and name:sub(1, 12) or tostring(err))
-          return ok
+        if not handle then
+          probe("NO HANDLE\n%s", name:sub(1, 12))
+          return false
         end
-        probe("NO HANDLE\n%s", name:sub(1, 12))
-        return false
+
+        -- She is walled in on both sides at the doorway, so one step left
+        -- is impossible: she has to come DOWN off the door tile first, then
+        -- go left, then turn back to face the room.
+        --
+        -- Chained through each completion because World.moveState is a
+        -- single slot -- "a second call while one is running is refused
+        -- rather than silently replacing the first and stranding its
+        -- onDone" (WorldAPI.lua:168-170). Each leg reports its own result,
+        -- so a refusal names the leg that failed instead of looking like
+        -- the whole thing did nothing.
+        local function leg3()
+          local ok, err = pcall(function() return handle:face("right") end)
+          probe("STEP3 %s", ok and "OK" or tostring(err))
+          doorCleared = true
+        end
+
+        local function leg2()
+          local ok, err = handle:scriptMove("left", 1, leg3)
+          if not ok then probe("STEP2 FAIL\n%s", tostring(err)) end
+        end
+
+        local ok, err = handle:scriptMove("down", 1, leg2)
+        probe("STEP1 %s\n%s", ok and "OK" or "FAIL",
+              ok and name:sub(1, 12) or tostring(err))
+        return ok
       end
     end
     probe("DOOR CLEAR\nnobody at %d,%d", ARENA_DOOR_X, ARENA_DOOR_Y)
