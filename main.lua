@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.3.2"
+  local VERSION = "0.3.3"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -196,6 +196,16 @@ return function(mod)
   local function probe(fmt, ...)
     if mod.options:get("probe_rows") == false then return end
     errs(fmt, ...)
+    -- Mirrored to the log as well. reportError only feeds the in-game
+    -- [ERRS] screen, which is the ONLY channel on iOS but cannot be read
+    -- off the machine -- so every diagnostic had to be transcribed by hand
+    -- from a photograph of the screen. mod.log goes to print, which a
+    -- desktop run captures to a file, so the same rows become readable
+    -- directly. Both channels on purpose: neither platform loses one.
+    local ok, msg = pcall(string.format, fmt, ...)
+    pcall(function()
+      mod.log:info("PROBE %s", (ok and msg or tostring(fmt)):gsub("\n", " | "))
+    end)
   end
 
   ----------------------------------------------------------------------
@@ -375,11 +385,25 @@ return function(mod)
   -- LEFT, away from the door, which on a 16x8 room is into open floor.
   local function clearDoor(world)
     if doorCleared then return end
+    -- Nearest object to the doorway rather than an exact cell match. 0.3.2
+    -- required x == 9 and y in {0,1} and she did not move on device, which
+    -- most likely means she simply stands somewhere those two lines did not
+    -- predict. A radius is robust to that; the census row prints her real
+    -- cell either way.
     local def = world and world.maps and world.maps[LOBBY]
+    local best, bestD, bestI
     for i, obj in ipairs(def and def.objects or {}) do
       local name = tostring(obj.name or "")
-      if name ~= HOST_NAME and obj.x == ARENA_DOOR_X
-         and (obj.y == ARENA_DOOR_Y or obj.y == ARENA_DOOR_Y + 1) then
+      if name ~= HOST_NAME and obj.x and obj.y then
+        local d = math.abs(obj.x - ARENA_DOOR_X) + math.abs(obj.y - ARENA_DOOR_Y)
+        if d <= 3 and (not bestD or d < bestD) then best, bestD, bestI = obj, d, i end
+      end
+    end
+    do
+      local obj, i = best, bestI
+      if obj then
+        local name = tostring(obj.name or "")
+        probe("BLOCKER\n%s %d,%d d%d", name:sub(1, 10), obj.x, obj.y, bestD)
         local handle = mod.world:npc(LOBBY, obj.name or i)
         if not handle then
           probe("NO HANDLE\n%s", name:sub(1, 12))
