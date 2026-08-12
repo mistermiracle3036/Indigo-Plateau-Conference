@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.4.2"
+  local VERSION = "0.4.3"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -554,9 +554,28 @@ return function(mod)
   -- the live map, which shifts every index after it -- the exact mutation
   -- that made 0.2.2 hide one of the two. Going backwards keeps the lower
   -- indices valid, and the index is all there is to key on with no name.
+  -- HIDING IS WITHDRAWN, AND WHAT IT WROTE IS BEING PUT BACK.
+  --
+  -- Tested with the mod off: the stairs bug does NOT reproduce, so it is
+  -- ours. toggleObject is the only PERSISTENT save-state change this mod
+  -- makes -- Gen 2 has no save.objectToggles, so an object's visibility IS
+  -- its MAPOBJECT_EVENT_FLAG (WorldAPI.lua:68-72) -- and it was being called
+  -- with a LIST INDEX as the reference. If that index does not resolve to
+  -- the object assumed, the call flips some other event flag entirely, and
+  -- Gold gates warps and map scripts on event flags. That fits every symptom:
+  -- a dead staircase, surviving across sessions, appearing without a battle.
+  --
+  -- So this now sets them VISIBLE rather than hidden, which repairs any flag
+  -- earlier versions set in the developer's save instead of leaving them to
+  -- find a broken game later. Two Chris sprites standing in a battle venue
+  -- read as spectators; that is a cosmetic price worth paying and never
+  -- worth persistent save writes.
+  --
+  -- If the pair really must go, the safe route is a spawn-over or a
+  -- runtime-only approach -- nothing that writes the event bitfield.
   local PLACEHOLDER_SPRITE = "CHRIS"
 
-  local function hidePlaceholders(world)
+  local function restorePlaceholders(world)
     local def = world and world.maps and world.maps[ARENA]
     local idx = {}
     for i, obj in ipairs(def and def.objects or {}) do
@@ -568,15 +587,15 @@ return function(mod)
       end
     end
     for n = #idx, 1, -1 do
-      pcall(function() mod.world:toggleObject(ARENA, idx[n], false) end)
+      pcall(function() mod.world:toggleObject(ARENA, idx[n], true) end)
     end
-    if #idx > 0 then probe("HID %d", #idx) end
+    if #idx > 0 then probe("RESTORED %d", #idx) end
   end
 
   local function fillArena(world)
     censusArena(world)
     censusWarps(world, ARENA)
-    hidePlaceholders(world)
+    restorePlaceholders(world)
     local taken = {}
     local out = {}
 
