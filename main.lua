@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.4.0"
+  local VERSION = "0.4.1"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -94,7 +94,7 @@ return function(mod)
     -- comes from the town's own gym leader -- see levelBase below.
     { key = "AJ",      class = "BUG_CATCHER",  member = "DON",
       sprite = "SPRITE_YOUNGSTER",
-      intro = "A.J.: My gym never\nlost. Neither do I.",
+      intro = "A.J.: My gym\nnever lost.\fNeither do I.",
       party = { { species = "SANDSLASH", delta = 0 },
                 { species = "BUTTERFREE", delta = -1 },
                 { species = "PRIMEAPE", delta = 0 } } },
@@ -116,7 +116,7 @@ return function(mod)
     -- the circuit wants.
     { key = "BROCK",   class = "BROCK",        member = "BROCK1",
       sprite = "SPRITE_BROCK",
-      intro = "BROCK: PEWTER's\ngym leader, out\nhere?\fI travel too.",
+      intro = "BROCK: PEWTER's\nleader, out here?\fI travel too.",
       party = { { species = "GRAVELER", delta = -1 },
                 { species = "RHYHORN", delta = 0 },
                 { species = "KABUTOPS", delta = 0 },
@@ -124,7 +124,7 @@ return function(mod)
 
     { key = "WES",     class = "COOLTRAINERM", member = "NICK",
       sprite = "SPRITE_COOLTRAINER_M",
-      intro = "WES: I came a long\nway from ORRE.\fDon't waste it.",
+      intro = "WES: I came far\nfrom ORRE.\fDon't waste it.",
       -- Espeon and Umbreon are the point of him being here rather than on
       -- Gen 1, where his team had to be the three original Eeveelutions.
       party = { { species = "ESPEON", delta = 0 },
@@ -649,6 +649,12 @@ return function(mod)
     local world = mod.world:overworld()
     if not world then return end
     if mapId == LOBBY then
+      -- Her step aside is a RUNTIME movement, so re-entering the lobby puts
+      -- her back on her post -- but doorCleared stayed true from the first
+      -- time and clearDoor returned early forever, so a second ask did
+      -- nothing. Reset on every arrival: the flag tracks "is she out of the
+      -- way right now", and arriving is exactly when that stops being true.
+      doorCleared = false
       local ok, res = pcall(fillLobby, world)
       probe("IPC v%s\n%s", VERSION, ok and tostring(res) or "ERR " .. tostring(res))
     elseif mapId == ARENA then
@@ -712,19 +718,19 @@ return function(mod)
 
     if r > ROUNDS then
       rows = {
-        { "text", ("The %s\n%s is\nyours."):format(town, title) },
-        { "text", "Come back any time\nand we'll draw a\nnew card." },
+        { "text", ("The %s\n%s is yours."):format(town, title) },
+        { "text", "Come back and\nwe'll draw again." },
       }
       setRound(1)   -- repeatable: clearing the card redraws it
     elseif r == 1 then
       rows = {
-        { "text", ("Welcome to the\n%s\n%s!"):format(town, title) },
+        { "text", ("Welcome to the\n%s %s!"):format(town, title) },
         { "text", ("%d rounds. One\nchallenger each."):format(ROUNDS) },
-        { "text", "The COLOSSEUM is\nthrough the far\ndoor. Good luck." },
+        { "text", "Through the far\ndoor. Good luck." },
       }
     else
       rows = {
-        { "text", ("Round %d of %d.\nThey're waiting\nthrough the door."):format(r, ROUNDS) },
+        { "text", ("Round %d of %d.\nThey're waiting."):format(r, ROUNDS) },
       }
     end
 
