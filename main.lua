@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.7.0"
+  local VERSION = "0.7.1"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -111,11 +111,14 @@ return function(mod)
 
     { key = "GISELLE", class = "BEAUTY",       member = "VICTORIA",
       sprite = "SPRITE_COOLTRAINER_F",
-      intro = "GISELLE: Top class,\ntop school.\fDo keep up.",
+      intro = "GISELLE: Top of\nmy class.\fDo keep up.",
       win  = "Top marks.\fFor today.",
       loss = "Study harder.\fClass dismissed.",
       afterWin  = "GISELLE: It won't\nhappen twice.",
-      afterLoss = "GISELLE: POKeMON\nTECH standards.",
+      -- ECRUTEAK UNIVERSITY, not POKeMON TECH: her canon school is Kanto's,
+      -- and a Johto circuit reads better with a Johto institution behind
+      -- her. Place names go ALL CAPS, per the games' own convention.
+      afterLoss = "GISELLE: ECRUTEAK\nUNIVERSITY, dear.",
       name = "GISELLE",
       chat = "GISELLE: Which\nschool did you\fattend? ...Oh.",
       party = { { species = "CUBONE", delta = -1 },
@@ -956,6 +959,19 @@ return function(mod)
   -- the lobby, and that reads fine on GB conventions. The planned upgrade
   -- is a real announcer NPC in the arena who STARTS the battles, freeing
   -- the challengers themselves for flavour dialogue.
+  -- One hype line per ROUND, not one line forever: the announcer escalating
+  -- as the card thins is the whole appeal of the archetype, and hearing the
+  -- same sentence four times reads as a bug in the writing. Keyed by round
+  -- rather than by challenger so it still works when the field is drawn at
+  -- random later. "BEGIN!" stays constant on purpose -- that one IS the
+  -- catchphrase.
+  local HYPE = {
+    "Round one, and the\ncrowd is buzzing!",
+    "The stands are\nPACKED for this!",
+    "Even through my\nshades, this one\flooks INCREDIBLE!",
+    "THE FINAL, folks!\fI'm shaking!",
+  }
+
   local ESCORT_LINES = {
     win  = "ANNOUNCER: Please\nlet us set up\ffor the next round.",
     lose = "ANNOUNCER: Better\nluck next time.\fYou're out of\nthe running.",
@@ -1111,7 +1127,7 @@ return function(mod)
             mod.world:queueScript({
               { "text", ("ANNOUNCER: ROUND\n%d of %d, folks!"):format(foe.round, ROUNDS) },
               { "text", ("Facing you --\n%s!"):format(foe.name or foe.key) },
-              { "text", "Even through my\nshades, this one\flooks INCREDIBLE!" },
+              { "text", HYPE[foe.round] or HYPE[#HYPE] },
               { "text", "BEGIN!" },
             })
           end
