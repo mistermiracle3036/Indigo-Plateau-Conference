@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.5.0"
+  local VERSION = "0.5.1"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -878,29 +878,50 @@ return function(mod)
   -- once the battle is over, and it reloads the map WITHOUT re-entering it
   -- -- which is why map.entered never fired and 0.2.1's round never
   -- advanced. This is the moment the next challenger can be put out.
+  -- Host's line, then the warp to the 2F DOOR CELL -- the same arrival a
+  -- genuine Colosseum exit produces, so the still-armed vanilla escort
+  -- scene fires from the position its choreography assumes and walks the
+  -- player out past the counter.
+  -- TODO/CONFIRM on device: landing exactly on (9,0) must not re-trigger
+  -- the door warp back in; if it does, land on (9,1).
+  local function runEscort()
+    if not escortPending then return end
+    escortPending = false
+    local sent = mod.world:queueScript({
+      { "text", "GENTLEMAN: That's\nthe tournament.\fThis way, please." },
+      { "warp", LOBBY, ARENA_DOOR_X, ARENA_DOOR_Y, "down" },
+    })
+    if not sent then probe("ESCORT FAIL") end
+  end
+
   mod.events:on("map.reloaded", function()
     local ok, err = pcall(function()
       local cur = mod.world:current()
       if cur and cur.mapId == ARENA then
         local world = mod.world:overworld()
         if world then fillArena(world) end
-        if escortPending then
-          escortPending = false
-          -- Host's line, then the warp to the 2F DOOR CELL -- the same
-          -- arrival a genuine Colosseum exit produces, so the still-armed
-          -- vanilla escort scene fires from the position its choreography
-          -- assumes and walks the player out past the counter.
-          -- TODO/CONFIRM on device: landing exactly on (9,0) must not
-          -- re-trigger the door warp back in; if it does, land on (9,1).
-          local sent = mod.world:queueScript({
-            { "text", "GENTLEMAN: That's\nthe tournament.\fThis way, please." },
-            { "warp", LOBBY, ARENA_DOOR_X, ARENA_DOOR_Y, "down" },
-          })
-          if not sent then probe("ESCORT FAIL") end
-        end
+        runEscort()
       end
     end)
     if not ok then errs("map.reloaded\n%s", tostring(err)) end
+  end)
+
+  -- THE LOSS PATH NEVER RELOADS THE MAP, so map.reloaded alone cannot
+  -- carry the escort. `reloadmapafterbattle`'s own `cp LOSE` branch jumps
+  -- into the whiteout INSTEAD of reloading (World.lua:5866-5868); CANLOSE
+  -- skips the whiteout but nothing reinstates the reload -- a combination
+  -- vanilla never produces, because no generic trainer is CANLOSE. 0.5.0
+  -- hung the escort and the floor swap on that event, so a loss left the
+  -- beaten challenger standing and the hook mismatched him into his
+  -- carrier's vanilla team (the developer's Charmander). The player's
+  -- first step after the loss is the trigger that always exists.
+  mod.events:on("world.stepped", function()
+    if not escortPending then return end
+    local ok, err = pcall(function()
+      local cur = mod.world:current()
+      if cur and cur.mapId == ARENA then runEscort() end
+    end)
+    if not ok then errs("stepped\n%s", tostring(err)) end
   end)
 
   ----------------------------------------------------------------------
@@ -1008,9 +1029,20 @@ return function(mod)
   mod.hooks:wrap("trainer.party", function(next, class, member, party)
     local base = next()
     local ok, res = pcall(function()
+      -- Match ANY card entry by class, preferring the current round's. The
+      -- current-round-only test leaked once: elimination reset the round
+      -- while the beaten challenger still stood, so re-engaging him
+      -- mismatched and fielded his carrier's VANILLA team (NICK's
+      -- Charmander). A stale challenger fighting as himself is always
+      -- right; a card challenger fighting as his carrier never is.
       local foe = currentFoe()
+      if not (foe and (class == foe.class or class == foe.classIx)) then
+        foe = nil
+        for _, f in ipairs(CARD) do
+          if class == f.class or class == f.classIx then foe = f break end
+        end
+      end
       if not foe then return nil end
-      if class ~= foe.class and class ~= foe.classIx then return nil end
       local built = buildParty(scaled(foe))
       if not built then
         -- Keep the vanilla party rather than field an opponent with no
