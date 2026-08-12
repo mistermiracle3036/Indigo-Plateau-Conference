@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.5.1"
+  local VERSION = "0.6.0"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -95,6 +95,8 @@ return function(mod)
     { key = "AJ",      class = "BUG_CATCHER",  member = "DON",
       sprite = "SPRITE_YOUNGSTER",
       intro = "A.J.: My gym\nnever lost.\fNeither do I.",
+      win  = "My streak...\fFine. Take it.",
+      loss = "The streak lives.\fGo home.",
       party = { { species = "SANDSLASH", delta = 0 },
                 { species = "BUTTERFREE", delta = -1 },
                 { species = "PRIMEAPE", delta = 0 } } },
@@ -102,6 +104,8 @@ return function(mod)
     { key = "GISELLE", class = "BEAUTY",       member = "VICTORIA",
       sprite = "SPRITE_COOLTRAINER_F",
       intro = "GISELLE: Top class,\ntop school.\fDo keep up.",
+      win  = "Top marks.\fFor today.",
+      loss = "Study harder.\fClass dismissed.",
       party = { { species = "CUBONE", delta = -1 },
                 { species = "GRAVELER", delta = 0 },
                 { species = "WIGGLYTUFF", delta = 0 } } },
@@ -117,6 +121,8 @@ return function(mod)
     { key = "BROCK",   class = "BROCK",        member = "BROCK1",
       sprite = "SPRITE_BROCK",
       intro = "BROCK: PEWTER's\nleader, out here?\fI travel too.",
+      win  = "Rock solid.\fPEWTER would be\nproud of that.",
+      loss = "Like a rock.\fTrain harder.",
       party = { { species = "GRAVELER", delta = -1 },
                 { species = "RHYHORN", delta = 0 },
                 { species = "KABUTOPS", delta = 0 },
@@ -127,6 +133,8 @@ return function(mod)
       intro = "WES: I came far\nfrom ORRE.\fDon't waste it.",
       -- Espeon and Umbreon are the point of him being here rather than on
       -- Gen 1, where his team had to be the three original Eeveelutions.
+      win  = "...ORRE breeds\ntough trainers.\fSo does JOHTO.",
+      loss = "Not even close.\fFind me when\nyou're ready.",
       party = { { species = "ESPEON", delta = 0 },
                 { species = "UMBREON", delta = 0 },
                 { species = "JOLTEON", delta = 0 },
@@ -202,11 +210,11 @@ return function(mod)
     foe.winKey  = "IPC_WIN_"  .. foe.key
     foe.lossKey = "IPC_LOSS_" .. foe.key
     mod.content.text:register(foe.seenKey, foe.intro)
-    mod.content.text:register(foe.winKey,  "...Well fought.")
-    -- the loss line carries the elimination rule, so the player is told
-    -- in-fiction rather than discovering their bracket reset at the host
-    mod.content.text:register(foe.lossKey,
-      "You're out of the\nrunning.\fStart over at\nround one.")
+    -- each challenger's own voice at the battle's end; the elimination
+    -- rule itself is the ANNOUNCER's line on the way out, so the
+    -- characters stay characters
+    mod.content.text:register(foe.winKey,  foe.win or "...Well fought.")
+    mod.content.text:register(foe.lossKey, foe.loss or "Better luck\nnext time.")
     foe.round = i
   end
 
@@ -795,46 +803,55 @@ return function(mod)
     if not ok then errs("engaged\n%s", tostring(err)) end
   end)
 
+  -- After ANY result the challenger stops being battleable: stripping
+  -- def.trainer means interactBody's trainer arm no longer claims the A
+  -- press, which falls through to kind="none" -- our dialogue path -- and
+  -- gets the announcer instead of an instant rebattle. A table-field write,
+  -- not world work, so it is safe this early in the teardown. (This is also
+  -- the foundation for the planned talk-to-start announcer: post-battle
+  -- talk already routes through our handler.)
+  local function defangFoe()
+    local world = mod.world:overworld()
+    local obj = objectNamed(world, ARENA, FOE_NAME)
+    if obj then obj.trainer = nil end
+  end
+
   mod.events:on("battle.ended", function(ev)
     local ok, err = pcall(function()
       if not pending() then return end
       setPending(false)
       local res = ev and ev.result
       probe("BATTLE %s", tostring(res))
+      defangFoe()
+      -- THE ESCORT NOW FOLLOWS EVERY RESULT (the developer's call): win or
+      -- lose, the next step -- or an A press on anybody -- plays the
+      -- announcer's line and warps the player to the 2F door cell, where
+      -- the still-armed vanilla escort scene walks them out past the
+      -- counter. The room re-stages on the NEXT entry, which is what makes
+      -- "let us set up for the next round" true rather than flavour: the
+      -- new challenger is never seen popping in.
       if res ~= "win" then
         -- A tournament loss is an elimination, not a wipeout: the battle
         -- was CANLOSE so no blackout is coming, and the party is healed
-        -- where they stand -- the developer's Battle Tower reading. hp and
-        -- status only; PP stays spent, which keeps a retry from being free.
+        -- where they stand. hp and status only; PP stays spent, which
+        -- keeps a fresh run from being free.
         for _, mon in ipairs((mod.game and mod.game.save and mod.game.save.party) or {}) do
           if mon and mon.stats and mon.stats.hp then
             mon.hp = mon.stats.hp
             mon.status = nil
           end
         end
-        -- ELIMINATION (0.5.0, the developer's call -- and the answer to the
-        -- oldest open question in the original design doc): a loss ends the
-        -- RUN, not the round. Back to round 1; the next map refresh swaps
-        -- the floor via fillArena, since spawnedFoeKey no longer matches.
-        -- Pairs with the drawn-card plan: a new run will mean a new field.
         if round() > 1 then
           setRound(1)
           probe("ELIMINATED\nback to R1")
         end
-        -- THE ESCORT, and it is the vanilla one. The scene that caused the
-        -- void IS the being-walked-out choreography, and it plays correctly
-        -- when the player stands at the door. So the loss deliberately does
-        -- NOT disarm it: after the map settles (battle.ended is too early --
-        -- the battle screen is still coming down), the host's line plays and
-        -- the player is warped to the 2F door cell, the same arrival a real
-        -- Colosseum exit produces, and the armed scene walks them out past
-        -- the counter. Every other non-door exit still disarms via place().
-        escortPending = true
+        escortPending = "lose"
         return
       end
       local n = round() + 1
       setRound(n)
       probe(n > ROUNDS and "CARD CLEARED" or ("ROUND %d"):format(n))
+      escortPending = "win"
     end)
     if not ok then errs("battle.ended\n%s", tostring(err)) end
   end)
@@ -884,37 +901,34 @@ return function(mod)
   -- player out past the counter.
   -- TODO/CONFIRM on device: landing exactly on (9,0) must not re-trigger
   -- the door warp back in; if it does, land on (9,1).
+  -- The announcer is a disembodied voice for now -- the Gentleman stays in
+  -- the lobby, and that reads fine on GB conventions. The planned upgrade
+  -- is a real announcer NPC in the arena who STARTS the battles, freeing
+  -- the challengers themselves for flavour dialogue.
+  local ESCORT_LINES = {
+    win  = "ANNOUNCER: Please\nlet us set up\ffor the next round.",
+    lose = "ANNOUNCER: Better\nluck next time.\fYou're out of\nthe running.",
+  }
+
   local function runEscort()
     if not escortPending then return end
+    local line = ESCORT_LINES[escortPending] or ESCORT_LINES.lose
     escortPending = false
     local sent = mod.world:queueScript({
-      { "text", "GENTLEMAN: That's\nthe tournament.\fThis way, please." },
+      { "text", line },
       { "warp", LOBBY, ARENA_DOOR_X, ARENA_DOOR_Y, "down" },
     })
     if not sent then probe("ESCORT FAIL") end
   end
 
-  mod.events:on("map.reloaded", function()
-    local ok, err = pcall(function()
-      local cur = mod.world:current()
-      if cur and cur.mapId == ARENA then
-        local world = mod.world:overworld()
-        if world then fillArena(world) end
-        runEscort()
-      end
-    end)
-    if not ok then errs("map.reloaded\n%s", tostring(err)) end
-  end)
-
-  -- THE LOSS PATH NEVER RELOADS THE MAP, so map.reloaded alone cannot
-  -- carry the escort. `reloadmapafterbattle`'s own `cp LOSE` branch jumps
-  -- into the whiteout INSTEAD of reloading (World.lua:5866-5868); CANLOSE
-  -- skips the whiteout but nothing reinstates the reload -- a combination
-  -- vanilla never produces, because no generic trainer is CANLOSE. 0.5.0
-  -- hung the escort and the floor swap on that event, so a loss left the
-  -- beaten challenger standing and the hook mismatched him into his
-  -- carrier's vanilla team (the developer's Charmander). The player's
-  -- first step after the loss is the trigger that always exists.
+  -- THE LOSS PATH NEVER RELOADS THE MAP, so map.reloaded cannot carry the
+  -- escort. `reloadmapafterbattle`'s own `cp LOSE` branch jumps into the
+  -- whiteout INSTEAD of reloading (World.lua:5866-5868); CANLOSE skips the
+  -- whiteout but nothing reinstates the reload -- a combination vanilla
+  -- never produces, because no generic trainer is CANLOSE. The player's
+  -- first step after the battle is the trigger that always exists, on both
+  -- results. (The map.reloaded floor swap is gone too: the room now
+  -- deliberately re-stages only on the next ENTRY, after the escort.)
   mod.events:on("world.stepped", function()
     if not escortPending then return end
     local ok, err = pcall(function()
@@ -996,7 +1010,13 @@ return function(mod)
         local h = objectNamed(world, LOBBY, HOST_NAME)
         if h and h.x == ev.x and h.y == ev.y then return talkHost() end
       elseif ev.mapId == ARENA then
-        -- the floor may be a round out of date if the reload was missed
+        -- With an escort pending, ANY A press gets the announcer -- most
+        -- importantly one aimed at the just-fought challenger, whose
+        -- def.trainer was stripped so the press lands here instead of in
+        -- the cart's battle script. This is what closes the instant-
+        -- rebattle: talk or step, either way you are walked out.
+        if escortPending then return runEscort() end
+        -- otherwise the floor may be a round out of date; make it match
         pcall(fillArena, world)
       end
     end)
