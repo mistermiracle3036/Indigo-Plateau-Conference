@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.4.1"
+  local VERSION = "0.4.2"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -544,20 +544,33 @@ return function(mod)
   -- shifted POKé2's index and the second reference pointed at nothing.
   -- Snapshot first, then toggle -- and toggle by the NAME captured from the
   -- data, which also avoids this file having to spell the non-ASCII "é".
+  -- Matched on SPRITE, not name. The first census printed them as "POKé1"
+  -- and "POKé2" so 0.2.2 matched a name prefix -- but the log now shows them
+  -- coming back as "#1"/"#2", which is this file's own fallback for a NIL
+  -- name. So the name test could never fire and both stayed visible. Their
+  -- sprite is the one thing that has read the same every single time.
+  --
+  -- Toggled in REVERSE index order because toggleObject takes the object off
+  -- the live map, which shifts every index after it -- the exact mutation
+  -- that made 0.2.2 hide one of the two. Going backwards keeps the lower
+  -- indices valid, and the index is all there is to key on with no name.
+  local PLACEHOLDER_SPRITE = "CHRIS"
+
   local function hidePlaceholders(world)
     local def = world and world.maps and world.maps[ARENA]
-    local targets = {}
-    for _, obj in ipairs(def and def.objects or {}) do
+    local idx = {}
+    for i, obj in ipairs(def and def.objects or {}) do
       local name = tostring(obj.name or "")
+      local sprite = tostring(obj.sprite or ""):gsub("^SPRITE_", "")
       if name ~= FOE_NAME and name ~= EXIT_NAME and name ~= HOST_NAME
-         and name:sub(1, 3) == "POK" then
-        targets[#targets + 1] = name
+         and sprite == PLACEHOLDER_SPRITE then
+        idx[#idx + 1] = i
       end
     end
-    for _, name in ipairs(targets) do
-      pcall(function() mod.world:toggleObject(ARENA, name, false) end)
+    for n = #idx, 1, -1 do
+      pcall(function() mod.world:toggleObject(ARENA, idx[n], false) end)
     end
-    if #targets > 0 then probe("HID %d", #targets) end
+    if #idx > 0 then probe("HID %d", #idx) end
   end
 
   local function fillArena(world)
