@@ -4,6 +4,43 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.2.0
+
+**A full four-round tournament, inside the actual Colosseum.**
+
+The host now stands in the Pokémon Center's upstairs lobby and sends you
+*through* — into `COLOSSEUM`, the link-battle room single player never
+gets to see. The attendant who normally guards that door is not touched:
+`warpTo` only checks that the map exists and never consults the script
+that gates it. Hiding or moving her would break vanilla and collide with
+any other mod on that map; going around her costs nothing.
+
+The card, escalating across four rounds: **A.J.**, **Giselle**,
+**Ritchie**, **Wes** — each with their own pre-battle line and their own
+team. Beat one and the next is waiting; clear all four and the host hands
+you the title and resets the card, so it can be run again.
+
+Wes fields **Espeon and Umbreon**. That is the point of him being here on
+Gold rather than Gen 1: his Kanto team had to be Jolteon/Flareon/Vaporeon
+because the other two did not exist yet.
+
+Arrival uses one of the arena's **own** warp tiles rather than a cell
+picked by hand — guaranteed walkable, and where the game itself puts a
+player. An attendant inside leads back out, and the lobby cell you left
+from is remembered before you go, so a save made in the arena is not a
+soft-lock.
+
+Known and deliberate, for the next build:
+
+- Challengers wear a **vanilla trainer's name** ("SCHOOLBOY JACK"), not
+  their own. The Gen 2 trainers registry takes members carrying their own
+  name and party, which would fix this properly — but appending to a
+  class needs `__append` to survive the Gen 2 write path and that is
+  unverified. This build rides only mechanisms already proven on device.
+- The win is **inferred**, not read: the cart owns the battle outcome and
+  does not hand it back. A loss whites you out to a Pokémon Center, so
+  still standing in the arena afterwards counts as a win.
+
 ## 0.1.7
 
 **The probe is complete. The design works.** A mod can stage a trainer
