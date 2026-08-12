@@ -36,7 +36,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.1.4"
+  local VERSION = "0.1.5"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -64,6 +64,30 @@ return function(mod)
   -- team is replaced wholesale by the trainer.party hook below.
   local CARRIER_CLASS = "COOLTRAINERM"
   local CARRIER_MEMBER = "NICK"
+
+  ----------------------------------------------------------------------
+  -- Pre-battle text. 0.1.4 showed "..." because TALK_TO_TRAINER_SCRIPT
+  -- runs `trainertext index=0`, which reads trainerObject.seenText and
+  -- looks it up in the Vm's text pool -- and Vm:showText falls back to
+  -- the literal "..." when the body is missing or empty (Vm.lua:2357).
+  -- The mod never supplied one.
+  --
+  -- The `text` registry DOES have a Gen 2 target (Schemas.lua:476,
+  -- text = "gen2Text"), and that is the same table the Vm reads, so a
+  -- mod-registered key is reachable from the cart's own script.
+  -- TODO/CONFIRM: Gold's vanilla text ids are ROM pointer strings
+  -- ("55:4067") rather than TEXT_* names; an invented key should still
+  -- work because the lookup is a plain table index, but this build is
+  -- what proves it.
+  ----------------------------------------------------------------------
+  local SEEN_TEXT = "IPC_PROBE_SEEN"
+  local WIN_TEXT  = "IPC_PROBE_WIN"
+  local LOSS_TEXT = "IPC_PROBE_LOSS"
+
+  mod.content.text:register(SEEN_TEXT,
+    "So you're the one\nthey entered?\fLet's see it.")
+  mod.content.text:register(WIN_TEXT,  "...I misjudged you.")
+  mod.content.text:register(LOSS_TEXT, "Come back when\nyou're ready.")
 
   ----------------------------------------------------------------------
   -- The circuit, keyed by the Pokemon Center whose stairs were climbed.
@@ -224,7 +248,16 @@ return function(mod)
       local rid, rerr = mod.world:spawnNpc(LOBBY, {
         name = RIVAL_NAME, sprite = SPRITE_RIVAL,
         x = rx, y = ry, movement = MOVE_STANDING_DOWN,
-        trainer = { class = CARRIER_CLASS, member = CARRIER_MEMBER },
+        -- No `event` flag on purpose. trainerflagaction CHECK reads
+        -- trainerObject.event (Vm.lua:1130) and with none it sets
+        -- scriptVar 0, so the "already beaten" branch never fires and the
+        -- opponent can be fought again -- which is what a REPEATABLE
+        -- tournament wants. A real beaten-flag would retire each
+        -- challenger permanently after one win.
+        trainer = {
+          class = CARRIER_CLASS, member = CARRIER_MEMBER,
+          seenText = SEEN_TEXT, winText = WIN_TEXT, lossText = LOSS_TEXT,
+        },
       })
       if not rid then probe("RIVAL FAIL\n%s", tostring(rerr)) end
       return ("host %d,%d\nrival %d,%d"):format(hx, hy, rx, ry)

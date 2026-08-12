@@ -4,6 +4,28 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.1.5
+
+**The opponent gets his line.** 0.1.4 made him say "..." — which turned
+out to be the engine's own placeholder, not a failure.
+
+Talking to an NPC with `def.trainer` hands the press to the cart's
+bytecode, and `TALK_TO_TRAINER_SCRIPT` runs `trainertext index=0`. That
+reads `trainerObject.seenText` and looks it up in the VM's decoded text
+pool; `Vm:showText` substitutes the literal "..." when the body is
+missing. No `seenText` was supplied, so that is what showed.
+
+Two different text paths, which is the part worth remembering: the host's
+dialogue is ours (`queueScript` takes a raw string), while a trainer's
+pre-battle line is the ROM's (a key lookup in its own pool). The `text`
+registry has a Gen 2 target, so this build registers seen/win/loss keys
+and points the trainer record at them.
+
+Deliberately **no `event` flag** on the trainer record. With none, the
+beaten-check always reads false and the opponent can be fought again —
+which is what a repeatable tournament needs. A real flag would retire
+each challenger permanently after one win.
+
 ## 0.1.4
 
 **Fixes 0.1.3 loading nothing at all.**
