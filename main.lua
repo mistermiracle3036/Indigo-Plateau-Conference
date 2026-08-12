@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.4.3"
+  local VERSION = "0.4.4"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -487,10 +487,132 @@ return function(mod)
     probe("DOOR CLEAR\nnobody at %d,%d", ARENA_DOOR_X, ARENA_DOOR_Y)
     doorCleared = true
   end
+  -- indices valid, and the index is all there is to key on with no name.
+  -- HIDING IS WITHDRAWN, AND WHAT IT WROTE IS BEING PUT BACK.
+  --
+  -- Tested with the mod off: the stairs bug does NOT reproduce, so it is
+  -- ours. toggleObject is the only PERSISTENT save-state change this mod
+  -- makes -- Gen 2 has no save.objectToggles, so an object's visibility IS
+  -- its MAPOBJECT_EVENT_FLAG (WorldAPI.lua:68-72) -- and it was being called
+  -- with a LIST INDEX as the reference. If that index does not resolve to
+  -- the object assumed, the call flips some other event flag entirely, and
+  -- Gold gates warps and map scripts on event flags. That fits every symptom:
+  -- a dead staircase, surviving across sessions, appearing without a battle.
+  --
+  -- So this now sets them VISIBLE rather than hidden, which repairs any flag
+  -- earlier versions set in the developer's save instead of leaving them to
+  -- find a broken game later. Two Chris sprites standing in a battle venue
+  -- read as spectators; that is a cosmetic price worth paying and never
+  -- worth persistent save writes.
+  --
+  -- If the pair really must go, the safe route is a spawn-over or a
+  -- runtime-only approach -- nothing that writes the event bitfield.
+  local PLACEHOLDER_SPRITE = "CHRIS"
+
+  ----------------------------------------------------------------------
+  -- THE PAIR BECOME SPECTATORS (0.4.4). A lone figure wearing the player's
+  -- own sprite reads as a bug even when it is not, so they get new sheets
+  -- and new positions -- through two mechanisms that never touch the event
+  -- bitfield, after toggleObject broke the stairs (see 0.4.3):
+  --
+  -- 1) DEF MUTATION, the main path. World:pooledNpc builds an NPC from the
+  --    map def exactly ONCE per session (npcPool, World.lua:6826-6830), and
+  --    NPC.new takes cell, home and pixel position straight from objDef.x/y
+  --    and the sheet from objDef.sprite (Npc.lua:220+). So rewriting the two
+  --    def rows BEFORE the player first enters the arena controls both.
+  --    gen2Maps is loaded fresh from data/generated/maps.lua every boot
+  --    (Game2/World dataTable), so this is runtime-only by construction --
+  --    nothing to persist, nothing to repair, redone each session from the
+  --    lobby the player must walk through anyway.
+  --
+  -- 2) LIVE REPAINT, the fallback for a save restored INSIDE the arena,
+  --    where the pool built them before any lobby code ran. NPC:setSpriteDef
+  --    is the engine's own `variablesprite` path -- the cart itself reskins
+  --    NPCs in place (Fuchsia Gym, Copycat) and the comment above it says
+  --    why repainting beats retiring: a new table would strand talkNpc and
+  --    any moveState. Position cannot move this way; sprite alone still
+  --    breaks the "that's me" read. applySpritePalette follows, because
+  --    palettes are only baked on map entry and a repaint without it draws
+  --    grey for up to a second.
+  --
+  -- Spectator cells are fixed guesses from the room layout (10x8 cells,
+  -- benches along the top, warps at 4,7/5,7) and are TODO/CONFIRM on
+  -- device: walkability cannot be checked from the lobby because
+  -- world.maps[ARENA] is the def, not a Map instance, and by the time the
+  -- arena IS active the pool has already built. The probe prints where they
+  -- actually landed.
+  local SPECTATOR_ROWS = {
+    { sprite = "SPRITE_TEACHER",   x = 1, y = 2 },
+    { sprite = "SPRITE_POKEFAN_M", x = 8, y = 2 },
+  }
+
+  local function redressPlaceholders(world)
+    local def = world and world.maps and world.maps[ARENA]
+    local n = 0
+    for _, obj in ipairs(def and def.objects or {}) do
+      local name = tostring(obj.name or "")
+      local sprite = tostring(obj.sprite or ""):gsub("^SPRITE_", "")
+      if name ~= FOE_NAME and name ~= EXIT_NAME and sprite == PLACEHOLDER_SPRITE then
+        n = n + 1
+        local row = SPECTATOR_ROWS[n]
+        if row then
+          obj.sprite = row.sprite
+          obj.x, obj.y = row.x, row.y
+          -- our own marker field, ignored by the engine (same trick as
+          -- court_of_noctowl's conVariant): the flag repair below must
+          -- still find these rows after the sprite id stops saying CHRIS
+          obj.ipcSpectator = true
+        end
+      end
+    end
+    if n > 0 then probe("REDRESSED %d", n) end
+  end
+
+  -- ONE MORE BUILD OF FLAG REPAIR (from 0.4.3). Earlier versions hid the
+  -- pair through toggleObject, which writes the persistent event bitfield
+  -- and is the prime suspect for the dead-stairs bug. The repair is the
+  -- SAME call with visible=true -- symmetric, so whatever flag the hide
+  -- flipped, this flips back, even if it was the wrong one. Matched through
+  -- the ipcSpectator marker OR the CHRIS sprite so the redress renaming the
+  -- sprite does not hide the rows from it. Idempotent; delete after the
+  -- developer confirms the stairs stay fixed.
+  local function repairFlags(world)
+    local def = world and world.maps and world.maps[ARENA]
+    local idx = {}
+    for i, obj in ipairs(def and def.objects or {}) do
+      local sprite = tostring(obj.sprite or ""):gsub("^SPRITE_", "")
+      if obj.ipcSpectator or sprite == PLACEHOLDER_SPRITE then
+        idx[#idx + 1] = i
+      end
+    end
+    for n = #idx, 1, -1 do
+      pcall(function() mod.world:toggleObject(ARENA, idx[n], true) end)
+    end
+  end
+
+  -- The fallback: any LIVE arena NPC still wearing the player's sheet gets
+  -- repainted where it stands.
+  local function repaintLive(world)
+    for _, npc in ipairs(world and world.npcs or {}) do
+      local id = npc.spriteDef and tostring(npc.spriteDef.id or "")
+      if id:gsub("^SPRITE_", "") == PLACEHOLDER_SPRITE and npc.def
+         and tostring(npc.def.name or "") ~= FOE_NAME then
+        local sheet = world.sprites and world.sprites[SPECTATOR_ROWS[1].sprite]
+        if sheet and npc.setSpriteDef and npc:setSpriteDef(sheet) then
+          pcall(function() world:applySpritePalette(npc) end)
+          probe("REPAINTED\n%d,%d", npc.cellX or -1, npc.cellY or -1)
+        end
+      end
+    end
+  end
 
   local function fillLobby(world)
     censusWarps(world, LOBBY)
     censusLobbyObjects(world)
+    -- Redress the arena's link pair NOW, from the lobby: the pool builds
+    -- them from the def on the player's first arena entry, and the lobby is
+    -- the room every player must cross to get there.
+    redressPlaceholders(world)
     if objectNamed(world, LOBBY, HOST_NAME) then return "host ok" end
     local hx, hy = bestCell(world, {})
     if not hx then return "no cell" end
@@ -553,49 +675,14 @@ return function(mod)
   -- Toggled in REVERSE index order because toggleObject takes the object off
   -- the live map, which shifts every index after it -- the exact mutation
   -- that made 0.2.2 hide one of the two. Going backwards keeps the lower
-  -- indices valid, and the index is all there is to key on with no name.
-  -- HIDING IS WITHDRAWN, AND WHAT IT WROTE IS BEING PUT BACK.
-  --
-  -- Tested with the mod off: the stairs bug does NOT reproduce, so it is
-  -- ours. toggleObject is the only PERSISTENT save-state change this mod
-  -- makes -- Gen 2 has no save.objectToggles, so an object's visibility IS
-  -- its MAPOBJECT_EVENT_FLAG (WorldAPI.lua:68-72) -- and it was being called
-  -- with a LIST INDEX as the reference. If that index does not resolve to
-  -- the object assumed, the call flips some other event flag entirely, and
-  -- Gold gates warps and map scripts on event flags. That fits every symptom:
-  -- a dead staircase, surviving across sessions, appearing without a battle.
-  --
-  -- So this now sets them VISIBLE rather than hidden, which repairs any flag
-  -- earlier versions set in the developer's save instead of leaving them to
-  -- find a broken game later. Two Chris sprites standing in a battle venue
-  -- read as spectators; that is a cosmetic price worth paying and never
-  -- worth persistent save writes.
-  --
-  -- If the pair really must go, the safe route is a spawn-over or a
-  -- runtime-only approach -- nothing that writes the event bitfield.
-  local PLACEHOLDER_SPRITE = "CHRIS"
-
-  local function restorePlaceholders(world)
-    local def = world and world.maps and world.maps[ARENA]
-    local idx = {}
-    for i, obj in ipairs(def and def.objects or {}) do
-      local name = tostring(obj.name or "")
-      local sprite = tostring(obj.sprite or ""):gsub("^SPRITE_", "")
-      if name ~= FOE_NAME and name ~= EXIT_NAME and name ~= HOST_NAME
-         and sprite == PLACEHOLDER_SPRITE then
-        idx[#idx + 1] = i
-      end
-    end
-    for n = #idx, 1, -1 do
-      pcall(function() mod.world:toggleObject(ARENA, idx[n], true) end)
-    end
-    if #idx > 0 then probe("RESTORED %d", #idx) end
-  end
 
   local function fillArena(world)
     censusArena(world)
     censusWarps(world, ARENA)
-    restorePlaceholders(world)
+    -- Order matters: repair the flags first (needs the arena active),
+    -- then repaint anything the pool built before the lobby could redress.
+    repairFlags(world)
+    repaintLive(world)
     local taken = {}
     local out = {}
 
