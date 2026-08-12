@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.4.4"
+  local VERSION = "0.4.5"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -568,25 +568,42 @@ return function(mod)
     if n > 0 then probe("REDRESSED %d", n) end
   end
 
-  -- ONE MORE BUILD OF FLAG REPAIR (from 0.4.3). Earlier versions hid the
-  -- pair through toggleObject, which writes the persistent event bitfield
-  -- and is the prime suspect for the dead-stairs bug. The repair is the
-  -- SAME call with visible=true -- symmetric, so whatever flag the hide
-  -- flipped, this flips back, even if it was the wrong one. Matched through
-  -- the ipcSpectator marker OR the CHRIS sprite so the redress renaming the
-  -- sprite does not hide the rows from it. Idempotent; delete after the
-  -- developer confirms the stairs stay fixed.
-  local function repairFlags(world)
-    local def = world and world.maps and world.maps[ARENA]
-    local idx = {}
-    for i, obj in ipairs(def and def.objects or {}) do
-      local sprite = tostring(obj.sprite or ""):gsub("^SPRITE_", "")
-      if obj.ipcSpectator or sprite == PLACEHOLDER_SPRITE then
-        idx[#idx + 1] = i
-      end
-    end
-    for n = #idx, 1, -1 do
-      pcall(function() mod.world:toggleObject(ARENA, idx[n], true) end)
+  ----------------------------------------------------------------------
+  -- THE VOID, SOLVED (0.4.5). It was never the event flags -- toggleObject
+  -- is exonerated, and the 0.4.3 "flag repair" is deleted rather than kept.
+  --
+  -- The real mechanism, read out of the extracted scripts in the ROM cache:
+  -- COLOSSEUM's entry scene (5c:5514 -> 5c:5529) runs
+  --   setscene 1; setmapscene group=20 map=1 scene=2
+  -- i.e. entering the arena ARMS a scene on POKECENTER_2F. That scene
+  -- (5c:4d51 -> 5c:4f1c) is the link-room escort: applymovement on
+  -- OBJECT 0 -- the PLAYER -- walking a fixed path that assumes they are
+  -- standing at the Colosseum door, then it resets both scenes.
+  --
+  -- Walk out through the door and the escort plays correctly and consumes
+  -- itself. Leave ANY other way -- blackout after a loss, a teleport, the
+  -- old exit-attendant warp -- and the scene stays armed in the SAVE
+  -- (save.mapScenes), so the next 2F entry, from the stairs, marches the
+  -- player three cells into the void. It self-resets after firing once,
+  -- which is why the bug "healed" on re-entry and why a mods-off test on
+  -- the same save could come back clean.
+  --
+  -- Two defences, both below: our battles are CANLOSE so a loss never
+  -- blacks out (the trigger the developer hit), and any map entry that is
+  -- neither the lobby nor the arena disarms a stale scene 2 (covers
+  -- teleports and anything else that skips the door).
+  ----------------------------------------------------------------------
+  local LEAVE_COLOSSEUM_SCENE = 2
+
+  local function disarmStaleEscort(why)
+    local world = mod.world:overworld()
+    if not (world and world.mapScenes) then return end
+    if world.mapScenes[LOBBY] == LEAVE_COLOSSEUM_SCENE then
+      -- both halves, matching what the escort's own tail does
+      -- (setscene 0 / setmapscene 20,3,0), so vanilla state is restored
+      world.mapScenes[LOBBY] = 0
+      world.mapScenes[ARENA] = 0
+      probe("ESCORT OFF\n%s", tostring(why))
     end
   end
 
@@ -681,7 +698,6 @@ return function(mod)
     censusWarps(world, ARENA)
     -- Order matters: repair the flags first (needs the arena active),
     -- then repaint anything the pool built before the lobby could redress.
-    repairFlags(world)
     repaintLive(world)
     local taken = {}
     local out = {}
@@ -748,14 +764,55 @@ return function(mod)
   -- the battle screen is still coming down, so spawning from here would
   -- race the map reload; it only moves the counter, and syncArena below
   -- makes the world match whenever the overworld is next in hand.
+  ----------------------------------------------------------------------
+  -- OUR BATTLES ARE CANLOSE. World:startScriptedBattle skips the blackout
+  -- when opts.battleType == BATTLETYPE_CANLOSE (World.lua:5885) -- the
+  -- Cherrygrove rival's own mechanism -- and it reads that from
+  -- scriptVars[VAR_BATTLETYPE] (slot 3), a ONE-SHOT the battle start takes
+  -- and clears. world.trainer_engaged fires in startTrainerScript, before
+  -- the VM reaches `startbattle`, so arming it here is exactly the
+  -- `writevar VAR_BATTLETYPE / loadvar BATTLETYPE_CANLOSE` the rival's map
+  -- script does. Keyed on our object's NAME so a vanilla trainer fought
+  -- mid-session keeps vanilla stakes.
+  ----------------------------------------------------------------------
+  local VAR_BATTLETYPE, BATTLETYPE_CANLOSE = 0x03, 1
+
+  mod.events:on("world.trainer_engaged", function(ev)
+    local ok, err = pcall(function()
+      local npc = ev and ev.npc
+      if not (npc and npc.def and npc.def.name == FOE_NAME) then return end
+      local world = mod.world:overworld()
+      if world and world.scriptVars then
+        world.scriptVars[VAR_BATTLETYPE] = BATTLETYPE_CANLOSE
+        probe("CANLOSE ON")
+      end
+    end)
+    if not ok then errs("engaged\n%s", tostring(err)) end
+  end)
+
   mod.events:on("battle.ended", function(ev)
     local ok, err = pcall(function()
       if not pending() then return end
       setPending(false)
       local res = ev and ev.result
       probe("BATTLE %s", tostring(res))
-      -- Anything but a win leaves the same challenger standing.
-      if res ~= "win" then return end
+      if res ~= "win" then
+        -- A tournament loss is an elimination, not a wipeout: the battle
+        -- was CANLOSE so no blackout is coming, and the party is healed
+        -- where they stand -- the developer's Battle Tower reading. hp and
+        -- status only; PP stays spent, which keeps a retry from being free.
+        for _, mon in ipairs((mod.game and mod.game.save and mod.game.save.party) or {}) do
+          if mon and mon.stats and mon.stats.hp then
+            mon.hp = mon.stats.hp
+            mon.status = nil
+          end
+        end
+        -- belt: if anything DID skip the door (an older engine, a wipeout
+        -- from some other mod's battle mid-tournament), the escort must not
+        -- stay armed
+        disarmStaleEscort("loss")
+        return
+      end
       local n = round() + 1
       setRound(n)
       probe(n > ROUNDS and "CARD CLEARED" or ("ROUND %d"):format(n))
@@ -765,6 +822,12 @@ return function(mod)
 
   local function place(mapId)
     if VENUES[mapId] then mod.save:set("lastCentre", mapId) end
+    -- Any map that is neither the lobby nor the arena means the player has
+    -- left the tournament flow by some path other than the 2F door --
+    -- teleport, dig, another mod's warp -- so a still-armed escort is stale
+    -- by definition. (To reach the 2F stairs legitimately they must cross
+    -- the 1F, which lands here and disarms first.)
+    if mapId ~= LOBBY and mapId ~= ARENA then disarmStaleEscort(mapId) end
     local world = mod.world:overworld()
     if not world then return end
     if mapId == LOBBY then
