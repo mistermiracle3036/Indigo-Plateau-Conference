@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.6.0"
+  local VERSION = "0.6.1"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -122,7 +122,7 @@ return function(mod)
       sprite = "SPRITE_BROCK",
       intro = "BROCK: PEWTER's\nleader, out here?\fI travel too.",
       win  = "Rock solid.\fPEWTER would be\nproud of that.",
-      loss = "Like a rock.\fTrain harder.",
+      loss = "Sunk like a stone.\fTrain harder.",
       party = { { species = "GRAVELER", delta = -1 },
                 { species = "RHYHORN", delta = 0 },
                 { species = "KABUTOPS", delta = 0 },
