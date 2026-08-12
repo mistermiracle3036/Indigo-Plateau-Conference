@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.2.3"
+  local VERSION = "0.3.0"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -97,11 +97,19 @@ return function(mod)
                 { species = "SCYTHER", delta = -1 },
                 { species = "VICTREEBEL", delta = 0 } } },
 
-    { key = "RITCHIE", class = "SCHOOLBOY",    member = "JACK1",
-      sprite = "SPRITE_YOUNGSTER",
-      intro = "RITCHIE: Sparky's\nbeen waiting for\na match like this!",
-      party = { { species = "TANGELA", delta = 1 },
-                { species = "PINSIR", delta = 1 },
+    -- BROCK is a real Gold trainer CLASS with one member, BROCK1, plus a
+    -- SPRITE_BROCK overworld sprite. Using a leader as their OWN carrier is
+    -- the answer to the naming problem for this whole family: the battle
+    -- announces the class's real name and shows the real portrait, with no
+    -- registry trick at all. Kanto's leaders and the Elite Four are all in
+    -- that table (MISTY, LT_SURGE, ERIKA, JANINE, KOGA, WILL, KAREN, BRUNO,
+    -- CHAMPION/LANCE), which is exactly the "shouldn't see them yet" cast
+    -- the circuit wants.
+    { key = "BROCK",   class = "BROCK",        member = "BROCK1",
+      sprite = "SPRITE_BROCK",
+      intro = "BROCK: PEWTER's\ngym leader, out\nhere?\fI travel too.",
+      party = { { species = "SKARMORY", delta = 1 },
+                { species = "HERACROSS", delta = 1 },
                 { species = "FORRETRESS", delta = 2 } } },  -- Bug/Steel, 4x
 
     { key = "WES",     class = "COOLTRAINERM", member = "NICK",
@@ -370,17 +378,26 @@ return function(mod)
   -- because these two are inert outside a link session and the change is
   -- reversible by toggling them back -- but it is why the census came
   -- first, and why nothing is hidden that has not been identified.
+  -- 0.2.2 hid only ONE of the two: it toggled by index while iterating the
+  -- very list toggleObject mutates ("appear/disappear additionally take it
+  -- off the live map when the map is the active one"), so hiding POKé1
+  -- shifted POKé2's index and the second reference pointed at nothing.
+  -- Snapshot first, then toggle -- and toggle by the NAME captured from the
+  -- data, which also avoids this file having to spell the non-ASCII "é".
   local function hidePlaceholders(world)
     local def = world and world.maps and world.maps[ARENA]
-    for i, obj in ipairs(def and def.objects or {}) do
+    local targets = {}
+    for _, obj in ipairs(def and def.objects or {}) do
       local name = tostring(obj.name or "")
       if name ~= FOE_NAME and name ~= EXIT_NAME and name ~= HOST_NAME
          and name:sub(1, 3) == "POK" then
-        -- objRef is the object's 1-based index or its extracted name; the
-        -- index is used because these names carry a non-ASCII "é".
-        pcall(function() mod.world:toggleObject(ARENA, i, false) end)
+        targets[#targets + 1] = name
       end
     end
+    for _, name in ipairs(targets) do
+      pcall(function() mod.world:toggleObject(ARENA, name, false) end)
+    end
+    if #targets > 0 then probe("HID %d", #targets) end
   end
 
   local function fillArena(world)
@@ -390,18 +407,8 @@ return function(mod)
     local taken = {}
     local out = {}
 
-    if not objectNamed(world, ARENA, EXIT_NAME) then
-      local ex, ey = bestCell(world, taken)
-      if ex then
-        taken[#taken + 1] = { ex, ey }
-local eid =         mod.world:spawnNpc(ARENA, {
-          name = EXIT_NAME, sprite = SPRITE_HOST,
-          x = ex, y = ey, movement = MOVE_STANDING_DOWN,
-        })
-        spawnedIds[EXIT_NAME] = eid
-        out[#out + 1] = "exit ok"
-      end
-    end
+    -- No exit attendant any more: the arena's own bottom door leads out.
+    despawn(EXIT_NAME)
 
     local foe = currentFoe()
     if not foe then
@@ -522,22 +529,20 @@ local eid =         mod.world:spawnNpc(ARENA, {
   -- The challenger is NOT handled here: def.trainer makes his press take
   -- the trainer arm instead, which is the whole point.
   ----------------------------------------------------------------------
-  local function enterArena()
-    local cur = mod.world:current()
-    if cur then
-      mod.save:set("backX", cur.x)
-      mod.save:set("backY", cur.y)
-    end
-    -- Arrive on one of the arena's OWN warp tiles: it is guaranteed
-    -- walkable and is where the game itself puts a player, so no cell has
-    -- to be guessed. Falls back to the middle of a 10x8 room.
-    local def = mod.world:overworld()
-    def = def and def.maps and def.maps[ARENA]
-    local w = def and def.warps and def.warps[1]
-    local ok, err = mod.world:warpTo(ARENA, (w and w.x) or 4, (w and w.y) or 6, "up")
-    probe("WARP %s\n%s", ok and "OK" or "FAIL", tostring(err or ""))
-    return ok
-  end
+  -- THE MOD NO LONGER WARPS ANYBODY. The census found that POKECENTER_2F
+  -- carries a real warp tile to COLOSSEUM at (9,0) -- warp 3 of 4, beside
+  -- TRADE_CENTER at (5,0) and TIME_CAPSULE at (13,2). So the door already
+  -- exists and the player can walk through it.
+  --
+  -- That matters for more than immersion. Walking a real warp is what banks
+  -- wBackupWarpNumber / MapGroup / MapNumber (World.lua:8554-8564), the
+  -- triple the ONE shared 2F staircase resolves its -1 destination through.
+  -- mod.world:warpTo never refreshes it, so the previous builds left that
+  -- staircase dead -- "the player is trapped upstairs in every Pokemon
+  -- Center" -- which is the void the developer walked into after a loss,
+  -- and why teleporting away repaired it. Using the door fixes the cause
+  -- rather than papering over the symptom.
+  local ARENA_DOOR_X, ARENA_DOOR_Y = 9, 0
 
   local function talkHost()
     local v = venue()
@@ -555,30 +560,23 @@ local eid =         mod.world:spawnNpc(ARENA, {
     elseif r == 1 then
       rows = {
         { "text", ("Welcome to the\n%s\n%s!"):format(town, title) },
-        { "text", ("%d rounds. One\nchallenger each.\nThrough here."):format(ROUNDS) },
+        { "text", ("%d rounds. One\nchallenger each."):format(ROUNDS) },
+        { "text", "The COLOSSEUM is\nthrough the far\ndoor. Good luck." },
       }
     else
-      rows = { { "text", ("Round %d of %d.\nThey're waiting."):format(r, ROUNDS) } }
+      rows = {
+        { "text", ("Round %d of %d.\nThey're waiting\nthrough the door."):format(r, ROUNDS) },
+      }
     end
 
-    local sent, serr = mod.world:queueScript(rows, {
-      onDone = function()
-        if round() <= ROUNDS then pcall(enterArena) end
-      end,
-    })
+    local sent, serr = mod.world:queueScript(rows)
     if not sent then probe("TALK FAIL\n%s", tostring(serr)) end
   end
 
-  local function talkExit()
-    local x = tonumber(mod.save:get("backX", nil))
-    local y = tonumber(mod.save:get("backY", nil))
-    mod.world:queueScript({ { "text", "This way out." } }, {
-      onDone = function()
-        local ok, err = mod.world:warpTo(LOBBY, x or 4, y or 6, "down")
-        if not ok then probe("BACK FAIL\n%s", tostring(err)) end
-      end,
-    })
-  end
+  -- The exit attendant is gone. The arena's own bottom door leads back out
+  -- with no help, and walking it banks the backup-warp triple that a
+  -- scripted warp does not -- so the mod handing out the way home was both
+  -- unnecessary and the source of the dead staircase.
 
   mod.events:on("world.interacted", function(ev)
     local ok, err = pcall(function()
@@ -590,8 +588,6 @@ local eid =         mod.world:spawnNpc(ARENA, {
       elseif ev.mapId == ARENA then
         -- the floor may be a round out of date if the reload was missed
         pcall(fillArena, world)
-        local e = objectNamed(world, ARENA, EXIT_NAME)
-        if e and e.x == ev.x and e.y == ev.y then return talkExit() end
       end
     end)
     if not ok then errs("interacted\n%s", tostring(err)) end
