@@ -1,12 +1,13 @@
 {
   "id": "indigo_conference",
   "name": "Indigo Plateau Conference",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "api": 2,
   "entry": "main.lua",
   "profile": "content",
   "category": "QUEST",
-  "game_version": ">=0.1.75 <2.0.0",
+  "games": ["gold"],
+  "game_version": ">=0.1.78 <2.0.0",
   "priority": 100,
   "affects_link": false,
   "permissions": [
@@ -15,5 +16,5 @@
   "dependencies": [],
   "optional_dependencies": [],
   "conflicts": [],
-  "description": "A repeatable post-Elite-Four tournament. Register on Route 22 and fight three rounds against guest challengers drawn from a tiered pool. v0.1.0: scaffold only -- the mod loads and announces its version; no Conference content yet."
+  "description": "A Colosseum circuit for Johto. The battle room upstairs in each town's Pokemon Center hosts a tournament against guest challengers, ending at the Indigo Plateau Conference. v0.1.1: probe build -- proves the venue, the receptionist and the trainer-battle route before any roster is written."
 }

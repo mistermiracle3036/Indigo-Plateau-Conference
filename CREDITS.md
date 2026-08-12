@@ -3,8 +3,14 @@
 **Indigo Plateau Conference** is by **Mister Miracle**
 ([@mistermiracle3036](https://github.com/mistermiracle3036)).
 
+> This file is the short, player-facing **art credit roll**. Licensing,
+> scope and trademark notices live in
+> [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), which is the
+> portfolio-standard file name. Both are kept on purpose: contributors
+> look for their name here, audits look for the notices there.
+
 Built on the [gen1recomp](https://github.com/bryanthaboi/gen1recomp)
-engine, with reference to the [pret/pokered](https://github.com/pret/pokered)
+engine, with reference to the [pret](https://github.com/pret)
 disassembly research.
 
 ## Character art
