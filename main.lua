@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.2.2"
+  local VERSION = "0.2.3"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -82,30 +82,35 @@ return function(mod)
     { key = "AJ",      class = "BUG_CATCHER",  member = "DON",
       sprite = "SPRITE_YOUNGSTER",
       intro = "A.J.: My gym never\nlost. Neither do I.",
-      party = { { species = "SANDSLASH", delta = -3 },
+      -- TEST TEAMS (0.2.3): every card is deliberately Bug/Grass/Steel so a
+      -- single Fire type can walk the whole bracket. This is a TESTING
+      -- convenience for checking round flow, not the intended matchups --
+      -- the real team comps come back once the loop is proven. TODO/CONFIRM
+      -- before anything is shown to a player.
+      party = { { species = "PARASECT", delta = -3 },   -- Bug/Grass, 4x fire
                 { species = "BUTTERFREE", delta = -4 } } },
 
     { key = "GISELLE", class = "BEAUTY",       member = "VICTORIA",
       sprite = "SPRITE_COOLTRAINER_F",
       intro = "GISELLE: Top class,\ntop school.\fDo keep up.",
-      party = { { species = "CUBONE", delta = -1 },
-                { species = "GRAVELER", delta = -1 },
-                { species = "WIGGLYTUFF", delta = 0 } } },
+      party = { { species = "BELLSPROUT", delta = -1 },
+                { species = "SCYTHER", delta = -1 },
+                { species = "VICTREEBEL", delta = 0 } } },
 
     { key = "RITCHIE", class = "SCHOOLBOY",    member = "JACK1",
       sprite = "SPRITE_YOUNGSTER",
       intro = "RITCHIE: Sparky's\nbeen waiting for\na match like this!",
-      party = { { species = "PIKACHU", delta = 1 },
-                { species = "CHARMELEON", delta = 1 },
-                { species = "BUTTERFREE", delta = 2 } } },
+      party = { { species = "TANGELA", delta = 1 },
+                { species = "PINSIR", delta = 1 },
+                { species = "FORRETRESS", delta = 2 } } },  -- Bug/Steel, 4x
 
     { key = "WES",     class = "COOLTRAINERM", member = "NICK",
       sprite = "SPRITE_COOLTRAINER_M",
       intro = "WES: I came a long\nway from ORRE.\fDon't waste it.",
-      party = { { species = "ESPEON", delta = 3 },
-                { species = "UMBREON", delta = 3 },
-                { species = "JOLTEON", delta = 3 },
-                { species = "PERSIAN", delta = 5 } } },
+      party = { { species = "JUMPLUFF", delta = 3 },
+                { species = "EXEGGUTOR", delta = 3 },
+                { species = "VILEPLUME", delta = 3 },
+                { species = "SCIZOR", delta = 5 } } },     -- Bug/Steel, 4x
   }
 
   -- The player's strongest mon, which the card scales against. Their LEAD
@@ -288,7 +293,36 @@ return function(mod)
   ----------------------------------------------------------------------
   -- Spawning
   ----------------------------------------------------------------------
+  -- One-shot warp census. The void bug points at the warp being the wrong
+  -- tool: World.lua:8554-8564 says the backup-warp triple is what lets the
+  -- shared 2F staircase resolve, and "without it the -1 warp resolves to
+  -- nothing and the tile is simply dead". mod.world:warpTo never refreshes
+  -- that triple, which is why the stairs die after a whiteout and why a
+  -- normal warp (teleporting away and back) repairs them.
+  --
+  -- The fix is to stop warping and use the doorway the room already has,
+  -- with the attendant stepping aside. That needs to know whether 2F
+  -- carries a warp to COLOSSEUM at all -- Gen 2 may drive that transition
+  -- from the script instead. This prints the table so the next build can be
+  -- written against fact rather than a guess.
+  local warpsCensused = {}
+
+  local function censusWarps(world, mapId)
+    if warpsCensused[mapId] then return end
+    warpsCensused[mapId] = true
+    local def = world and world.maps and world.maps[mapId]
+    local rows = {}
+    for i, w in ipairs(def and def.warps or {}) do
+      rows[#rows + 1] = ("%d %d,%d>%s"):format(i, w.x or -1, w.y or -1,
+        tostring(w.destMap or w.map or "?"):sub(1, 8))
+    end
+    if #rows == 0 then probe("%s NO WARPS", mapId:sub(1, 10))
+    else probe("%s WARPS\n%s", mapId:sub(1, 8),
+               table.concat(rows, "\n", 1, math.min(#rows, 4))) end
+  end
+
   local function fillLobby(world)
+    censusWarps(world, LOBBY)
     if objectNamed(world, LOBBY, HOST_NAME) then return "host ok" end
     local hx, hy = bestCell(world, {})
     if not hx then return "no cell" end
@@ -351,6 +385,7 @@ return function(mod)
 
   local function fillArena(world)
     censusArena(world)
+    censusWarps(world, ARENA)
     hidePlaceholders(world)
     local taken = {}
     local out = {}
