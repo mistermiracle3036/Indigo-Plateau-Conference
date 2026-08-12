@@ -39,7 +39,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.1.1"
+  local VERSION = "0.1.2"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -101,8 +101,17 @@ return function(mod)
       label = "Diagnostic rows", default = true },
   })
 
+  -- Deliberately "unless explicitly false", not "if true". A mod option
+  -- toggled on a Gold boot never round-trips -- ManagerState:setOption
+  -- writes save.options.modOptions[...] which on Gold IS Gold's own nested
+  -- block, while Loader:_loadState reads the TOP-LEVEL modOptions
+  -- (Loader.lua:301). They never meet. So on Gold this read can come back
+  -- nil, and `if get(...) then` would silently take away the only
+  -- diagnostic channel this build has -- on the one platform where there
+  -- is no log to fall back to.
   local function probe(fmt, ...)
-    if mod.options:get("probe_rows") then errs(fmt, ...) end
+    if mod.options:get("probe_rows") == false then return end
+    errs(fmt, ...)
   end
 
   ----------------------------------------------------------------------

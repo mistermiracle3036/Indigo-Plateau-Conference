@@ -4,6 +4,23 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.1.2
+
+Diagnostic rows now show **unless** the option is explicitly off, rather
+than only when it reads on.
+
+This matters more than it sounds. A mod option toggled on a Gold boot
+never round-trips — the manager writes into Gold's own nested options
+block while the loader reads the top-level one — so the read can come back
+`nil`. The old test would then have silently suppressed every `[ERRS]`
+row, on the one platform with no log to fall back to, in the build whose
+entire purpose is reporting what happened. Re-checked against engine
+0.1.79; the mismatch is still there.
+
+Verified on engine v0.1.79 (not just 0.1.78): `validate --strict` and
+`gen2check` both clean, and the three source facts the battle probe rests
+on read unchanged.
+
 ## 0.1.1
 
 **Reimagined as a Colosseum circuit, and moved to Pokémon Gold.**
