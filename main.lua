@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.3.0"
+  local VERSION = "0.3.1"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -51,6 +51,13 @@ return function(mod)
 
   local LOBBY = "POKECENTER_2F"
   local ARENA = "COLOSSEUM"
+
+  -- POKECENTER_2F warp 3 of 4 -> COLOSSEUM, read off the device census
+  -- (1 = 0,7 stairs down; 2 = 5,0 TRADE_CENTER; 4 = 13,2 TIME_CAPSULE).
+  -- Declared HERE, above every user: a local declared further down compiles
+  -- as a nil global in the functions above it and would silently never
+  -- match -- the use-before-declaration trap this project has paid for.
+  local ARENA_DOOR_X, ARENA_DOOR_Y = 9, 0
 
   local HOST_NAME = "IPC_HOST"
   local FOE_NAME = "IPC_FOE"
@@ -329,8 +336,70 @@ return function(mod)
                table.concat(rows, "\n", 1, math.min(#rows, 4))) end
   end
 
+  -- Who is standing on the Colosseum doorway, and can she be moved?
+  --
+  -- Her DIALOGUE is not ours to change: talking to a vanilla NPC on Gold
+  -- dispatches on npc.def.scriptKey into the cart's decoded bytecode, and
+  -- the map_scripts registry has no Gen 2 home -- docs/mod-api-gen2-compat
+  -- is explicit that a Lua row list merged into gen2Scripts "is not
+  -- something src/script/gen2/Vm.lua can run". There is also no `ask` verb
+  -- in queueScript's five (start_battle / warp / text / setflag /
+  -- clearflag), so a mod cannot offer a choice box on Gold either -- not on
+  -- her, and not on our own host.
+  --
+  -- What IS available is movement: mod.world:npc returns a handle whose
+  -- scriptMove "compiles to the cart's own movement stream and rides
+  -- World:beginMovement, the same path an applymovement in a map script
+  -- takes" (WorldAPI.lua:161-164). So she steps aside instead of being
+  -- silenced or hidden -- and because a scripted move is runtime only, she
+  -- is back at her post on the next load, with link play untouched. Hiding
+  -- her would have written a persistent MAPOBJECT_EVENT_FLAG and taken link
+  -- play away for good.
+  local doorCleared = false
+
+  local function censusLobbyObjects(world)
+    local def = world and world.maps and world.maps[LOBBY]
+    local rows = {}
+    for i, obj in ipairs(def and def.objects or {}) do
+      local name = tostring(obj.name or ("#" .. i))
+      if name ~= HOST_NAME then
+        rows[#rows + 1] = ("%s %d,%d"):format(name:sub(1, 8), obj.x or -1, obj.y or -1)
+      end
+    end
+    if #rows > 0 then
+      probe("2F OBJS\n%s", table.concat(rows, "\n", 1, math.min(#rows, 4)))
+    end
+  end
+
+  -- Anyone ON the doorway or directly below it is in the way. Moved one cell
+  -- LEFT, away from the door, which on a 16x8 room is into open floor.
+  local function clearDoor(world)
+    if doorCleared then return end
+    local def = world and world.maps and world.maps[LOBBY]
+    for i, obj in ipairs(def and def.objects or {}) do
+      local name = tostring(obj.name or "")
+      if name ~= HOST_NAME and obj.x == ARENA_DOOR_X
+         and (obj.y == ARENA_DOOR_Y or obj.y == ARENA_DOOR_Y + 1) then
+        local handle = mod.world:npc(LOBBY, obj.name or i)
+        if handle then
+          local ok, err = handle:scriptMove("left", 1, function()
+            doorCleared = true
+          end)
+          probe("STEP %s\n%s", ok and "OK" or "FAIL",
+                ok and name:sub(1, 12) or tostring(err))
+          return ok
+        end
+        probe("NO HANDLE\n%s", name:sub(1, 12))
+        return false
+      end
+    end
+    probe("DOOR CLEAR\nnobody at %d,%d", ARENA_DOOR_X, ARENA_DOOR_Y)
+    doorCleared = true
+  end
+
   local function fillLobby(world)
     censusWarps(world, LOBBY)
+    censusLobbyObjects(world)
     if objectNamed(world, LOBBY, HOST_NAME) then return "host ok" end
     local hx, hy = bestCell(world, {})
     if not hx then return "no cell" end
@@ -542,7 +611,6 @@ return function(mod)
   -- Center" -- which is the void the developer walked into after a loss,
   -- and why teleporting away repaired it. Using the door fixes the cause
   -- rather than papering over the symptom.
-  local ARENA_DOOR_X, ARENA_DOOR_Y = 9, 0
 
   local function talkHost()
     local v = venue()
@@ -569,7 +637,16 @@ return function(mod)
       }
     end
 
-    local sent, serr = mod.world:queueScript(rows)
+    -- She steps aside in onDone, not before: scriptMove refuses a second
+    -- movement while one is running, and the host's text box is the natural
+    -- beat for it anyway -- he arranges it, then she moves.
+    local sent, serr = mod.world:queueScript(rows, {
+      onDone = function()
+        if round() <= ROUNDS then
+          pcall(function() clearDoor(mod.world:overworld()) end)
+        end
+      end,
+    })
     if not sent then probe("TALK FAIL\n%s", tostring(serr)) end
   end
 
