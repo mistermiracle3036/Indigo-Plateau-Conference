@@ -19,16 +19,27 @@
 -- the battle probe. They are two independent questions and this build
 -- answers both without either depending on the other.
 --
--- WHAT IS PROVEN AND WHAT IS NOT
---   PROVEN  Owned NPCs talk on Gold via the world.interacted kind="none"
---           fall-through plus queueScript (court_of_noctowl 0.1.2, device).
---   PROVEN  trainer.party fires on Gold, and src/battle/gen2/Battle.lua:258
---           states rows a mod builds itself are kept verbatim.
---   NOT     That a mod can START a trainer battle. queueScript's
---           start_battle is WILD ONLY and says so (WorldAPI.lua:232). The
---           only door found in source is interactBody (World.lua:7331):
---           an object whose def.trainer is set engages through
---           startTrainerScript, which reads record.class / record.member.
+-- WHAT IS PROVEN (all four on device, Gold, 0.1.4 -> 0.1.6)
+--   Owned NPCs talk on Gold via the world.interacted kind="none"
+--   fall-through plus queueScript (first shown by court_of_noctowl 0.1.2).
+--
+--   A MOD CAN STAGE A TRAINER BATTLE ON GOLD. queueScript's start_battle
+--   is wild-only (WorldAPI.lua:232), but an NPC spawned with def.trainer
+--   is picked up by interactBody's trainer arm (World.lua:7331) and run
+--   through the cart's own TALK_TO_TRAINER_SCRIPT. Both struct fields are
+--   NUMERIC -- a class constant and an array position (Trainers.lua:18-19).
+--
+--   MOD-REGISTERED TEXT REACHES THE ROM'S OWN POOL. The `text` registry
+--   targets gen2Text (Schemas.lua:476), which is what Vm:showText reads,
+--   so a trainer's seen/win/loss lines can be written by this mod and
+--   delivered by the cart's script. Every roster character can speak.
+--
+--   trainer.party fires on Gold and substitutes the team wholesale. What
+--   it RETURNS must be finished battle mons: Battle.lua:258 says nothing
+--   downstream rewrites the hook's result, so raw {species, level} rows
+--   arrive with no stats (0.1.6: a Quagsire at 0 HP with a blank bar).
+--
+-- So the remaining work is content, not feasibility.
 --
 -- Verified against gen1recomp v0.1.79. Anything not read from source is
 -- marked TODO/CONFIRM.
@@ -36,7 +47,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.1.6"
+  local VERSION = "0.1.7"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -428,10 +439,34 @@ return function(mod)
   -- we substitute; skipping it would discard vanilla and every other
   -- mod's contribution.
   ----------------------------------------------------------------------
+  -- Roster ROWS, not battle mons. 0.1.6 handed these straight back from the
+  -- hook and the opponent arrived with no stats: one Quagsire at 0 HP and a
+  -- blank bar. Gen 1's BattleState built the party AFTER the hook; Gen 2
+  -- does not -- Battle.lua:258 says outright that "nothing here rewrites
+  -- what the hook returned". So whatever we return has to be finished.
   local PROBE_TEAM = {
     { species = "QUAGSIRE", level = 30 },
     { species = "NOCTOWL",  level = 30 },
   }
+
+  -- Built through the engine's OWN party builder rather than Mon.new per
+  -- slot, so these mons are constructed exactly like a vanilla trainer's:
+  -- level-up movesets via MakeTrainerPartyMon, and the cart's fixed trainer
+  -- DVs of 9/8/8/8/8 (Trainers.lua:82-88) which is why a trainer's Rattata
+  -- is always the same Rattata. Reimplementing that here would drift.
+  --
+  -- An internals require, deliberately: there is no mod-facing seam that
+  -- turns {species, level} rows into Gen 2 battle mons. Safe for this mod
+  -- because it is Gold-only (games: ["gold"]), so the module always exists
+  -- when this runs -- a dual-generation mod must NOT copy this.
+  local function buildParty(rows)
+    local Trainers = require("src.world.gen2.Trainers")
+    local data = mod.game and mod.game.data
+    if not data then return nil end
+    local party = Trainers.party(data, { roster = rows })
+    if not party or #party == 0 then return nil end
+    return party
+  end
 
   -- :wrap, NOT :on. The loader builds the mod-facing hook api as
   -- `hooks = { wrap = ... }` and nothing else (Loader.lua:929), so
@@ -452,8 +487,16 @@ return function(mod)
     local ok, res = pcall(function()
       local classHit = (class == CARRIER_CLASS) or (class == carrierClassIx)
       if not classHit then return nil end
-      probe("PARTY HOOK\n%s / %s", tostring(class), tostring(member))
-      return PROBE_TEAM
+      local built = buildParty(PROBE_TEAM)
+      if not built then
+        -- Returning nil here keeps the vanilla party, which is a real
+        -- battle rather than a broken one. A substitution that cannot be
+        -- built must never become an opponent with no stats.
+        probe("BUILD FAIL\nkeeping vanilla")
+        return nil
+      end
+      probe("PARTY HOOK\n%s / %s\n%d mons", tostring(class), tostring(member), #built)
+      return built
     end)
     if ok and res then return res end
     if not ok then probe("HOOK ERR\n%s", tostring(res)) end

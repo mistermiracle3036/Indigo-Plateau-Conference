@@ -4,6 +4,25 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.1.7
+
+**The probe is complete. The design works.** A mod can stage a trainer
+battle on Gold, with its own opponent and its own dialogue. Everything
+still missing is content, not feasibility.
+
+This build fixes the last symptom: the opponent arrived at 0 HP with a
+blank bar because the hook was handing back roster **rows** rather than
+finished battle mons. Gen 1's battle built the party after the hook; Gen
+2 does not — `Battle.lua:258` says nothing downstream rewrites what the
+hook returned. The party is now built through the engine's own
+`Trainers.party`, so the opponent is constructed exactly like a vanilla
+trainer's: level-up movesets, and the cart's fixed trainer DVs of
+9/8/8/8/8 that make a trainer's Rattata always the same Rattata.
+
+If the party ever fails to build, the hook now returns nil and keeps the
+vanilla team. A real battle beats a broken one, and a substitution that
+cannot be built must never become an opponent with no stats.
+
 ## 0.1.6
 
 **The trainer struct is numeric on both fields.** 0.1.5 showed the line
