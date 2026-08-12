@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.2.0"
+  local VERSION = "0.2.1"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -72,35 +72,65 @@ return function(mod)
   -- correctly on Gold: the Gen 1 team had to be Jolteon/Flareon/Vaporeon
   -- because the other two did not exist yet.
   ----------------------------------------------------------------------
+  -- Levels are RELATIVE to the player's strongest mon, not absolute. 0.2.0
+  -- shipped a fixed 28->46 curve written for a post-Elite-Four player, and
+  -- on device that made round 1 unbeatable -- the venues are badge-gated
+  -- per town and Violet is the FIRST gym, so the qualifier there is early
+  -- game. A tournament that can be entered anywhere on the curve cannot
+  -- carry fixed levels.
   local CARD = {
     { key = "AJ",      class = "BUG_CATCHER",  member = "DON",
       sprite = "SPRITE_YOUNGSTER",
       intro = "A.J.: My gym never\nlost. Neither do I.",
-      party = { { species = "SANDSLASH", level = 28 },
-                { species = "BUTTERFREE", level = 27 } } },
+      party = { { species = "SANDSLASH", delta = -3 },
+                { species = "BUTTERFREE", delta = -4 } } },
 
     { key = "GISELLE", class = "BEAUTY",       member = "VICTORIA",
       sprite = "SPRITE_COOLTRAINER_F",
       intro = "GISELLE: Top class,\ntop school.\fDo keep up.",
-      party = { { species = "CUBONE", level = 33 },
-                { species = "GRAVELER", level = 33 },
-                { species = "WIGGLYTUFF", level = 34 } } },
+      party = { { species = "CUBONE", delta = -1 },
+                { species = "GRAVELER", delta = -1 },
+                { species = "WIGGLYTUFF", delta = 0 } } },
 
     { key = "RITCHIE", class = "SCHOOLBOY",    member = "JACK1",
       sprite = "SPRITE_YOUNGSTER",
       intro = "RITCHIE: Sparky's\nbeen waiting for\na match like this!",
-      party = { { species = "PIKACHU", level = 38 },
-                { species = "CHARMELEON", level = 38 },
-                { species = "BUTTERFREE", level = 39 } } },
+      party = { { species = "PIKACHU", delta = 1 },
+                { species = "CHARMELEON", delta = 1 },
+                { species = "BUTTERFREE", delta = 2 } } },
 
     { key = "WES",     class = "COOLTRAINERM", member = "NICK",
       sprite = "SPRITE_COOLTRAINER_M",
       intro = "WES: I came a long\nway from ORRE.\fDon't waste it.",
-      party = { { species = "ESPEON", level = 44 },
-                { species = "UMBREON", level = 44 },
-                { species = "JOLTEON", level = 44 },
-                { species = "PERSIAN", level = 46 } } },
+      party = { { species = "ESPEON", delta = 3 },
+                { species = "UMBREON", delta = 3 },
+                { species = "JOLTEON", delta = 3 },
+                { species = "PERSIAN", delta = 5 } } },
   }
+
+  -- The player's strongest mon, which the card scales against. Their LEAD
+  -- would punish anyone carrying a low-level HM mule in slot 1, and their
+  -- average would make a six-mon box team trivial.
+  local function topLevel()
+    local save = mod.game and mod.game.save
+    local best = 5
+    for _, mon in ipairs((save and save.party) or {}) do
+      local l = tonumber(mon and mon.level)
+      if l and l > best then best = l end
+    end
+    return best
+  end
+
+  local function scaled(rows)
+    local top = topLevel()
+    local out = {}
+    for _, row in ipairs(rows) do
+      local lv = top + (row.delta or 0)
+      if lv < 2 then lv = 2 elseif lv > 100 then lv = 100 end
+      out[#out + 1] = { species = row.species, level = lv }
+    end
+    return out
+  end
 
   for i, foe in ipairs(CARD) do
     foe.seenKey = "IPC_SEEN_" .. foe.key
@@ -268,7 +298,32 @@ return function(mod)
     return ("host %d,%d"):format(hx, hy)
   end
 
+  -- One-shot census of whatever the arena already contains. The developer
+  -- reported "the link player" standing in there; before hiding a vanilla
+  -- object we need to know what it IS -- toggleObject on Gen 2 sets the
+  -- object's MAPOBJECT_EVENT_FLAG, which is real save state and persists,
+  -- so it is not something to fire at an unidentified sprite.
+  local censused = false
+
+  local function censusArena(world)
+    if censused then return end
+    censused = true
+    local def = world and world.maps and world.maps[ARENA]
+    local rows = {}
+    for i, obj in ipairs(def and def.objects or {}) do
+      local name = tostring(obj.name or ("#" .. i))
+      if name ~= FOE_NAME and name ~= EXIT_NAME then
+        rows[#rows + 1] = ("%s %s %d,%d"):format(
+          name:sub(1, 6), tostring(obj.sprite or "?"):gsub("^SPRITE_", ""):sub(1, 6),
+          obj.x or -1, obj.y or -1)
+      end
+    end
+    if #rows == 0 then probe("ARENA EMPTY\nno vanilla obj")
+    else probe("ARENA OBJS\n%s", table.concat(rows, "\n", 1, math.min(#rows, 4))) end
+  end
+
   local function fillArena(world)
+    censusArena(world)
     local taken = {}
     local out = {}
 
@@ -469,7 +524,7 @@ local eid =         mod.world:spawnNpc(ARENA, {
       local foe = currentFoe()
       if not foe then return nil end
       if class ~= foe.class and class ~= foe.classIx then return nil end
-      local built = buildParty(foe.party)
+      local built = buildParty(scaled(foe.party))
       if not built then
         -- Keep the vanilla party rather than field an opponent with no
         -- stats. A real battle beats a broken one.
@@ -477,7 +532,7 @@ local eid =         mod.world:spawnNpc(ARENA, {
         return nil
       end
       setPending(true)
-      probe("R%d %s\n%d mons", foe.round, foe.key, #built)
+      probe("R%d %s\n%d mons Lv%d", foe.round, foe.key, #built, topLevel())
       return built
     end)
     if ok and res then return res end
