@@ -4,6 +4,31 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.1.6
+
+**The trainer struct is numeric on both fields.** 0.1.5 showed the line
+and then nothing, because the mod was handing it names.
+
+`Trainers.lookup` does `classIndex(data)[class]` and then
+`entry.trainers[member]` — a numeric class constant and an array
+position. A name misses both, so the lookup returned nil, `startbattle`
+yielded with no trainer, and the script simply ran out. Both are now
+resolved from the live trainer data at spawn time rather than hardcoded:
+the class constant is a ROM index, and writing the number in here is
+exactly the kind of guessed constant that fails quietly later.
+
+Fixed a second bug behind it that had not surfaced yet. What reaches the
+`trainer.party` hook is not what the struct carried — the battle passes
+`classId or class` and `memberId or index or 1`, and the record the
+lookup builds sets `classId` to the class **name** while carrying no
+member index at all. So the hook sees a name and a member of 1. It now
+accepts either spelling instead of betting on one.
+
+Confirmed working in 0.1.5 and unchanged here: **mod-registered text
+reaches the ROM's own text pool.** The opponent speaks a line this mod
+wrote, through the cart's script. That was the riskier of the two
+unknowns and it is now settled.
+
 ## 0.1.5
 
 **The opponent gets his line.** 0.1.4 made him say "..." — which turned

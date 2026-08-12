@@ -36,7 +36,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.1.5"
+  local VERSION = "0.1.6"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -64,6 +64,39 @@ return function(mod)
   -- team is replaced wholesale by the trainer.party hook below.
   local CARRIER_CLASS = "COOLTRAINERM"
   local CARRIER_MEMBER = "NICK"
+
+  ----------------------------------------------------------------------
+  -- 0.1.5 showed the text and then no battle, because the `trainer`
+  -- struct is NUMERIC on both fields and this mod was handing it names.
+  --
+  --   Trainers.lua:18-19 -- "trainers.lua keys classes by name; the
+  --   `trainer` struct and `loadtrainer` both carry the class's numeric
+  --   constant".
+  --   Trainers.lookup does classIndex(data)[class] then
+  --   entry.trainers[member]: an index and an array position.
+  --
+  -- A name misses both, lookupTrainer returns nil, and `startbattle`
+  -- yields with trainer = nil -- text, then nothing.
+  --
+  -- Resolved from the live data rather than hardcoded, because the class
+  -- constant is a ROM index and writing 27 here would be exactly the kind
+  -- of guessed constant that fails silently after any data change.
+  ----------------------------------------------------------------------
+  local carrierClassIx, carrierMemberIx
+
+  local function resolveCarrier()
+    if carrierClassIx and carrierMemberIx then return true end
+    local td = mod.game and mod.game.data and mod.game.data.gen2Trainers
+    local cls = td and td.classes and td.classes[CARRIER_CLASS]
+    if not (cls and cls.index) then return false, "no class " .. CARRIER_CLASS end
+    for i, row in ipairs(cls.trainers or {}) do
+      if row.id == CARRIER_MEMBER or row.name == CARRIER_MEMBER then
+        carrierClassIx, carrierMemberIx = cls.index, i
+        return true
+      end
+    end
+    return false, "no member " .. CARRIER_MEMBER
+  end
 
   ----------------------------------------------------------------------
   -- Pre-battle text. 0.1.4 showed "..." because TALK_TO_TRAINER_SCRIPT
@@ -243,6 +276,11 @@ return function(mod)
     if not id then return "host fail: " .. tostring(err) end
 
     -- The probe opponent. def.trainer is the whole experiment.
+    local okCarrier, why = resolveCarrier()
+    if not okCarrier then
+      probe("CARRIER FAIL\n%s", tostring(why))
+      return ("host %d,%d\nno carrier"):format(hx, hy)
+    end
     local rx, ry = bestCell(world, taken)
     if rx then
       local rid, rerr = mod.world:spawnNpc(LOBBY, {
@@ -255,7 +293,7 @@ return function(mod)
         -- tournament wants. A real beaten-flag would retire each
         -- challenger permanently after one win.
         trainer = {
-          class = CARRIER_CLASS, member = CARRIER_MEMBER,
+          class = carrierClassIx, member = carrierMemberIx,
           seenText = SEEN_TEXT, winText = WIN_TEXT, lossText = LOSS_TEXT,
         },
       })
@@ -402,11 +440,19 @@ return function(mod)
   -- is why 0.1.3 spawned nothing at all rather than failing at the hook.
   -- (engine/mods/spanish_ui uses :on; it is wrong, or written against an
   -- older api. Read the loader, not the example mods.)
+  -- What arrives here is NOT what the struct carried. Battle.lua:266-267
+  -- passes `self.trainer.classId or self.trainer.class` and
+  -- `self.trainer.memberId or self.trainer.index or 1`, and the record
+  -- Trainers.lookup builds sets classId to the class NAME while carrying
+  -- no memberId and no index -- so this hook sees the name and a member
+  -- that falls through to 1, not the numbers the struct was given.
+  -- Accept either spelling rather than betting on one.
   mod.hooks:wrap("trainer.party", function(next, class, member, party)
     local base = next()
     local ok, res = pcall(function()
-      if class ~= CARRIER_CLASS or member ~= CARRIER_MEMBER then return nil end
-      probe("PARTY HOOK\n%s %s", tostring(class), tostring(member))
+      local classHit = (class == CARRIER_CLASS) or (class == carrierClassIx)
+      if not classHit then return nil end
+      probe("PARTY HOOK\n%s / %s", tostring(class), tostring(member))
       return PROBE_TEAM
     end)
     if ok and res then return res end
