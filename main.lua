@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.2.1"
+  local VERSION = "0.2.2"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -274,6 +274,9 @@ return function(mod)
   -- takes, so it is kept here rather than read back off the object -- the
   -- object's own id field is not something this mod has verified exists.
   local spawnedIds = {}
+  -- which challenger is physically on the floor, so a stale one is
+  -- recognised and removed rather than mistaken for the current round
+  local spawnedFoeKey = nil
 
   local function despawn(name)
     local id = spawnedIds[name]
@@ -322,8 +325,33 @@ return function(mod)
     else probe("ARENA OBJS\n%s", table.concat(rows, "\n", 1, math.min(#rows, 4))) end
   end
 
+  -- The two vanilla objects the census found: POKé1 and POKé2, both wearing
+  -- the CHRIS sprite at (3,4) and (6,4). They are the link colosseum's
+  -- placeholders for the two connected players and mean nothing in single
+  -- player, so they are hidden while the tournament uses the room.
+  --
+  -- Gen 2 has no save.objectToggles: an object's visibility IS its
+  -- MAPOBJECT_EVENT_FLAG (WorldAPI.lua:68-72), so this writes real,
+  -- persistent save state rather than a display flag. Acceptable here
+  -- because these two are inert outside a link session and the change is
+  -- reversible by toggling them back -- but it is why the census came
+  -- first, and why nothing is hidden that has not been identified.
+  local function hidePlaceholders(world)
+    local def = world and world.maps and world.maps[ARENA]
+    for i, obj in ipairs(def and def.objects or {}) do
+      local name = tostring(obj.name or "")
+      if name ~= FOE_NAME and name ~= EXIT_NAME and name ~= HOST_NAME
+         and name:sub(1, 3) == "POK" then
+        -- objRef is the object's 1-based index or its extracted name; the
+        -- index is used because these names carry a non-ASCII "é".
+        pcall(function() mod.world:toggleObject(ARENA, i, false) end)
+      end
+    end
+  end
+
   local function fillArena(world)
     censusArena(world)
+    hidePlaceholders(world)
     local taken = {}
     local out = {}
 
@@ -341,8 +369,20 @@ local eid =         mod.world:spawnNpc(ARENA, {
     end
 
     local foe = currentFoe()
-    if not foe then return "card done" end
-    if objectNamed(world, ARENA, FOE_NAME) then return "foe already" end
+    if not foe then
+      -- Card cleared: take the last challenger off the floor.
+      despawn(FOE_NAME)
+      spawnedFoeKey = nil
+      return "card done"
+    end
+    -- "foe already" was 0.2.1's bug in one line: it kept ANY standing foe,
+    -- so a beaten challenger blocked his successor forever. Only the one
+    -- matching the CURRENT round may stay.
+    if spawnedFoeKey == foe.key and objectNamed(world, ARENA, FOE_NAME) then
+      return "R" .. foe.round .. " up"
+    end
+    despawn(FOE_NAME)
+    spawnedFoeKey = nil
 
     local ok, why = resolveCarrier(foe)
     if not ok then probe("CARRIER FAIL\n%s", tostring(why)); return "carrier" end
@@ -362,6 +402,7 @@ local eid =         mod.world:spawnNpc(ARENA, {
     })
     if not id then return "foe fail " .. tostring(err) end
     spawnedIds[FOE_NAME] = id
+    spawnedFoeKey = foe.key
     out[#out + 1] = ("R%d %s"):format(foe.round, foe.key)
     return table.concat(out, "\n")
   end
@@ -376,19 +417,30 @@ local eid =         mod.world:spawnNpc(ARENA, {
   -- TODO/CONFIRM on device; the alternative is a real beaten-flag, which
   -- needs a ROM event index this mod has no safe way to allocate.
   ----------------------------------------------------------------------
-  local function reconcile(world)
-    if not pending() then return end
-    setPending(false)
-    local n = round() + 1
-    despawn(FOE_NAME)
-    if n > ROUNDS then
-      setRound(ROUNDS + 1)
-      probe("CARD CLEARED")
-    else
+  -- 0.2.1 inferred the win from "are you still standing in the arena", and
+  -- on device the round simply never advanced: nothing re-enters the map
+  -- after a battle, so the check had no moment to run. battle.ended is the
+  -- real signal -- it carries { battle, result } (Battle.lua:396) and fires
+  -- on the one choke point every battle passes through.
+  --
+  -- This handler deliberately does NO world work. battle.ended fires while
+  -- the battle screen is still coming down, so spawning from here would
+  -- race the map reload; it only moves the counter, and syncArena below
+  -- makes the world match whenever the overworld is next in hand.
+  mod.events:on("battle.ended", function(ev)
+    local ok, err = pcall(function()
+      if not pending() then return end
+      setPending(false)
+      local res = ev and ev.result
+      probe("BATTLE %s", tostring(res))
+      -- Anything but a win leaves the same challenger standing.
+      if res ~= "win" then return end
+      local n = round() + 1
       setRound(n)
-      probe("ROUND %d", n)
-    end
-  end
+      probe(n > ROUNDS and "CARD CLEARED" or ("ROUND %d"):format(n))
+    end)
+    if not ok then errs("battle.ended\n%s", tostring(err)) end
+  end)
 
   local function place(mapId)
     if VENUES[mapId] then mod.save:set("lastCentre", mapId) end
@@ -398,7 +450,6 @@ local eid =         mod.world:spawnNpc(ARENA, {
       local ok, res = pcall(fillLobby, world)
       probe("IPC v%s\n%s", VERSION, ok and tostring(res) or "ERR " .. tostring(res))
     elseif mapId == ARENA then
-      pcall(reconcile, world)
       local ok, res = pcall(fillArena, world)
       probe("ARENA\n%s", ok and tostring(res) or "ERR " .. tostring(res))
     end
@@ -412,6 +463,21 @@ local eid =         mod.world:spawnNpc(ARENA, {
   mod.events:on("game.ready", function()
     local ok, cur = pcall(function() return mod.world:current() end)
     if ok and cur then pcall(place, cur.mapId) end
+  end)
+
+  -- `reloadmapafterbattle` is the step the cart's own trainer script runs
+  -- once the battle is over, and it reloads the map WITHOUT re-entering it
+  -- -- which is why map.entered never fired and 0.2.1's round never
+  -- advanced. This is the moment the next challenger can be put out.
+  mod.events:on("map.reloaded", function()
+    local ok, err = pcall(function()
+      local cur = mod.world:current()
+      if cur and cur.mapId == ARENA then
+        local world = mod.world:overworld()
+        if world then fillArena(world) end
+      end
+    end)
+    if not ok then errs("map.reloaded\n%s", tostring(err)) end
   end)
 
   ----------------------------------------------------------------------
@@ -487,7 +553,8 @@ local eid =         mod.world:spawnNpc(ARENA, {
         local h = objectNamed(world, LOBBY, HOST_NAME)
         if h and h.x == ev.x and h.y == ev.y then return talkHost() end
       elseif ev.mapId == ARENA then
-        reconcile(world)
+        -- the floor may be a round out of date if the reload was missed
+        pcall(fillArena, world)
         local e = objectNamed(world, ARENA, EXIT_NAME)
         if e and e.x == ev.x and e.y == ev.y then return talkExit() end
       end
