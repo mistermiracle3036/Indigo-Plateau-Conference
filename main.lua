@@ -36,7 +36,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.1.3"
+  local VERSION = "0.1.4"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -362,7 +362,14 @@ return function(mod)
     { species = "NOCTOWL",  level = 30 },
   }
 
-  mod.hooks:on("trainer.party", function(next, class, member, party)
+  -- :wrap, NOT :on. The loader builds the mod-facing hook api as
+  -- `hooks = { wrap = ... }` and nothing else (Loader.lua:929), so
+  -- mod.hooks:on is nil -- and calling it throws in the ENTRY CHUNK, which
+  -- rolls the whole mod back while the manager still reports Ready. That
+  -- is why 0.1.3 spawned nothing at all rather than failing at the hook.
+  -- (engine/mods/spanish_ui uses :on; it is wrong, or written against an
+  -- older api. Read the loader, not the example mods.)
+  mod.hooks:wrap("trainer.party", function(next, class, member, party)
     local base = next()
     local ok, res = pcall(function()
       if class ~= CARRIER_CLASS or member ~= CARRIER_MEMBER then return nil end

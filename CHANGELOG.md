@@ -4,6 +4,21 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.1.4
+
+**Fixes 0.1.3 loading nothing at all.**
+
+The hook was registered with `mod.hooks:on`. The loader builds the
+mod-facing hook api as `hooks = { wrap = ... }` and nothing else, so `:on`
+was nil — and calling it threw in the **entry chunk**, which rolls the
+whole mod back. Nothing spawned, no host, no opponent, while the mod
+manager still reported Ready. Now `mod.hooks:wrap`.
+
+Worth recording why it got this far: `engine/mods/spanish_ui` uses
+`mod.hooks:on`, and it was taken from there instead of from the loader.
+The house rule already covers this — read the source that implements the
+API, not a mod that calls it.
+
 ## 0.1.3
 
 **The tournament moved to the room you can actually reach.**
