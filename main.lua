@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.4.5"
+  local VERSION = "0.5.0"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -203,7 +203,10 @@ return function(mod)
     foe.lossKey = "IPC_LOSS_" .. foe.key
     mod.content.text:register(foe.seenKey, foe.intro)
     mod.content.text:register(foe.winKey,  "...Well fought.")
-    mod.content.text:register(foe.lossKey, "Come back stronger.")
+    -- the loss line carries the elimination rule, so the player is told
+    -- in-fiction rather than discovering their bracket reset at the host
+    mod.content.text:register(foe.lossKey,
+      "You're out of the\nrunning.\fStart over at\nround one.")
     foe.round = i
   end
 
@@ -354,6 +357,8 @@ return function(mod)
   -- which challenger is physically on the floor, so a stale one is
   -- recognised and removed rather than mistaken for the current round
   local spawnedFoeKey = nil
+  -- set by a tournament loss, consumed by map.reloaded: walk the loser out
+  local escortPending = false
 
   local function despawn(name)
     local id = spawnedIds[name]
@@ -520,7 +525,7 @@ return function(mod)
   --    NPC.new takes cell, home and pixel position straight from objDef.x/y
   --    and the sheet from objDef.sprite (Npc.lua:220+). So rewriting the two
   --    def rows BEFORE the player first enters the arena controls both.
-  --    gen2Maps is loaded fresh from data/generated/maps.lua every boot
+  --    gen2Maps is re-read from the extracted ROM cache on every boot
   --    (Game2/World dataTable), so this is runtime-only by construction --
   --    nothing to persist, nothing to repair, redone each session from the
   --    lobby the player must walk through anyway.
@@ -807,10 +812,24 @@ return function(mod)
             mon.status = nil
           end
         end
-        -- belt: if anything DID skip the door (an older engine, a wipeout
-        -- from some other mod's battle mid-tournament), the escort must not
-        -- stay armed
-        disarmStaleEscort("loss")
+        -- ELIMINATION (0.5.0, the developer's call -- and the answer to the
+        -- oldest open question in the original design doc): a loss ends the
+        -- RUN, not the round. Back to round 1; the next map refresh swaps
+        -- the floor via fillArena, since spawnedFoeKey no longer matches.
+        -- Pairs with the drawn-card plan: a new run will mean a new field.
+        if round() > 1 then
+          setRound(1)
+          probe("ELIMINATED\nback to R1")
+        end
+        -- THE ESCORT, and it is the vanilla one. The scene that caused the
+        -- void IS the being-walked-out choreography, and it plays correctly
+        -- when the player stands at the door. So the loss deliberately does
+        -- NOT disarm it: after the map settles (battle.ended is too early --
+        -- the battle screen is still coming down), the host's line plays and
+        -- the player is warped to the 2F door cell, the same arrival a real
+        -- Colosseum exit produces, and the armed scene walks them out past
+        -- the counter. Every other non-door exit still disarms via place().
+        escortPending = true
         return
       end
       local n = round() + 1
@@ -865,6 +884,20 @@ return function(mod)
       if cur and cur.mapId == ARENA then
         local world = mod.world:overworld()
         if world then fillArena(world) end
+        if escortPending then
+          escortPending = false
+          -- Host's line, then the warp to the 2F DOOR CELL -- the same
+          -- arrival a genuine Colosseum exit produces, so the still-armed
+          -- vanilla escort scene fires from the position its choreography
+          -- assumes and walks the player out past the counter.
+          -- TODO/CONFIRM on device: landing exactly on (9,0) must not
+          -- re-trigger the door warp back in; if it does, land on (9,1).
+          local sent = mod.world:queueScript({
+            { "text", "GENTLEMAN: That's\nthe tournament.\fThis way, please." },
+            { "warp", LOBBY, ARENA_DOOR_X, ARENA_DOOR_Y, "down" },
+          })
+          if not sent then probe("ESCORT FAIL") end
+        end
       end
     end)
     if not ok then errs("map.reloaded\n%s", tostring(err)) end
