@@ -4,6 +4,32 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.1.3
+
+**The tournament moved to the room you can actually reach.**
+
+0.1.2 put everything in `COLOSSEUM`. On device that room turned out to be
+unreachable in single player: the Pokémon Center 2F attendant only opens
+it once a link partner is connected. So the tournament now runs in
+`POKECENTER_2F` itself — the room at the top of the stairs — and the venue
+still keys off which town you climbed from, unchanged.
+
+Getting into the Colosseum is demoted to an **experiment the host offers**,
+because `mod.world:warpTo` checks only that the map exists and never
+consults the attendant. The door may open for a mod even though it does
+not for the player. If it does, a way-back attendant is waiting inside, and
+the return cell is remembered before you leave so a save made in there can
+still get out.
+
+Deliberately kept independent: the warp experiment cannot block the battle
+probe. They are two separate questions and this build answers both.
+
+Also: spawn placement now uses real walkability (`isWalkableCell`,
+`npcAt`, `warpAtCell`) and prefers the cell with the most open sides,
+rather than the first unoccupied one. The lobby has counters and vanilla
+attendants in it, and the old picker would happily have put the host
+inside a wall.
+
 ## 0.1.2
 
 Diagnostic rows now show **unless** the option is explicitly off, rather
