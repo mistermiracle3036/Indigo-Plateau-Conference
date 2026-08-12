@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.6.2"
+  local VERSION = "0.7.0"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -62,6 +62,7 @@ return function(mod)
   local HOST_NAME = "IPC_HOST"
   local FOE_NAME = "IPC_FOE"
   local EXIT_NAME = "IPC_EXIT"
+  local MC_NAME = "IPC_MC"
 
   -- SPRITEMOVEDATA_STANDING_DOWN (src/world/gen2/Npc.lua MOVE table).
   -- Numeric: the Gen 2 arm compares def.movement against numbers.
@@ -102,6 +103,8 @@ return function(mod)
       -- announcer only once you move
       afterWin  = "A.J.: Rematch.\fSomeday.",
       afterLoss = "A.J.: 100 wins,\nzero losses.",
+      name = "A.J.",
+      chat = "A.J.: I warmed up\non six GEODUDE.",
       party = { { species = "SANDSLASH", delta = 0 },
                 { species = "BUTTERFREE", delta = -1 },
                 { species = "PRIMEAPE", delta = 0 } } },
@@ -113,6 +116,8 @@ return function(mod)
       loss = "Study harder.\fClass dismissed.",
       afterWin  = "GISELLE: It won't\nhappen twice.",
       afterLoss = "GISELLE: POKeMON\nTECH standards.",
+      name = "GISELLE",
+      chat = "GISELLE: Which\nschool did you\fattend? ...Oh.",
       party = { { species = "CUBONE", delta = -1 },
                 { species = "GRAVELER", delta = 0 },
                 { species = "WIGGLYTUFF", delta = 0 } } },
@@ -132,6 +137,8 @@ return function(mod)
       loss = "Sunk like a stone.\fTrain harder.",
       afterWin  = "BROCK: Go say hi\nto MISTY for me.",
       afterLoss = "BROCK: Defense\nwins matches.",
+      name = "BROCK",
+      chat = "BROCK: The rock\nwork in here is\ftop quality.",
       party = { { species = "GRAVELER", delta = -1 },
                 { species = "RHYHORN", delta = 0 },
                 { species = "KABUTOPS", delta = 0 },
@@ -146,6 +153,8 @@ return function(mod)
       loss = "Not even close.\fFind me when\nyou're ready.",
       afterWin  = "WES: JOHTO's\nstronger than\fI heard.",
       afterLoss = "WES: Go train.\fI'll wait.",
+      name = "WES",
+      chat = "WES: ...\fSave it for\nthe ring.",
       party = { { species = "ESPEON", delta = 0 },
                 { species = "UMBREON", delta = 0 },
                 { species = "JOLTEON", delta = 0 },
@@ -729,6 +738,24 @@ return function(mod)
     -- No exit attendant any more: the arena's own bottom door leads out.
     despawn(EXIT_NAME)
 
+    -- THE ANNOUNCER (0.7.0): the World-Tournament-MC archetype, embodied.
+    -- SPRITE_GENTLEMAN is the closest thing Gold owns to a suited,
+    -- mustached tournament announcer, and the escort voice has been
+    -- "GENTLEMAN" since 0.5.0 -- he finally gets his body. He is the one
+    -- who STARTS the rounds; the challengers spawn unarmed.
+    if not objectNamed(world, ARENA, MC_NAME) then
+      local ax, ay = bestCell(world, taken)
+      if ax then
+        taken[#taken + 1] = { ax, ay }
+        local aid = mod.world:spawnNpc(ARENA, {
+          name = MC_NAME, sprite = SPRITE_HOST,
+          x = ax, y = ay, movement = MOVE_STANDING_DOWN,
+        })
+        spawnedIds[MC_NAME] = aid
+        out[#out + 1] = "mc ok"
+      end
+    end
+
     local foe = currentFoe()
     if not foe then
       -- Card cleared: take the last challenger off the floor.
@@ -750,22 +777,35 @@ return function(mod)
 
     local fx, fy = bestCell(world, taken)
     if not fx then return "no foe cell" end
+    -- Spawned UNARMED -- no `trainer` field, so an A press falls through to
+    -- our dialogue path and gets their flavour line. The announcer's round
+    -- call is what arms them (armFoe below), which is the developer's
+    -- talk-to-start structure: every character gets a pre-battle moment.
     local id, err = mod.world:spawnNpc(ARENA, {
       name = FOE_NAME, sprite = foe.sprite,
       x = fx, y = fy, movement = MOVE_STANDING_DOWN,
-      -- No `event` flag on purpose: with none, trainerflagaction CHECK
-      -- reads 0 and the already-beaten branch never fires, so a rematch is
-      -- always possible. Round progress is this mod's own state instead --
-      -- allocating a ROM event index would be a guessed constant.
-      trainer = { class = foe.classIx, member = foe.memberIx,
-                  seenText = foe.seenKey, winText = foe.winKey,
-                  lossText = foe.lossKey },
     })
     if not id then return "foe fail " .. tostring(err) end
     spawnedIds[FOE_NAME] = id
     spawnedFoeKey = foe.key
     out[#out + 1] = ("R%d %s"):format(foe.round, foe.key)
     return table.concat(out, "\n")
+  end
+
+  -- The announcer's round call writes the trainer struct onto the standing
+  -- challenger's def row -- the live NPC holds the same table, so
+  -- interactBody's trainer arm picks it up on the next A press. The exact
+  -- inverse of the post-battle defang, on the same proven mechanism.
+  -- No `event` flag on purpose: with none, trainerflagaction CHECK reads 0
+  -- and the already-beaten branch never fires; round progress is this
+  -- mod's own state, and a ROM event index would be a guessed constant.
+  local function armFoe(world, foe)
+    local obj = objectNamed(world, ARENA, FOE_NAME)
+    if not obj then return false end
+    obj.trainer = { class = foe.classIx, member = foe.memberIx,
+                    seenText = foe.seenKey, winText = foe.winKey,
+                    lossText = foe.lossKey }
+    return true
   end
 
   ----------------------------------------------------------------------
@@ -1046,6 +1086,44 @@ return function(mod)
         end
         -- otherwise the floor may be a round out of date; make it match
         pcall(fillArena, world)
+
+        local foe = currentFoe()
+        local foeObj = objectNamed(world, ARENA, FOE_NAME)
+        local mc = objectNamed(world, ARENA, MC_NAME)
+
+        -- THE ANNOUNCER STARTS THE ROUNDS. His call writes the trainer
+        -- struct onto the challenger; until then the challenger only chats.
+        -- Personality per the model: loud, superlative, in love with the
+        -- spectacle -- the World Tournament Announcer archetype.
+        if mc and mc.x == ev.x and mc.y == ev.y then
+          if not foe then
+            mod.world:queueScript({
+              { "text", "ANNOUNCER: WHAT a\ntournament, folks!" },
+              { "text", "Rest up. We draw\na new card soon!" },
+            })
+          elseif foeObj and foeObj.trainer then
+            mod.world:queueScript({
+              { "text", "ANNOUNCER: The\ncrowd is WAITING!" },
+            })
+          else
+            local armed = armFoe(world, foe)
+            probe("ARM %s\n%s", armed and "OK" or "FAIL", tostring(foe.key))
+            mod.world:queueScript({
+              { "text", ("ANNOUNCER: ROUND\n%d of %d, folks!"):format(foe.round, ROUNDS) },
+              { "text", ("Facing you --\n%s!"):format(foe.name or foe.key) },
+              { "text", "Even through my\nshades, this one\flooks INCREDIBLE!" },
+              { "text", "BEGIN!" },
+            })
+          end
+          return
+        end
+
+        -- Unarmed challenger: their flavour line, as often as you like.
+        if foe and foeObj and not foeObj.trainer
+           and foeObj.x == ev.x and foeObj.y == ev.y then
+          mod.world:queueScript({ { "text", foe.chat or "..." } })
+          return
+        end
       end
     end)
     if not ok then errs("interacted\n%s", tostring(err)) end
