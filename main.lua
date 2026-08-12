@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.3.3"
+  local VERSION = "0.4.0"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -79,30 +79,32 @@ return function(mod)
   -- correctly on Gold: the Gen 1 team had to be Jolteon/Flareon/Vaporeon
   -- because the other two did not exist yet.
   ----------------------------------------------------------------------
-  -- Levels are RELATIVE to the player's strongest mon, not absolute. 0.2.0
-  -- shipped a fixed 28->46 curve written for a post-Elite-Four player, and
-  -- on device that made round 1 unbeatable -- the venues are badge-gated
-  -- per town and Violet is the FIRST gym, so the qualifier there is early
-  -- game. A tournament that can be entered anywhere on the curve cannot
-  -- carry fixed levels.
+  -- Levels are anchored to the TOWN'S GYM LEADER -- see levelBase below.
+  -- 0.2.0's fixed 28->46 curve was written for a post-Elite-Four player and
+  -- made Violet's round 1 unbeatable; 0.2.1-0.3.3 scaled to the player,
+  -- which was playable but rubber-banded so beating it meant nothing. The
+  -- leader anchor gives each venue a fixed difficulty a step above the badge
+  -- that let you in, consistent town to town by construction.
   local CARD = {
+    -- REAL TEAM COMPS (0.4.0). The fire-weak test card is gone; these are
+    -- the intended matchups. Every species verified against
+    -- rom_manifest_gold.json before it was written here.
+    --
+    -- `delta` is now an offset from the ROUND's base level, and the base
+    -- comes from the town's own gym leader -- see levelBase below.
     { key = "AJ",      class = "BUG_CATCHER",  member = "DON",
       sprite = "SPRITE_YOUNGSTER",
       intro = "A.J.: My gym never\nlost. Neither do I.",
-      -- TEST TEAMS (0.2.3): every card is deliberately Bug/Grass/Steel so a
-      -- single Fire type can walk the whole bracket. This is a TESTING
-      -- convenience for checking round flow, not the intended matchups --
-      -- the real team comps come back once the loop is proven. TODO/CONFIRM
-      -- before anything is shown to a player.
-      party = { { species = "PARASECT", delta = -3 },   -- Bug/Grass, 4x fire
-                { species = "BUTTERFREE", delta = -4 } } },
+      party = { { species = "SANDSLASH", delta = 0 },
+                { species = "BUTTERFREE", delta = -1 },
+                { species = "PRIMEAPE", delta = 0 } } },
 
     { key = "GISELLE", class = "BEAUTY",       member = "VICTORIA",
       sprite = "SPRITE_COOLTRAINER_F",
       intro = "GISELLE: Top class,\ntop school.\fDo keep up.",
-      party = { { species = "BELLSPROUT", delta = -1 },
-                { species = "SCYTHER", delta = -1 },
-                { species = "VICTREEBEL", delta = 0 } } },
+      party = { { species = "CUBONE", delta = -1 },
+                { species = "GRAVELER", delta = 0 },
+                { species = "WIGGLYTUFF", delta = 0 } } },
 
     -- BROCK is a real Gold trainer CLASS with one member, BROCK1, plus a
     -- SPRITE_BROCK overworld sprite. Using a leader as their OWN carrier is
@@ -115,37 +117,80 @@ return function(mod)
     { key = "BROCK",   class = "BROCK",        member = "BROCK1",
       sprite = "SPRITE_BROCK",
       intro = "BROCK: PEWTER's\ngym leader, out\nhere?\fI travel too.",
-      party = { { species = "SKARMORY", delta = 1 },
-                { species = "HERACROSS", delta = 1 },
-                { species = "FORRETRESS", delta = 2 } } },  -- Bug/Steel, 4x
+      party = { { species = "GRAVELER", delta = -1 },
+                { species = "RHYHORN", delta = 0 },
+                { species = "KABUTOPS", delta = 0 },
+                { species = "ONIX", delta = 1 } } },
 
     { key = "WES",     class = "COOLTRAINERM", member = "NICK",
       sprite = "SPRITE_COOLTRAINER_M",
       intro = "WES: I came a long\nway from ORRE.\fDon't waste it.",
-      party = { { species = "JUMPLUFF", delta = 3 },
-                { species = "EXEGGUTOR", delta = 3 },
-                { species = "VILEPLUME", delta = 3 },
-                { species = "SCIZOR", delta = 5 } } },     -- Bug/Steel, 4x
+      -- Espeon and Umbreon are the point of him being here rather than on
+      -- Gen 1, where his team had to be the three original Eeveelutions.
+      party = { { species = "ESPEON", delta = 0 },
+                { species = "UMBREON", delta = 0 },
+                { species = "JOLTEON", delta = 0 },
+                { species = "PERSIAN", delta = 2 } } },
   }
 
-  -- The player's strongest mon, which the card scales against. Their LEAD
-  -- would punish anyone carrying a low-level HM mule in slot 1, and their
-  -- average would make a six-mon box team trivial.
-  local function topLevel()
-    local save = mod.game and mod.game.save
-    local best = 5
-    for _, mon in ipairs((save and save.party) or {}) do
+  -- LEVELS COME FROM THE TOWN'S GYM LEADER, not from the player.
+  --
+  -- Scaling to the player's party (0.2.1-0.3.3) worked but made the circuit
+  -- rubber-band: it could never be too hard or too easy, so beating it said
+  -- nothing. Anchoring to the local gym instead gives each venue a fixed,
+  -- knowable difficulty that sits just above the badge you needed to enter
+  -- it -- and it stays consistent town to town by construction.
+  --
+  -- Read from the leader's OWN party in the live trainer data rather than
+  -- written down here. Their levels are ROM content; a table of numbers in
+  -- this file would be four guessed constants that rot silently the moment
+  -- anything rebalances them.
+  local LEADER_STEP = 2      -- the circuit sits this far above the gym
+  local ROUND_STEP = 2       -- and each round climbs this much again
+
+  -- Forward declaration. venue() is defined further down with the run state,
+  -- and levelBase below calls it: without this the call would compile
+  -- against a nil global and the leader anchor would silently never apply.
+  -- Assigned there as `venue = function()`, NOT `local function venue()`,
+  -- which would create a second local and leave this one nil forever.
+  local venue
+
+  local function leaderTop(class)
+    local td = mod.game and mod.game.data and mod.game.data.gen2Trainers
+    local cls = td and td.classes and td.classes[class]
+    local row = cls and cls.trainers and cls.trainers[1]
+    local best
+    for _, mon in ipairs((row and row.party) or {}) do
       local l = tonumber(mon and mon.level)
-      if l and l > best then best = l end
+      if l and (not best or l > best) then best = l end
     end
     return best
   end
 
-  local function scaled(rows)
-    local top = topLevel()
+  local function levelBase(foe)
+    local v = venue()
+    local top = v and v.leader and leaderTop(v.leader)
+    -- No venue known yet, or a leader whose party could not be read: fall
+    -- back to the player so the bracket is still playable rather than
+    -- defaulting to some fixed number that could be wildly off.
+    if not top then
+      local save = mod.game and mod.game.save
+      top = 5
+      for _, mon in ipairs((save and save.party) or {}) do
+        local l = tonumber(mon and mon.level)
+        if l and l > top then top = l end
+      end
+      probe("NO LEADER\nfell back Lv%d", top)
+      return top
+    end
+    return top + LEADER_STEP + ((foe.round - 1) * ROUND_STEP)
+  end
+
+  local function scaled(foe)
+    local base = levelBase(foe)
     local out = {}
-    for _, row in ipairs(rows) do
-      local lv = top + (row.delta or 0)
+    for _, row in ipairs(foe.party) do
+      local lv = base + (row.delta or 0)
       if lv < 2 then lv = 2 elseif lv > 100 then lv = 100 end
       out[#out + 1] = { species = row.species, level = lv }
     end
@@ -167,12 +212,12 @@ return function(mod)
   -- rom_manifest_gold.json, badge keys from Battle.lua:193.
   ----------------------------------------------------------------------
   local VENUES = {
-    VIOLET_POKECENTER_1F     = { town = "VIOLET",     title = "QUALIFIER" },
-    GOLDENROD_POKECENTER_1F  = { town = "GOLDENROD",  title = "OPEN" },
-    ECRUTEAK_POKECENTER_1F   = { town = "ECRUTEAK",   title = "INVITATIONAL" },
-    BLACKTHORN_POKECENTER_1F = { town = "BLACKTHORN", title = "MASTERS" },
+    VIOLET_POKECENTER_1F     = { town = "VIOLET",     title = "QUALIFIER",    leader = "FALKNER" },
+    GOLDENROD_POKECENTER_1F  = { town = "GOLDENROD",  title = "OPEN",         leader = "WHITNEY" },
+    ECRUTEAK_POKECENTER_1F   = { town = "ECRUTEAK",   title = "INVITATIONAL", leader = "MORTY" },
+    BLACKTHORN_POKECENTER_1F = { town = "BLACKTHORN", title = "MASTERS",      leader = "CLAIR" },
     INDIGO_PLATEAU_POKECENTER_1F = { town = "INDIGO PLATEAU",
-                                     title = "CONFERENCE" },
+                                     title = "CONFERENCE", leader = "CHAMPION" },
   }
 
   ----------------------------------------------------------------------
@@ -220,7 +265,9 @@ return function(mod)
 
   local function currentFoe() return CARD[round()] end
 
-  local function venue()
+  -- Assignment, not `local function`: the local is declared up beside
+  -- levelBase, which calls this.
+  venue = function()
     local id = mod.save:get("lastCentre", nil)
     return id and VENUES[id] or nil, id
   end
@@ -743,7 +790,7 @@ return function(mod)
       local foe = currentFoe()
       if not foe then return nil end
       if class ~= foe.class and class ~= foe.classIx then return nil end
-      local built = buildParty(scaled(foe.party))
+      local built = buildParty(scaled(foe))
       if not built then
         -- Keep the vanilla party rather than field an opponent with no
         -- stats. A real battle beats a broken one.
@@ -751,7 +798,10 @@ return function(mod)
         return nil
       end
       setPending(true)
-      probe("R%d %s\n%d mons Lv%d", foe.round, foe.key, #built, topLevel())
+      -- Report the level actually used, so a wrong anchor is visible on the
+      -- screen rather than inferred from how hard the battle felt.
+      probe("R%d %s\n%d mons Lv%d", foe.round, foe.key, #built,
+            built[1] and built[1].level or -1)
       return built
     end)
     if ok and res then return res end
