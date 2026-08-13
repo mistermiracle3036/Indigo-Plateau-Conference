@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.9.2"
+  local VERSION = "0.9.3"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -1588,7 +1588,7 @@ return function(mod)
   }
 
   local ESCORT_LINES = {
-    win  = "ANNOUNCER: Please\nlet us set up\ffor the next round.",
+    win  = "ANNOUNCER: Please\nlet us set up\ffor the next\nround.",
     lose = "ANNOUNCER: Better\nluck next time.\fYou're out of\nthe running.",
   }
 
@@ -1654,8 +1654,50 @@ return function(mod)
   -- and why teleporting away repaired it. Using the door fixes the cause
   -- rather than papering over the symptom.
 
+  ----------------------------------------------------------------------
+  -- The ribbon contract with kanto_ribbons (mistermiracle3036/Ribbons).
+  --
+  -- Shaped exactly like Kanto Contests' mon.contestWins: the win is
+  -- recorded ON THE MON, keyed by venue, so it survives boxing, evolution
+  -- and trading the way the ribbon it earns does -- and so a resolver can
+  -- apply it retroactively from save state alone rather than having to
+  -- catch a live event.
+  --
+  -- Written UNCONDITIONALLY, for the reason kanto_ribbons/main.lua:852-854
+  -- gives about contestWins: NOT gated on Ribbons being installed, so a
+  -- player who installs it later still earns the ribbon for a run already
+  -- won, and one who uninstalls it keeps the record. This mod never reads
+  -- the field back and nothing anywhere revokes it.
+  --
+  -- Keyed by MAP ID, not town name: it comes from rom_manifest_gold.json,
+  -- it is stable, and "INDIGO PLATEAU" has a space in it. One Conference
+  -- ribbon is the agreed design, so the resolver only needs "any venue
+  -- count > 0" -- but per-venue counts cost nothing to write here and
+  -- leave per-venue ribbons open later without a save migration.
+  --
+  -- The WHOLE PARTY is credited, following the Winning/Victory tower
+  -- ribbons in that mod rather than the single-performer contest one: a
+  -- four-round card is won by the team, not by the last mon standing.
+  ----------------------------------------------------------------------
+  local function recordConferenceWin(venueId)
+    if not venueId then probe("RIBBON NOVENUE") return end
+    local save  = mod.game and mod.game.save
+    local party = save and save.party
+    if type(party) ~= "table" then probe("RIBBON NOPARTY") return end
+    local n = 0
+    for _, mon in ipairs(party) do
+      if type(mon) == "table" then
+        local wins = mon.conferenceWins
+        if type(wins) ~= "table" then wins = {} mon.conferenceWins = wins end
+        wins[venueId] = (tonumber(wins[venueId]) or 0) + 1
+        n = n + 1
+      end
+    end
+    probe("RIBBON OK\n%d mon", n)
+  end
+
   local function talkHost()
-    local v = venue()
+    local v, venueId = venue()
     local town = (v and v.town) or "INDIGO"
     local title = (v and v.title) or "CONFERENCE"
     local r = round()
@@ -1663,14 +1705,26 @@ return function(mod)
 
     if r > ROUNDS then
       rows = {
-        { "text", ("The %s\n%s is yours."):format(town, title) },
+        -- Page-broken before "is yours." rather than kept on one line:
+        -- title + " is yours." is 19-22 columns at three of the five
+        -- venues and TextBox soft-wraps the overflow (TextBox.lua:164),
+        -- which scrolls the page instead of clipping it. "The " + town
+        -- fits everywhere, INDIGO PLATEAU landing exactly on 18.
+        { "text", ("The %s\n%s\fis yours."):format(town, title) },
         { "text", "Come back and\nwe'll draw again." },
       }
+      -- Before the redraw, and inside the same branch that only a
+      -- completed four-round card can reach, so it fires exactly once
+      -- per win. pcall'd: a ribbon record must never cost the player
+      -- their send-off.
+      pcall(recordConferenceWin, venueId)
       setRound(1)
       newDraw()     -- repeatable: clearing the card genuinely redraws it now
     elseif r == 1 then
       rows = {
-        { "text", ("Welcome to the\n%s %s!"):format(town, title) },
+        -- Same reason: "INDIGO PLATEAU CONFERENCE!" is 26 columns on one
+        -- line. Town and title get a page each; both fit alone.
+        { "text", ("Welcome to the\n%s\f%s!"):format(town, title) },
         { "text", ("%d rounds. One\nchallenger each."):format(ROUNDS) },
         { "text", "Through the far\ndoor. Good luck." },
       }

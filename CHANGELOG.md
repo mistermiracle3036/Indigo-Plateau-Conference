@@ -4,6 +4,21 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.9.3
+
+**Winning a tournament is now recorded on your team.** Every Pokemon in
+your party when you take a venue's title remembers that it won there.
+
+Nothing shows this yet. It is the groundwork for a Conference ribbon in
+Ribbons, and it is written whether or not you have Ribbons installed --
+so if you install it later, the runs you have already won still count.
+
+**Fixes the announcer's text running off the box at four of the five
+venues.** The welcome and the victory line put the town and the title on
+one line, which fits at VIOLET and nowhere else -- "INDIGO PLATEAU
+CONFERENCE!" is 26 columns in an 18-column box. Both now break across
+pages. The escort's "for the next round." was one column over as well.
+
 ## 0.9.2
 
 **Fixes ordinary Johto trainers fighting with tournament teams.** A
