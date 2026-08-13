@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.9.3"
+  local VERSION = "0.9.4"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -355,7 +355,6 @@ return function(mod)
     afterLoss = "WES: Go train.\fI'll wait.",
     party = { { species = "ESPEON", delta = 0 },
               { species = "UMBREON", delta = 0 },
-              { species = "JOLTEON", delta = 0 },
               { species = "PERSIAN", delta = 2 } } },
 
   { key = "RITCHIE", tier = 3, class = "COOLTRAINERM", member = "RYAN",
@@ -390,10 +389,9 @@ return function(mod)
     loss = "Sorry! Are you\nhurt? Sorry!",
     afterWin = "YELLOW: Your team\nlikes you a lot.",
     afterLoss = "YELLOW: RATTY says\nno hard feelings.",
-    party = { { species = "PIKACHU",  delta = 1 },
-              { species = "RATICATE", delta = 0 },
+    party = { { species = "RATICATE", delta = 0 },
               { species = "DODRIO",   delta = 0 },
-              { species = "OMASTAR",  delta = 0 } } },
+              { species = "PIKACHU",  delta = 1 } } },
 
   -- GENTLEMAN EDWARD -- pleasingly close to "Es Cade" for the mayor act
   { key = "EVICE", tier = 3, class = "GENTLEMAN", member = "EDWARD",
@@ -478,8 +476,7 @@ return function(mod)
     loss = "Yay! Just like\nin my dream!",
     afterWin = "MOLLY: The UNOWN\nlike you. I think.",
     afterLoss = "MOLLY: Wanna live\nin my crystal\fcastle?",
-    party = { { species = "TEDDIURSA", delta = 0 },
-              { species = "PHANPY",    delta = 0 },
+    party = { { species = "PHANPY",    delta = 0 },
               { species = "FLAAFFY",   delta = 0 },
               { species = "ENTEI",     delta = 1 } } },
 
@@ -495,6 +492,8 @@ return function(mod)
     afterLoss = "BROCK: Defense\nwins matches.",
     party = { { species = "GRAVELER", delta = -1 },
               { species = "RHYHORN", delta = 0 },
+              { species = "GOLEM", delta = 0 },
+              { species = "OMASTAR", delta = 0 },
               { species = "KABUTOPS", delta = 0 },
               { species = "ONIX", delta = 1 } } },
 
@@ -506,8 +505,11 @@ return function(mod)
     loss = "Too hot to\nhandle! Hot! HOT!",
     afterWin = "BLAINE: A burning\nquestion: rematch?",
     afterLoss = "BLAINE: Pop quiz:\nwho's still king?",
-    party = { { species = "MAGCARGO", delta = 0 },
+    party = { { species = "PONYTA",   delta = -1 },
+              { species = "MAGCARGO", delta = 0 },
               { species = "MAGMAR",   delta = 0 },
+              { species = "NINETALES", delta = 0 },
+              { species = "FLAREON",  delta = 0 },
               { species = "RAPIDASH", delta = 1 } } },
 
   { key = "MISTY", tier = 4, class = "MISTY", member = "MISTY1",
@@ -518,9 +520,11 @@ return function(mod)
     loss = "The tomboyish\nmermaid strikes!",
     afterWin = "MISTY: My STARMIE\ndemands a rematch.",
     afterLoss = "MISTY: Don't be a\nbaby about it.",
-    party = { { species = "GOLDUCK",  delta = 0 },
+    party = { { species = "POLIWHIRL", delta = -1 },
+              { species = "GOLDUCK",  delta = 0 },
               { species = "QUAGSIRE", delta = 0 },
               { species = "LAPRAS",   delta = 0 },
+              { species = "TOGETIC",  delta = 0 },
               { species = "STARMIE",  delta = 1 } } },
 
   { key = "SABRINA", tier = 4, class = "SABRINA", member = "SABRINA1",
@@ -533,7 +537,10 @@ return function(mod)
     afterLoss = "SABRINA: Your next\nloss comes soon.",
     -- MR__MIME: two underscores in Gold's species table. Verified; the
     -- single-underscore spelling fails silently.
-    party = { { species = "ESPEON",   delta = 0 },
+    party = { { species = "WIGGLYTUFF", delta = -1 },
+              { species = "SLOWBRO",  delta = 0 },
+              { species = "HYPNO",    delta = 0 },
+              { species = "ESPEON",   delta = 0 },
               { species = "MR__MIME", delta = 0 },
               { species = "ALAKAZAM", delta = 1 } } },
 
@@ -545,7 +552,9 @@ return function(mod)
     loss = "Try again with\nPOKeMON you love.",
     afterWin = "KAREN: My UMBREON\nwants a rematch.",
     afterLoss = "KAREN: Don't sulk.\nIt's unbecoming.",
-    party = { { species = "MURKROW",  delta = 0 },
+    party = { { species = "VILEPLUME", delta = -1 },
+              { species = "VICTREEBEL", delta = 0 },
+              { species = "MURKROW",  delta = 0 },
               { species = "GENGAR",   delta = 0 },
               { species = "HOUNDOOM", delta = 0 },
               { species = "UMBREON",  delta = 1 } } },
@@ -560,6 +569,8 @@ return function(mod)
     afterLoss = "BRUNO: Push-ups.\nOne thousand. Go.",
     party = { { species = "HITMONLEE",  delta = 0 },
               { species = "HITMONCHAN", delta = 0 },
+              { species = "HERACROSS",  delta = 0 },
+              { species = "GOLEM",      delta = 0 },
               { species = "ONIX",       delta = 0 },
               { species = "MACHAMP",    delta = 1 } } },
 
@@ -571,7 +582,9 @@ return function(mod)
     loss = "As expected of\nthe world's best.",
     afterWin = "CLAIR: A fluke.\nA total fluke.",
     afterLoss = "CLAIR: Go earn my\ncousin's respect.",
-    party = { { species = "DRAGONAIR", delta = 0 },
+    party = { { species = "DRATINI",   delta = -1 },
+              { species = "DRAGONAIR", delta = 0 },
+              { species = "DRAGONAIR", delta = 0 },
               { species = "DRAGONAIR", delta = 0 },
               { species = "GYARADOS",  delta = 0 },
               { species = "KINGDRA",   delta = 1 } } },
@@ -585,8 +598,10 @@ return function(mod)
     afterWin = "LANCE: The league\nwill hear of you.",
     afterLoss = "LANCE: DRAGONITE\nbarely warmed up.",
     party = { { species = "GYARADOS",   delta = 0 },
-              { species = "AERODACTYL", delta = 0 },
               { species = "DRAGONITE",  delta = 0 },
+              { species = "DRAGONITE",  delta = 0 },
+              { species = "AERODACTYL", delta = 0 },
+              { species = "CHARIZARD",  delta = 0 },
               { species = "DRAGONITE",  delta = 1 } } },
 
   { key = "BLUE", tier = 4, class = "BLUE", member = "BLUE1",
@@ -598,8 +613,10 @@ return function(mod)
     afterWin = "BLUE: VIRIDIAN is\nopen. If you dare.",
     afterLoss = "BLUE: Gramps would\nlaugh at that one.",
     party = { { species = "PIDGEOT",  delta = 0 },
+              { species = "EXEGGUTOR", delta = 0 },
               { species = "ALAKAZAM", delta = 0 },
               { species = "ARCANINE", delta = 0 },
+              { species = "GYARADOS", delta = 0 },
               { species = "RHYDON",   delta = 1 } } },
 
   -- RED never speaks. All six lines are silence, per the design pass.
@@ -614,6 +631,8 @@ return function(mod)
     party = { { species = "CHARIZARD", delta = 0 },
               { species = "BLASTOISE", delta = 0 },
               { species = "VENUSAUR",  delta = 0 },
+              { species = "ESPEON",    delta = 0 },
+              { species = "SNORLAX",   delta = 0 },
               { species = "PIKACHU",   delta = 2 } } },
   }
 

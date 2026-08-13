@@ -4,6 +4,22 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.9.4
+
+**The tournament now runs to the anime's own format: three-on-three
+through the preliminaries, six-on-six for the final round.** This half is
+the challengers' side of it -- every round-four opponent now fields a
+full team of six, and the three round-three challengers who fielded four
+are back to three.
+
+The final round is where you will notice it. LANCE brings his three
+DRAGONITE, CLAIR her DRAGONAIR line, RED the team he actually keeps on
+Mt. Silver. Round four should feel like a different kind of fight now,
+not just a higher-levelled one.
+
+Your own three-Pokemon limit is not in yet, so the final round is
+currently six against however many you brought.
+
 ## 0.9.3
 
 **Winning a tournament is now recorded on your team.** Every Pokemon in
