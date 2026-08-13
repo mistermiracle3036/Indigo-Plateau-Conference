@@ -4,6 +4,19 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.9.6
+
+**The host now only stands upstairs where there is actually an event.**
+He was appearing in every Pokemon Center in the game, offering a
+tournament in towns that host none -- and talking to him there continued
+whatever run you had going, which is the same leak 0.9.5 was meant to
+close. Cherrygrove, Azalea, Olivine and the rest are ordinary Pokemon
+Centers again.
+
+Five towns host events: Violet, Goldenrod, Ecruteak, Blackthorn and
+Indigo Plateau. Nowhere else, and now the upstairs lobby says so by
+being empty.
+
 ## 0.9.5
 
 **Fixes a run leaking across venues.** Winning round 1 in Violet and then

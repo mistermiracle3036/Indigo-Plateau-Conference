@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.9.5"
+  local VERSION = "0.9.6"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -901,9 +901,16 @@ return function(mod)
 
   -- Assignment, not `local function`: the local is declared up beside
   -- levelBase, which calls this.
+  -- `lastCentre` is written as `false` on entering a Pokemon Center that
+  -- hosts no event (place() below), NOT left alone -- so this returns nil
+  -- there rather than the venue the player was at previously. Leaving it
+  -- alone is what 0.9.5 did, and it is why the cross-venue fix did not
+  -- cover an ordinary centre: the guard compared a stale venue against
+  -- itself, saw no mismatch, and let the run continue.
   venue = function()
     local id = mod.save:get("lastCentre", nil)
-    return id and VENUES[id] or nil, id
+    if type(id) ~= "string" then return nil, nil end
+    return VENUES[id], id
   end
 
   ----------------------------------------------------------------------
@@ -1277,6 +1284,19 @@ return function(mod)
     -- them from the def on the player's first arena entry, and the lobby is
     -- the room every player must cross to get there.
     redressPlaceholders(world)
+    -- No event upstairs of an ordinary Pokemon Center, so no host. The
+    -- developer's call, and the right one: 0.9.5 tried to fix the
+    -- cross-venue leak by guarding the ROUND, but a Gentleman offering a
+    -- tournament in Cherrygrove is wrong on its own terms regardless of
+    -- what the guard does. Removing the door removes every bug behind it.
+    --
+    -- Despawn rather than merely skip: POKECENTER_2F is one shared map,
+    -- so a host spawned at Violet can still be standing there when the
+    -- player climbs the stairs somewhere else within the same map load.
+    if not venue() then
+      despawn(HOST_NAME)
+      return "no event here"
+    end
     if objectNamed(world, LOBBY, HOST_NAME) then return "host ok" end
     local hx, hy = bestCell(world, {})
     if not hx then return "no cell" end
@@ -1535,7 +1555,15 @@ return function(mod)
   end)
 
   local function place(mapId)
-    if VENUES[mapId] then mod.save:set("lastCentre", mapId) end
+    -- Record which centre the player is actually in, INCLUDING the ones
+    -- that host nothing -- those store `false`, which venue() reads as
+    -- "no event here". Matching on the map-id suffix rather than a list
+    -- of the other centres: POKECENTER_2F is ONE shared map, so the only
+    -- thing that can distinguish Violet's upstairs from Cherrygrove's is
+    -- the 1F the player climbed from.
+    if mapId and mapId:match("POKECENTER_1F$") then
+      mod.save:set("lastCentre", VENUES[mapId] and mapId or false)
+    end
     -- Any map that is neither the lobby nor the arena means the player has
     -- left the tournament flow by some path other than the 2F door --
     -- teleport, dig, another mod's warp -- so a still-armed escort is stale
@@ -1766,8 +1794,17 @@ return function(mod)
 
   local function talkHost()
     local v, venueId = venue()
-    local town = (v and v.town) or "INDIGO"
-    local title = (v and v.title) or "CONFERENCE"
+    -- Belt and braces with fillLobby's gate: if there is no event here,
+    -- refuse rather than fall through to the INDIGO/CONFERENCE defaults.
+    -- Those defaults are what let an ordinary centre run a round of
+    -- somebody else's tournament, and a silent wrong venue is exactly the
+    -- failure this mod keeps having. Declining is diagnosable.
+    if not (v and venueId) then
+      probe("NO VENUE\nhost declined")
+      return
+    end
+    local town = v.town
+    local title = v.title
     local r = round()
     local rows
 
