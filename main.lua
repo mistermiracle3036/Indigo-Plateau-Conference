@@ -43,11 +43,12 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.7.1"
+  local VERSION = "0.8.0"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
-  mod.exports.owns = { trainers = {}, maps = {}, tilesets = {} }
+  mod.exports.owns = { trainers = {}, maps = {}, tilesets = {},
+                       sprites = { "SPRITE_IPC_ANNOUNCER" } }
 
   local LOBBY = "POKECENTER_2F"
   local ARENA = "COLOSSEUM"
@@ -68,6 +69,28 @@ return function(mod)
   -- Numeric: the Gen 2 arm compares def.movement against numbers.
   local MOVE_STANDING_DOWN = 6
   local SPRITE_HOST = "SPRITE_GENTLEMAN"
+
+  ----------------------------------------------------------------------
+  -- The announcer's own sprite (0.8.0): original 16x16 art, designed by
+  -- the developer in Pixilart over a GridFab draft. ONE frame for now --
+  -- STILL_SPRITE is the schema's single-frame type, and MOVE_STANDING_DOWN
+  -- never turns him, so a lone forward-facing frame is exactly enough to
+  -- judge the design in the room. The other five frames come once the look
+  -- is confirmed on device.
+  -- PAL_OW_BLUE / slot 1 borrowed from SPRITE_GENTLEMAN's assignment, so
+  -- he sits in the same suit-colour family as the lobby host.
+  ----------------------------------------------------------------------
+  local SPRITE_MC = "SPRITE_IPC_ANNOUNCER"
+
+  mod.content.sprites:register(SPRITE_MC, {
+    id = SPRITE_MC,
+    image = mod.path .. "/assets/announcer.png",
+    frames = 1,
+    walker = false,
+    spriteType = "STILL_SPRITE",
+    palette = "PAL_OW_BLUE",
+    paletteId = 1,
+  })
 
   local ROUNDS = 4
 
@@ -751,7 +774,7 @@ return function(mod)
       if ax then
         taken[#taken + 1] = { ax, ay }
         local aid = mod.world:spawnNpc(ARENA, {
-          name = MC_NAME, sprite = SPRITE_HOST,
+          name = MC_NAME, sprite = SPRITE_MC,
           x = ax, y = ay, movement = MOVE_STANDING_DOWN,
         })
         spawnedIds[MC_NAME] = aid

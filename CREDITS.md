@@ -29,6 +29,7 @@ removed — open an issue and it will be done.
 
 | Character | Asset | Artist | Credit as |
 | --------- | ----- | ------ | --------- |
+| The Announcer | overworld sprite (`assets/announcer.png`) | Mister Miracle — original pixel art, drawn in Pixilart over a GridFab draft | Mister Miracle |
 
 <!--
 Add one row per contributed asset AS IT LANDS, in the same commit as the
