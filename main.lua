@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.9.4"
+  local VERSION = "0.9.5"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -1715,6 +1715,55 @@ return function(mod)
     probe("RIBBON OK\n%d mon", n)
   end
 
+  ----------------------------------------------------------------------
+  -- Venue-bound runs (0.9.5).
+  --
+  -- DEVICE BUG: win round 1 in Violet, walk to Goldenrod, and the host
+  -- there says "Round 2 of 4" and runs round 2 at GOLDENROD's levels.
+  -- `round` and `draw` are single global keys in mod.save, while venue()
+  -- just reads whichever centre was last entered -- so nothing tied a run
+  -- to the place it started. Four rounds could be spread across four
+  -- towns, each at its own anchor, which defeats the whole point of a
+  -- per-venue difficulty.
+  --
+  -- One tournament at a time: the run remembers its venue, and entering a
+  -- different one forfeits it and draws fresh. Deliberately NOT "each
+  -- venue keeps its own run" -- five parallel brackets would need five
+  -- times the save state and would let a player shop for a favourable
+  -- draw by walking between towns.
+  --
+  -- A save from 0.9.4 or earlier has no runVenue. That reads as nil and
+  -- is ADOPTED by the current venue rather than forfeited, so an upgrade
+  -- mid-run does not eat the player's progress.
+  ----------------------------------------------------------------------
+  local function runVenue() return mod.save:get("runVenue", nil) end
+  local function setRunVenue(id) mod.save:set("runVenue", id) end
+
+  -- 18 columns, from TextBox.lua's MAX_COLS. Over-length lines soft-wrap
+  -- and scroll the page (TextBox.lua:164) rather than clipping, which is
+  -- how three venues shipped with wrapped announcer lines through 0.9.2.
+  local BOX_COLS = 18
+
+  -- 0.9.3 page-broke town from title unconditionally, which fixed the
+  -- three venues that overflow and made the two that fit read badly --
+  -- "GOLDENROD OPEN!" is 15 columns and wants to be one line. Reported
+  -- from device as an awkward break at Goldenrod. Measure, then choose.
+  local function venueWelcome(town, title)
+    local oneLine = ("%s %s!"):format(town, title)
+    if #oneLine <= BOX_COLS then
+      return ("Welcome to the\n%s"):format(oneLine)
+    end
+    return ("Welcome to the\n%s\f%s!"):format(town, title)
+  end
+
+  local function venueSendoff(town, title)
+    local tail = ("%s is yours."):format(title)
+    if #tail <= BOX_COLS then
+      return ("The %s\n%s"):format(town, tail)
+    end
+    return ("The %s\n%s\fis yours."):format(town, title)
+  end
+
   local function talkHost()
     local v, venueId = venue()
     local town = (v and v.town) or "INDIGO"
@@ -1722,14 +1771,24 @@ return function(mod)
     local r = round()
     local rows
 
+    -- Before anything reads the round: a run in progress that belongs to
+    -- another venue is forfeit here. Only when a round has actually been
+    -- won (r > 1) is there anything to forfeit or to tell the player
+    -- about; at round 1 this is a silent re-binding.
+    local owner = runVenue()
+    local forfeited = false
+    if venueId and owner and owner ~= venueId and r > 1 then
+      probe("VENUE SWITCH\n%s -> %s", tostring(owner), tostring(venueId))
+      setRound(1)
+      newDraw()
+      forfeited = true
+      r = 1
+    end
+    if venueId then setRunVenue(venueId) end
+
     if r > ROUNDS then
       rows = {
-        -- Page-broken before "is yours." rather than kept on one line:
-        -- title + " is yours." is 19-22 columns at three of the five
-        -- venues and TextBox soft-wraps the overflow (TextBox.lua:164),
-        -- which scrolls the page instead of clipping it. "The " + town
-        -- fits everywhere, INDIGO PLATEAU landing exactly on 18.
-        { "text", ("The %s\n%s\fis yours."):format(town, title) },
+        { "text", venueSendoff(town, title) },
         { "text", "Come back and\nwe'll draw again." },
       }
       -- Before the redraw, and inside the same branch that only a
@@ -1741,12 +1800,16 @@ return function(mod)
       newDraw()     -- repeatable: clearing the card genuinely redraws it now
     elseif r == 1 then
       rows = {
-        -- Same reason: "INDIGO PLATEAU CONFERENCE!" is 26 columns on one
-        -- line. Town and title get a page each; both fit alone.
-        { "text", ("Welcome to the\n%s\f%s!"):format(town, title) },
+        { "text", venueWelcome(town, title) },
         { "text", ("%d rounds. One\nchallenger each."):format(ROUNDS) },
         { "text", "Through the far\ndoor. Good luck." },
       }
+      -- Said BEFORE the welcome, so the player learns why the bracket
+      -- reset rather than silently finding themselves back at round 1.
+      if forfeited then
+        table.insert(rows, 1,
+          { "text", "One tournament\nat a time!\fYour other run\nis forfeit." })
+      end
     else
       rows = {
         { "text", ("Round %d of %d.\nThey're waiting."):format(r, ROUNDS) },

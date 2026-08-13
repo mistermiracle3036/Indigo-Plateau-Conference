@@ -4,6 +4,23 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.9.5
+
+**Fixes a run leaking across venues.** Winning round 1 in Violet and then
+walking into Goldenrod's Pokemon Center put you into round 2 of the
+Goldenrod Open -- carrying your progress to a different tournament and
+fighting it at Goldenrod's much higher levels. Four rounds could be spread
+across four towns.
+
+A run now belongs to the venue it started in. Entering a different one
+forfeits it and the announcer draws you a fresh card, and he says so
+rather than quietly resetting you. A tournament already in progress when
+you update is adopted by its venue, not thrown away.
+
+**Fixes an awkward line break in the announcer's welcome at Goldenrod.**
+The town and the event name were split across two boxes at every venue,
+which is only needed at the three where they do not fit on one line.
+
 ## 0.9.4
 
 **The tournament now runs to the anime's own format: three-on-three
