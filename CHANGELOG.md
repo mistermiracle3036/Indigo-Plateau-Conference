@@ -4,6 +4,140 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.8.0
+
+The Announcer gets his own face: original 16×16 pixel art (black hair,
+the shades), designed by Mister Miracle. One forward-facing frame for
+now — he never turns — with the walking frames to follow. First art
+asset in the repo; credited in CREDITS.md.
+
+## 0.7.1
+
+The Announcer's build-up line now escalates by round — buzzing crowd,
+packed stands, the shades, "THE FINAL, folks!" — instead of repeating
+one line four times. Giselle now cites ECRUTEAK UNIVERSITY, and a
+19-column line of hers that had overflowed the text box since 0.2.0 is
+fixed.
+
+## 0.7.0
+
+**The ANNOUNCER, embodied.** A suited MC now stands in the arena and
+starts the rounds — talk to him to call the battle. Challengers spawn
+unarmed and give a new per-character flavour line until the round is
+called, so every character now has three overworld dialogue moments.
+
+## 0.6.2
+
+Talking to the just-fought challenger now gets a line from THEM
+(new per-character after-win/after-loss lines); the announcer only
+takes over once you move.
+
+## 0.6.1
+
+Brock's losing line: "Sunk like a stone. Train harder."
+
+## 0.6.0
+
+No more instant rebattles: after any result the challenger stands down,
+and an announcer voice escorts you out on your next step — "let us set
+up for the next round" on a win, "you're out of the running" on a loss.
+Challengers each got their own win/lose lines. The room re-stages only
+after you leave.
+
+## 0.5.1
+
+Fixed the loss path never triggering the escort (the engine skips the
+map reload on a CANLOSE loss — a combination vanilla never produces),
+and a beaten challenger re-fought before leaving no longer fields his
+carrier's vanilla team.
+
+## 0.5.0
+
+**Losing eliminates you** — back to round 1, the answer to the design
+doc's oldest open question. Losses no longer black out: the battles use
+the engine's own CANLOSE mechanism (the Cherrygrove rival's), your
+party is healed where you stand, and the tournament escorts you out
+through the game's own leaving-the-Colosseum cutscene.
+
+## 0.4.5
+
+**The stairs-void bug, solved for real.** Entering the Colosseum arms a
+vanilla escort scene on the Pokémon Center 2F that script-walks the
+player from the door; leaving any way other than the door left it armed
+in the save, and the next stairs trip marched you into the void. Losses
+no longer black out (see 0.5.0), and any other door-skipping exit
+disarms the scene. The earlier flag-repair theory (0.4.3) was wrong and
+its code is deleted.
+
+## 0.4.4
+
+The two link-room placeholder figures (wearing the player's own sprite)
+become spectators: reskinned and moved to the room's edges through
+runtime-only mechanisms — no persistent save writes.
+
+## 0.4.3
+
+Withdrew the placeholder hiding entirely after the mods-off test proved
+the stairs bug was ours; restored what earlier versions wrote.
+
+## 0.4.2
+
+Hide the link pair by sprite rather than name (their names read back
+empty), in reverse index order.
+
+## 0.4.1
+
+All dialogue reflowed to Gold's two-line text box; the attendant now
+steps aside on every lobby visit rather than only the first.
+
+## 0.4.0
+
+**Real team comps** (A.J., Giselle, Brock, Wes — Wes finally fields
+ESPEON and UMBREON), and **levels anchored to the town's gym leader**
+rather than the player's party, so each venue has a fixed, knowable
+difficulty a step above the badge that let you in.
+
+## 0.3.3
+
+Diagnostics mirrored to the desktop log; the door-blocking attendant is
+found by radius rather than an exact cell.
+
+## 0.3.2
+
+The attendant walks down, then left, then faces the room — she was
+walled in on both sides at the doorway.
+
+## 0.3.1
+
+The 2F attendant steps aside so the player can walk through the real
+Colosseum door. (Her dialogue is the cart's and cannot be changed; Gold
+mods also have no choice-box, so no link/single-player menu is
+possible.)
+
+## 0.3.0
+
+**Walk through the real door.** The Pokémon Center 2F carries an actual
+warp to the COLOSSEUM at (9,0); the mod no longer warps anyone, which
+also removes the cause of the stairs bug as then understood. BROCK
+joins the card as round 3 — a real Gold trainer class, so he battles
+under his own name and portrait.
+
+## 0.2.3
+
+Fire-weak test teams for bracket testing (marked TEST, never intended
+to ship); warp tables printed to diagnostics.
+
+## 0.2.2
+
+Round progression moved to the battle-end event; the two link-room
+placeholder figures hidden (later found harmful and reverted).
+
+## 0.2.1
+
+Challenger levels scale to the player's strongest Pokémon (0.2.0's
+fixed curve made Violet's round 1 unbeatable); a census of the arena's
+vanilla objects.
+
 ## 0.2.0
 
 **A full four-round tournament, inside the actual Colosseum.**
