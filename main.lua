@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.8.1"
+  local VERSION = "0.9.0"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -109,83 +109,521 @@ return function(mod)
   -- which was playable but rubber-banded so beating it meant nothing. The
   -- leader anchor gives each venue a fixed difficulty a step above the badge
   -- that let you in, consistent town to town by construction.
-  local CARD = {
-    -- REAL TEAM COMPS (0.4.0). The fire-weak test card is gone; these are
-    -- the intended matchups. Every species verified against
-    -- rom_manifest_gold.json before it was written here.
-    --
-    -- `delta` is now an offset from the ROUND's base level, and the base
-    -- comes from the town's own gym leader -- see levelBase below.
-    { key = "AJ",      class = "BUG_CATCHER",  member = "DON",
-      sprite = "SPRITE_YOUNGSTER",
-      intro = "A.J.: My gym\nnever lost.\fNeither do I.",
-      win  = "My streak...\fFine. Take it.",
-      loss = "The streak lives.\fGo home.",
-      -- overworld lines for talking to them AFTER the battle, before the
-      -- escort takes you out -- the developer's ask: characters first,
-      -- announcer only once you move
-      afterWin  = "A.J.: Rematch.\fSomeday.",
-      afterLoss = "A.J.: 100 wins,\nzero losses.",
-      name = "A.J.",
-      chat = "A.J.: I warmed up\non six GEODUDE.",
-      party = { { species = "SANDSLASH", delta = 0 },
-                { species = "BUTTERFREE", delta = -1 },
-                { species = "PRIMEAPE", delta = 0 } } },
+  ----------------------------------------------------------------------
+  -- THE POOL (0.9.0): 39 challengers across four tiers -- the design
+  -- pass's roster draft (ROSTER_NOTES.md), with the four shipped
+  -- characters folded in. Each RUN draws one name per tier (newDraw
+  -- below), so no two tournaments need repeat.
+  --
+  -- Every class, member, sprite and species below was verified against
+  -- rom_manifest_gold.json THIS session -- the draft's TODO/CONFIRM
+  -- placeholders are all resolved. Notable finds: SCHOOLBOY has a real
+  -- member JOE, HIKER has ANTHONY1 and MICHAEL, so those three battle
+  -- under their actual names; MR__MIME is spelled with TWO underscores;
+  -- and Gold has no CAMPER/HIKER/JUGGLER/etc. overworld sprites (trainer
+  -- types share the generic sheets), so those are mapped to the closest
+  -- real sheet. Tier 4 rides named classes: real name AND real portrait.
+  ----------------------------------------------------------------------
+  local ROSTER = {
 
-    { key = "GISELLE", class = "BEAUTY",       member = "VICTORIA",
-      sprite = "SPRITE_COOLTRAINER_F",
-      intro = "GISELLE: Top of\nmy class.\fDo keep up.",
-      win  = "Top marks.\fFor today.",
-      loss = "Study harder.\fClass dismissed.",
-      afterWin  = "GISELLE: It won't\nhappen twice.",
-      -- ECRUTEAK UNIVERSITY, not POKeMON TECH: her canon school is Kanto's,
-      -- and a Johto circuit reads better with a Johto institution behind
-      -- her. Place names go ALL CAPS, per the games' own convention.
-      afterLoss = "GISELLE: ECRUTEAK\nUNIVERSITY, dear.",
-      name = "GISELLE",
-      chat = "GISELLE: Which\nschool did you\fattend? ...Oh.",
-      party = { { species = "CUBONE", delta = -1 },
-                { species = "GRAVELER", delta = 0 },
-                { species = "WIGGLYTUFF", delta = 0 } } },
+  -- ========================= TIER 1 =========================
+  { key = "AJ", tier = 1, class = "BUG_CATCHER", member = "DON",
+    sprite = "SPRITE_YOUNGSTER", name = "A.J.",
+    chat = "A.J.: I warmed up\non six GEODUDE.",
+    intro = "A.J.: My gym\nnever lost.\fNeither do I.",
+    win  = "My streak...\fFine. Take it.",
+    loss = "The streak lives.\fGo home.",
+    afterWin  = "A.J.: Rematch.\fSomeday.",
+    afterLoss = "A.J.: 100 wins,\nzero losses.",
+    party = { { species = "SANDSLASH", delta = 0 },
+              { species = "BUTTERFREE", delta = -1 },
+              { species = "PRIMEAPE", delta = 0 } } },
 
-    -- BROCK is a real Gold trainer CLASS with one member, BROCK1, plus a
-    -- SPRITE_BROCK overworld sprite. Using a leader as their OWN carrier is
-    -- the answer to the naming problem for this whole family: the battle
-    -- announces the class's real name and shows the real portrait, with no
-    -- registry trick at all. Kanto's leaders and the Elite Four are all in
-    -- that table (MISTY, LT_SURGE, ERIKA, JANINE, KOGA, WILL, KAREN, BRUNO,
-    -- CHAMPION/LANCE), which is exactly the "shouldn't see them yet" cast
-    -- the circuit wants.
-    { key = "BROCK",   class = "BROCK",        member = "BROCK1",
-      sprite = "SPRITE_BROCK",
-      intro = "BROCK: PEWTER's\nleader, out here?\fI travel too.",
-      win  = "Rock solid.\fPEWTER would be\nproud of that.",
-      loss = "Sunk like a stone.\fTrain harder.",
-      afterWin  = "BROCK: Go say hi\nto MISTY for me.",
-      afterLoss = "BROCK: Defense\nwins matches.",
-      name = "BROCK",
-      chat = "BROCK: The rock\nwork in here is\ftop quality.",
-      party = { { species = "GRAVELER", delta = -1 },
-                { species = "RHYHORN", delta = 0 },
-                { species = "KABUTOPS", delta = 0 },
-                { species = "ONIX", delta = 1 } } },
+  { key = "TODD", tier = 1, class = "CAMPER", member = "TODD1",
+    sprite = "SPRITE_YOUNGSTER", name = "TODD",   -- battles as CAMPER TODD
+    chat = "TODD: One shot is\nall I ever need.",
+    intro = "TODD: Say cheese!",
+    win = "Blurry. Every\nsingle frame.",
+    loss = "Perfect focus.\fFront page stuff.",
+    afterWin = "TODD: Delete\nthat one.",
+    afterLoss = "TODD: I'll frame\nthis feeling.",
+    party = { { species = "BUTTERFREE", delta = 1 },
+              { species = "PIDGEOTTO",  delta = 0 } } },
 
-    { key = "WES",     class = "COOLTRAINERM", member = "NICK",
-      sprite = "SPRITE_COOLTRAINER_M",
-      intro = "WES: I came far\nfrom ORRE.\fDon't waste it.",
-      -- Espeon and Umbreon are the point of him being here rather than on
-      -- Gen 1, where his team had to be the three original Eeveelutions.
-      win  = "...ORRE breeds\ntough trainers.\fSo does JOHTO.",
-      loss = "Not even close.\fFind me when\nyou're ready.",
-      afterWin  = "WES: JOHTO's\nstronger than\fI heard.",
-      afterLoss = "WES: Go train.\fI'll wait.",
-      name = "WES",
-      chat = "WES: ...\fSave it for\nthe ring.",
-      party = { { species = "ESPEON", delta = 0 },
-                { species = "UMBREON", delta = 0 },
-                { species = "JOLTEON", delta = 0 },
-                { species = "PERSIAN", delta = 2 } } },
+  { key = "SEYMOUR", tier = 1, class = "SCIENTIST", member = "ROSS",
+    sprite = "SPRITE_SCIENTIST", name = "SEYMOUR",
+    chat = "SEYMOUR: The moon\nguides us all!",
+    intro = "SEYMOUR: For\nscience!",
+    win = "Fascinating\nresults...",
+    loss = "Hypothesis:\nconfirmed!",
+    afterWin = "SEYMOUR: I must\nrevise my notes.",
+    afterLoss = "SEYMOUR: CLEFAIRY\napproves of me.",
+    party = { { species = "CLEFAIRY", delta = 1 },
+              { species = "STARYU",   delta = 0 } } },
+
+  { key = "DUPLICA", tier = 1, class = "LASS", member = "ALICE",
+    sprite = "SPRITE_LASS", name = "DUPLICA",
+    chat = "DUPLICA: Guess\nwho I am today!",
+    intro = "DUPLICA: Copy\nthis if you can!",
+    win = "Even DITTO can't\ncopy that...",
+    loss = "Transform!\nInto a winner!",
+    afterWin = "DUPLICA: DITTO is\nsulking backstage.",
+    afterLoss = "DUPLICA: Want my\nautograph? Whose?",
+    party = { { species = "DITTO", delta = 0 },
+              { species = "DITTO", delta = 1 } } },
+
+  { key = "TRACEY", tier = 1, class = "CAMPER", member = "ELLIOT",
+    sprite = "SPRITE_YOUNGSTER", name = "TRACEY",
+    chat = "TRACEY: Hold on,\nI'm sketching you.",
+    intro = "TRACEY: Let's see\nyou up close!",
+    win = "My pencil\nsnapped...",
+    loss = "That pose! Don't\nmove, don't move!",
+    afterWin = "TRACEY: The sketch\nstill came out.",
+    afterLoss = "TRACEY: I drew you\nfrowning. Sorry.",
+    party = { { species = "MARILL",  delta = 0 },
+              { species = "VENONAT", delta = 0 },
+              { species = "SCYTHER", delta = 1 } } },
+
+  { key = "MICKID", tier = 1, class = "YOUNGSTER", member = "MIKEY",
+    sprite = "SPRITE_YOUNGSTER", name = "MIC KID",
+    chat = "MIC KID: HEY! YOU!\nCan you hear me?!",
+    intro = "MIC KID: PIKACHU!\nUse everything!",
+    win = "It never listens\nto me anyway...",
+    loss = "IT HEARD ME!\nIT FINALLY HEARD!",
+    afterWin = "MIC KID: Speak up!\nI can't hear you!",
+    afterLoss = "MIC KID: We talk\nevery day now!",
+    party = { { species = "PIKACHU",  delta = 1 },
+              { species = "MAGNEMITE", delta = 0 } } },
+
+  { key = "BALLGUY", tier = 1, class = "JUGGLER", member = "FRITZ",
+    sprite = "SPRITE_SUPER_NERD", name = "BALL GUY",
+    chat = "BALL GUY: Have I\ngot a ball for\fyou! ...Later.",
+    intro = "BALL GUY: Let's\nhave a ball!",
+    win = "Even my head\nis deflated...",
+    loss = "Having a ball\nyet? I sure am!",
+    afterWin = "BALL GUY: Take my\nrespect! No ball.",
+    afterLoss = "BALL GUY: Who is\nunder the mask?\fGreat question!",
+    party = { { species = "VOLTORB",    delta = 0 },
+              { species = "JIGGLYPUFF", delta = 0 },
+              { species = "ELECTRODE",  delta = 1 } } },
+
+  -- SCHOOLBOY's roster really contains a member named JOE -- verified --
+  -- so the TECH student battles under his own name in his own uniform.
+  { key = "JOE", tier = 1, class = "SCHOOLBOY", member = "JOE",
+    sprite = "SPRITE_YOUNGSTER", name = "JOE",
+    chat = "JOE: I memorized\nevery type chart.",
+    intro = "JOE: Top of the\nclass... almost.",
+    win = "GISELLE can never\nhear about this.",
+    loss = "Straight to the\ntop of the class!",
+    afterWin = "JOE: Theory and\npractice differ.",
+    afterLoss = "JOE: I studied\nyou beforehand.",
+    party = { { species = "WEEPINBELL", delta = 1 },
+              { species = "SLOWPOKE",   delta = 0 } } },
+
+  { key = "RANGER", tier = 1, class = "CAMPER", member = "DEAN",
+    sprite = "SPRITE_YOUNGSTER", name = "RANGER",
+    chat = "RANGER: These\nPOKeMON? Wild.\fWe're friends.",
+    intro = "RANGER: Nature\nlends a hand!",
+    win = "They fought for\nme. That's plenty.",
+    loss = "Teamwork! Now\nback to the wild.",
+    afterWin = "RANGER: They still\nwent home happy.",
+    afterLoss = "RANGER: Capture\ncomplete!",
+    party = { { species = "FURRET",   delta = 0 },
+              { species = "STANTLER", delta = 0 },
+              { species = "NOCTOWL",  delta = 1 } } },
+
+  -- ========================= TIER 2 =========================
+  { key = "GISELLE", tier = 2, class = "BEAUTY", member = "VICTORIA",
+    sprite = "SPRITE_COOLTRAINER_F", name = "GISELLE",
+    chat = "GISELLE: Which\nschool did you\fattend? ...Oh.",
+    intro = "GISELLE: Top of\nmy class.\fDo keep up.",
+    win  = "Top marks.\fFor today.",
+    loss = "Study harder.\fClass dismissed.",
+    afterWin  = "GISELLE: It won't\nhappen twice.",
+    afterLoss = "GISELLE: ECRUTEAK\nUNIVERSITY, dear.",
+    party = { { species = "CUBONE", delta = -1 },
+              { species = "GRAVELER", delta = 0 },
+              { species = "WIGGLYTUFF", delta = 0 } } },
+
+  { key = "MANDI", tier = 2, class = "JUGGLER", member = "HORTON",
+    sprite = "SPRITE_ROCKER", name = "MANDI",
+    chat = "MANDI: You may\napplaud now.",
+    intro = "MANDI: Behold\nthe astounding!",
+    win = "The crowd loves\nan upset...",
+    loss = "Ta-daah! Was\nthere ever doubt?",
+    afterWin = "MANDI: Even stars\nhave off nights.",
+    afterLoss = "MANDI: The magic\nis real, kid.",
+    party = { { species = "EXEGGUTOR", delta = 1 },
+              { species = "SEADRA",    delta = 0 },
+              { species = "GOLBAT",    delta = 0 } } },
+
+  -- HIKER really has ANTHONY1 (the Route 33 phone friend), so the boxer's
+  -- battle name is his own, as the notes hoped. BLACK_BELT sprite: a
+  -- fighter, not a mountaineer.
+  { key = "ANTHONY", tier = 2, class = "HIKER", member = "ANTHONY1",
+    sprite = "SPRITE_BLACK_BELT", name = "ANTHONY",
+    chat = "ANTHONY: My girl\nthinks I train\ftoo hard. Never.",
+    intro = "ANTHONY: Gloves\nup!",
+    win = "Down for the\ncount...",
+    loss = "And STILL the\nchampion, baby!",
+    afterWin = "ANTHONY: Time to\nhit the gym.",
+    afterLoss = "ANTHONY: Steak\ntonight, partner!",
+    party = { { species = "HITMONCHAN", delta = 1 },
+              { species = "MACHOKE",    delta = 0 },
+              { species = "MANKEY",     delta = 0 } } },
+
+  { key = "SUZIE", tier = 2, class = "BEAUTY", member = "SAMANTHA",
+    sprite = "SPRITE_BEAUTY", name = "SUZIE",
+    chat = "SUZIE: Brushed,\nfed, and ready.",
+    intro = "SUZIE: Show me\nyour bond.",
+    win = "Beauty isn't\neverything...",
+    loss = "Raised with\nlove. It shows.",
+    afterWin = "SUZIE: VULPIX\nstill looked best.",
+    afterLoss = "SUZIE: Groom your\nteam. And spirit.",
+    party = { { species = "NINETALES", delta = 0 },
+              { species = "VULPIX",    delta = 1 } } },
+
+  { key = "RAYMOND", tier = 2, class = "SAILOR", member = "TERRELL",
+    sprite = "SPRITE_SAILOR", name = "RAYMOND",
+    chat = "RAYMOND: I lost a\nbig one in thirty\fseconds. Once.",
+    intro = "RAYMOND: Ten years\nfor this rematch!",
+    win = "Thirty seconds...\nevery time...",
+    loss = "HAR HAR! Ten years\nto sink one kid!",
+    afterWin = "RAYMOND: Back to\nthe gym. Ten more\fyears if I must.",
+    afterLoss = "RAYMOND: DONPHAN,\nwe finally did it.",
+    party = { { species = "DONPHAN",  delta = 1 },
+              { species = "VENOMOTH", delta = 0 },
+              { species = "GOLEM",    delta = 0 } } },
+
+  { key = "CASSIDY", tier = 2, class = "EXECUTIVEF", member = "EXECUTIVEF_1",
+    sprite = "SPRITE_ROCKET_GIRL", name = "CASSIDY",
+    chat = "CASSIDY: Some\nduos blast off.\fWe get promoted.",
+    intro = "CASSIDY: This is\nwhat competence\flooks like.",
+    win = "Enjoy the only\nwin you'll get.",
+    loss = "Flawless. As the\nboss expects.",
+    afterWin = "CASSIDY: I don't\nlose. I gather\fintel. Take care.",
+    afterLoss = "CASSIDY: We were\nnever here, dear.",
+    party = { { species = "RATICATE", delta = 1 },
+              { species = "DROWZEE",  delta = 0 },
+              { species = "HOUNDOUR", delta = 0 } } },
+
+  { key = "BUTCH", tier = 2, class = "EXECUTIVEM", member = "EXECUTIVEM_2",
+    sprite = "SPRITE_ROCKET", name = "BUTCH",
+    chat = "BUTCH: Go on.\nSay the name.\fI'll wait.",
+    intro = "BUTCH: Last guy\ncalled me Bill.\fHe regrets it.",
+    win = "Lost the match.\nKept the name.",
+    loss = "Say it in your\nsleep: BUTCH.",
+    afterWin = "BUTCH: Don't\nquote me. You'd\fget it wrong.",
+    afterLoss = "BUTCH: For once\nthe right guy won.",
+    party = { { species = "PRIMEAPE", delta = 1 },
+              { species = "HITMONTOP", delta = 0 },
+              { species = "HOUNDOUR",  delta = 0 } } },
+
+  { key = "HELENA", tier = 2, class = "MEDIUM", member = "GRACE",
+    sprite = "SPRITE_GRANNY", name = "HELENA",
+    chat = "HELENA: Your aura\nis... hee hee hee.",
+    intro = "HELENA: The\nspirits hunger.",
+    win = "The stars said\nthis would happen.",
+    loss = "It is foretold.\nIt is always\fforetold.",
+    afterWin = "HELENA: I cursed\nyour shoelaces.",
+    afterLoss = "HELENA: The veil\nthins around you.",
+    party = { { species = "GASTLY",     delta = 0 },
+              { species = "HAUNTER",    delta = 0 },
+              { species = "MISDREAVUS", delta = 1 } } },
+
+  { key = "MRTWO", tier = 2, class = "PSYCHIC_T", member = "HERMAN",
+    sprite = "SPRITE_SAGE", name = "MR. TWO",
+    chat = "MR. TWO: I was\nborn... created...\fwhichever.",
+    intro = "MR. TWO: Behold\nperfection.",
+    win = "Humans... always\nsurprising.",
+    loss = "As inevitable\nas my creation.",
+    afterWin = "MR. TWO: The\nreal me would win.",
+    afterLoss = "MR. TWO: I am the\nworld's strongest.",
+    -- clone-trio starters; the RED echo is intentional
+    party = { { species = "VENUSAUR",  delta = 0 },
+              { species = "CHARIZARD", delta = 0 },
+              { species = "BLASTOISE", delta = 0 } } },
+
+  -- ========================= TIER 3 =========================
+  { key = "WES", tier = 3, class = "COOLTRAINERM", member = "NICK",
+    sprite = "SPRITE_COOLTRAINER_M", name = "WES",
+    chat = "WES: ...\fSave it for\nthe ring.",
+    intro = "WES: I came far\nfrom ORRE.\fDon't waste it.",
+    win  = "...ORRE breeds\ntough trainers.\fSo does JOHTO.",
+    loss = "Not even close.\fFind me when\nyou're ready.",
+    afterWin  = "WES: JOHTO's\nstronger than\fI heard.",
+    afterLoss = "WES: Go train.\fI'll wait.",
+    party = { { species = "ESPEON", delta = 0 },
+              { species = "UMBREON", delta = 0 },
+              { species = "JOLTEON", delta = 0 },
+              { species = "PERSIAN", delta = 2 } } },
+
+  { key = "RITCHIE", tier = 3, class = "COOLTRAINERM", member = "RYAN",
+    sprite = "SPRITE_COOLTRAINER_M", name = "RITCHIE",
+    chat = "RITCHIE: SPARKY's\nraring to go!",
+    intro = "RITCHIE: Win or\nlose, no regrets!",
+    win = "No regrets.\nStill stings.",
+    loss = "We keep climbing,\nSPARKY and me!",
+    afterWin = "RITCHIE: You're\nlike a friend of\fmine. He lost too.",
+    afterLoss = "RITCHIE: SPARKY,\ntake a bow!",
+    party = { { species = "PIKACHU",    delta = 1 },
+              { species = "CHARMELEON", delta = 0 },
+              { species = "BUTTERFREE", delta = 0 } } },
+
+  { key = "GREEN", tier = 3, class = "COOLTRAINERF", member = "GWEN",
+    sprite = "SPRITE_COOLTRAINER_F", name = "GREEN",
+    chat = "GREEN: Watch your\npockets around me.",
+    intro = "GREEN: Nothing up\nmy sleeve. Honest.",
+    win = "Fine. I let you\nwin. Obviously.",
+    loss = "Thanks for the\nwarm-up, cutie!",
+    afterWin = "GREEN: Check your\nbag! ...Kidding.\fMostly.",
+    afterLoss = "GREEN: I peeked at\nyour whole team.",
+    party = { { species = "BLASTOISE",  delta = 1 },
+              { species = "WIGGLYTUFF", delta = 0 },
+              { species = "DITTO",      delta = 0 } } },
+
+  { key = "YELLOW", tier = 3, class = "PICNICKER", member = "HOPE",
+    sprite = "SPRITE_LASS", name = "YELLOW",
+    chat = "YELLOW: The forest\nsays hello.",
+    intro = "YELLOW: Let's be\ngentle... mostly.",
+    win = "Everyone's ok?\nThen I'm happy.",
+    loss = "Sorry! Are you\nhurt? Sorry!",
+    afterWin = "YELLOW: Your team\nlikes you a lot.",
+    afterLoss = "YELLOW: RATTY says\nno hard feelings.",
+    party = { { species = "PIKACHU",  delta = 1 },
+              { species = "RATICATE", delta = 0 },
+              { species = "DODRIO",   delta = 0 },
+              { species = "OMASTAR",  delta = 0 } } },
+
+  -- GENTLEMAN EDWARD -- pleasingly close to "Es Cade" for the mayor act
+  { key = "EVICE", tier = 3, class = "GENTLEMAN", member = "EDWARD",
+    sprite = "SPRITE_GENTLEMAN", name = "EVICE",
+    chat = "EVICE: Welcome!\nA mayor supports\fall his trainers.",
+    intro = "EVICE: Allow me to\ndrop the act.",
+    win = "Ho ho... how\nvery irritating.",
+    loss = "Ho ho ho! Nothing\npersonal, child.",
+    afterWin = "EVICE: Smile and\nwave. Smile and\fwave.",
+    afterLoss = "EVICE: Re-elect\nme, won't you?",
+    party = { { species = "SLOWKING",  delta = 0 },
+              { species = "MACHAMP",   delta = 0 },
+              { species = "TYRANITAR", delta = 1 } } },
+
+  { key = "GONZAP", tier = 3, class = "HIKER", member = "RUSSELL",
+    sprite = "SPRITE_BLACK_BELT", name = "GONZAP",
+    chat = "GONZAP: SNAGEM\ntakes what it\fwants.",
+    intro = "GONZAP: Crush\nthem!",
+    win = "Bah! Keep your\ntrinkets.",
+    loss = "Consider yourself\nsnagged.",
+    afterWin = "GONZAP: WES put\nyou up to this?!",
+    afterLoss = "GONZAP: ORRE's\nfinest, kid.",
+    party = { { species = "NIDOKING", delta = 0 },
+              { species = "RHYDON",   delta = 0 },
+              { species = "SKARMORY", delta = 1 } } },
+
+  { key = "GUZMA", tier = 3, class = "BIKER", member = "ZEKE",
+    sprite = "SPRITE_BIKER", name = "GUZMA",
+    chat = "GUZMA: Y'all know\nwho it is.",
+    intro = "GUZMA: It's your\nboy! Beat down\ftime!",
+    win = "What is wrong\nwith me?!",
+    loss = "Big bad GUZMA,\nthat's who.",
+    afterWin = "GUZMA: Tch. Bugs\ncrawl back up.",
+    afterLoss = "GUZMA: SKULL runs\nthis room now.",
+    party = { { species = "ARIADOS", delta = 0 },
+              { species = "PINSIR",  delta = 0 },
+              { species = "SCIZOR",  delta = 1 } } },
+
+  -- HIKER also really has a MICHAEL, so the XD kid keeps his name; only
+  -- the class title is off, and the overworld sprite stays a youth.
+  { key = "MICHAEL", tier = 3, class = "HIKER", member = "MICHAEL",
+    sprite = "SPRITE_YOUNGSTER", name = "MICHAEL",
+    chat = "MICHAEL: I can see\nwhat you can't.",
+    intro = "MICHAEL: For ORRE!",
+    win = "There's light in\nthis loss too.",
+    loss = "The shadows never\nstood a chance.",
+    afterWin = "MICHAEL: JOLTEON,\nback to training.",
+    afterLoss = "MICHAEL: Snagged\nthat win cleanly.",
+    party = { { species = "URSARING", delta = 0 },
+              { species = "HOUNDOOM", delta = 0 },
+              { species = "JOLTEON",  delta = 1 } } },
+
+  { key = "KUKUI", tier = 3, class = "SWIMMERM", member = "CHARLIE",
+    sprite = "SPRITE_SWIMMER_GUY", name = "KUKUI",
+    chat = "KUKUI: Moves tell\nstories, yeah!",
+    intro = "KUKUI: Hit me\nwith your best!",
+    win = "Oh yeah! THAT's\nthe move I wanted!",
+    loss = "Research results:\nI'm still tough!",
+    afterWin = "KUKUI: Felt every\nhit. Loved it.",
+    afterLoss = "KUKUI: Take notes,\ncousin!",
+    party = { { species = "FEAROW",     delta = 0 },
+              { species = "SUDOWOODO",  delta = 0 },
+              { species = "TYPHLOSION", delta = 1 } } },
+
+  { key = "LAWRENCE", tier = 3, class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_GENTLEMAN", name = "LAWRENCE",
+    chat = "LAWRENCE: My\ncollection lacks\fone thing. You.",
+    intro = "LAWRENCE: Consider\nthis an appraisal.",
+    win = "Some things can't\nbe collected...",
+    loss = "A fine addition\nto my collection.",
+    afterWin = "LAWRENCE: It began\nwith one card...",
+    afterLoss = "LAWRENCE: Mint\ncondition victory.",
+    party = { { species = "PORYGON",    delta = 0 },
+              { species = "AERODACTYL", delta = 0 },
+              { species = "MOLTRES",    delta = 1 } } },
+
+  { key = "MOLLY", tier = 3, class = "LASS", member = "ELLEN",
+    sprite = "SPRITE_LASS", name = "MOLLY",
+    chat = "MOLLY: In my house\nwishes come true.",
+    intro = "MOLLY: Papa says\nI can win!",
+    win = "That's not how\nI dreamed it...",
+    loss = "Yay! Just like\nin my dream!",
+    afterWin = "MOLLY: The UNOWN\nlike you. I think.",
+    afterLoss = "MOLLY: Wanna live\nin my crystal\fcastle?",
+    party = { { species = "TEDDIURSA", delta = 0 },
+              { species = "PHANPY",    delta = 0 },
+              { species = "FLAAFFY",   delta = 0 },
+              { species = "ENTEI",     delta = 1 } } },
+
+  -- ================== TIER 4 (named classes) ==================
+  -- Real name AND real portrait, no carrier compromise.
+  { key = "BROCK", tier = 4, class = "BROCK", member = "BROCK1",
+    sprite = "SPRITE_BROCK", name = "BROCK",
+    chat = "BROCK: The rock\nwork in here is\ftop quality.",
+    intro = "BROCK: PEWTER's\nleader, out here?\fI travel too.",
+    win  = "Rock solid.\fPEWTER would be\nproud of that.",
+    loss = "Sunk like a stone.\fTrain harder.",
+    afterWin  = "BROCK: Go say hi\nto MISTY for me.",
+    afterLoss = "BROCK: Defense\nwins matches.",
+    party = { { species = "GRAVELER", delta = -1 },
+              { species = "RHYHORN", delta = 0 },
+              { species = "KABUTOPS", delta = 0 },
+              { species = "ONIX", delta = 1 } } },
+
+  { key = "BLAINE", tier = 4, class = "BLAINE", member = "BLAINE1",
+    sprite = "SPRITE_BLAINE", name = "BLAINE",
+    chat = "BLAINE: Quiz time!\nWho wins today?",
+    intro = "BLAINE: The answer\nis FIRE! Always!",
+    win = "Correct answer!\nWrong old man.",
+    loss = "Too hot to\nhandle! Hot! HOT!",
+    afterWin = "BLAINE: A burning\nquestion: rematch?",
+    afterLoss = "BLAINE: Pop quiz:\nwho's still king?",
+    party = { { species = "MAGCARGO", delta = 0 },
+              { species = "MAGMAR",   delta = 0 },
+              { species = "RAPIDASH", delta = 1 } } },
+
+  { key = "MISTY", tier = 4, class = "MISTY", member = "MISTY1",
+    sprite = "SPRITE_MISTY", name = "MISTY",
+    chat = "MISTY: Finally, a\nreal challenger.",
+    intro = "MISTY: The tide is\ncoming in!",
+    win = "Washed out...\nthis once.",
+    loss = "The tomboyish\nmermaid strikes!",
+    afterWin = "MISTY: My STARMIE\ndemands a rematch.",
+    afterLoss = "MISTY: Don't be a\nbaby about it.",
+    party = { { species = "GOLDUCK",  delta = 0 },
+              { species = "QUAGSIRE", delta = 0 },
+              { species = "LAPRAS",   delta = 0 },
+              { species = "STARMIE",  delta = 1 } } },
+
+  { key = "SABRINA", tier = 4, class = "SABRINA", member = "SABRINA1",
+    sprite = "SPRITE_SABRINA", name = "SABRINA",
+    chat = "SABRINA: I knew\nyou'd say that.",
+    intro = "SABRINA: I have\nforeseen my win.",
+    win = "...The future\ncan be rewritten.",
+    loss = "Just as I\nforesaw.",
+    afterWin = "SABRINA: Enjoy it.\nI already have.",
+    afterLoss = "SABRINA: Your next\nloss comes soon.",
+    -- MR__MIME: two underscores in Gold's species table. Verified; the
+    -- single-underscore spelling fails silently.
+    party = { { species = "ESPEON",   delta = 0 },
+              { species = "MR__MIME", delta = 0 },
+              { species = "ALAKAZAM", delta = 1 } } },
+
+  { key = "KAREN", tier = 4, class = "KAREN", member = "KAREN1",
+    sprite = "SPRITE_KAREN", name = "KAREN",
+    chat = "KAREN: Win with\nyour favorites.",
+    intro = "KAREN: Show me\nwhat you love.",
+    win = "You fight like\nyou mean it.",
+    loss = "Try again with\nPOKeMON you love.",
+    afterWin = "KAREN: My UMBREON\nwants a rematch.",
+    afterLoss = "KAREN: Don't sulk.\nIt's unbecoming.",
+    party = { { species = "MURKROW",  delta = 0 },
+              { species = "GENGAR",   delta = 0 },
+              { species = "HOUNDOOM", delta = 0 },
+              { species = "UMBREON",  delta = 1 } } },
+
+  { key = "BRUNO", tier = 4, class = "BRUNO", member = "BRUNO1",
+    sprite = "SPRITE_BRUNO", name = "BRUNO",
+    chat = "BRUNO: I train\nhere too. Louder.",
+    intro = "BRUNO: HOO HAH!\nWe hone our fists!",
+    win = "We will train\neven harder!",
+    loss = "HOO HAH! The\nmountain stands!",
+    afterWin = "BRUNO: A worthy\nsparring partner.",
+    afterLoss = "BRUNO: Push-ups.\nOne thousand. Go.",
+    party = { { species = "HITMONLEE",  delta = 0 },
+              { species = "HITMONCHAN", delta = 0 },
+              { species = "ONIX",       delta = 0 },
+              { species = "MACHAMP",    delta = 1 } } },
+
+  { key = "CLAIR", tier = 4, class = "CLAIR", member = "CLAIR1",
+    sprite = "SPRITE_CLAIR", name = "CLAIR",
+    chat = "CLAIR: You're in\nthe wrong room.",
+    intro = "CLAIR: I am the\nworld's best. Bow.",
+    win = "This changes\nNOTHING.",
+    loss = "As expected of\nthe world's best.",
+    afterWin = "CLAIR: A fluke.\nA total fluke.",
+    afterLoss = "CLAIR: Go earn my\ncousin's respect.",
+    party = { { species = "DRAGONAIR", delta = 0 },
+              { species = "DRAGONAIR", delta = 0 },
+              { species = "GYARADOS",  delta = 0 },
+              { species = "KINGDRA",   delta = 1 } } },
+
+  { key = "LANCE", tier = 4, class = "CHAMPION", member = "LANCE",
+    sprite = "SPRITE_LANCE", name = "LANCE",
+    chat = "LANCE: The best\ngather here now.",
+    intro = "LANCE: I will not\nhold back!",
+    win = "You could stand\namong champions.",
+    loss = "Train. Then find\nme again.",
+    afterWin = "LANCE: The league\nwill hear of you.",
+    afterLoss = "LANCE: DRAGONITE\nbarely warmed up.",
+    party = { { species = "GYARADOS",   delta = 0 },
+              { species = "AERODACTYL", delta = 0 },
+              { species = "DRAGONITE",  delta = 0 },
+              { species = "DRAGONITE",  delta = 1 } } },
+
+  { key = "BLUE", tier = 4, class = "BLUE", member = "BLUE1",
+    sprite = "SPRITE_BLUE", name = "BLUE",
+    chat = "BLUE: Took you\nlong enough.",
+    intro = "BLUE: I don't do\nwarm-ups. Come on.",
+    win = "Alright, hotshot.\nEnjoy it.",
+    loss = "Smell ya later,\nchamp.",
+    afterWin = "BLUE: VIRIDIAN is\nopen. If you dare.",
+    afterLoss = "BLUE: Gramps would\nlaugh at that one.",
+    party = { { species = "PIDGEOT",  delta = 0 },
+              { species = "ALAKAZAM", delta = 0 },
+              { species = "ARCANINE", delta = 0 },
+              { species = "RHYDON",   delta = 1 } } },
+
+  -- RED never speaks. All six lines are silence, per the design pass.
+  { key = "RED", tier = 4, class = "RED", member = "RED1",
+    sprite = "SPRITE_RED", name = "RED",
+    chat = "RED: ...",
+    intro = "RED: ...!",
+    win = "......",
+    loss = "...",
+    afterWin = "RED: ... ...!",
+    afterLoss = "RED: ...",
+    party = { { species = "CHARIZARD", delta = 0 },
+              { species = "BLASTOISE", delta = 0 },
+              { species = "VENUSAUR",  delta = 0 },
+              { species = "PIKACHU",   delta = 2 } } },
   }
+
+  -- key -> entry, and tier -> list of keys, for the draw
+  local BY_KEY, TIERS = {}, { {}, {}, {}, {} }
+  for _, foe in ipairs(ROSTER) do
+    BY_KEY[foe.key] = foe
+    local t = TIERS[foe.tier]
+    t[#t + 1] = foe.key
+  end
 
   -- LEVELS COME FROM THE TOWN'S GYM LEADER, not from the player.
   --
@@ -208,6 +646,10 @@ return function(mod)
   -- Assigned there as `venue = function()`, NOT `local function venue()`,
   -- which would create a second local and leave this one nil forever.
   local venue
+  -- round() is likewise defined with the run state below; levelBase reads
+  -- the CURRENT round now that a challenger's tier no longer fixes their
+  -- position (the same character could headline different tiers later)
+  local round
 
   local function leaderTop(class)
     local td = mod.game and mod.game.data and mod.game.data.gen2Trainers
@@ -237,7 +679,7 @@ return function(mod)
       probe("NO LEADER\nfell back Lv%d", top)
       return top
     end
-    return top + LEADER_STEP + ((foe.round - 1) * ROUND_STEP)
+    return top + LEADER_STEP + (((foe.tier or round()) - 1) * ROUND_STEP)
   end
 
   local function scaled(foe)
@@ -251,7 +693,7 @@ return function(mod)
     return out
   end
 
-  for i, foe in ipairs(CARD) do
+  for _, foe in ipairs(ROSTER) do
     foe.seenKey = "IPC_SEEN_" .. foe.key
     foe.winKey  = "IPC_WIN_"  .. foe.key
     foe.lossKey = "IPC_LOSS_" .. foe.key
@@ -261,7 +703,6 @@ return function(mod)
     -- characters stay characters
     mod.content.text:register(foe.winKey,  foe.win or "...Well fought.")
     mod.content.text:register(foe.lossKey, foe.loss or "Better luck\nnext time.")
-    foe.round = i
   end
 
   ----------------------------------------------------------------------
@@ -314,13 +755,68 @@ return function(mod)
   -- Run state. mod.save, not mod.storage: this has to travel with the
   -- in-game SAVE so loading an earlier file rewinds the tournament too.
   ----------------------------------------------------------------------
-  local function round()   return tonumber(mod.save:get("round", 1)) or 1 end
+  -- assignment, not `local function`: the local is forward-declared up
+  -- beside venue, because levelBase above calls it
+  round = function() return tonumber(mod.save:get("round", 1)) or 1 end
   local function pending() return mod.save:get("pending", false) == true end
 
   local function setRound(n) mod.save:set("round", n) end
   local function setPending(v) mod.save:set("pending", v and true or false) end
 
-  local function currentFoe() return CARD[round()] end
+  ----------------------------------------------------------------------
+  -- THE DRAW (0.9.0). Each run fields one challenger per tier, drawn at
+  -- random and persisted as a comma-joined key string in mod.save -- so a
+  -- run in progress survives quit/reload, which was a requirement in the
+  -- original design doc. A fresh draw happens whenever the card is
+  -- cleared, the player is eliminated, or the stored draw fails
+  -- validation (e.g. a key renamed between versions). Where a tier has
+  -- more than one member, the new draw avoids repeating that tier's
+  -- previous pick, so back-to-back runs always look different.
+  ----------------------------------------------------------------------
+  do
+    -- one-time seed; LuaJIT's math.random is deterministic per process
+    -- otherwise, which would make every session's first draw identical
+    local ok = pcall(function() math.randomseed(os.time()) end)
+    if not ok then probe("SEED FAIL") end
+  end
+
+  local function parseDraw(s)
+    if type(s) ~= "string" then return nil end
+    local keys = {}
+    for k in s:gmatch("[^,]+") do keys[#keys + 1] = k end
+    if #keys ~= ROUNDS then return nil end
+    for t, k in ipairs(keys) do
+      local foe = BY_KEY[k]
+      if not foe or foe.tier ~= t then return nil end
+    end
+    return keys
+  end
+
+  local function newDraw()
+    local prev = parseDraw(mod.save:get("draw", nil))
+    local picks = {}
+    for t = 1, ROUNDS do
+      local pool = TIERS[t]
+      local pick = pool[math.random(#pool)]
+      if prev and #pool > 1 then
+        while pick == prev[t] do pick = pool[math.random(#pool)] end
+      end
+      picks[t] = pick
+    end
+    mod.save:set("draw", table.concat(picks, ","))
+    probe("DRAW %s %s %s %s", picks[1], picks[2], picks[3], picks[4])
+    return picks
+  end
+
+  local function currentDraw()
+    return parseDraw(mod.save:get("draw", nil)) or newDraw()
+  end
+
+  local function currentFoe()
+    local r = round()
+    if r > ROUNDS then return nil end
+    return BY_KEY[currentDraw()[r]]
+  end
 
   -- Assignment, not `local function`: the local is declared up beside
   -- levelBase, which calls this.
@@ -793,7 +1289,7 @@ return function(mod)
     -- so a beaten challenger blocked his successor forever. Only the one
     -- matching the CURRENT round may stay.
     if spawnedFoeKey == foe.key and objectNamed(world, ARENA, FOE_NAME) then
-      return "R" .. foe.round .. " up"
+      return "R" .. round() .. " up"
     end
     despawn(FOE_NAME)
     spawnedFoeKey = nil
@@ -814,7 +1310,7 @@ return function(mod)
     if not id then return "foe fail " .. tostring(err) end
     spawnedIds[FOE_NAME] = id
     spawnedFoeKey = foe.key
-    out[#out + 1] = ("R%d %s"):format(foe.round, foe.key)
+    out[#out + 1] = ("R%d %s"):format(round(), foe.key)
     return table.concat(out, "\n")
   end
 
@@ -922,6 +1418,10 @@ return function(mod)
           setRound(1)
           probe("ELIMINATED\nback to R1")
         end
+        -- elimination means a NEW run, and a new run means a new field --
+        -- the developer's pairing of the two rules. Redrawn even on a
+        -- round-1 loss, so retrying never means grinding the same face.
+        newDraw()
         escortPending = "lose"
         return
       end
@@ -988,11 +1488,21 @@ return function(mod)
   -- rather than by challenger so it still works when the field is drawn at
   -- random later. "BEGIN!" stays constant on purpose -- that one IS the
   -- catchphrase.
+  -- Three variants per round (the design pass's), drawn at random per
+  -- call, so a 39-deep pool doesn't share one fixed sentence per slot.
   local HYPE = {
-    "Round one, and the\ncrowd is buzzing!",
-    "The stands are\nPACKED for this!",
-    "Even through my\nshades, this one\flooks INCREDIBLE!",
-    "THE FINAL, folks!\fI'm shaking!",
+    { "Round ONE, folks!\nFresh faces!",
+      "The card is set!\nHere we GO, folks!",
+      "Openers on deck!\nMake some noise!" },
+    { "Round TWO! Now\nit gets spicy!",
+      "The contenders\nhave arrived!",
+      "Still standing?\nProve it, kid!" },
+    { "Round THREE! The\nranked are here!",
+      "Semifinal, folks!\nI smell an upset!",
+      "The air is\nELECTRIC, folks!" },
+    { "THE FINAL, folks!\nI'm shaking!",
+      "A LEGEND walks\namong us, folks!",
+      "History! Right\nhere! Right now!" },
   }
 
   local ESCORT_LINES = {
@@ -1074,7 +1584,8 @@ return function(mod)
         { "text", ("The %s\n%s is yours."):format(town, title) },
         { "text", "Come back and\nwe'll draw again." },
       }
-      setRound(1)   -- repeatable: clearing the card redraws it
+      setRound(1)
+      newDraw()     -- repeatable: clearing the card genuinely redraws it now
     elseif r == 1 then
       rows = {
         { "text", ("Welcome to the\n%s %s!"):format(town, title) },
@@ -1123,10 +1634,7 @@ return function(mod)
         if escortPending then
           local f = objectNamed(world, ARENA, FOE_NAME)
           if f and f.x == ev.x and f.y == ev.y then
-            local foe
-            for _, c in ipairs(CARD) do
-              if c.key == spawnedFoeKey then foe = c break end
-            end
+            local foe = spawnedFoeKey and BY_KEY[spawnedFoeKey]
             local line = foe and (escortPending == "win" and foe.afterWin
                                   or foe.afterLoss)
             if line then
@@ -1161,9 +1669,12 @@ return function(mod)
             local armed = armFoe(world, foe)
             probe("ARM %s\n%s", armed and "OK" or "FAIL", tostring(foe.key))
             mod.world:queueScript({
-              { "text", ("ANNOUNCER: ROUND\n%d of %d, folks!"):format(foe.round, ROUNDS) },
+              { "text", ("ANNOUNCER: ROUND\n%d of %d, folks!"):format(round(), ROUNDS) },
               { "text", ("Facing you --\n%s!"):format(foe.name or foe.key) },
-              { "text", HYPE[foe.round] or HYPE[#HYPE] },
+              { "text", (function()
+                  local vs = HYPE[round()] or HYPE[#HYPE]
+                  return vs[math.random(#vs)]
+                end)() },
               { "text", "BEGIN!" },
             })
           end
@@ -1213,10 +1724,17 @@ return function(mod)
       -- mismatched and fielded his carrier's VANILLA team (NICK's
       -- Charmander). A stale challenger fighting as himself is always
       -- right; a card challenger fighting as his carrier never is.
-      local foe = currentFoe()
+      -- With 39 entries sharing carriers (CAMPER x4, GENTLEMAN x2...), a
+      -- bare class scan could land on the wrong character -- so the object
+      -- physically on the floor (spawnedFoeKey) outranks everything, then
+      -- the current draw's foe, then a roster scan as the last resort.
+      local foe = spawnedFoeKey and BY_KEY[spawnedFoeKey]
+      if not (foe and (class == foe.class or class == foe.classIx)) then
+        foe = currentFoe()
+      end
       if not (foe and (class == foe.class or class == foe.classIx)) then
         foe = nil
-        for _, f in ipairs(CARD) do
+        for _, f in ipairs(ROSTER) do
           if class == f.class or class == f.classIx then foe = f break end
         end
       end
@@ -1231,7 +1749,7 @@ return function(mod)
       setPending(true)
       -- Report the level actually used, so a wrong anchor is visible on the
       -- screen rather than inferred from how hard the battle felt.
-      probe("R%d %s\n%d mons Lv%d", foe.round, foe.key, #built,
+      probe("R%d %s\n%d mons Lv%d", round(), foe.key, #built,
             built[1] and built[1].level or -1)
       return built
     end)

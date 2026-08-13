@@ -4,6 +4,28 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.9.0
+
+**The pool.** The fixed four-challenger card becomes a 39-strong roster
+across the four tiers, written by the design pass: anime one-offs and
+rookies in tier 1, rivals and specialists in tier 2, the Orre cast and
+manga trainers in tier 3, and a legacy tier of Kanto leaders, the Elite
+Four, LANCE — and RED and BLUE — all battling under their real names and
+portraits.
+
+**The draw.** Every run fields one challenger per tier, drawn at random,
+persisted with the save so a run survives quit/reload. Clearing the card
+or being eliminated draws a fresh field, and a new draw never repeats
+the previous run's pick in any tier — so back-to-back tournaments always
+look different. The Announcer gained three hype variants per round to
+keep pace.
+
+Every class, member, sprite and species verified against the extracted
+ROM data. Three characters ride real same-name members found in Gold's
+own trainer table (SCHOOLBOY JOE, HIKER ANTHONY, HIKER MICHAEL), and
+MR__MIME's two-underscore spelling was caught before it could fail
+silently.
+
 ## 0.8.1
 
 Winning the final round now gets a proper send-off — "CONGRATULATIONS
