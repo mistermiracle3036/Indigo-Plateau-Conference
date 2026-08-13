@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.8.0"
+  local VERSION = "0.8.1"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -1002,12 +1002,25 @@ return function(mod)
 
   local function runEscort()
     if not escortPending then return end
-    local line = ESCORT_LINES[escortPending] or ESCORT_LINES.lose
+    local rows
+    if escortPending == "win" and round() > ROUNDS then
+      -- Winning round 4 is not "the next round", it is the title. GB names
+      -- are at most 7 characters, so "TO %s, folks!" cannot overflow the
+      -- 18-column box; save.player.name defaults to "GOLD" on a fresh save
+      -- (src/core/gen2/Save.lua:346).
+      local who = (mod.game and mod.game.save and mod.game.save.player
+                   and mod.game.save.player.name) or "CHAMP"
+      rows = {
+        { "text", "ANNOUNCER:\nCONGRATULATIONS" },
+        { "text", ("TO %s, folks!"):format(tostring(who):upper()) },
+        { "text", "That's ALL! We'll\nsee you next time!" },
+      }
+    else
+      rows = { { "text", ESCORT_LINES[escortPending] or ESCORT_LINES.lose } }
+    end
     escortPending = false
-    local sent = mod.world:queueScript({
-      { "text", line },
-      { "warp", LOBBY, ARENA_DOOR_X, ARENA_DOOR_Y, "down" },
-    })
+    rows[#rows + 1] = { "warp", LOBBY, ARENA_DOOR_X, ARENA_DOOR_Y, "down" }
+    local sent = mod.world:queueScript(rows)
     if not sent then probe("ESCORT FAIL") end
   end
 

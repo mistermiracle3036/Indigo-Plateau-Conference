@@ -4,6 +4,12 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.8.1
+
+Winning the final round now gets a proper send-off — "CONGRATULATIONS
+TO <you>, folks! That's ALL! We'll see you next time!" — instead of the
+announcer promising to set up a round that doesn't exist.
+
 ## 0.8.0
 
 The Announcer gets his own face: original 16×16 pixel art (black hair,
