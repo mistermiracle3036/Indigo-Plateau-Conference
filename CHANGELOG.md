@@ -4,6 +4,20 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.9.1
+
+**Challengers battle under their own names.** Until now a challenger was
+announced as whichever generic trainer was standing in for them —
+"COOLTRAINER NICK" instead of WES. Each one now has a real trainer record
+of their own, so the battle says **COOLTRAINER WES**, **CAMPER TODD**,
+**MEDIUM HELENA**. The class title stays generic, since that is what
+carries their portrait, but the name is theirs. Tier 4 was already
+correct: those are real characters in the game's own data, so Brock has
+always been "LEADER BROCK".
+
+No vanilla trainer anywhere in Johto is altered — the new records are
+appended alongside the existing ones.
+
 ## 0.9.0
 
 **The pool.** The fixed four-challenger card becomes a 39-strong roster

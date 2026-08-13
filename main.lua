@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.9.0"
+  local VERSION = "0.9.1"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -625,6 +625,68 @@ return function(mod)
     t[#t + 1] = foe.key
   end
 
+  ----------------------------------------------------------------------
+  -- REAL BATTLE NAMES (0.9.1). Until now a carried challenger battled as
+  -- their carrier -- "COOLTRAINER NICK" instead of WES -- because
+  -- def.trainer pointed at a VANILLA member row and the HUD reads that
+  -- row's name.
+  --
+  -- The fix is to give each of them a member row of their own. The Gen 2
+  -- trainers registry accepts a `trainers` list whose members carry their
+  -- own name and party (Schemas.lua gen2Fields), and a PATCH folds through
+  -- Merge.deepMerge, which unwraps the documented `__append` wrapper
+  -- (Merge.lua:37-48). So appending leaves every vanilla row -- and every
+  -- vanilla row's INDEX -- untouched: no existing trainer in Gold changes.
+  -- A bare `trainers = {...}` would have replaced the list and quietly
+  -- deleted them, which is why the wrapper matters.
+  --
+  -- What the player sees is "<CLASS TITLE> <OUR NAME>": the class's `name`
+  -- field is the title (Brock's class is literally named LEADER, hence
+  -- "LEADER BROCK"), the member's `name` is personal. So Wes becomes
+  -- "COOLTRAINER WES" -- generic title, correct name, and the portrait
+  -- still resolves because the CLASS is still a vanilla one. Registering a
+  -- brand-new class would have given a perfect title and NO portrait at
+  -- all: trainerPics is keyed by class constant off gen2MenuGfx, which no
+  -- registry targets.
+  --
+  -- Tier 4 is untouched -- those are real named classes whose real members
+  -- already are the characters.
+  --
+  -- The party written here is a FALLBACK at a nominal level; trainer.party
+  -- still substitutes the leader-anchored, level-scaled team at battle
+  -- time. Two jobs, cleanly split: the registry owns identity, the hook
+  -- owns numbers.
+  ----------------------------------------------------------------------
+  do
+    local appends = {}
+    for _, foe in ipairs(ROSTER) do
+      if foe.tier < 4 then
+        -- the vanilla member each entry was written with becomes the
+        -- FALLBACK: if the append ever fails to land (an engine change to
+        -- the wrapper, a merge conflict), resolveCarrier finds this instead
+        -- and the battle happens under the carrier's name -- degraded, not
+        -- broken. Losing the name is survivable; losing the battle is not.
+        foe.fallbackMember = foe.member
+        foe.member = "IPC_" .. foe.key
+        local party = {}
+        for _, row in ipairs(foe.party) do
+          party[#party + 1] = { species = row.species, level = 30 }
+        end
+        local rows = appends[foe.class]
+        if not rows then rows = {}; appends[foe.class] = rows end
+        rows[#rows + 1] = {
+          id = foe.member,
+          name = foe.name,
+          trainerType = "TRAINERTYPE_NORMAL",
+          party = party,
+        }
+      end
+    end
+    for class, rows in pairs(appends) do
+      mod.content.trainers:patch(class, { trainers = { __append = rows } })
+    end
+  end
+
   -- LEVELS COME FROM THE TOWN'S GYM LEADER, not from the player.
   --
   -- Scaling to the player's party (0.2.1-0.3.3) worked but made the circuit
@@ -836,10 +898,16 @@ return function(mod)
     local td = mod.game and mod.game.data and mod.game.data.gen2Trainers
     local cls = td and td.classes and td.classes[foe.class]
     if not (cls and cls.index) then return false, "class " .. foe.class end
-    for i, row in ipairs(cls.trainers or {}) do
-      if row.id == foe.member or row.name == foe.member then
-        foe.classIx, foe.memberIx = cls.index, i
-        return true
+    -- our appended member first; the vanilla fallback only if it is absent
+    for _, want in ipairs({ foe.member, foe.fallbackMember }) do
+      for i, row in ipairs(cls.trainers or {}) do
+        if row.id == want or row.name == want then
+          foe.classIx, foe.memberIx = cls.index, i
+          if want ~= foe.member then
+            probe("NAME FALLBACK\n%s", foe.key)   -- append did not land
+          end
+          return true
+        end
       end
     end
     return false, "member " .. foe.member
