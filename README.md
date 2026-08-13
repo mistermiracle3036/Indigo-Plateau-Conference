@@ -1,56 +1,142 @@
 # Indigo Plateau Conference
 
-A mod for [gen1recomp](https://github.com/bryanthaboi/gen1recomp).
-**Pokémon Gold only.**
+A tournament circuit for **Pokémon Gold**, built on
+[gen1recomp](https://github.com/bryanthaboi/gen1recomp).
 
-Upstairs in every Pokémon Center there's a battle room nobody uses. The
-Colosseum circuit fills it. Climb the stairs in Violet and you've walked
-into the Violet Qualifier; do it in Blackthorn and it's the Masters. Four
-rounds, one challenger each, a different field every time — ending at the
-Indigo Plateau Conference itself.
+Upstairs in every Pokémon Center there's a battle room nobody uses — the
+link-battle room single player never sees. The Colosseum circuit fills it.
+Climb the stairs in Violet and you've walked into the Violet Qualifier; do
+it in Blackthorn and it's the Masters. Four rounds, one challenger each, a
+different field every time, ending at the Indigo Plateau Conference itself.
 
-> **Not released yet.** This repository is private and under active
-> development. There is no public release to install, and the version here
-> changes often.
+> **A development preview.** The circuit is playable end to end, but most
+> of it is young: bug reports and ideas are welcome in
+> [GitHub Issues](../../issues). Please include the version from the load
+> banner and which other mods you had enabled.
 
-## Status
+Want to know who's in the pool, or how the levels are decided? Open the
+**[FAQ and spoiler guide](FAQ.md)** — every answer is collapsed, so you
+only reveal what you want to know.
 
-**v0.1.1 — probe build.** The venue, the host and the badge gate are in.
-The tournament is not: whether a mod can start a trainer battle on Gold is
-an open question this build exists to answer. See
-[CHANGELOG.md](CHANGELOG.md).
+<!-- SCREENSHOT: the announcer in the Colosseum, mid-introduction -->
+<!-- SCREENSHOT: a challenger's battle intro, showing their real name -->
 
 ## The circuit
 
-| Venue | Climb the stairs in | Gated on |
+Five events, one per town. Which one you get is decided by whose stairs you
+climbed — the mod adds no maps, no warps and no new buildings.
+
+| Event | Climb the stairs in | Roughly when |
 | --- | --- | --- |
-| Violet Qualifier | Violet City | Zephyr Badge |
-| Goldenrod Open | Goldenrod City | Plain Badge |
-| Ecruteak Invitational | Ecruteak City | Fog Badge |
-| Blackthorn Masters | Blackthorn City | Rising Badge |
-| Indigo Plateau Conference | Indigo Plateau | Rising Badge |
+| Violet Qualifier | Violet City | Early Johto |
+| Goldenrod Open | Goldenrod City | Mid Johto |
+| Ecruteak Invitational | Ecruteak City | Mid Johto |
+| Blackthorn Masters | Blackthorn City | Late Johto |
+| Indigo Plateau Conference | Indigo Plateau | Endgame |
+
+**Difficulty is fixed per venue, not scaled to you.** Each event is
+anchored to that town's own gym leader — a step above the gym, climbing
+again with every round. So the Violet Qualifier is an early-game
+tournament no matter when you walk into it, and clearing the Blackthorn
+Masters means something specific. The anchor is read from the game's own
+trainer data rather than written down in the mod, so it stays honest if
+anything rebalances.
+
+## How a run works
+
+- **Four rounds**, one challenger each.
+- **Win all four** and the title is yours, with a send-off from the
+  announcer.
+- **Lose any round and you're eliminated** — back to round one with a
+  brand-new field of challengers. Losing here is not a blackout: you don't
+  lose money and you aren't sent to a Pokémon Center. Your team is patched
+  up where it stands. PP is *not* restored, so a fresh run is never free.
+- **It's repeatable.** Take a title and you can enter again; the announcer
+  draws a new card.
+- **A run in progress survives quitting.** The bracket travels with your
+  in-game save, so loading an older save rewinds the tournament with it.
+
+**Every run fields a different card.** The roster is 39 challengers across
+four escalating tiers, and each run draws one per tier. A new draw never
+repeats the previous run's pick in a tier, so back-to-back tournaments
+always look different. Challengers speak for themselves — an introduction
+on the way in, a parting line on the way out — and they battle under their
+own names.
+
+## Options
+
+One option, on the mod's own options screen.
+
+| Option | Default | What it does |
+| --- | --- | --- |
+| Diagnostic rows | **Off** | Prints what the mod is doing to the mod manager's `[ERRS]` screen |
+
+Leave it off for normal play. **Turn it on if you're reporting a bug** —
+it's the only way to see what happened, since there's no console on a
+phone. See the [FAQ](FAQ.md) for what to send.
+
+> There is an engine-wide bug (not specific to this mod) where an option
+> changed during a Gold game may not be remembered on restart. If a toggle
+> doesn't stick, that's why.
+
+## Installation
+
+1. Download the zip from the
+   [latest release](../../releases/latest).
+2. In the launcher: **MODS → Import mod .zip**. On iOS, delete any older
+   copy of the zip from Files first.
+3. Fully quit and relaunch.
+
+Requires gen1recomp **0.1.78 or newer**. No engine changes and no
+companion mods are needed.
+
+After installing an update, **fully quit and relaunch**. The load banner
+prints the running version, so you can confirm what's actually live.
+
+<!-- TODO/CONFIRM: whether this mod is listed in mistermiracle3036/mod-index.
+     If it is, add the "From my mod index" install steps used in the other
+     READMEs. Left out rather than promised. -->
 
 ## Compatibility
 
-Ships no maps, tilesets or warps, and modifies no vanilla NPC, script or
-trainer. Everything it places in the Colosseum is a runtime object, which
-is never serialized and never enters the map-data merge — so no other
-mod's `maps` patch can clobber it, and it clobbers nobody.
+**Pokémon Gold only.** Not Red, Blue or Yellow, and not Crystal. On other
+games the mod simply doesn't load.
+
+- **It sits quietly beside other mods.** It ships no maps, tilesets or
+  warps, and changes no vanilla NPC, script or trainer. Everything it
+  places in the Colosseum is a runtime object, which never enters the
+  map-data merge — so no other mod's map patch can clobber it, and it
+  clobbers nothing.
+- **Ordinary trainers out in Johto are unaffected.** Tournament teams
+  apply only inside the tournament.
+- **[Ribbons](https://github.com/mistermiracle3036/Ribbons)** — optional,
+  and **planned rather than working today**. Winning a title is already
+  recorded on every Pokémon in your party, whether or not you have Ribbons
+  installed. A Conference ribbon in that mod will read the record when it
+  ships. Because the record lives on the Pokémon, it applies backwards:
+  tournaments you've already won will count, and you can install Ribbons
+  later without redoing anything.
 
 ## Credits
 
 By **Mister Miracle**
 ([@mistermiracle3036](https://github.com/mistermiracle3036)).
 
+- The **announcer's sprite** is original pixel art by Mister Miracle,
+  drawn for this mod. The mod ships nothing copied from any game or any
+  other artist.
+- The owned-NPC pattern this mod uses on Gold was proven first in **Court
+  of Noctowl**.
 - Built on the [gen1recomp](https://github.com/bryanthaboi/gen1recomp)
   engine, with reference to the [pret](https://github.com/pret)
   disassembly research.
-- The owned-NPC pattern this mod uses on Gold was proven first in **Court
-  of Noctowl**.
-- Character art, as and when it arrives, is credited in
+- Additional character art, as and when it arrives, is credited in
   [CREDITS.md](CREDITS.md).
 
 Pokémon and Pokémon character names are trademarks of Nintendo, Creatures
 Inc. and GAME FREAK inc. This is an unofficial fan project, not affiliated
-with or endorsed by any of them. See
+with or endorsed by any of them.
+
+Licensed under [MIT](LICENSE) — the licence covers this mod's own code and
+art, not ROM-derived material or the trademarks above. See
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
