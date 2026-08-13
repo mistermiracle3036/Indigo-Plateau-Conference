@@ -4,6 +4,17 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.9.2
+
+**Fixes ordinary Johto trainers fighting with tournament teams.** A
+Camper out on the routes could send out a challenger's Pokémon instead of
+his own — and the same went for most trainer types the roster borrows
+from, which is most trainers in the game. Tournament teams are now
+applied only inside the tournament.
+
+Nothing was permanently changed in anyone's save; affected trainers go
+back to their proper teams as soon as this update is installed.
+
 ## 0.9.1
 
 **Challengers battle under their own names.** Until now a challenger was

@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.9.1"
+  local VERSION = "0.9.2"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -977,6 +977,11 @@ return function(mod)
   local spawnedFoeKey = nil
   -- set by a tournament loss, consumed by map.reloaded: walk the loser out
   local escortPending = false
+  -- TRUE only between engaging OUR challenger and that battle ending. The
+  -- trainer.party hook runs for every trainer battle in Gold, so this is
+  -- the difference between substituting a team into the tournament and
+  -- substituting it into somebody's Route 34 Camper.
+  local ourBattle = false
 
   local function despawn(name)
     local id = spawnedIds[name]
@@ -1435,6 +1440,10 @@ return function(mod)
     local ok, err = pcall(function()
       local npc = ev and ev.npc
       if not (npc and npc.def and npc.def.name == FOE_NAME) then return end
+      -- THIS battle is ours. trainer.party fires for EVERY trainer battle
+      -- in the game, so it needs a positive signal rather than guessing
+      -- from the class -- see the hook below for what that cost.
+      ourBattle = true
       local world = mod.world:overworld()
       if world and world.scriptVars then
         world.scriptVars[VAR_BATTLETYPE] = BATTLETYPE_CANLOSE
@@ -1459,6 +1468,11 @@ return function(mod)
 
   mod.events:on("battle.ended", function(ev)
     local ok, err = pcall(function()
+      -- cleared for EVERY battle, before the pending() gate: a battle we
+      -- armed but that never reached the hook (a mid-script abort, another
+      -- mod bailing out) must not leave the flag set for whoever the player
+      -- fights next.
+      ourBattle = false
       if not pending() then return end
       setPending(false)
       local res = ev and ev.result
@@ -1786,27 +1800,25 @@ return function(mod)
   mod.hooks:wrap("trainer.party", function(next, class, member, party)
     local base = next()
     local ok, res = pcall(function()
-      -- Match ANY card entry by class, preferring the current round's. The
-      -- current-round-only test leaked once: elimination reset the round
-      -- while the beaten challenger still stood, so re-engaging him
-      -- mismatched and fielded his carrier's VANILLA team (NICK's
-      -- Charmander). A stale challenger fighting as himself is always
-      -- right; a card challenger fighting as his carrier never is.
-      -- With 39 entries sharing carriers (CAMPER x4, GENTLEMAN x2...), a
-      -- bare class scan could land on the wrong character -- so the object
-      -- physically on the floor (spawnedFoeKey) outranks everything, then
-      -- the current draw's foe, then a roster scan as the last resort.
-      local foe = spawnedFoeKey and BY_KEY[spawnedFoeKey]
+      -- ONLY OUR BATTLE. This hook runs for EVERY trainer battle in Gold,
+      -- and 0.5.1's class-only scan matched vanilla trainers of a shared
+      -- class: on device, Route 34's CAMPER ROLAND fought with TODD's
+      -- BUTTERFREE and PIDGEOTTO instead of his own Lv.9 NIDORAN. With 39
+      -- challengers that scan covered ~19 classes -- most trainers in
+      -- Johto. `ourBattle` is set by world.trainer_engaged only when the
+      -- engaged NPC is our own arena challenger, and cleared when the
+      -- battle ends, so this is positive knowledge instead of a guess.
+      if not ourBattle then return nil end
+      -- WHICH challenger: the one physically on the arena floor. 39 entries
+      -- share carriers (CAMPER x3, GENTLEMAN x2, HIKER x3), so the class
+      -- cannot tell them apart, and after a win the round has already moved
+      -- on -- the person standing there is the one being fought.
+      local foe = (spawnedFoeKey and BY_KEY[spawnedFoeKey]) or currentFoe()
       if not (foe and (class == foe.class or class == foe.classIx)) then
-        foe = currentFoe()
+        probe("HOOK MISMATCH\n%s / %s", tostring(class),
+              tostring(foe and foe.key))
+        return nil
       end
-      if not (foe and (class == foe.class or class == foe.classIx)) then
-        foe = nil
-        for _, f in ipairs(ROSTER) do
-          if class == f.class or class == f.classIx then foe = f break end
-        end
-      end
-      if not foe then return nil end
       local built = buildParty(scaled(foe))
       if not built then
         -- Keep the vanilla party rather than field an opponent with no
