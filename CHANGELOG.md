@@ -4,6 +4,26 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.9.9
+
+**Each event now asks for badges before it lets you in.** The circuit has
+always set its levels a step above the local gym leader, on the
+assumption you had beaten that gym -- but nothing checked, so a
+two-badge trainer could walk into the Goldenrod Open and meet a Lv28
+final round.
+
+| Event | To enter |
+| --- | --- |
+| Violet Qualifier | the Zephyr Badge |
+| Goldenrod Open | 3 Johto badges |
+| Ecruteak Invitational | 4 Johto badges |
+| Blackthorn Masters | 8 Johto badges |
+| Indigo Plateau Conference | beat the Elite Four |
+
+The host tells you what you are missing rather than just refusing, and
+being turned away costs nothing: a run you have going at another venue is
+left exactly as it was.
+
 ## 0.9.8
 
 **Removes a hidden fallback that could quietly scale the tournament to

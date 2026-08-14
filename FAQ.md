@@ -20,11 +20,20 @@ entered.
 <details>
 <summary>Do I need badges to enter?</summary>
 
-No. There's no badge check — you can walk into any of the five events
-whenever you can reach that town.
+Yes. Each event asks for the badges you'd reasonably have by the time
+you reach that town:
 
-What changes is the **difficulty**, which is fixed per venue. See the
-levels question below before you try Blackthorn early.
+| Event | To enter |
+| --- | --- |
+| Violet Qualifier | the Zephyr Badge |
+| Goldenrod Open | 3 Johto badges |
+| Ecruteak Invitational | 4 Johto badges |
+| Blackthorn Masters | 8 Johto badges |
+| Indigo Plateau Conference | beat the Elite Four |
+
+Only **Johto** badges count. The host will tell you what's missing, and
+being turned away costs you nothing — a tournament you have running
+somewhere else is untouched.
 </details>
 
 <details>
@@ -81,12 +90,14 @@ into the mod, so it stays correct if anything ever rebalances the gyms.
 <details>
 <summary>I walked into a venue far too strong for me. Is that a bug?</summary>
 
-No, that's the design. There's no badge gate, so nothing stops you
-entering the Blackthorn Masters with a Violet-era team — but the Masters
-is built for a Blackthorn-era one.
+Probably not. The badge requirements keep you out of the events built for
+a much later team, but they're a floor, not a promise — a tournament is
+meant to be a step above the gym you just cleared, and the last round is
+a step above that.
 
-If you want a fair fight, match the event to the town you're actually up
-to.
+If a venue feels wrong for where you are, the fastest check is which town
+you climbed the stairs in: the event is anchored to *that* town's gym
+leader, not to your team.
 </details>
 
 ## The pool (spoilers)

@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.9.8"
+  local VERSION = "0.9.9"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -835,6 +835,7 @@ return function(mod)
                                      title = "CONFERENCE", leader = "CHAMPION" },
   }
 
+
   ----------------------------------------------------------------------
   -- Diagnostics. mod.log needs a console that does not exist on iOS;
   -- Runtime.reportError renders in the manager's [ERRS] screen.
@@ -866,6 +867,101 @@ return function(mod)
     pcall(function()
       mod.log:info("PROBE %s", (ok and msg or tostring(fmt)):gsub("\n", " | "))
     end)
+  end
+
+  ----------------------------------------------------------------------
+  -- BADGE GATES (0.9.9). Decision 1 of briefs/IPC_colosseum_rules_
+  -- 2026-08-13.md. The level anchor's premise has always been "just above
+  -- the badge you needed to get here"; until now nothing enforced it, so
+  -- a two-badge player could walk into Goldenrod's Lv22-28 bracket.
+  --
+  -- Johto badges only. save.player.badges is Johto; save.player.
+  -- kantoBadges is a SEPARATE table (Save.summary counts them separately),
+  -- and counting both would let a Kanto-badge player into Blackthorn early.
+  ----------------------------------------------------------------------
+  local VENUE_GATES = {
+    VIOLET_POKECENTER_1F = {
+      badge = "ZEPHYR",
+      refusal = "Earn the ZEPHYR\nBADGE, then enter\fthe VIOLET\nQUALIFIER.",
+    },
+    GOLDENROD_POKECENTER_1F = {
+      badges = 3,
+      refusal = "Three JOHTO BADGES\nopen the GOLDENROD\fOPEN. Come back\nwhen you have all.",
+    },
+    ECRUTEAK_POKECENTER_1F = {
+      badges = 4,
+      refusal = "Four JOHTO BADGES\nopen the ECRUTEAK\fINVITATIONAL.\nCome back then.",
+    },
+    BLACKTHORN_POKECENTER_1F = {
+      badges = 8,
+      refusal = "Eight JOHTO BADGES\nopen BLACKTHORN'S\fMASTERS. Come back\nwhen you have all.",
+    },
+    INDIGO_PLATEAU_POKECENTER_1F = {
+      hallOfFame = true,
+      refusal = "Enter the HALL OF\nFAME first.\fThen the INDIGO\nCONFERENCE awaits.",
+    },
+  }
+
+  -- Hall of Fame has shipped in two shapes: a wrapper carrying .teams, or
+  -- the bare list of entries. Same adapter kanto_ribbons uses, which is
+  -- device-proven, plus a nil guard on save.
+  local function hofEntries(save)
+    local hof = save and save.hallOfFame
+    if type(hof) ~= "table" then return {} end
+    if type(hof.teams) == "table" then
+      local out = {}
+      for _, team in ipairs(hof.teams) do
+        if type(team) == "table" and type(team.mons) == "table" then
+          out[#out + 1] = team.mons
+        end
+      end
+      return out
+    end
+    return hof
+  end
+
+  local function johtoBadgeCount(save)
+    local n = 0
+    for _, has in pairs(save and save.player and save.player.badges or {}) do
+      if has then n = n + 1 end
+    end
+    return n
+  end
+
+  -- FieldMoves.hasBadge is the canonical named reader: a save may key
+  -- player.badges by NAME or by BIT POSITION and it accepts both. Required
+  -- LAZILY and inside a pcall, matching how this file takes Trainers --
+  -- a failed top-level require would throw in the entry chunk and the mod
+  -- would simply not load, silently, which is this project's worst
+  -- failure shape. If it is ever unavailable the count fallback is
+  -- equivalent in real play: ZEPHYR is the first badge Gold can award, so
+  -- "has ZEPHYR" and "has at least one Johto badge" only differ on a save
+  -- edited by hand.
+  local function hasNamedBadge(save, badge)
+    local ok, FieldMoves = pcall(require, "src.world.gen2.FieldMoves")
+    if ok and FieldMoves and FieldMoves.hasBadge then
+      return FieldMoves.hasBadge(save, badge) and true or false
+    end
+    probe("NO FIELDMOVES\ncounting instead")
+    return johtoBadgeCount(save) >= 1
+  end
+
+  -- Returns admitted, refusalText. Fails CLOSED: a venue with no gate
+  -- entry refuses, so adding a venue without a gate cannot silently ship
+  -- an ungated one.
+  local function meetsVenueGate(venueId, save)
+    local gate = VENUE_GATES[venueId]
+    if not gate then return false, "This event is not\nopen right now." end
+    if gate.badge then
+      return hasNamedBadge(save, gate.badge), gate.refusal
+    end
+    if gate.badges then
+      return johtoBadgeCount(save) >= gate.badges, gate.refusal
+    end
+    if gate.hallOfFame then
+      return #hofEntries(save) > 0, gate.refusal
+    end
+    return false, gate.refusal
   end
 
   ----------------------------------------------------------------------
@@ -1837,6 +1933,17 @@ return function(mod)
     -- failure this mod keeps having. Declining is diagnosable.
     if not (v and venueId) then
       probe("NO VENUE\nhost declined")
+      return
+    end
+    -- Badge gate, BEFORE anything reads or writes run state. A turned-away
+    -- player keeps whatever run they have going elsewhere: no forfeit, no
+    -- redraw, no round change, and the attendant does not step aside
+    -- (that lives in the normal path's onDone, which this returns before).
+    local admitted, refusal = meetsVenueGate(venueId, mod.game and mod.game.save)
+    if not admitted then
+      probe("GATE REFUSED\n%s", tostring(venueId))
+      local sent, serr = mod.world:queueScript({ { "text", refusal } })
+      if not sent then probe("GATE TALK FAIL\n%s", tostring(serr)) end
       return
     end
     local town = v.town
