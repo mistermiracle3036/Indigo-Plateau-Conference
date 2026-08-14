@@ -122,9 +122,9 @@ games the mod simply doesn't load.
 By **Mister Miracle**
 ([@mistermiracle3036](https://github.com/mistermiracle3036)).
 
-- The **announcer's sprite** is original pixel art by Mister Miracle,
-  drawn for this mod. The mod ships nothing copied from any game or any
-  other artist.
+- **This mod ships no art of its own.** Every character on screen wears a
+  sprite already in the Gold ROM, referenced by its id — nothing is copied
+  out of the game and redistributed here.
 - The owned-NPC pattern this mod uses on Gold was proven first in **Court
   of Noctowl**.
 - Built on the [gen1recomp](https://github.com/bryanthaboi/gen1recomp)

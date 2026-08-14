@@ -43,12 +43,14 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.9.6"
+  local VERSION = "0.9.7"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
-  mod.exports.owns = { trainers = {}, maps = {}, tilesets = {},
-                       sprites = { "SPRITE_IPC_ANNOUNCER" } }
+  -- Owns nothing in any shared registry as of 0.9.7: the announcer now
+  -- rides a vanilla sprite, so the mod registers no sprite of its own and
+  -- has no id another mod could collide with.
+  mod.exports.owns = { trainers = {}, maps = {}, tilesets = {}, sprites = {} }
 
   local LOBBY = "POKECENTER_2F"
   local ARENA = "COLOSSEUM"
@@ -71,26 +73,42 @@ return function(mod)
   local SPRITE_HOST = "SPRITE_GENTLEMAN"
 
   ----------------------------------------------------------------------
-  -- The announcer's own sprite (0.8.0): original 16x16 art, designed by
-  -- the developer in Pixilart over a GridFab draft. ONE frame for now --
-  -- STILL_SPRITE is the schema's single-frame type, and MOVE_STANDING_DOWN
-  -- never turns him, so a lone forward-facing frame is exactly enough to
-  -- judge the design in the room. The other five frames come once the look
-  -- is confirmed on device.
+  -- The announcer's sprite (0.9.7). Was original 16x16 art by the
+  -- developer from 0.8.0 -- one frame, STILL_SPRITE, and it never turned
+  -- to face the player. Shipping a permanently forward-facing NPC was the
+  -- last thing blocking 1.0.0, and the choice was finish the other five
+  -- frames or take a vanilla sprite that already has them.
+  --
+  -- SPRITE_OLD_LINK_RECEPTIONIST, the developer's pick, and it is the one
+  -- that makes narrative sense: COLOSSEUM is the link-battle room, so its
+  -- own receptionist is the person actually stationed here. Verified in
+  -- the player's extracted sprite table (`sprites.lua`, entry
+  -- SPRITE_OLD_LINK_RECEPTIONIST, ROM:OverworldSprites[87]) --
+  -- spriteType STANDING_SPRITE, frames 3, walker false, PAL_OW_RED.
+  --
+  -- NB: cite that table by NAME, never by its path. MK301 is a substring
+  -- match for the cache directory across every .lua and .json in the mod,
+  -- comments included, and a citation in a comment fails the lint exactly
+  -- like a real reference would.
+  --
+  -- frames 3 is the standing set (down/up/side): he TURNS to face the
+  -- player, which is the whole point, but cannot walk. That is fine and
+  -- was checked rather than assumed -- this NPC is spawned
+  -- MOVE_STANDING_DOWN and never scriptMoves. Only the lobby attendant
+  -- walks (clearDoor), and the post-battle escort warps the PLAYER; the
+  -- announcer does not move in either path.
+  --
+  -- PAL_OW_RED also keeps him visually distinct from the lobby host, who
+  -- is SPRITE_GENTLEMAN in PAL_OW_BLUE. Two identical suited men, one
+  -- sending you upstairs and one running the rounds, would read as a bug.
+  --
+  -- The original art is NOT deleted from history -- assets/announcer.png
+  -- is recoverable from 977661f if the frames ever get drawn. See the
+  -- GridFab pipeline note in briefs/INDIGO_RELEASE_HANDOFF.md section 9.
   -- PAL_OW_BLUE / slot 1 borrowed from SPRITE_GENTLEMAN's assignment, so
   -- he sits in the same suit-colour family as the lobby host.
   ----------------------------------------------------------------------
-  local SPRITE_MC = "SPRITE_IPC_ANNOUNCER"
-
-  mod.content.sprites:register(SPRITE_MC, {
-    id = SPRITE_MC,
-    image = mod.path .. "/assets/announcer.png",
-    frames = 1,
-    walker = false,
-    spriteType = "STILL_SPRITE",
-    palette = "PAL_OW_BLUE",
-    paletteId = 1,
-  })
+  local SPRITE_MC = "SPRITE_OLD_LINK_RECEPTIONIST"
 
   local ROUNDS = 4
 

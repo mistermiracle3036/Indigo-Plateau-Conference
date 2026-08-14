@@ -4,6 +4,17 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.9.7
+
+**The announcer turns to face you.** He was a single drawing that always
+looked south, no matter where you stood -- fine for judging the design,
+wrong for the person running the tournament. He is now the Colosseum's
+own link receptionist, which suits the room: you have taken over the
+link-battle hall, so the man whose desk it is runs your rounds.
+
+He also no longer dresses like the Gentleman downstairs, so the two are
+easy to tell apart.
+
 ## 0.9.6
 
 **The host now only stands upstairs where there is actually an event.**
