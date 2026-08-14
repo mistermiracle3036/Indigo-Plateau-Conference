@@ -6,6 +6,15 @@ heading always equals the version in `manifest.json`.
 
 ## 1.0.2
 
+**Updating from 1.0.1?** Documentation only -- nothing in the game
+changed, so there is no need to rush. The README now lists the badge each
+event asks for, which it previously left out entirely; if you walked to
+Goldenrod and were turned away without knowing why, that is why.
+
+Everything below is the release itself, unchanged from 1.0.1.
+
+---
+
 **The first public release.** Pokemon Gold only.
 
 Upstairs in a Pokemon Center there is a battle room single player never
