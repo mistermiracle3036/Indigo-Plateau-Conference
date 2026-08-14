@@ -117,7 +117,10 @@ jobs:
           rm -rf build && mkdir -p build/"$MOD_ID"
           for entry in * .[!.]*; do
             case "$entry" in
-              .git|.github|.gitignore|tests|build|notes.md|*.zip) continue ;;
+              # `docs` holds README screenshots. They are for the GitHub page,
+              # not the game -- shipping them puts a couple of hundred KB of
+              # PNGs into every player's download for no runtime benefit.
+              .git|.github|.gitignore|tests|build|docs|notes.md|*.zip) continue ;;
             esac
             [ -e "$entry" ] || continue
             cp -r "$entry" build/"$MOD_ID"/

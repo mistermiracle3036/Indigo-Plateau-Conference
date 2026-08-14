@@ -18,8 +18,10 @@ Want to know who's in the pool, or how the levels are decided? Open the
 **[FAQ and spoiler guide](FAQ.md)** — every answer is collapsed, so you
 only reveal what you want to know.
 
-<!-- SCREENSHOT: the announcer in the Colosseum, mid-introduction -->
-<!-- SCREENSHOT: a challenger's battle intro, showing their real name -->
+| | |
+| --- | --- |
+| ![A challenger's battle intro: LEADER BLUE wants to battle!](docs/challenger-blue.png) | ![The announcer sends the new champion off: That's ALL! We'll see you next time!](docs/announcer-sendoff.png) |
+| Challengers fight under their own names. | The announcer sees you out after the final round. |
 
 ## The circuit
 
