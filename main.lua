@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.9.9"
+  local VERSION = "1.0.0"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -847,15 +847,28 @@ return function(mod)
 
   mod.options:define({
     { key = "probe_rows", type = "toggle",
-      label = "Diagnostic rows", default = true },
+      label = "Diagnostic rows", default = false },
   })
 
-  -- "unless explicitly false", never "if true": an option toggled on a Gold
-  -- boot never round-trips (the manager writes Gold's nested block, the
-  -- loader reads the top-level one), so this read can come back nil -- and
-  -- `if get() then` would remove the only diagnostic channel there is.
+  -- 1.0.0 INVERTED THIS, and the inversion is the careful part -- players
+  -- should not see DRAW / ARM OK / PARTY HOOK in [ERRS] during normal play.
+  --
+  -- Through 0.9.9 the default was ON and the read was "unless explicitly
+  -- false", never `if get() then`, because an option toggled on a Gold boot
+  -- does not round-trip (the manager writes Gold's nested block, the loader
+  -- reads the top-level one) and a nil read would have silently removed the
+  -- only diagnostic channel there is. Defaulting OFF inverts BOTH halves:
+  -- the default, and the polarity of the nil case. "off unless explicitly
+  -- true" is the honest mirror -- a nil read now means quiet, which is the
+  -- safe direction when quiet is the intent.
+  --
+  -- Turning it ON still works two ways, which is why defaulting off does not
+  -- strand a bug reporter: ManagerState:setOption writes loader.modOptions
+  -- in memory immediately and mod.options:get reads exactly that
+  -- (Loader.lua:1038), so a toggle takes effect in the SAME session on
+  -- Gold; and toggling it on a Red boot persists it across relaunches.
   local function probe(fmt, ...)
-    if mod.options:get("probe_rows") == false then return end
+    if mod.options:get("probe_rows") ~= true then return end
     errs(fmt, ...)
     -- Mirrored to the log as well. reportError only feeds the in-game
     -- [ERRS] screen, which is the ONLY channel on iOS but cannot be read
@@ -1151,7 +1164,11 @@ return function(mod)
   ----------------------------------------------------------------------
   -- Spawning
   ----------------------------------------------------------------------
-  -- One-shot warp census. The void bug points at the warp being the wrong
+  -- The warp census that established the following was removed in 1.0.0
+  -- along with the rest of the development diagnostics; its FINDING is why
+  -- this mod warps nobody, so it stays written down.
+  --
+  -- The void bug pointed at the warp being the wrong
   -- tool: World.lua:8554-8564 says the backup-warp triple is what lets the
   -- shared 2F staircase resolve, and "without it the -1 warp resolves to
   -- nothing and the tile is simply dead". mod.world:warpTo never refreshes
@@ -1163,21 +1180,7 @@ return function(mod)
   -- carries a warp to COLOSSEUM at all -- Gen 2 may drive that transition
   -- from the script instead. This prints the table so the next build can be
   -- written against fact rather than a guess.
-  local warpsCensused = {}
 
-  local function censusWarps(world, mapId)
-    if warpsCensused[mapId] then return end
-    warpsCensused[mapId] = true
-    local def = world and world.maps and world.maps[mapId]
-    local rows = {}
-    for i, w in ipairs(def and def.warps or {}) do
-      rows[#rows + 1] = ("%d %d,%d>%s"):format(i, w.x or -1, w.y or -1,
-        tostring(w.destMap or w.map or "?"):sub(1, 8))
-    end
-    if #rows == 0 then probe("%s NO WARPS", mapId:sub(1, 10))
-    else probe("%s WARPS\n%s", mapId:sub(1, 8),
-               table.concat(rows, "\n", 1, math.min(#rows, 4))) end
-  end
 
   -- Who is standing on the Colosseum doorway, and can she be moved?
   --
@@ -1200,19 +1203,6 @@ return function(mod)
   -- play away for good.
   local doorCleared = false
 
-  local function censusLobbyObjects(world)
-    local def = world and world.maps and world.maps[LOBBY]
-    local rows = {}
-    for i, obj in ipairs(def and def.objects or {}) do
-      local name = tostring(obj.name or ("#" .. i))
-      if name ~= HOST_NAME then
-        rows[#rows + 1] = ("%s %d,%d"):format(name:sub(1, 8), obj.x or -1, obj.y or -1)
-      end
-    end
-    if #rows > 0 then
-      probe("2F OBJS\n%s", table.concat(rows, "\n", 1, math.min(#rows, 4)))
-    end
-  end
 
   -- Anyone ON the doorway or directly below it is in the way. Moved one cell
   -- LEFT, away from the door, which on a 16x8 room is into open floor.
@@ -1410,8 +1400,6 @@ return function(mod)
   end
 
   local function fillLobby(world)
-    censusWarps(world, LOBBY)
-    censusLobbyObjects(world)
     -- Redress the arena's link pair NOW, from the lobby: the pool builds
     -- them from the def on the player's first arena entry, and the lobby is
     -- the room every player must cross to get there.
@@ -1441,29 +1429,14 @@ return function(mod)
     return ("host %d,%d"):format(hx, hy)
   end
 
-  -- One-shot census of whatever the arena already contains. The developer
-  -- reported "the link player" standing in there; before hiding a vanilla
-  -- object we need to know what it IS -- toggleObject on Gen 2 sets the
-  -- object's MAPOBJECT_EVENT_FLAG, which is real save state and persists,
-  -- so it is not something to fire at an unidentified sprite.
-  local censused = false
+  -- The arena census that identified the following was removed in 1.0.0
+  -- with the other development diagnostics. What it found is load-bearing,
+  -- so it stays: the developer reported "the link player" standing in
+  -- there, and before hiding a vanilla object we had to know what it IS --
+  -- toggleObject on Gen 2 sets the object's MAPOBJECT_EVENT_FLAG, which is
+  -- real save state and persists, so it is not something to fire at an
+  -- unidentified sprite.
 
-  local function censusArena(world)
-    if censused then return end
-    censused = true
-    local def = world and world.maps and world.maps[ARENA]
-    local rows = {}
-    for i, obj in ipairs(def and def.objects or {}) do
-      local name = tostring(obj.name or ("#" .. i))
-      if name ~= FOE_NAME and name ~= EXIT_NAME then
-        rows[#rows + 1] = ("%s %s %d,%d"):format(
-          name:sub(1, 6), tostring(obj.sprite or "?"):gsub("^SPRITE_", ""):sub(1, 6),
-          obj.x or -1, obj.y or -1)
-      end
-    end
-    if #rows == 0 then probe("ARENA EMPTY\nno vanilla obj")
-    else probe("ARENA OBJS\n%s", table.concat(rows, "\n", 1, math.min(#rows, 4))) end
-  end
 
   -- The two vanilla objects the census found: POKé1 and POKé2, both wearing
   -- the CHRIS sprite at (3,4) and (6,4). They are the link colosseum's
@@ -1493,8 +1466,6 @@ return function(mod)
   -- that made 0.2.2 hide one of the two. Going backwards keeps the lower
 
   local function fillArena(world)
-    censusArena(world)
-    censusWarps(world, ARENA)
     -- Order matters: repair the flags first (needs the arena active),
     -- then repaint anything the pool built before the lobby could redress.
     repaintLive(world)

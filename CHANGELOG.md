@@ -4,6 +4,56 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 1.0.0
+
+**The first public release.** Pokemon Gold only.
+
+Upstairs in a Pokemon Center there is a battle room single player never
+gets to use -- the link colosseum. This mod fills it with a tournament.
+
+Talk to the Gentleman in the upstairs lobby and the attendant steps
+aside. Through the far door an announcer runs a four-round card: one
+challenger per round, drawn from a pool of 39, escalating as you go. Win
+all four and the title is yours. Lose any round and you are eliminated
+back to round one against a completely new field -- no blackout, no lost
+money, your team patched up where it stands.
+
+**Five towns, five different events.** Which one you get depends on whose
+stairs you climbed:
+
+| Event | Where | To enter |
+| --- | --- | --- |
+| Violet Qualifier | Violet City | the Zephyr Badge |
+| Goldenrod Open | Goldenrod City | 3 Johto badges |
+| Ecruteak Invitational | Ecruteak City | 4 Johto badges |
+| Blackthorn Masters | Blackthorn City | 8 Johto badges |
+| Indigo Plateau Conference | Indigo Plateau | beat the Elite Four |
+
+**Difficulty is fixed per venue, never scaled to you.** Each event is
+anchored to that town's own gym leader, read out of the game's own
+trainer data -- so the Violet Qualifier is an early-game tournament
+whenever you enter it, and clearing the Blackthorn Masters means
+something specific.
+
+**The challengers are people, not filler.** Rookies and anime one-offs
+early, rivals and specialists next, then the Orre cast and manga
+trainers, and finally a round of Kanto gym leaders, the Elite Four, and
+two names you will recognise on sight. They fight under their own names,
+with their own teams, and they speak for themselves going in and coming
+out. The last round is six-on-six.
+
+**It is repeatable, and it travels with your save.** Take a title and the
+announcer draws a fresh card; a new draw never repeats the previous run's
+pick in a tier. A run in progress survives quitting, and loading an older
+save rewinds the tournament with it.
+
+Winning is also recorded on every Pokemon in your party, ready for a
+Conference ribbon in the Ribbons mod -- which is optional, can be
+installed later, and will count tournaments you have already won.
+
+Nothing here changes a vanilla map, NPC, script or trainer, and the mod
+ships no art of its own, so it sits quietly beside whatever else you run.
+
 ## 0.9.9
 
 **Each event now asks for badges before it lets you in.** The circuit has

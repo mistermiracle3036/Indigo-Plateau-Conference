@@ -187,10 +187,15 @@ only place the mod can tell you anything.
 <summary>I turned an option on and it forgot after a restart.</summary>
 
 That's an engine-wide bug affecting every mod with options, not this mod
-specifically: a setting changed during a Gold game may not be saved.
+specifically: a setting changed during a Gold game may not survive a
+relaunch.
 
-If a toggle won't stick, that's the cause. It's worth mentioning in a bug
-report so nobody hunts for it here.
+It still works for the rest of that session, which is all you need to
+capture a bug — **switch Diagnostic rows on, then reproduce the problem
+without quitting the game**, and `[ERRS]` will have what happened.
+
+If you want it to stick permanently, toggle it on while booted into Red
+instead; that saves properly and carries over.
 </details>
 
 ## Troubleshooting
