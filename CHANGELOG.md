@@ -4,6 +4,18 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 0.9.8
+
+**Removes a hidden fallback that could quietly scale the tournament to
+your own team.** If the mod ever failed to read a town's gym leader, it
+used to fall back to your strongest Pokemon's level -- and flatten the
+bracket while it was at it, so round four came out no harder than round
+one. It never said so anywhere you could see.
+
+The circuit now refuses the round instead, and the announcer tells you.
+An event that declines is one you can report; one that silently gets easy
+is not.
+
 ## 0.9.7
 
 **The announcer turns to face you.** He was a single drawing that always

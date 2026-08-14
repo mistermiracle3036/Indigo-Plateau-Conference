@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "0.9.7"
+  local VERSION = "0.9.8"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -762,27 +762,45 @@ return function(mod)
     return best
   end
 
+  -- Returns nil when the anchor cannot be read. Callers must DECLINE, not
+  -- substitute.
+  --
+  -- 0.9.8 deleted a fallback here that walked save.party for the player's
+  -- top level and returned it raw. Two things were wrong with it and the
+  -- second is worse than the first:
+  --
+  --   1. It scaled challengers to the player -- the rubber-banding removed
+  --      in 0.4.0, reappearing as an error path. The developer's position
+  --      is "not a fan of level scaling", and a circuit that matches you
+  --      cannot be too hard or too easy, so winning proves nothing.
+  --   2. It returned the raw level with NO LEADER_STEP and NO round climb,
+  --      so every round came out flat at roughly the player's own level.
+  --      Round 4 was as easy as round 1.
+  --
+  -- And it announced itself only through a probe row -- which goes
+  -- invisible the moment diagnostic rows default off for 1.0.0. A silently
+  -- flattened, player-scaled bracket is indistinguishable from a working
+  -- one until someone notices the tournament is trivial. Declining is
+  -- diagnosable; substituting is not.
+  --
+  -- Reachability: the no-venue half is now unreachable from the host --
+  -- talkHost refuses outright without a venue (0.9.6) -- so the live
+  -- trigger is leaderTop returning nil: a wrong class constant, another
+  -- mod replacing gen2Trainers, or the data shape moving under an engine
+  -- update. Rare, and exactly the kind of thing that must not fail quietly.
   local function levelBase(foe)
     local v = venue()
     local top = v and v.leader and leaderTop(v.leader)
-    -- No venue known yet, or a leader whose party could not be read: fall
-    -- back to the player so the bracket is still playable rather than
-    -- defaulting to some fixed number that could be wildly off.
     if not top then
-      local save = mod.game and mod.game.save
-      top = 5
-      for _, mon in ipairs((save and save.party) or {}) do
-        local l = tonumber(mon and mon.level)
-        if l and l > top then top = l end
-      end
-      probe("NO LEADER\nfell back Lv%d", top)
-      return top
+      probe("NO ANCHOR\n%s", tostring(v and v.leader or "no venue"))
+      return nil
     end
     return top + LEADER_STEP + (((foe.tier or round()) - 1) * ROUND_STEP)
   end
 
   local function scaled(foe)
     local base = levelBase(foe)
+    if not base then return nil end   -- no anchor: decline, never guess
     local out = {}
     for _, row in ipairs(foe.party) do
       local lv = base + (row.delta or 0)
@@ -1938,6 +1956,18 @@ return function(mod)
             mod.world:queueScript({
               { "text", "ANNOUNCER: The\ncrowd is WAITING!" },
             })
+          elseif not levelBase(foe) then
+            -- The anchor could not be read, so there is no honest level to
+            -- fight at. Decline the ROUND rather than arm a battle that
+            -- would fall back to the carrier's vanilla party -- the player
+            -- would face a Camper's team under a champion's name and have
+            -- no way to know why. levelBase has already put NO ANCHOR in
+            -- [ERRS]; this is the player-facing half.
+            probe("ROUND REFUSED\n%s", tostring(foe.key))
+            mod.world:queueScript({
+              { "text", "ANNOUNCER: We have\na problem, folks." },
+              { "text", "No round today.\nPlease come back." },
+            })
           else
             local armed = armFoe(world, foe)
             probe("ARM %s\n%s", armed and "OK" or "FAIL", tostring(foe.key))
@@ -2010,7 +2040,16 @@ return function(mod)
               tostring(foe and foe.key))
         return nil
       end
-      local built = buildParty(scaled(foe))
+      -- Belt and braces with the announcer's refusal above: if the anchor
+      -- is unreadable, returning nil hands the battle back to the carrier's
+      -- vanilla party. That is the least-bad outcome for a battle already
+      -- under way, and it is still a REAL battle rather than a stat-less one.
+      local rows = scaled(foe)
+      if not rows then
+        probe("NO ANCHOR\n%s unscaled", foe.key)
+        return nil
+      end
+      local built = buildParty(rows)
       if not built then
         -- Keep the vanilla party rather than field an opponent with no
         -- stats. A real battle beats a broken one.
