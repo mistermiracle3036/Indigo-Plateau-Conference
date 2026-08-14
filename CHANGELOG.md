@@ -4,6 +4,25 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 1.1.0
+
+**You now bring three Pokemon to the preliminaries, and all six to the
+final.** The challengers have fought to that rule since 1.0.0 -- three a
+side in rounds one to three, six in round four -- but you did not, so a
+full team walked through the early rounds six against three. The circuit
+was never meant to be that lopsided.
+
+**Your first three party slots are the ones that fight.** There is no
+menu to pick them; reorder your party the usual way and the top three go
+in. The announcer says so on the way in.
+
+Nothing is taken off you and nothing is moved. The Pokemon left out are
+still in your party, in the same order, and the three who fight take the
+damage and keep the experience exactly as before.
+
+Ordinary battles everywhere else in Johto are untouched -- gyms, the
+Elite Four, route trainers all still use your whole team.
+
 ## 1.0.2
 
 **Updating from 1.0.1?** Documentation only -- nothing in the game

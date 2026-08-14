@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.0.2"
+  local VERSION = "1.1.0"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -1154,6 +1154,46 @@ return function(mod)
   -- substituting it into somebody's Route 34 Camper.
   local ourBattle = false
 
+  -- The tournament's first three rounds are three-on-three. Pass a short
+  -- ARRAY to the battle without ever shortening save.party itself: each slot
+  -- is the original mon table, so battle damage and experience still land on
+  -- the player's real Pokemon and there is nothing to restore after a quit.
+  -- Installed from the stashed engine original every load; the World module
+  -- survives hot reloads, so a one-time sentinel would retain an old closure.
+  local function installPlayerPartyCap()
+    local ok, err = pcall(function()
+      local World = require("src.world.gen2.World")
+      if type(World) ~= "table" or type(World.startBattle) ~= "function" then
+        error("World.startBattle unavailable")
+      end
+      World._ipcOriginals = World._ipcOriginals
+        or { startBattle = World.startBattle }
+      local original = World._ipcOriginals.startBattle
+      if type(original) ~= "function" then
+        error("World.startBattle original unavailable")
+      end
+
+      World.startBattle = function(self, opts, onDone)
+        if ourBattle and round() < ROUNDS then
+          local save = self and self.game and self.game.save
+          local party = save and save.party
+          if type(opts) == "table" and type(party) == "table"
+              and #party > 0 then
+            local capped = {}
+            for i = 1, math.min(3, #party) do
+              capped[i] = party[i]
+            end
+            opts.party = capped
+          end
+        end
+        return original(self, opts, onDone)
+      end
+    end)
+    if not ok then errs("PARTY CAP\n%s", tostring(err)) end
+  end
+
+  installPlayerPartyCap()
+
   local function despawn(name)
     local id = spawnedIds[name]
     if not id then return end
@@ -1953,6 +1993,7 @@ return function(mod)
       rows = {
         { "text", venueWelcome(town, title) },
         { "text", ("%d rounds. One\nchallenger each."):format(ROUNDS) },
+        { "text", "Three per side\nuntil the final." },
         { "text", "Through the far\ndoor. Good luck." },
       }
       -- Said BEFORE the welcome, so the player learns why the bracket
