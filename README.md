@@ -9,10 +9,10 @@ Climb the stairs in Violet and you've walked into the Violet Qualifier; do
 it in Blackthorn and it's the Masters. Four rounds, one challenger each, a
 different field every time, ending at the Indigo Plateau Conference itself.
 
-> **A development preview.** The circuit is playable end to end, but most
-> of it is young: bug reports and ideas are welcome in
-> [GitHub Issues](../../issues). Please include the version from the load
-> banner and which other mods you had enabled.
+> **Playable end to end.** All five events run, and the roster is complete.
+> Bug reports and ideas are welcome in [GitHub Issues](../../issues) —
+> please include the version from the load banner and which other mods you
+> had enabled.
 
 Want to know who's in the pool, or how the levels are decided? Open the
 **[FAQ and spoiler guide](FAQ.md)** — every answer is collapsed, so you
@@ -28,13 +28,17 @@ only reveal what you want to know.
 Five events, one per town. Which one you get is decided by whose stairs you
 climbed — the mod adds no maps, no warps and no new buildings.
 
-| Event | Climb the stairs in | Roughly when |
+| Event | Climb the stairs in | To enter |
 | --- | --- | --- |
-| Violet Qualifier | Violet City | Early Johto |
-| Goldenrod Open | Goldenrod City | Mid Johto |
-| Ecruteak Invitational | Ecruteak City | Mid Johto |
-| Blackthorn Masters | Blackthorn City | Late Johto |
-| Indigo Plateau Conference | Indigo Plateau | Endgame |
+| Violet Qualifier | Violet City | the Zephyr Badge |
+| Goldenrod Open | Goldenrod City | 3 Johto badges |
+| Ecruteak Invitational | Ecruteak City | 4 Johto badges |
+| Blackthorn Masters | Blackthorn City | 8 Johto badges |
+| Indigo Plateau Conference | Indigo Plateau | beat the Elite Four |
+
+Only **Johto** badges count. The host tells you what's missing, and being
+turned away costs nothing — a tournament you have running somewhere else is
+left alone.
 
 **Difficulty is fixed per venue, not scaled to you.** Each event is
 anchored to that town's own gym leader — a step above the gym, climbing
@@ -94,10 +98,6 @@ companion mods are needed.
 
 After installing an update, **fully quit and relaunch**. The load banner
 prints the running version, so you can confirm what's actually live.
-
-<!-- TODO/CONFIRM: whether this mod is listed in mistermiracle3036/mod-index.
-     If it is, add the "From my mod index" install steps used in the other
-     READMEs. Left out rather than promised. -->
 
 ## Compatibility
 

@@ -4,7 +4,7 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
-## 1.0.1
+## 1.0.2
 
 **The first public release.** Pokemon Gold only.
 
@@ -54,13 +54,17 @@ installed later, and will count tournaments you have already won.
 Nothing here changes a vanilla map, NPC, script or trainer, and the mod
 ships no art of its own, so it sits quietly beside whatever else you run.
 
-*(1.0.0 was the same release without README screenshots; it was never
+*(1.0.0 and 1.0.1 were the same release in preparation; neither was
 published.)*
+
+## 1.0.1
+
+Added the README screenshots. Never published -- the README also gained
+the per-venue badge requirements before release, which is 1.0.2.
 
 ## 1.0.0
 
-Prepared as the first public release but never published -- superseded by
-1.0.1 before it left the workshop.
+Prepared as the first public release but never published.
 
 ## 0.9.9
 
