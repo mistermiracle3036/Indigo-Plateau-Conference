@@ -36,7 +36,7 @@ climbed — the mod adds no maps, no warps and no new buildings.
 | Blackthorn Masters | Blackthorn City | 8 Johto badges |
 | Indigo Plateau Conference | Indigo Plateau | beat the Elite Four |
 
-Only **Johto** badges count. The host tells you what's missing, and being
+The host tells you what's missing, and being
 turned away costs nothing — a tournament you have running somewhere else is
 left alone.
 
