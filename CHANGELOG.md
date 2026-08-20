@@ -4,6 +4,27 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 1.1.23
+
+**Roxie and Piers respond to the second device round.** Three findings,
+three fixes:
+
+Their side frames turned the wrong way and are now mirrored -- both now
+face left in the sheet, the direction the engine expects before it
+mirrors for rightward facing.
+
+Both overworlds had far too much red. The pink palette renders the mid
+tone as saturated red, so the mid tone is now reserved for genuine
+accents: Roxie keeps red only on her dress stripes and bow, with dark
+tights and pale hair; Piers gets his canon black-and-white mane back,
+with red only on his jacket pinks. Faces should be readable now.
+
+Piers' battle sprite is framed at the boot tops instead of including his
+feet and the mic stand base, which gives every feature a third more
+pixels, and stray single-pixel noise is cleaned. Same pose, same mic,
+bolder read.
+
+## 1.1.22
 ## 1.1.22
 
 **Roxie and Piers get their art rebuilt from source.** The device test

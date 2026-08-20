@@ -34,9 +34,14 @@ def q_roxie(px):
     L = 0.299*r + 0.587*g + 0.114*b
     sat = max(r, g, b) - min(r, g, b)
     if L < 38: return 0                     # outlines, eyes
-    if sat > 45 and L < 190: return 85      # dress, bow, iris
-    if L < 120: return 85                   # genuinely dark greys
-    return 170                              # hair, skin, light shading
+    # Device finding (1.1.22): the pink OW palette renders 85 as
+    # SATURATED RED, so 85 must be an accent, never a body mass.
+    # Navy tights/dark dress stripes go to 0 (dark legs, vanilla-style);
+    # only warm pink stripes/bow stay 85; everything else lightens.
+    if b >= r and L < 95: return 0          # navy tights, dark stripes
+    if sat > 45 and r > b and L < 190: return 85   # pink stripes, bow
+    if L < 95: return 85                    # residual darks as accent
+    return 170                              # hair, skin, dress light
 
 PIERS_MAP = {}
 def q_piers(px):
@@ -48,12 +53,16 @@ def q_piers(px):
     return 0 if L < 30 else (85 if L < 190 else 170)
 
 # explicit table for the 14 known colors
-for c in [(0,0,0), (11,17,20)]:
+# Device finding (1.1.22): 85 renders RED on the pink palette, so the
+# mane fill went red-striped. His mane is canon BLACK with white spikes:
+# fill returns to 0, the grey shade joins the light tone, jacket shadow
+# darks go to 0, and 85 is reserved for the pink accents + small mids.
+for c in [(0,0,0), (11,17,20), (43,41,49), (40,56,64), (72,88,96)]:
     PIERS_MAP[c] = 0
 for c in [(246,246,249), (236,220,204), (224,200,180), (199,167,147)]:
     PIERS_MAP[c] = 170
-for c in [(43,41,49), (172,171,175), (100,99,102), (122,94,94), (123,0,84),
-          (202,2,126), (40,56,64), (72,88,96)]:
+PIERS_MAP[(172,171,175)] = 170
+for c in [(100,99,102), (122,94,94), (123,0,84), (202,2,126)]:
     PIERS_MAP[c] = 85
 
 def quant(frame, fn):
@@ -135,9 +144,9 @@ if __name__ == '__main__':
                face={'down':set(range(8,15)), 'side':set(range(8,15)), 'up':set()})
 
     rox = convert('roxie', rox_sheet, q_roxie, ROX['rowmap'], ROX['face'],
-                  mirror_side=os.environ.get('ROX_MIRROR','0')=='1')
+                  mirror_side=os.environ.get('ROX_MIRROR','1')=='1')
     pie = convert('piers', pi_sheet, q_piers, PIE['rowmap'], PIE['face'],
-                  mirror_side=os.environ.get('PIE_MIRROR','0')=='1')
+                  mirror_side=os.environ.get('PIE_MIRROR','1')=='1')
     rox.save(os.path.join(OUT, 'roxie_new.png'))
     pie.save(os.path.join(OUT, 'piers_new.png'))
 

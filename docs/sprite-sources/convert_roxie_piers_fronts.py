@@ -58,11 +58,28 @@ def pie_q(px):
     if L > 200: return W
     return PIE_L if (r > g > b and r - b > 30) else PIE_D
 
+def despeckle(img, bg=(255,255,255)):
+    # calm lone-pixel noise: a pixel whose 4-neighbours all agree on a
+    # single other color joins them (classic pixel-art cleanup pass)
+    w,h=img.size; px=img.load(); changed=1
+    while changed:
+        changed=0
+        for y in range(1,h-1):
+            for x in range(1,w-1):
+                n={px[x-1,y],px[x+1,y],px[x,y-1],px[x,y+1]}
+                if len(n)==1 and px[x,y] not in n:
+                    px[x,y]=n.pop(); changed+=1
+    return img
+
 def piers_full():
     im = Image.open(D + r'\gym_leaders_portraits_by_drawnamu.png').convert('RGBA')
     fig = im.crop((505, 0, 578, 121))
     ys = [y for y in range(121) if any(fig.getpixel((x, y))[3] >= 128 for x in range(73))]
     fig = fig.crop((0, ys[0], 73, ys[-1] + 1))          # 73x89
+    # Device finding (1.1.22): at 89->56 the features got too small to
+    # read. Crop at the boot-tops/stand base (rows 0..74) so the figure
+    # scales 75->56 (3/4) -- a third more pixels per feature.
+    fig = fig.crop((0, 0, 73, 75))
     q = [[pie_q(fig.getpixel((x, y))) for x in range(fig.size[0])]
          for y in range(fig.size[1])]
     sh, sw = fig.size[1], fig.size[0]
@@ -89,7 +106,7 @@ def piers_full():
                     x += 1
                 y += 1
             o.putpixel((x0+tx, ty), max(votes, key=votes.get))
-    return o
+    return despeckle(o)
 
 def piers_crop():
     im = Image.open(D + r'\gym_leaders_portraits_by_drawnamu.png').convert('RGBA')

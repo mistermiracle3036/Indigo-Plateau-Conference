@@ -202,3 +202,19 @@ replaced them (scripts: `sprite-sources/convert_roxie_piers_ow.py` and
   already-quantized colors with black-outline priority — replacing the
   rejected upper-body crop. His white face is canon (palest character
   in Galar), so it maps to white, not skin.
+
+## 1.1.23 — second device round
+
+Three findings from the 1.1.22 device test, folded into the same two
+scripts (rerunnable):
+
+- **Side frames faced right on device**; both sheets now mirror the
+  side stand/step frames (defaults `ROX_MIRROR=1`, `PIE_MIRROR=1`).
+- **The pink OW palette renders 85 as saturated red.** Judging the
+  sheets in neutral grey missed this — the 1.1.23 preview pass renders
+  through a simulated palette instead. 85 is now an accent tone only:
+  Roxie's navy tights/dark stripes moved to 0 and her dress lights to
+  170; Piers' mane fill returned to 0 (canon black mane, white spikes
+  at 170) with jacket shadow darks at 0.
+- **Piers front** crops at the boot tops (rows 0-74) so the figure
+  scales 3/4 instead of 5/8, plus a lone-pixel despeckle pass.
