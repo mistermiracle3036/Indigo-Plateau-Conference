@@ -4,6 +4,21 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 1.1.24
+
+**Roxie and Piers get readable faces.** The developer's diagnosis was
+exact: nothing separated hair from face. Both now use the vanilla
+convention -- the same one Gold's own white-haired Granny sprite uses --
+a black frame around the face field, a visible hairline, bold one-row
+eyes, and a mouth mark, hand-placed per frame.
+
+**Piers' battle portrait returns to the crisp upper-body framing**, now
+wearing the corrected colors. Comparing all three treatments of
+Drawnamu's figure side by side, the unscaled crop is the only one whose
+pixels stay sharp; the earlier version of this framing was rejected
+wearing the broken pink-speckle palette, not because of the framing.
+
+## 1.1.23
 ## 1.1.23
 
 **Roxie and Piers respond to the second device round.** Three findings,

@@ -218,3 +218,15 @@ scripts (rerunnable):
   at 170) with jacket shadow darks at 0.
 - **Piers front** crops at the boot tops (rows 0-74) so the figure
   scales 3/4 instead of 5/8, plus a lone-pixel despeckle pass.
+
+## 1.1.24 — faces framed by hand; portrait framing settled
+
+- **Face edits** (`sprite-sources/edit_roxie_piers_faces.py`, runs after
+  the OW converter): black face frame, hairline, one-row 2px eyes and
+  mouth, hand-placed per frame — the convention vanilla's white-haired
+  Granny uses. Conversion alone cannot produce this: the sources' faces
+  are too small for their features to survive any mapping.
+- **Piers portrait**: native upper-body crop, final. Three candidates
+  compared; his ~9px face survives no rescale in either direction. The
+  1.1.21 crop was rejected wearing the pink-speckle palette — framing
+  was never the problem.
