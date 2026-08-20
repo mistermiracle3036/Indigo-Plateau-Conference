@@ -40,7 +40,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.21"
+  local VERSION = "1.1.22"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION

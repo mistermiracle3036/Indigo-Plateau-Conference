@@ -4,6 +4,27 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 1.1.22
+
+**Roxie and Piers get their art rebuilt from source.** The device test
+rejected all three 1.1.21 conversions, and each had a distinct cause.
+
+Roxie's battle portrait turned out to need no conversion at all --
+Piacarrot's sheet contains a native 56x56 GSC sprite at exact 2x scale,
+so it now ships pixel-for-pixel as drawn. Her overworld flattens the
+white-hair shading into the light tone the way Gen 2 itself draws white
+hair, so her head reads clean instead of speckled.
+
+Piers' portrait is now the complete Drawnamu figure -- mic stand and all
+-- with a grey-purple dark tone replacing the hot pink that was turning
+his jacket into static. His overworld keeps the two-tone mane by pulling
+the mane fill out of the outline black.
+
+Both overworld sheets now select which rows survive the 24-to-16 fit by
+similarity, protecting the face rows outright, instead of squeezing or
+truncating. Conversion scripts ship in docs/sprite-sources/ and are
+rerunnable.
+
 ## 1.1.21
 
 **The problem custom sprites receive a device-feedback correction pass.**

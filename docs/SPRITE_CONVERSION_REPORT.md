@@ -172,3 +172,33 @@ Piers—while the other seven retain the four-value `L` format. The build
 therefore contains 26 overworld files and 28 fronts (54 runtime PNGs total).
 The build audit re-runs
 these checks before packaging.
+
+## 1.1.22 — Roxie and Piers rebuilt after device rejection
+
+The 1.1.21 conversions were rejected on device. Root causes, and what
+replaced them (scripts: `sprite-sources/convert_roxie_piers_ow.py` and
+`convert_roxie_piers_fronts.py`, both rerunnable):
+
+- **Overworlds** (both): any 24-to-16 squeeze — uniform or "first 8 rows
+  plus selected body rows" — blends or cuts the face. Now: crop each
+  frame to content, protect a hand-identified face band, and greedily
+  drop the rows most similar to their upper neighbour until 16 remain.
+  Silhouette-defining transition rows survive because they differ from
+  their neighbours. The stand frame's row map is reused verbatim on its
+  step frame so the walk cycle cannot jitter. Side frames use source row
+  2, which natively faces left as the engine expects.
+- **Roxie overworld quantization**: saturation-aware. Colored clothing
+  (navy dress, bow) goes to 85; low-saturation white-hair shading
+  flattens into 170 so the head reads as flat light with black features
+  — which is how Gen 2 itself draws white hair.
+- **Roxie front**: Piacarrot's sheet contains a pure 2x of a NATIVE
+  56x56 GSC sprite (verified: every 2x2 block uniform). Descaled and
+  snapped 49 stray pixels to the four target colors. No resampling.
+- **Piers front**: 1.1.21 used hot pink as the only dark hue, so his
+  grey jacket and mane quantized to pink-or-white speckle. The dark hue
+  is now grey-purple (96,80,112), absorbing jacket mids, hair shading
+  and the pink accents. The FULL Drawnamu figure (mic stand included)
+  is fitted at 89/56 scale by area-weighted majority vote over
+  already-quantized colors with black-outline priority — replacing the
+  rejected upper-body crop. His white face is canon (palest character
+  in Galar), so it maps to white, not skin.
