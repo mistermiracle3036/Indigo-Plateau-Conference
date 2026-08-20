@@ -4,6 +4,337 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 1.1.21
+
+**The problem custom sprites receive a device-feedback correction pass.**
+Giovanni, Lorelei, Proton and Petrel had narrow side-facing art packed against
+the left edge of each 16×16 frame. Both side frames are now centered within
+their cells, preventing the mirrored turn from jumping to the opposite edge
+or appearing clipped. No standing-front or standing-back pixels changed.
+
+Giovanni and the male and female Rocket Grunts now use Gold's brown object
+palette instead of its rock palette. The brown palette retains Gold's standard
+peach skin tone while giving their dark clothing a subdued brown accent; the
+rock palette's ochre ramp was producing the reported greenish/mustard skin.
+
+Roxie and Piers no longer undergo an all-over 24-to-16-pixel vertical squeeze.
+Their converted walking frames preserve the first eight occupied native rows
+for hair and face, then select eight endpoint-preserving body rows. Piers'
+battle front now uses a tighter upper-body crop focused on his face, hair,
+raised arm and microphone rather than shrinking the complete standing figure.
+These three replacements were produced through the requested delegated sprite
+pass and remain `TODO/CONFIRM` on device. The protected Conference-only party
+hook and every trainer record are unchanged.
+
+## 1.1.20
+
+**Piers joins the cleared-art phone-test roster.** His overworld sheet is by
+CyberStryke7. Its exact native 16×24 Gen III frames are recovered from the
+supplied 4× enlargement, reduced vertically to Gold's 16×16 footprint without
+smoothing, and mapped to the closest pink Gold palette. His portrait is the
+Piers figure from Drawnamu's complete gym-leader lineup, proportionally fitted
+into the 56×56 battle slot with nearest-neighbor sampling. Both originals are
+preserved with separate credit records.
+
+Piers is selectable directly under **DEV: Cleared art guest** and uses a
+provisional Umbreon, Sneasel and Houndoom team. He rides Janine's class for an
+appropriate leader title but receives an additive private member, private
+sprite ID and battle-state-only portrait. The roster now has 64 challengers
+and 28 selectable custom-art guests. The protected party hook is unchanged
+and still declines every non-Conference trainer battle.
+
+## 1.1.19
+
+**Roxie joins the cleared-art phone-test roster.** Her GSC battle portrait is
+by Piacarrot. Her editable Gen III overworld sheet is by UlithiumDragon; the
+supplied 2× image was restored to its native 16×24 frames, reduced vertically
+to Gold's 16×16 footprint without smoothing, and mapped to the closest pink
+Gold palette. Both originals are preserved with separate credit records.
+
+Roxie is selectable directly under **DEV: Cleared art guest** and uses a
+provisional Koffing, Muk and Crobat team. She rides Janine's trainer class so
+the fallback title is appropriate, but receives an additive private member,
+private sprite ID and battle-state-only portrait. The roster now has 63
+challengers and 27 selectable custom-art guests. The protected party hook is
+unchanged and still declines every non-Conference trainer battle.
+
+## 1.1.18
+
+**The complete public Team Rocket sheet joins the phone-test roster.** The
+original unnamed GSC Rocket Executive, Archer, Ariana, Proton, Petrel, and the
+male and female Rocket Grunts are seven new challengers with private battle
+fronts, private six-frame walking sheets, dialogue, provisional three-Pokémon
+teams, and direct entries in **DEV: Cleared art guest**. Giovanni's existing
+entry now uses the eighth layout from that sheet: his black Team Rocket suit.
+The roster now has 62 challengers and 26 selectable custom-art guests.
+
+The new teams are: Rocket Executive—Golbat, Raticate, Houndoom; Archer—
+Weezing, Crobat, Houndoom; Ariana—Arbok, Vileplume, Murkrow; Proton—Raticate,
+Golbat, Weezing; Petrel—Koffing, Muk, Weezing; male Grunt—Rattata, Zubat,
+Koffing; female Grunt—Ekans, Gloom, Murkrow. These are provisional test teams.
+
+All eight layouts come from SirWhibbles' “[Public] Team Rocket's Ready to
+Rumble!” sheet, whose page states “Free to use, with credits please!” Their
+walking art uses private sprite IDs and their RGB fronts are applied only to
+positively identified Conference battle states. Guest names remain additive
+`__append` records, and the protected party hook still declines every ordinary
+trainer battle.
+
+## 1.1.17
+
+**Jessie & James, Giovanni, Professor Oak, Lorelei and Agatha join the
+cleared-art phone-test roster.** All five have private battle fronts,
+provisional three-Pokémon teams and entries in **DEV: Cleared art guest**.
+Jessie & James appear together with Meowth and use Arbok, Weezing and Meowth;
+Giovanni uses Persian, Nidoking and Rhydon; Oak uses Tauros, Exeggutor and
+Venusaur; Lorelei uses Dewgong, Cloyster and Lapras; Agatha uses Arbok, Crobat
+and Gengar. The roster now has 55 challengers and 19 selectable art guests.
+
+Giovanni, Lorelei and Agatha use complete GSC-style battle and six-frame
+overworld sets from SirWhibbles' public Kanto sheet, whose page states “Free
+to use, with credits please!” Jessie & James use MOLLY's unambiguous combined
+portrait and a vanilla Rocket overworld. Oak uses the Oak-like lab-coat cell
+from the same unlabeled MOLLY grid and vanilla Oak overworld; that one portrait
+is explicitly marked `TODO/CONFIRM` for device inspection before release.
+
+The five fronts are true-color only on positively identified Conference battle
+states. The three new walking sheets use private sprite IDs. Tier-four guest
+names are appended to existing carrier classes with `__append`; no vanilla
+member, shared portrait or party is replaced. The protected `trainer.party`
+hook still declines every battle that is not the mod-owned arena challenger.
+
+## 1.1.16
+
+**Bea, Mina and Nate join the cleared-art phone-test roster.** Each has a
+private six-frame walking sheet, private battle front, dialogue, provisional
+three-Pokémon party, and an entry in **DEV: Cleared art guest**. Bea uses
+Hitmontop, Primeape and Machamp; Mina uses Wigglytuff, Mr. Mime and Clefable;
+Nate uses Fearow, Typhlosion and Dragonite. The roster now has 50 challengers
+and 14 selectable cleared-art guests.
+
+Bea uses a pink Gold palette, Mina uses pink, and Nate uses red. Michael was
+rebuilt from MOLLY's preserved source sheet and now uses red in both the
+overworld and battle. All four battle fronts are marked true-color only on
+their mod-owned battle states, preventing borrowed trainer classes from
+changing their chosen colors.
+
+The original Bea, Mina and Nate sheets are preserved as permission evidence.
+Credits record KIRB/YOSHI's “GIVE CREDIT IF USED.”, Santiago Speedpaints a.k.a.
+Rojimenez's “Please, give credit if used.”, and DracoZ's “credit me pls” plus
+the sheet's special thanks to Molly for the inspiration. No shared trainer
+party or class portrait table is modified.
+
+## 1.1.15
+
+**The cleared-art palette pass now matches the requested character colors.**
+Hilbert's overworld sprite is red, Lyra is blue in the overworld and battle,
+May's battle portrait is red, and Michael's overworld sprite is brown. Wes's
+battle portrait now uses the same blue Gold palette as his overworld sprite.
+
+Lyra, May and Wes have pre-colored battle fronts marked as true-color on only
+their mod-owned battle states. This prevents their borrowed trainer classes
+from recoloring the custom portraits, without changing any shared class art or
+party data. The Pokémon Stadium guest is now displayed as **Stadium Trainer**;
+its internal key and asset filenames remain stable.
+
+## 1.1.14
+
+**The private proof-of-concept art roster has been replaced with the cleared
+MOLLY batch.** The build now contains custom walking sheets and battle fronts
+only for Brendan, Dawn, Green, Hilbert, Hilda, Lyra, May, Michael, the Pokémon
+Stadium 1 player, Rosa and Wes. All 98 Crystal Clear test assets were removed;
+the original core-roster characters that used them are back on vanilla
+Gold-cache art, and uncleared roster additions were removed.
+
+Every supplied sheet states “Made by MOLLY” and “Credit is nice, but not
+required.” Original sheets are preserved under `docs/sprite-sources/`, with
+the terms recorded in `SPRITE_PERMISSIONS.md`. Source-page URLs were not
+supplied and remain a public-release documentation item.
+
+The wider sheets are clipped to their leftmost/default variant. Pokémon
+Stadium therefore uses the Stadium 1 player rather than the Stadium 2 design.
+All 22 runtime images pass the Gold format checks: 16×96 or 56×56, four shade
+values only, and no alpha.
+
+The **DEV: Cleared art guest** selector forces any of the 11 characters into
+round one. Lyra, Rosa and Stadium Player have provisional test teams; all
+party substitution remains gated to the mod-owned arena challenger, and no
+vanilla trainer party or class portrait table is modified.
+
+## 1.1.13
+
+**Fifteen more custom-art challengers join the phone-test roster.** Hilbert,
+Hilda, Hugh, Hisuian Ingo, James, Jessie, Juliana, Kirby, Luffy, MF DOOM,
+Maxie, Goku, Lillie, Lucas and anime May now have private six-frame walking
+sprites, private battle fronts, dialogue and three-Pokemon parties. All are
+available through **DEV: Round 1 guest**.
+
+The roster now contains 80 challengers. This batch only extends the same
+mod-owned sprite records, battle-front map and roster table proven in 1.1.12;
+it does not patch shared trainer classes or broaden the `trainer.party` hook.
+Party replacement still requires positive engagement with the mod-owned arena
+challenger and is cleared when that Conference battle ends.
+
+## 1.1.12
+
+**Twenty-six custom-art challengers join the test roster.** Aipom, Anakin,
+Archie, Aroma Girl, Ash, Bardock, Barry, Bill, Black Mage, Black, Bomberman,
+Brendan, Crazy Dave, Caveman, Colress, Cynthia, Dawn, Demi-fiend, Dexter,
+Earthworm Jim, Edd, Eddy, Emmet, Goh, Gardenia and Giovanni now have private
+six-frame walking sprites, private battle fronts, dialogue and three-Pokemon
+parties. All are available from **DEV: Round 1 guest** for direct phone tests.
+
+Ash is now a tournament trainer rather than the announcer. The arena announcer
+has returned to Gold's vanilla Link Receptionist sprite used before the custom
+art tests. No shared sprite, trainer-picture table, trainer record or party is
+replaced: battle fronts remain gated to the active Conference battle and the
+party hook still requires the mod-owned arena challenger signal.
+
+Ranger now uses TeamHistoryWaffles' replacement layouts and Gold's Red
+overworld palette. Guzma uses the grey Rock palette; Duplica and Mr. Two retain
+Gold's closest Pink palette. Contributor mappings are recorded in CREDITS.md.
+
+## 1.1.11
+
+**Custom walking sprites now permanently use the closest Gold overworld
+palette.** Ball Guy and the announcer remain Red; Wes is Blue; Yellow, Guzma
+and Molly are Brown; Duplica, Ranger and Mr. Two are Pink. These are
+per-sprite assignments that follow Gold's time-of-day colors without
+modifying any shared palette or vanilla sprite record.
+
+The **DEV: Exact OW colors** A/B toggle and its three walking-only variant
+assets have been removed following the device test. The round-one guest
+selector remains available. Battle portraits, roster tiers, borrowed carriers
+and parties are unchanged.
+
+## 1.1.10
+
+**Ball Guy, Wes and Yellow now have an on-device walking-palette A/B test.**
+Select one with **DEV: Round 1 guest**, then leave **DEV: Exact OW colors**
+off to see Gold's time-of-day-aware palettes (Red, Blue and Brown
+respectively), or turn it on to see the exact two-color pair from that
+character's Sprite Injector sheet.
+
+The exact variants are private true-color sprite records with real alpha;
+they do not modify Gold's shared PAL_OW tables. Changing the toggle causes the
+standing Conference challenger to be rebuilt on the next arena refresh. The
+battle portraits, roster tiers, borrowed carriers and parties are unchanged.
+
+## 1.1.9
+
+**Yellow, Guzma and Molly now use their supplied six-frame overworld layouts
+and matching 56x56 battle-front sprites.** The layouts are credited to
+ShockSlayer, GP and Unknown respectively and are extracted directly from the
+lossless PNG sheets in Sprite Input.
+
+All three are available through **DEV: Round 1 guest** for immediate testing.
+The selector remains a runtime-only presentation override. Yellow stays on
+Picnicker/Hope, Guzma on Biker/Zeke, and Molly on Lass/Ellen; their Tier 3
+placements and existing parties are unchanged. Their art uses new
+Conference-owned sprite ids, and no shared vanilla sprite, trainer record or
+party is modified.
+
+## 1.1.8
+
+**Wes's installed sprites are now extracted directly from ciara's original
+indexed PNG in Sprite Input.** The original PNG and the 1.1.7 JPEG recovery
+produce identical four-shade pixels in both the 56x56 battle front and 16x96
+walking strip, but the lossless PNG is now the source of record.
+
+This is an asset-provenance test build only. Wes remains available through
+**DEV: Round 1 guest**, and his Tier 3 placement, CooltrainerM/Nick carrier,
+Espeon/Umbreon/Persian party, and all shared vanilla records are unchanged.
+
+## 1.1.7
+
+**Wes now uses ciara's supplied six-frame overworld layout and matching
+56x56 battle-front sprite.** The phone-converted JPEG retained the original
+one-pixel grid and four palette roles; the installable PNGs were recovered by
+snapping each pixel to the sheet's own displayed palette, with no resizing or
+generative changes.
+
+Wes is available in **DEV: Round 1 guest** for immediate testing. This remains
+a runtime-only presentation override: his Tier 3 roster placement, borrowed
+CooltrainerM/Nick carrier and Espeon/Umbreon/Persian party are unchanged. No
+shared Cooltrainer sprite, trainer record or party is modified.
+
+## 1.1.6
+
+**DEV: Round 1 guest now puts every custom-art guest directly into round
+one.** Cycle the choice through Ball Guy, Duplica, Ranger and Mr. Two to test
+each overworld layout and battle portrait without playing through the earlier
+tiers. Random restores the normal bracket.
+
+The override is runtime-only rather than written into the saved draw. This is
+important for Mr. Two: he remains a Tier 2 roster member, and persisting him in
+the Tier 1 draw slot would invalidate and repeatedly redraw the bracket. His
+normal roster placement, borrowed Psychic/Herman carrier and party are not
+changed by the test selector.
+
+## 1.1.5
+
+**Duplica, Ranger and Mr. Two now use their supplied six-frame overworld
+layouts and matching 56x56 battle-front sprites.** The layouts are credited to
+Limesar, Dragowski and Soulcast respectively. Mr. Two's unusual body shape is
+still technically valid: all six walking frames and the complete portrait fit
+their required boxes without including the source sheet's gray background.
+
+Use **DEV: Art guest** to select Ball Guy, Duplica, Ranger or Mr. Two. Each
+selection stays in its intended tier, so Mr. Two appears in round two and the
+others appear in round one. The older **DEV: Ball Guy R1** toggle remains
+available and unchanged.
+
+These are presentation-only replacements on Conference-owned NPCs and battle
+screens. Duplica remains Lass/Alice, Ranger remains Camper/Dean and Mr. Two
+remains Psychic/Herman; their parties and every shared vanilla trainer record
+are untouched. A missing custom portrait falls back to that guest's normal
+class portrait.
+
+## 1.1.4
+
+**Ball Guy now uses CyUzi's supplied 56x56 front sprite during his battle
+intro.** Enable **DEV: Ball Guy R1** to put him in the first round, then enter
+the fight to test both his overworld sheet and battle portrait together.
+
+This is a presentation-only swap, positively gated to the Conference's owned
+Ball Guy NPC. He remains on the proven Juggler/Fritz carrier with the same
+Voltorb, Jigglypuff and Electrode party. The shared Juggler portrait table and
+all vanilla trainer and party records are untouched; if the custom image cannot
+load, Gold falls back to the normal Juggler portrait.
+
+## 1.1.3
+
+**Ball Guy now uses his custom six-frame overworld art.** The asset is the
+source atlas's 16x96 Walking Sprite column by CyUzi and uses Gold's red
+overworld palette.
+
+Enable **DEV: Ball Guy R1** in the mod options to force him into round one,
+including when the current bracket was drawn before the toggle was enabled.
+
+The test hook changes only the tier-one draw when enabled. Ball Guy's
+Juggler/Fritz battle carrier and Voltorb, Jigglypuff and Electrode party are
+unchanged, as are all other challenger and player parties.
+
+## 1.1.2
+
+**Corrected announcer-sprite test build.** This uses the source atlas's
+16x96 Walking Sprite column. The neighboring 16x96 Surfing Sprite column was
+mistakenly packaged in 1.1.1.
+
+No gameplay code changed. Challengers, trainer parties, player party limits,
+tournament progression and ordinary battles remain identical to 1.1.0.
+
+## 1.1.1
+
+**Private announcer-sprite test build.** The announcer in the Colosseum now
+uses DBZGUY x3's six-frame Ash Ketchum overworld layout, including front,
+back and side-facing poses. Gold applies the red overworld palette shown in
+the source sheet.
+
+This test changes only the announcer's sprite registration and sprite id. It
+does not change challengers, trainer parties, player party limits, tournament
+progression or ordinary battles.
+
 ## 1.1.0
 
 **You now bring three Pokemon to the preliminaries, and all six to the

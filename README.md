@@ -62,7 +62,7 @@ anything rebalances.
 - **A run in progress survives quitting.** The bracket travels with your
   in-game save, so loading an older save rewinds the tournament with it.
 
-**Every run fields a different card.** The roster is 39 challengers across
+**Every run fields a different card.** The roster is 64 challengers across
 four escalating tiers, and each run draws one per tier. A new draw never
 repeats the previous run's pick in a tier, so back-to-back tournaments
 always look different. Challengers speak for themselves — an introduction
@@ -71,11 +71,12 @@ own names.
 
 ## Options
 
-One option, on the mod's own options screen.
+Two options appear on the mod's own options screen in this test build.
 
 | Option | Default | What it does |
 | --- | --- | --- |
 | Diagnostic rows | **Off** | Prints what the mod is doing to the mod manager's `[ERRS]` screen |
+| DEV: Cleared art guest | **Random** | Forces one of the 28 cleared-art guests into round one so each sprite can be tested directly |
 
 Leave it off for normal play. **Turn it on if you're reporting a bug** —
 it's the only way to see what happened, since there's no console on a
@@ -124,21 +125,23 @@ games the mod simply doesn't load.
 By **Mister Miracle**
 ([@mistermiracle3036](https://github.com/mistermiracle3036)).
 
-- **This mod ships no art of its own.** Every character on screen wears a
-  sprite already in the Gold ROM, referenced by its id — nothing is copied
-  out of the game and redistributed here.
+- Custom roster art by **MOLLY**, **SirWhibbles**, **KIRB/YOSHI**, **Santiago
+  Speedpaints a.k.a. Rojimenez**, and **DracoZ** is individually listed in
+  [CREDITS.md](CREDITS.md), with their exact permission statement recorded in
+  [SPRITE_PERMISSIONS.md](SPRITE_PERMISSIONS.md). The announcer uses Gold's own
+  Link Receptionist sprite. Every custom sprite and battle front is private to
+  this mod and does not replace a shared vanilla trainer class.
 - The owned-NPC pattern this mod uses on Gold was proven first in **Court
   of Noctowl**.
 - Built on the [gen1recomp](https://github.com/bryanthaboi/gen1recomp)
   engine, with reference to the [pret](https://github.com/pret)
   disassembly research.
-- Additional character art, as and when it arrives, is credited in
-  [CREDITS.md](CREDITS.md).
+- No artwork from the earlier Crystal Clear proof-of-concept is included.
 
 Pokémon and Pokémon character names are trademarks of Nintendo, Creatures
 Inc. and GAME FREAK inc. This is an unofficial fan project, not affiliated
 with or endorsed by any of them.
 
-Licensed under [MIT](LICENSE) — the licence covers this mod's own code and
-art, not ROM-derived material or the trademarks above. See
+Licensed under [MIT](LICENSE) — the licence covers this mod's own code, not
+the credited artists' character art, ROM-derived material, or the trademarks above. See
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

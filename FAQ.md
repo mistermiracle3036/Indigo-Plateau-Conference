@@ -105,7 +105,7 @@ leader, not to your team.
 <details>
 <summary>Who is in the roster?</summary>
 
-**39 challengers across four tiers**, and each run draws one from each —
+**64 challengers across four tiers**, and each run draws one from each —
 so a card is four opponents, escalating.
 
 Broadly: anime one-offs and rookies in tier 1; rivals and specialists in

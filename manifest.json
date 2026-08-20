@@ -1,7 +1,7 @@
 {
   "id": "indigo_conference",
   "name": "Indigo Plateau Conference",
-  "version": "1.1.0",
+  "version": "1.1.21",
   "api": 2,
   "entry": "main.lua",
   "profile": "content",
@@ -16,6 +16,6 @@
   "dependencies": [],
   "optional_dependencies": [],
   "conflicts": [],
-  "description": "A repeatable tournament circuit for Johto. The unused battle room upstairs in five Pokemon Centers hosts a four-round card against 39 guest challengers, anchored to each town's own gym leader and ending at the Indigo Plateau Conference itself.",
+  "description": "A repeatable tournament circuit for Johto. The unused battle room upstairs in five Pokemon Centers hosts a four-round card against 64 guest challengers, anchored to each town's own gym leader and ending at the Indigo Plateau Conference itself.",
   "github": "mistermiracle3036/Indigo-Plateau-Conference"
 }

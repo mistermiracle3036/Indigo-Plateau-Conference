@@ -1,10 +1,23 @@
 return {
-  summary = "A repeatable post-Elite-Four tournament on Route 22: three rounds against guest challengers drawn from a tiered pool.",
+  summary = "A repeatable four-round tournament in five Johto Pokemon Centers.",
   author = "Mister Miracle",
   tags = { "quest", "tournament", "postgame" },
   differences = {
-    "v0.1.0 is a scaffold: the mod loads and announces its version, and adds no Conference content yet",
+    "64 challengers across four tiers",
+    "28 cleared custom-art guests selectable in round one for testing",
+    "No vanilla trainer parties or shared trainer portraits are overwritten",
   },
-  credits = { "pret/pokered research", "gen1recomp engine" },
-  compat = "No vanilla maps, NPCs, scripts or trainers are modified.",
+  credits = {
+    "Brendan, Dawn, Green, Hilbert, Hilda, Lyra, May, Michael, Stadium Trainer, Rosa and Wes sprite layouts by MOLLY",
+    "Bea sprite layout by KIRB/YOSHI",
+    "Mina sprite layout by Santiago Speedpaints a.k.a. Rojimenez",
+    "Nate sprite layout by DracoZ, with inspiration credit to Molly",
+    "Jessie & James and provisional Oak portraits by MOLLY",
+    "Giovanni, Lorelei, Agatha and the Team Rocket roster sprite layouts by SirWhibbles",
+    "Roxie battle portrait by Piacarrot; editable overworld art by UlithiumDragon",
+    "Piers overworld art by CyberStryke7; gym-leader portrait by Drawnamu",
+    "pret/pokered and pret/pokecrystal research",
+    "gen1recomp engine",
+  },
+  compat = "No vanilla maps, NPCs, scripts, trainers or parties are modified.",
 }
