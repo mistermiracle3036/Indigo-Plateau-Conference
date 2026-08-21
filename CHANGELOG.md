@@ -4,6 +4,30 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 1.1.26
+
+**SPIKE: custom arena room.** The Colosseum is no longer the vanilla
+link-battle room -- it is a mod-owned map with a battle arena floor
+tile (extracted from a TFJ tileset the developer supplied). The vanilla
+door warp on POKECENTER_2F is redirected to the custom room on entry.
+Placeholder walls and floor; the arena tile is the real content.
+
+Known: the warpTo redirect does not refresh the backup warp triple, so
+the 2F staircase may die after entering the arena. This is a spike --
+if the room renders correctly on device, the next step is patching the
+vanilla warp properly.
+
+## 1.1.25
+
+**Nemona joins the roster** as a tier 3 challenger with custom art by
+Mid117 (DeviantArt). Walking sprites and battle portrait converted
+from a Pokemon Scarlet-era sprite sheet using the new general-purpose
+`convert_trainer.py` pipeline in docs/sprite-sources/. She rides
+COOLTRAINERF and fields Steelix, Kingdra, and Ampharos — Gen 2
+echoes of her Scarlet team's types.
+
+TODO/CONFIRM on device: overworld face readability and palette choice.
+
 ## 1.1.24
 
 **Roxie and Piers get readable faces.** The developer's diagnosis was

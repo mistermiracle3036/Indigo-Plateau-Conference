@@ -40,13 +40,13 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.24"
+  local VERSION = "1.1.26"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
-  -- Custom art is registered under mod-owned sprite ids. No trainer, party,
-  -- map or tileset record is claimed here.
-  mod.exports.owns = { trainers = {}, maps = {}, tilesets = {},
+  mod.exports.owns = { trainers = {},
+                       maps = { "IPC_COLOSSEUM" },
+                       tilesets = { "IPC_ARENA" },
                        sprites = { "SPRITE_IPC_BRENDAN",
                                    "SPRITE_IPC_DAWN",
                                    "SPRITE_IPC_GREEN",
@@ -72,10 +72,12 @@ return function(mod)
                                    "SPRITE_IPC_ROCKET_GRUNT_M",
                                    "SPRITE_IPC_ROCKET_GRUNT_F",
                                    "SPRITE_IPC_ROXIE",
-                                   "SPRITE_IPC_PIERS" } }
+                                   "SPRITE_IPC_PIERS",
+                                   "SPRITE_IPC_NEMONA" } }
 
   local LOBBY = "POKECENTER_2F"
-  local ARENA = "COLOSSEUM"
+  local VANILLA_ARENA = "COLOSSEUM"
+  local ARENA = "IPC_COLOSSEUM"
 
   -- POKECENTER_2F warp 3 of 4 -> COLOSSEUM, read off the device census
   -- (1 = 0,7 stairs down; 2 = 5,0 TRADE_CENTER; 4 = 13,2 TIME_CAPSULE).
@@ -140,6 +142,75 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_ROCKET_GRUNT_F", "rocket_grunt_f.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_ROXIE", "roxie.png", "PAL_OW_PINK", 4)
   registerGuestSprite("SPRITE_IPC_PIERS", "piers.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_NEMONA", "nemona.png", "PAL_OW_RED", 0)
+
+  -- SPIKE: custom arena room. Tile sheet cut from the TFJ exterior tileset.
+  mod.content.tilesets:register("IPC_ARENA", {
+    image = mod.path .. "/assets/arena_tilesheet.png",
+    imageWidth = 128,
+    imageHeight = 56,
+    tilesPerRow = 16,
+    trueColor = true,
+    blocks = {
+      { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 },
+      { 101, 102, 101, 102, 102, 101, 102, 101, 101, 102, 101, 102, 102, 101, 102, 101 },
+      { 100, 100, 100, 100, 100, 100, 100, 100, 105, 105, 105, 105, 106, 106, 106, 106 },
+      { 105, 103, 103, 105, 106, 104, 104, 106, 101, 101, 101, 101, 101, 101, 101, 101 },
+      { 0, 0, 1, 2, 11, 12, 13, 14, 24, 25, 26, 25, 38, 17, 17, 17 },
+      { 3, 0, 4, 5, 15, 12, 16, 17, 26, 27, 28, 17, 17, 39, 40, 17 },
+      { 5, 5, 5, 6, 17, 17, 18, 19, 17, 29, 30, 31, 17, 41, 42, 43 },
+      { 7, 5, 5, 5, 20, 21, 17, 17, 32, 33, 34, 17, 44, 45, 46, 17 },
+      { 5, 8, 9, 0, 17, 22, 15, 12, 17, 35, 36, 26, 17, 47, 48, 17 },
+      { 1, 2, 3, 10, 13, 14, 15, 23, 25, 26, 25, 37, 17, 17, 17, 49 },
+      { 50, 17, 17, 17, 58, 59, 60, 61, 77, 78, 79, 80, 90, 0, 91, 92 },
+      { 17, 39, 40, 17, 62, 63, 64, 17, 81, 82, 83, 17, 93, 0, 94, 95 },
+      { 17, 51, 52, 53, 17, 65, 66, 67, 17, 17, 84, 85, 95, 95, 95, 96 },
+      { 54, 55, 56, 17, 68, 69, 70, 17, 86, 87, 17, 17, 97, 95, 95, 95 },
+      { 17, 47, 48, 17, 17, 47, 71, 72, 17, 47, 88, 78, 95, 98, 9, 0 },
+      { 17, 17, 17, 57, 73, 74, 75, 76, 79, 80, 81, 89, 91, 92, 93, 99 },
+    },
+    collision = {
+      { 0x0f, 0x0f, 0x0f, 0x0f },
+      { 0x00, 0x00, 0x00, 0x00 },
+      { 0x0f, 0x0f, 0x0f, 0x0f },
+      { 0x0f, 0x0f, 0x00, 0x00 },
+      { 0x0f, 0x0f, 0x00, 0x00 },
+      { 0x0f, 0x0f, 0x00, 0x00 },
+      { 0x0f, 0x0f, 0x00, 0x00 },
+      { 0x0f, 0x0f, 0x00, 0x00 },
+      { 0x0f, 0x0f, 0x00, 0x00 },
+      { 0x0f, 0x0f, 0x00, 0x00 },
+      { 0x00, 0x00, 0x0f, 0x0f },
+      { 0x00, 0x00, 0x00, 0x00 },
+      { 0x00, 0x00, 0x00, 0x00 },
+      { 0x00, 0x00, 0x00, 0x00 },
+      { 0x00, 0x00, 0x00, 0x00 },
+      { 0x00, 0x00, 0x0f, 0x0f },
+    },
+  })
+
+  mod.content.maps:register("IPC_COLOSSEUM", {
+    id = "IPC_COLOSSEUM",
+    label = "Colosseum",
+    tileset = "IPC_ARENA",
+    width = 8,
+    height = 7,
+    borderBlock = 0,
+    environment = "INDOOR",
+    blocks = {
+      0, 2, 2, 2, 2, 2, 2, 0,
+      0, 1, 1, 1, 1, 1, 1, 0,
+      0, 4, 5, 6, 7, 8, 9, 0,
+      0, 10, 11, 12, 13, 14, 15, 0,
+      0, 1, 1, 1, 1, 1, 1, 0,
+      0, 1, 1, 3, 3, 1, 1, 0,
+      0, 0, 0, 0, 0, 0, 0, 0,
+    },
+    warps = {
+      { x = 7, y = 11, destMap = "POKECENTER_2F", destWarp = 3 },
+      { x = 8, y = 11, destMap = "POKECENTER_2F", destWarp = 3 },
+    },
+  })
 
   -- Battle fronts are replaced only on the already-created UI state for a
   -- positively identified Conference battle. Shared class picture tables
@@ -173,6 +244,7 @@ return function(mod)
     ROCKET_GRUNT_F = mod.path .. "/assets/rocket_grunt_f_front.png",
     ROXIE = mod.path .. "/assets/roxie_front.png",
     PIERS = mod.path .. "/assets/piers_front.png",
+    NEMONA = mod.path .. "/assets/nemona_front.png",
   }
 
   -- These portraits are pre-colored with their chosen Gold palette.
@@ -200,6 +272,7 @@ return function(mod)
     ROCKET_GRUNT_F = true,
     ROXIE = true,
     PIERS = true,
+    NEMONA = true,
   }
 
   local ROUNDS = 4
@@ -753,6 +826,20 @@ return function(mod)
               { species = "SNEASEL",  delta = 0 },
               { species = "HOUNDOOM", delta = 1 } } },
 
+  -- TODO/CONFIRM on device: overworld face readability and palette fit.
+  -- Converted from Mid117's Scarlet-era sheet via convert_trainer.py.
+  { key = "NEMONA", tier = 3, class = "COOLTRAINERF", member = "FRAN",
+    sprite = "SPRITE_IPC_NEMONA", name = "NEMONA",
+    chat = "NEMONA: Finally!\nA tournament!\fI'm battling\nEVERYONE!",
+    intro = "NEMONA: I've been\nwaiting for this!\fLet's go ALL OUT!",
+    win = "That was SO GOOD!\fI want a rematch\nalready!",
+    loss = "YES! That's what\nI'm talking about!\fBest fight yet!",
+    afterWin = "NEMONA: Don't go\nyet! One more?",
+    afterLoss = "NEMONA: We HAVE\nto do this again!\fPromise me!",
+    party = { { species = "STEELIX",  delta = 0 },
+              { species = "KINGDRA",  delta = 0 },
+              { species = "AMPHAROS", delta = 1 } } },
+
   { key = "JESSIE_JAMES", tier = 2, class = "EXECUTIVEM", member = "EXECUTIVEM_1",
     sprite = "SPRITE_ROCKET_GIRL", name = "JESSIE & JAMES",
     chat = "JESSIE & JAMES:\nPrepare for trouble!",
@@ -1280,7 +1367,8 @@ return function(mod)
                   { "Proton", "PROTON" }, { "Petrel", "PETREL" },
                   { "Rocket Grunt M", "ROCKET_GRUNT_M" },
                   { "Rocket Grunt F", "ROCKET_GRUNT_F" },
-                  { "Roxie", "ROXIE" }, { "Piers", "PIERS" } },
+                  { "Roxie", "ROXIE" }, { "Piers", "PIERS" },
+                  { "Nemona", "NEMONA" } },
       default = "" },
   })
 
@@ -2205,7 +2293,15 @@ return function(mod)
     -- teleport, dig, another mod's warp -- so a still-armed escort is stale
     -- by definition. (To reach the 2F stairs legitimately they must cross
     -- the 1F, which lands here and disarms first.)
-    if mapId ~= LOBBY and mapId ~= ARENA then disarmStaleEscort(mapId) end
+    if mapId ~= LOBBY and mapId ~= ARENA and mapId ~= VANILLA_ARENA then
+      disarmStaleEscort(mapId)
+    end
+    -- SPIKE: redirect vanilla Colosseum to the custom arena room.
+    -- Land near the door (cell 7,9 = floor row), facing up toward the arena.
+    if mapId == VANILLA_ARENA then
+      mod.world:warpTo(ARENA, 7, 9, "up")
+      return
+    end
     local world = mod.world:overworld()
     if not world then return end
     if mapId == LOBBY then
