@@ -8,3 +8,6 @@ assets/generated/
 
 .DS_Store
 Thumbs.db
+
+# test_build.sh also emits a flat build/ tree next to .build/
+build/

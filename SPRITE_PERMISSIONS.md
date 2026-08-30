@@ -37,6 +37,7 @@ follow-up before public release.
 | Roxie overworld | UlithiumDragon | Permission to edit confirmed by the user | Not supplied — local editable sheet | 2026-08-19 |
 | Piers portrait | Drawnamu | Credit supplied by the user; permission terms were not embedded in the local PNG | Not supplied — local lineup sheet | 2026-08-19 |
 | Piers overworld | CyberStryke7 | Credit supplied by the user; permission terms were not embedded in the local PNG | Not supplied — local sheet | 2026-08-19 |
+| Nemona | Mid117 | "Give credit if used." (text on the sheet) | DeviantArt — filename `pkmn_scarlet___nemora_trainer_sprite_by_mid117_dfip1zs.png` | 2026-08-20 |
 
 The Jessie & James grid cell is visually definitive. The Oak row records only
 the permission for the source sheet; the character identification remains

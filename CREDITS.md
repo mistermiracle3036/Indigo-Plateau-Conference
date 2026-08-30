@@ -45,6 +45,7 @@ preserved in `docs/sprite-sources/`, and the source-page terms are recorded in
 | Rocket Grunt (male) | `sirwhibbles_team_rocket.png` | `assets/rocket_grunt_m.png`, `assets/rocket_grunt_m_front.png` | SirWhibbles |
 | Roxie | `roxie_gsc_style_by_piacarrot_d59kzez.png`; `roxie_gen3_overworld_by_ulithiumdragon_dbj7tlr.png` | `assets/roxie.png`, `assets/roxie_front.png` | Battle portrait: Piacarrot; overworld: UlithiumDragon |
 | Piers | `gym_leaders_portraits_by_drawnamu.png`; `piers_overworld_by_cyberstryke7.png` | `assets/piers.png`, `assets/piers_front.png` | Portrait: Drawnamu; overworld: CyberStryke7 |
+| Nemona | `nemona_by_mid117.png` | `assets/nemona.png`, `assets/nemona_front.png` | Mid117 |
 
 The wider Brendan, Dawn, May, and Pokémon Stadium sheets contain additional
 variants. This test build uses the leftmost/default variant from each sheet.
