@@ -4,86 +4,307 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+
+## 1.1.37
+
+**KiravelSoul's Volkner joins the normal tournament roster.** His tier-three
+team is Jolteon, Raichu and Electabuzz; Electabuzz is the Gen 2 stand-in for
+Electivire. His native 56×56 portrait keeps its source colors and his six
+walking frames use Gold's closest brown overworld palette.
+
+**Armored Mewtwo is an explicit developer-selector exception.** It fields one
+Mewtwo for a short visual test and is marked `devOnly`, so it never enters a
+random tournament draw. Its native portrait keeps KiravelSoul's violet armor
+colors and its walking frames use Gold's closest pink palette.
+
+Both characters use private `SPRITE_IPC_*` records, additive trainer members,
+and the existing positively gated Conference-only portrait and party paths.
+The complete 800×300 source sheets are not redistributed. No vanilla trainer
+party, portrait, member or overworld sprite is replaced.
+
+
+## 1.1.36
+
+**Bani's Chef joins the first-round developer selector.** Chef is deliberately
+`devOnly`: the sprite never enters the normal 81-challenger tournament draw
+until a permanent identity and full team are chosen. The test party contains
+one Raticate as a short Ratatouille-style joke and quick device art check.
+
+The exact standard injector regions become one private 56×56 true-color
+battle front and one six-frame 16×96 walking strip using the closest blue Gold
+palette. The complete Bani source sheet is not redistributed. Chef uses a
+private `SPRITE_IPC_CHEF` record, an additive private trainer member and the
+existing positively gated Conference-only portrait and party paths. No
+vanilla trainer party, portrait, member or overworld sprite is replaced.
+
+
+## 1.1.35
+
+**Nine credited, non-native trainers join the normal roster:** Barry, Bill,
+Colress, Hugh, Maxie, Wally, Gloria, Officer Jenny and Ruin Maniac. Barry's
+sheet is by **NolanKrawczak**; Bill, Colress, Hugh, Maxie and Wally are by
+**RoyalGuard**; and Gloria, Officer Jenny and Ruin Maniac are by
+**TeamHistoryWaffles**. Bill is intentionally included because Gen 2 has no
+native Bill battle-trainer portrait. Each new challenger is also selectable
+through **DEV: First-round guest**.
+
+Nate's existing roster entry now uses **Bani** art instead of the earlier
+DracoZ runtime pair. His tier, dialogue and Fearow/Typhlosion/Dragonite party
+are unchanged; only his private battle and overworld assets and closest Gold
+overworld palette changed. The supplied May and Lorelei alternatives remain
+excluded to avoid duplicate identities, and native Gen 2 trainers and
+Pokémon-only sheets remain outside the runtime.
+
+The normal roster now contains 81 challengers. The recovered Bill, Barry,
+Colress, Hugh and Maxie teams are retained from the earlier concept test;
+Wally, Gloria, Officer Jenny and Ruin Maniac use explicit Gen 2
+interpretations documented beside their roster entries. Every new sheet is
+reduced to the established exact 56×56 battle-front and 16×96 six-frame
+walking crops. Complete creator sheets are not redistributed.
+
+All additions use private `SPRITE_IPC_*` ids, additive `__append` trainer
+members and the positively identified Conference-only portrait and party
+paths. No vanilla trainer party, portrait, member or overworld sprite is
+replaced.
+
+
+## 1.1.34
+
+**Six non-duplicate Bani trainers join the normal roster:** Eusine, Juliana,
+Leaf, Lear, Lillie and Looker. Juliana uses the Violet sheet, Leaf uses her
+standard sheet, and Lillie uses the ponytail sheet. Alternate versions are
+deliberately collapsed into a single character entry. The supplied Pokémon
+species sheets, Santa Claus, existing roster characters, and unidentified or
+generic Chef/Lass/White Haired Girl sheets are not imported.
+
+The three supplied Johto gym-leader sheets are also left out. Bugsy, Falkner
+and Whitney already have native Gen 2 trainer art; Falkner and Whitney are
+already used as venue difficulty anchors. They can be added to the challenger
+pool later with their native assets rather than creating custom-art variants.
+
+Eusine keeps his complete Crystal team of Drowzee, Haunter and Electrode.
+Juliana and Lillie retain their earlier concept-test Gen 2 teams. Leaf, Lear
+and Looker use documented Gen 2 interpretations that can be revised after
+device testing. The normal roster now contains 72 challengers, and all six
+are directly selectable through **DEV: First-round guest**.
+
+Each new 800×300 injector sheet is cropped at the established native Bani
+regions: a 56×56 true-color battle front and a six-frame 16×96 walking strip.
+Only the runtime crops are included. All six use private `SPRITE_IPC_*` ids,
+private appended trainer-member rows and the existing positively identified
+Conference battle portrait/party path. No vanilla trainer member, party,
+portrait or overworld sprite is replaced.
+
+
+## 1.1.33
+
+**Roxie's commissioned battle front is unchanged, while her overworld hair
+now uses the light Gold palette value.** The 1.1.32 phone test showed the
+battle art correctly but rendered the source hair shade red/pink through
+`PAL_OW_PINK`. This build remaps only the commissioned hair pixels in each of
+the six walking frames from the theme value to the light value. Her black
+outline, face, body, pink clothing accents, frame alignment and animation
+order are unchanged.
+
+Only `assets/roxie.png` differs at runtime. The battle portrait, every other
+sprite, Roxie's roster and party, the Sandalwood integration, and the
+Conference-only trainer-party safety gate are byte-identical to 1.1.32.
+
+
+## 1.1.32
+
+**Roxie now uses her commissioned sprite set by tharkka.** This revision-test
+build selects the lower, full-color 56×56 battle front and six walking poses
+from the supplied presentation sheets. Both sheets are exact 5× pixel
+enlargements, so the converter first recovers their native pixels. It removes
+only the battle presentation border/background, then centers the 15-pixel-wide
+walking poses and bottom-aligns the 15-pixel-tall step poses on native 16×16
+Gen 2 canvases. No commissioned sprite pixel is resized, interpolated,
+redrawn or clipped.
+
+The walking art keeps the existing private `PAL_OW_PINK` Conference mapping,
+and the battle front stays full-color through the already-scoped true-color
+path. **DEV: Cleared art guest → Roxie** still forces her into round one for
+quick phone review. Her roster entry, party, dialogue, Sandalwood victory
+unlock and positive Conference-only trainer-party gate are unchanged.
+
+
+## 1.1.31
+
+**Defeating Roxie can now unlock her Sandalwood Villa show.** The Conference
+records a durable, public `ROXIE` victory marker and exports it through API 1.
+With Sandalwood Town 0.2.0 installed, Roxie and two bandmates offer a one-night
+Villa performance after the player buys the Music System.
+
+The integration is optional and data-only. Indigo Conference registers its
+own guest profile through Sandalwood's public Villa API and never reads or
+writes Sandalwood save data. Sandalwood is absent by default from the normal
+tournament flow, and a late install reconstructs the unlock from the saved
+Roxie victory marker.
+
+
+## 1.1.30
+
+**The Conference now supports every Gen 2 edition: Gold, Silver and
+Crystal.** The manifest targets all three games and requires gen1recomp
+0.2.22 or newer, the first release line that supports both accepted Crystal
+revisions.
+
+The runtime continues to use the shared Gen 2 world, battle, party-menu and
+trainer builders. A cross-edition audit confirms that all 34 borrowed trainer
+classes, every fallback member, all 125 referenced species, all five venue
+maps, the shared Pokemon Center 2F and Colosseum, and every vanilla overworld
+sprite exist in Gold, Silver and Crystal. Crystal gives Goldenrod Pokemon
+Center a different numeric map index, but the mod already uses the stable
+symbolic map id and therefore needs no edition-specific hardcoding.
+
+Trainer safety is unchanged. Private identity rows are still additive
+`__append` patches, and party substitution still requires the positive
+`world.trainer_engaged` signal from the mod-owned arena challenger. Ordinary
+trainers in every edition keep their original parties and portraits.
+
+Gold retains its established device-test history. Gold and Crystal were also
+loaded against their local extracted datasets; Silver uses the same GS engine
+and passed the complete Silver ROM-manifest reference audit. Silver and
+Crystal still need the normal on-device tournament playthrough before this
+test build is promoted as a release.
+
+
+## 1.1.29
+
+**Larry, Ash and Yellow now use fully credited Bani sprite sets.** Each
+800×300 injector sheet supplies an exact 56×56 battle front and six-frame
+16×96 walking strip. The runtime crops exclude all palette guides, back
+portraits, trainer-card portraits, surf strips, labels and presentation
+canvas. Battle fronts retain Bani's four source colors; overworld strips use
+the closest Gold palette without modifying shared sprite records.
+
+Yellow's existing tier-three entry is upgraded in place, so her
+Raticate/Dodrio/Pikachu party, dialogue, tier and order are unchanged. Ash
+returns with his previously established Pikachu/Snorlax/Charizard team.
+Larry joins tier three with Gen 2 stand-ins for his Paldea Normal team:
+Snorlax for Komala, Dunsparce for Dudunsparce and Pidgeot for Staraptor.
+The normal roster now contains 66 challengers.
+
+All three use private SPRITE_IPC ids and battle-state-only portraits. Their
+trainer identities are appended under private member ids, and the existing
+positive Conference battle gate remains unchanged; no vanilla trainer party,
+shared portrait or shared overworld sprite is overwritten. The user confirmed
+all three sheets are by **Bani** and cleared for use with Bani credit.
+
+## 1.1.28
+
+**A.J. now uses TheBrawlUnit's directly approved custom sprite set.** The
+supplied sheet is an exact 2× enlargement, so its 56×56 battle portrait and
+six native 16×16 walking frames are extracted without interpolation or
+redrawing. The presentation label and canvas are excluded from the runtime
+assets.
+
+This upgrades A.J.'s existing tier-one roster entry rather than adding a
+duplicate. His Bug Catcher carrier, Sandslash/Butterfree/Primeape party,
+dialogue, tier and starting order are unchanged. A.J. is now selectable
+directly through the DEV: First-round guest option.
+
+The new walking sprite is registered under the private SPRITE_IPC_AJ id, and
+the portrait is installed only after a battle is positively identified as
+Conference-owned. No shared trainer class, vanilla portrait, or vanilla
+trainer party is overwritten. Credit is recorded to **TheBrawlUnit** with the
+user's confirmation of direct express approval.
+
+## 1.1.27
+
+**Detached palette-reference squares are removed from every affected probe
+portrait.** Component inspection found the same opaque 7×16 two-swatch block
+beside Pajamas, Vest + Glasses, Gymnast and Green-Hair Girl; those four blocks
+are removed before the portraits are padded. Waitress, Hoodie, Muscle Man,
+Delivery Boy, Old Man and Blue-Hair Kid contain no such block and are unchanged.
+
+After removing the presentation swatches, the actual Gymnast and Green-Hair
+Girl art fits inside Gold's 56×56 trainer slot. Neither character is clipped or
+resized now, and all ten runtime portraits contain exactly four colors.
+
+The source credits are complete: battle portraits are by **JustinNuggets**
+(credit may also be given as **Substitube**) under “free to use with credit”;
+the Gen 2 Additional NPCs Pack is by **FrenchOrange** and **Catwithnojob**, free
+to use and edit with credit. The original pack is no longer embedded in the mod
+because its resource page asks projects to link there instead of redistributing
+the pack. The ten entries remain `devOnly` visual tests and are still excluded
+from the 64-character random tournament roster. Existing trainer parties,
+Piers art and the positive Conference battle gate are unchanged.
 ## 1.1.26
 
-**SPIKE: custom arena room.** The Colosseum is no longer the vanilla
-link-battle room -- it is a mod-owned map with a battle arena floor
-tile (extracted from a TFJ tileset the developer supplied). The vanilla
-door warp on POKECENTER_2F is redirected to the custom room on entry.
-Placeholder walls and floor; the arena tile is the real content.
+**Ten generic NPC pairings are available as private first-round art probes.**
+Waitress, Pajamas, Hoodie, Vest + Glasses, Gymnast, Muscle Man, Delivery Boy,
+Green-Hair Girl, Old Man and Blue-Hair Kid can be forced through the renamed
+`DEV: First-round guest` option. They use private overworld sprite records,
+battle-state-only portraits and the same neutral three-Pokémon test team.
 
-Known: the warpTo redirect does not refresh the backup warp triple, so
-the 2F staircase may die after entering the arena. This is a spike --
-if the room renders correctly on device, the next step is patching the
-vanilla warp properly.
+All ten entries are marked `devOnly`: they are addressable by the developer
+selector but are never added to any ordinary tier pool. The shipped Conference
+draw remains exactly 64 challengers. Their sources are preserved and clearly
+marked as blocked from public release because the original community artist
+and pack compiler attribution was lost during file transfer; the TCG,
+Monster Race and Robopon rip origins are also recorded.
+
+The 64×80 RPGXP-style walking sheets contain complete 16×16 figures at the top
+of each 16×20 cell, so conversion removes only four transparent rows. Gold's
+six-frame order is assembled without resizing. Battle portraits are centered
+and bottom-aligned on 56×56; the 59-pixel Gymnast and 57-pixel Green-Hair Girl
+sources are center-clipped to fit, never resampled. Existing parties, trainer
+members, Piers art and the positive Conference battle gate are unchanged.
 
 ## 1.1.25
 
-**Nemona joins the roster** as a tier 3 challenger with custom art by
-Mid117 (DeviantArt). Walking sprites and battle portrait converted
-from a Pokemon Scarlet-era sprite sheet using the new general-purpose
-`convert_trainer.py` pipeline in docs/sprite-sources/. She rides
-COOLTRAINERF and fields Steelix, Kingdra, and Ampharos — Gen 2
-echoes of her Scarlet team's types.
+**The three-Pokémon preliminary rule is now explicit and visually honest.**
+Before round one, the host says that only party slots 1–3 can fight in
+rounds 1–3, tells the player to reorder before entering, and confirms that
+all six return for the final.
 
-TODO/CONFIRM on device: overworld face readability and palette choice.
+Gold's voluntary and forced battle-switch menus sometimes omitted the active
+battle party and fell back to the full saved party. The Conference now uses
+the proven Spell of the Unown menu fix: while an owned preliminary battle is
+active, those menus receive the exact same three-member array as the battle.
+Benched Pokémon no longer appear as visible but unusable choices.
+
+The saved party is never shortened, reordered, or replaced. The new menu
+hook is gated by the existing positive `ourBattle` signal and clears after
+every result, so ordinary trainer battles remain untouched. Piers' approved
+art and every trainer party are unchanged.
 
 ## 1.1.24
 
-**Roxie and Piers get readable faces.** The developer's diagnosis was
-exact: nothing separated hair from face. Both now use the vanilla
-convention -- the same one Gold's own white-haired Granny sprite uses --
-a black frame around the face field, a visible hairline, bold one-row
-eyes, and a mouth mark, hand-placed per frame.
+**Piers receives a black-heavy custom overworld mapping.** His commissioned
+theme pixels now render black. Exterior silhouette and face/skin outlines
+remain black, while only enclosed clothing and hair detail lines retain
+Gold's dark Brown shade so the 16×16 art remains readable. The light pixels,
+frame layout and battle portrait are unchanged.
 
-**Piers' battle portrait returns to the crisp upper-body framing**, now
-wearing the corrected colors. Comparing all three treatments of
-Drawnamu's figure side by side, the unscaled crop is the only one whose
-pixels stay sharp; the earlier version of this framing was rejected
-wearing the broken pink-speckle palette, not because of the framing.
+No roster, team, trainer carrier, party hook, or vanilla trainer record
+changed.
 
 ## 1.1.23
-## 1.1.23
 
-**Roxie and Piers respond to the second device round.** Three findings,
-three fixes:
+**Piers' overworld sprite now uses Gold's brown object palette.** Brown is
+the darkest normal trainer palette available and replaces the bright
+red/pink clothing shade with a much darker neutral accent while preserving
+the separate black outline. The commissioned battle portrait and both Piers
+runtime image files are byte-for-byte unchanged.
 
-Their side frames turned the wrong way and are now mirrored -- both now
-face left in the sheet, the direction the engine expects before it
-mirrors for rightward facing.
-
-Both overworlds had far too much red. The pink palette renders the mid
-tone as saturated red, so the mid tone is now reserved for genuine
-accents: Roxie keeps red only on her dress stripes and bow, with dark
-tights and pale hair; Piers gets his canon black-and-white mane back,
-with red only on his jacket pinks. Faces should be readable now.
-
-Piers' battle sprite is framed at the boot tops instead of including his
-feet and the mic stand base, which gives every feature a third more
-pixels, and stray single-pixel noise is cleaned. Same pose, same mic,
-bolder read.
+No roster, team, trainer carrier, party hook, or vanilla trainer record
+changed.
 
 ## 1.1.22
-## 1.1.22
 
-**Roxie and Piers get their art rebuilt from source.** The device test
-rejected all three 1.1.21 conversions, and each had a distinct cause.
+**Piers now uses the commissioned Yogurcomics sprite set.** The new 56×56
+battle front is installed at its native size, and the supplied 3×3
+overworld grid is rearranged into Gold's six-frame 16×96 walking format
+without resizing or interpolation. Piers retains the pink Gold overworld
+palette. All commissioned battle-front, battle-back and overworld variants
+are preserved with a credit and permission record for future use.
 
-Roxie's battle portrait turned out to need no conversion at all --
-Piacarrot's sheet contains a native 56x56 GSC sprite at exact 2x scale,
-so it now ships pixel-for-pixel as drawn. Her overworld flattens the
-white-hair shading into the light tone the way Gen 2 itself draws white
-hair, so her head reads clean instead of speckled.
-
-Piers' portrait is now the complete Drawnamu figure -- mic stand and all
--- with a grey-purple dark tone replacing the hot pink that was turning
-his jacket into static. His overworld keeps the two-tone mane by pulling
-the mane fill out of the outline black.
-
-Both overworld sheets now select which rows survive the 24-to-16 fit by
-similarity, protecting the face rows outright, instead of squeezing or
-truncating. Conversion scripts ship in docs/sprite-sources/ and are
-rerunnable.
+Only Piers' private art files, credit records and the build version changed.
+His roster entry, team, trainer carrier, the protected Conference-only party
+hook and every vanilla trainer record remain unchanged.
 
 ## 1.1.21
 

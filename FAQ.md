@@ -37,6 +37,18 @@ somewhere else is untouched.
 </details>
 
 <details>
+<summary>Why can I only use three Pokémon?</summary>
+
+Rounds 1–3 are **three-on-three preliminaries**. Only Pokémon in your first
+three party slots enter those battles. Reorder your party before entering
+the Colosseum if you want a different team.
+
+Pokémon in slots 4–6 remain safely in your saved party, but they are benched
+and no longer appear in the battle switch menu. **All six Pokémon return for
+round four, the final.**
+</details>
+
+<details>
 <summary>Can I do it more than once?</summary>
 
 Yes, as many times as you like. Win a title and the announcer invites you
@@ -105,7 +117,7 @@ leader, not to your team.
 <details>
 <summary>Who is in the roster?</summary>
 
-**64 challengers across four tiers**, and each run draws one from each —
+**82 challengers across four tiers**, and each run draws one from each —
 so a card is four opponents, escalating.
 
 Broadly: anime one-offs and rookies in tier 1; rivals and specialists in
@@ -163,10 +175,10 @@ evolution and trading, like anything else stored on a Pokémon.
 </details>
 
 <details>
-<summary>Does it work on Red, Blue, Yellow or Crystal?</summary>
+<summary>Which Pokémon versions does it support?</summary>
 
-No — **Gold only**. The circuit is built on Gold's own trainer data and
-Johto's towns. On other games the mod doesn't load.
+**Gold, Silver and Crystal.** The circuit reads the active edition's own
+Gen 2 trainer data and Johto maps. It does not load in Red, Blue or Yellow.
 </details>
 
 ## Diagnostics

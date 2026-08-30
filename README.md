@@ -1,6 +1,6 @@
 # Indigo Plateau Conference
 
-A tournament circuit for **Pokémon Gold**, built on
+A tournament circuit for **Pokémon Gold, Silver and Crystal**, built on
 [gen1recomp](https://github.com/bryanthaboi/gen1recomp).
 
 Upstairs in every Pokémon Center there's a battle room nobody uses — the
@@ -13,6 +13,40 @@ different field every time, ending at the Indigo Plateau Conference itself.
 > Bug reports and ideas are welcome in [GitHub Issues](../../issues) —
 > please include the version from the load banner and which other mods you
 > had enabled.
+
+> **Sprite-test build.** Version 1.1.37 contains twelve credited dev-only art
+> probes. They are excluded from normal tournament draws and remain available
+> only through the first-round developer selector while their permanent roster
+> roles are evaluated.
+
+> **KiravelSoul test.** Version 1.1.37 adds Volkner to the normal roster and
+> adds Armored Mewtwo only to **DEV: First-round guest**. Armored Mewtwo is an
+> explicit exception to the trainer-only rule and can never enter a random draw.
+
+> **Creator-folder roster test.** Version 1.1.35 adds Barry, Bill, Colress,
+> Hugh, Maxie, Wally, Gloria, Officer Jenny and Ruin Maniac using credited
+> sheets from NolanKrawczak, RoyalGuard and TeamHistoryWaffles. Nate now uses
+> Bani's sheet. Pokémon-only sheets, native Gen 2 trainers and duplicate May,
+> Lorelei and Lance sheets remain excluded.
+
+> **Chef test.** Version 1.1.36 adds Bani's Chef only to the first-round
+> developer selector. Chef fields one Raticate as a short Ratatouille-style
+> visual test and does not enter the normal 81-challenger draw.
+
+> **Bani roster test.** Version 1.1.34 added Eusine, Juliana, Leaf, Lear,
+> Lillie and Looker with credited Bani battle and overworld art. Each is in
+> the normal draw and can also be forced into round one through
+> **DEV: First-round guest**.
+
+> **Roxie revision test.** The build keeps tharkka's approved battle
+> front and changes only the commissioned overworld hair to the light Gold
+> palette value. Select **Roxie** under **DEV: First-round guest** to force her
+> into round one and review both sprites on device.
+
+> **Sandalwood Villa integration.** Defeat Roxie in any Conference draw with
+> Sandalwood Town 0.2.0 installed. After buying the Villa's Music System, its
+> steward can host Roxie and her band for a one-night show. Sandalwood remains
+> optional and can reconstruct the unlock after a late install.
 
 Want to know who's in the pool, or how the levels are decided? Open the
 **[FAQ and spoiler guide](FAQ.md)** — every answer is collapsed, so you
@@ -36,7 +70,7 @@ climbed — the mod adds no maps, no warps and no new buildings.
 | Blackthorn Masters | Blackthorn City | 8 Johto badges |
 | Indigo Plateau Conference | Indigo Plateau | beat the Elite Four |
 
-The host tells you what's missing, and being
+Only **Johto** badges count. The host tells you what's missing, and being
 turned away costs nothing — a tournament you have running somewhere else is
 left alone.
 
@@ -51,6 +85,9 @@ anything rebalances.
 ## How a run works
 
 - **Four rounds**, one challenger each.
+- **Rounds 1–3 use only party slots 1–3.** Reorder your party before
+  entering; Pokémon in slots 4–6 are benched and do not appear in the
+  battle switch menu. All six return for the final.
 - **Win all four** and the title is yours, with a send-off from the
   announcer.
 - **Lose any round and you're eliminated** — back to round one with a
@@ -62,7 +99,7 @@ anything rebalances.
 - **A run in progress survives quitting.** The bracket travels with your
   in-game save, so loading an older save rewinds the tournament with it.
 
-**Every run fields a different card.** The roster is 64 challengers across
+**Every run fields a different card.** The roster is 82 challengers across
 four escalating tiers, and each run draws one per tier. A new draw never
 repeats the previous run's pick in a tier, so back-to-back tournaments
 always look different. Challengers speak for themselves — an introduction
@@ -76,7 +113,7 @@ Two options appear on the mod's own options screen in this test build.
 | Option | Default | What it does |
 | --- | --- | --- |
 | Diagnostic rows | **Off** | Prints what the mod is doing to the mod manager's `[ERRS]` screen |
-| DEV: Cleared art guest | **Random** | Forces one of the 28 cleared-art guests into round one so each sprite can be tested directly |
+| DEV: First-round guest | **Random** | Forces one of the 48 cleared guests or 12 private art probes into round one so each sprite can be tested directly; the probes never enter a random draw |
 
 Leave it off for normal play. **Turn it on if you're reporting a bug** —
 it's the only way to see what happened, since there's no console on a
@@ -94,16 +131,16 @@ phone. See the [FAQ](FAQ.md) for what to send.
    copy of the zip from Files first.
 3. Fully quit and relaunch.
 
-Requires gen1recomp **0.1.78 or newer**. No engine changes and no
-companion mods are needed.
+Requires gen1recomp **0.2.22 or newer**. No engine changes or companion mods
+are required; Sandalwood Town is optional for the Villa show.
 
 After installing an update, **fully quit and relaunch**. The load banner
 prints the running version, so you can confirm what's actually live.
 
 ## Compatibility
 
-**Pokémon Gold only.** Not Red, Blue or Yellow, and not Crystal. On other
-games the mod simply doesn't load.
+**All Gen 2 editions:** Pokémon Gold, Silver and Crystal. The mod does not
+load in Red, Blue or Yellow.
 
 - **It sits quietly beside other mods.** It ships no maps, tilesets or
   warps, and changes no vanilla NPC, script or trainer. Everything it
@@ -112,6 +149,9 @@ games the mod simply doesn't load.
   clobbers nothing.
 - **Ordinary trainers out in Johto are unaffected.** Tournament teams
   apply only inside the tournament.
+- **Sandalwood Town 0.2.0** — optional. A saved victory over Roxie unlocks
+  her one-night Villa show through the public Villa API. Neither mod reads
+  the other's private save bucket.
 - **[Ribbons](https://github.com/mistermiracle3036/Ribbons)** — optional,
   and **planned rather than working today**. Winning a title is already
   recorded on every Pokémon in your party, whether or not you have Ribbons
@@ -126,17 +166,29 @@ By **Mister Miracle**
 ([@mistermiracle3036](https://github.com/mistermiracle3036)).
 
 - Custom roster art by **MOLLY**, **SirWhibbles**, **KIRB/YOSHI**, **Santiago
-  Speedpaints a.k.a. Rojimenez**, and **DracoZ** is individually listed in
+  Speedpaints a.k.a. Rojimenez**, **Bani**, **NolanKrawczak**,
+  **RoyalGuard**, **TeamHistoryWaffles**, **KiravelSoul**, and **Yogurcomics** is individually listed in
   [CREDITS.md](CREDITS.md), with their exact permission statement recorded in
-  [SPRITE_PERMISSIONS.md](SPRITE_PERMISSIONS.md). The announcer uses Gold's own
+  [SPRITE_PERMISSIONS.md](SPRITE_PERMISSIONS.md). The announcer uses Gen 2's own
   Link Receptionist sprite. Every custom sprite and battle front is private to
   this mod and does not replace a shared vanilla trainer class.
-- The owned-NPC pattern this mod uses on Gold was proven first in **Court
+- The owned-NPC pattern this mod uses was proven on Gold first in **Court
   of Noctowl**.
 - Built on the [gen1recomp](https://github.com/bryanthaboi/gen1recomp)
   engine, with reference to the [pret](https://github.com/pret)
   disassembly research.
 - No artwork from the earlier Crystal Clear proof-of-concept is included.
+- A.J.'s directly approved custom battle and overworld art is by
+  **TheBrawlUnit**.
+- Larry, Ash, Yellow, Nate, Eusine, Juliana, Leaf, Lear, Lillie, Looker and Chef battle
+  and overworld art is by **Bani**, cleared for use with Bani credit.
+- Volkner and the developer-only Armored Mewtwo exception use battle and
+  overworld art by **KiravelSoul**, under the same user-confirmed visible-credit
+  terms as the other approved creator folders.
+- Ten generic class test portraits are credited to **JustinNuggets
+  (Substitube)**; their Additional NPCs Pack overworld art is credited to
+  **FrenchOrange** and **Catwithnojob**. The source pack is linked in the
+  permissions record and is not redistributed with the mod.
 
 Pokémon and Pokémon character names are trademarks of Nintendo, Creatures
 Inc. and GAME FREAK inc. This is an unofficial fan project, not affiliated

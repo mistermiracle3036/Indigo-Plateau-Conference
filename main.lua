@@ -35,18 +35,91 @@
 -- gives the guest its own displayed name. The runtime party hook is a second,
 -- positively gated layer and declines all non-Conference battles.
 --
--- Verified against gen1recomp v0.1.79.
+-- Verified against the shared Gold/Silver/Crystal Gen 2 stack in
+-- gen1recomp v0.2.24. Gold has the original device-play history; Silver and
+-- Crystal are enabled only after exact-version loading and ROM-manifest
+-- compatibility checks.
 
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.26"
+  local VERSION = "1.1.37"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
-  mod.exports.owns = { trainers = {},
-                       maps = { "IPC_COLOSSEUM" },
-                       tilesets = { "IPC_ARENA" },
+  local function defeatedGuests()
+    local raw = mod.save:get("guestWins")
+    local out = {}
+    if type(raw) == "table" then
+      for key, value in pairs(raw) do if value == true then out[key] = true end end
+    end
+    return out
+  end
+
+  local conferenceApi = { api_version = 1 }
+  function conferenceApi.hasDefeated(key)
+    return defeatedGuests()[tostring(key or ""):upper()] == true
+  end
+  function conferenceApi.getState()
+    return { defeatedGuests = defeatedGuests() }
+  end
+  mod.exports.indigo_conference = conferenceApi
+
+  local function syncVillaGuest()
+    local handle = mod.find and mod.find("sandalwood_town")
+    local villa = handle and handle.exports and handle.exports.sandalwood_villa
+    if not (villa and villa.api_version == 1
+        and type(villa.registerGuest) == "function") then return false end
+    local registered, registerErr = villa.registerGuest({
+      id = "conference_roxie_band",
+      source = MOD_ID,
+      title = "ROXIE'S BAND",
+      order = 20,
+      requiredFurniture = "music_system",
+      invite = {
+        "ROXIE SENT WORD.\nTHE BAND IS READY.",
+      },
+      requirement = {
+        "ROXIE NEEDS THE\nMUSIC SYSTEM FIRST",
+      },
+      intro = {
+        "ROXIE AND THE BAND\nTAKE THEIR PLACES.",
+        "THE AMPS GO LIVE.",
+      },
+      actors = {
+        {
+          name = "SANDALWOOD_GUEST_ROCKER",
+          sprite = "SPRITE_ROCKER",
+          x = 1, y = 8,
+          pages = { "GUITAR: CHECK ONE.\nLOUD AND CLEAN." },
+        },
+        {
+          name = "SANDALWOOD_GUEST_ROXIE",
+          sprite = "SPRITE_IPC_ROXIE",
+          x = 3, y = 8,
+          pages = {
+            "ROXIE: SANDALWOOD!\nMAKE SOME NOISE!",
+            "ONE NIGHT. ONE SET\nNO ENCORES!",
+          },
+        },
+        {
+          name = "SANDALWOOD_GUEST_DRUMMER",
+          sprite = "SPRITE_COOLTRAINER_F",
+          x = 5, y = 8,
+          pages = { "DRUMMER: COUNT US\nIN, ROXIE!" },
+        },
+      },
+    })
+    if not registered then return nil, registerErr end
+    if conferenceApi.hasDefeated("ROXIE")
+        and type(villa.unlockGuest) == "function" then
+      return villa.unlockGuest("conference_roxie_band")
+    end
+    return true
+  end
+  -- Custom art is registered under mod-owned sprite ids. No trainer, party,
+  -- map or tileset record is claimed here.
+  mod.exports.owns = { trainers = {}, maps = {}, tilesets = {},
                        sprites = { "SPRITE_IPC_BRENDAN",
                                    "SPRITE_IPC_DAWN",
                                    "SPRITE_IPC_GREEN",
@@ -73,11 +146,41 @@ return function(mod)
                                    "SPRITE_IPC_ROCKET_GRUNT_F",
                                    "SPRITE_IPC_ROXIE",
                                    "SPRITE_IPC_PIERS",
-                                   "SPRITE_IPC_NEMONA" } }
+                                   "SPRITE_IPC_AJ",
+                                   "SPRITE_IPC_LARRY",
+                                   "SPRITE_IPC_ASH",
+                                   "SPRITE_IPC_YELLOW",
+                                   "SPRITE_IPC_EUSINE",
+                                   "SPRITE_IPC_JULIANA",
+                                   "SPRITE_IPC_LEAF",
+                                   "SPRITE_IPC_LEAR",
+                                   "SPRITE_IPC_LILLIE",
+                                   "SPRITE_IPC_LOOKER",
+                                   "SPRITE_IPC_BARRY",
+                                   "SPRITE_IPC_BILL",
+                                   "SPRITE_IPC_COLRESS",
+                                   "SPRITE_IPC_HUGH",
+                                   "SPRITE_IPC_MAXIE",
+                                   "SPRITE_IPC_WALLY",
+                                   "SPRITE_IPC_GLORIA",
+                                   "SPRITE_IPC_OFFICER_JENNY",
+                                   "SPRITE_IPC_RUIN_MANIAC",
+                                   "SPRITE_IPC_CHEF",
+                                   "SPRITE_IPC_VOLKNER",
+                                   "SPRITE_IPC_ARMORED_MEWTWO",
+                                   "SPRITE_IPC_PROBE_WAITRESS",
+                                   "SPRITE_IPC_PROBE_PAJAMAS",
+                                   "SPRITE_IPC_PROBE_HOODIE",
+                                   "SPRITE_IPC_PROBE_VEST_GLASSES",
+                                   "SPRITE_IPC_PROBE_GYMNAST",
+                                   "SPRITE_IPC_PROBE_MUSCLE_MAN",
+                                   "SPRITE_IPC_PROBE_DELIVERY",
+                                   "SPRITE_IPC_PROBE_GREEN_HAIR_GIRL",
+                                   "SPRITE_IPC_PROBE_OLD_MAN",
+                                   "SPRITE_IPC_PROBE_BLUE_HAIR" } }
 
   local LOBBY = "POKECENTER_2F"
-  local VANILLA_ARENA = "COLOSSEUM"
-  local ARENA = "IPC_COLOSSEUM"
+  local ARENA = "COLOSSEUM"
 
   -- POKECENTER_2F warp 3 of 4 -> COLOSSEUM, read off the device census
   -- (1 = 0,7 stairs down; 2 = 5,0 TRADE_CENTER; 4 = 13,2 TIME_CAPSULE).
@@ -126,7 +229,7 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_MICHAEL", "michael.png", "PAL_OW_RED", 0)
   registerGuestSprite("SPRITE_IPC_BEA", "bea.png", "PAL_OW_PINK", 4)
   registerGuestSprite("SPRITE_IPC_MINA", "mina.png", "PAL_OW_PINK", 4)
-  registerGuestSprite("SPRITE_IPC_NATE", "nate.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_NATE", "nate.png", "PAL_OW_BLUE", 1)
   registerGuestSprite("SPRITE_IPC_STADIUM_PLAYER", "stadium_player.png", "PAL_OW_RED", 0)
   registerGuestSprite("SPRITE_IPC_ROSA", "rosa.png", "PAL_OW_RED", 0)
   registerGuestSprite("SPRITE_IPC_WES", "wes.png", "PAL_OW_BLUE", 1)
@@ -141,81 +244,71 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_ROCKET_GRUNT_M", "rocket_grunt_m.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_ROCKET_GRUNT_F", "rocket_grunt_f.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_ROXIE", "roxie.png", "PAL_OW_PINK", 4)
-  registerGuestSprite("SPRITE_IPC_PIERS", "piers.png", "PAL_OW_PINK", 4)
-  registerGuestSprite("SPRITE_IPC_NEMONA", "nemona.png", "PAL_OW_RED", 0)
-
-  -- SPIKE: custom arena room. Tile sheet cut from the TFJ exterior tileset.
-  mod.content.tilesets:register("IPC_ARENA", {
-    image = mod.path .. "/assets/arena_tilesheet.png",
-    imageWidth = 128,
-    imageHeight = 56,
-    tilesPerRow = 16,
-    trueColor = true,
-    blocks = {
-      { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 },
-      { 101, 102, 101, 102, 102, 101, 102, 101, 101, 102, 101, 102, 102, 101, 102, 101 },
-      { 100, 100, 100, 100, 100, 100, 100, 100, 105, 105, 105, 105, 106, 106, 106, 106 },
-      { 105, 103, 103, 105, 106, 104, 104, 106, 101, 101, 101, 101, 101, 101, 101, 101 },
-      { 0, 0, 1, 2, 11, 12, 13, 14, 24, 25, 26, 25, 38, 17, 17, 17 },
-      { 3, 0, 4, 5, 15, 12, 16, 17, 26, 27, 28, 17, 17, 39, 40, 17 },
-      { 5, 5, 5, 6, 17, 17, 18, 19, 17, 29, 30, 31, 17, 41, 42, 43 },
-      { 7, 5, 5, 5, 20, 21, 17, 17, 32, 33, 34, 17, 44, 45, 46, 17 },
-      { 5, 8, 9, 0, 17, 22, 15, 12, 17, 35, 36, 26, 17, 47, 48, 17 },
-      { 1, 2, 3, 10, 13, 14, 15, 23, 25, 26, 25, 37, 17, 17, 17, 49 },
-      { 50, 17, 17, 17, 58, 59, 60, 61, 77, 78, 79, 80, 90, 0, 91, 92 },
-      { 17, 39, 40, 17, 62, 63, 64, 17, 81, 82, 83, 17, 93, 0, 94, 95 },
-      { 17, 51, 52, 53, 17, 65, 66, 67, 17, 17, 84, 85, 95, 95, 95, 96 },
-      { 54, 55, 56, 17, 68, 69, 70, 17, 86, 87, 17, 17, 97, 95, 95, 95 },
-      { 17, 47, 48, 17, 17, 47, 71, 72, 17, 47, 88, 78, 95, 98, 9, 0 },
-      { 17, 17, 17, 57, 73, 74, 75, 76, 79, 80, 81, 89, 91, 92, 93, 99 },
-    },
-    collision = {
-      { 0x0f, 0x0f, 0x0f, 0x0f },
-      { 0x00, 0x00, 0x00, 0x00 },
-      { 0x0f, 0x0f, 0x0f, 0x0f },
-      { 0x0f, 0x0f, 0x00, 0x00 },
-      { 0x0f, 0x0f, 0x00, 0x00 },
-      { 0x0f, 0x0f, 0x00, 0x00 },
-      { 0x0f, 0x0f, 0x00, 0x00 },
-      { 0x0f, 0x0f, 0x00, 0x00 },
-      { 0x0f, 0x0f, 0x00, 0x00 },
-      { 0x0f, 0x0f, 0x00, 0x00 },
-      { 0x00, 0x00, 0x0f, 0x0f },
-      { 0x00, 0x00, 0x00, 0x00 },
-      { 0x00, 0x00, 0x00, 0x00 },
-      { 0x00, 0x00, 0x00, 0x00 },
-      { 0x00, 0x00, 0x00, 0x00 },
-      { 0x00, 0x00, 0x0f, 0x0f },
-    },
-  })
-
-  mod.content.maps:register("IPC_COLOSSEUM", {
-    id = "IPC_COLOSSEUM",
-    label = "Colosseum",
-    tileset = "IPC_ARENA",
-    width = 8,
-    height = 7,
-    borderBlock = 0,
-    environment = "INDOOR",
-    blocks = {
-      0, 2, 2, 2, 2, 2, 2, 0,
-      0, 1, 1, 1, 1, 1, 1, 0,
-      0, 4, 5, 6, 7, 8, 9, 0,
-      0, 10, 11, 12, 13, 14, 15, 0,
-      0, 1, 1, 1, 1, 1, 1, 0,
-      0, 1, 1, 3, 3, 1, 1, 0,
-      0, 0, 0, 0, 0, 0, 0, 0,
-    },
-    warps = {
-      { x = 7, y = 11, destMap = "POKECENTER_2F", destWarp = 3 },
-      { x = 8, y = 11, destMap = "POKECENTER_2F", destWarp = 3 },
-    },
-  })
+  -- Piers' native theme pixels are black-heavy in this asset; Brown is
+  -- retained only for enclosed detail lines that would disappear in black.
+  registerGuestSprite("SPRITE_IPC_PIERS", "piers.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_AJ", "aj.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_LARRY", "larry.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_ASH", "ash.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_YELLOW", "yellow.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_EUSINE", "eusine.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_JULIANA", "juliana.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_LEAF", "leaf.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_LEAR", "lear.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_LILLIE", "lillie.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_LOOKER", "looker.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_BARRY", "barry.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_BILL", "bill.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_COLRESS", "colress.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_HUGH", "hugh.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_MAXIE", "maxie.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_WALLY", "wally.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_GLORIA", "gloria.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_OFFICER_JENNY", "officer_jenny.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_RUIN_MANIAC", "ruin_maniac.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_CHEF", "chef.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_VOLKNER", "volkner.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_ARMORED_MEWTWO", "armored_mewtwo.png", "PAL_OW_PINK", 4)
+  -- Private visual probes. These ten generic classes are selectable only
+  -- through the first-round developer option and are excluded from normal
+  -- tournament draws. Their source credits and permission links are recorded.
+  registerGuestSprite("SPRITE_IPC_PROBE_WAITRESS", "probe_waitress.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_PROBE_PAJAMAS", "probe_pajamas.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_PROBE_HOODIE", "probe_hoodie.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_PROBE_VEST_GLASSES", "probe_vest_glasses.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_PROBE_GYMNAST", "probe_gymnast.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_PROBE_MUSCLE_MAN", "probe_muscle_man.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_PROBE_DELIVERY", "probe_delivery.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_PROBE_GREEN_HAIR_GIRL", "probe_green_hair_girl.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_PROBE_OLD_MAN", "probe_old_man.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_PROBE_BLUE_HAIR", "probe_blue_hair.png", "PAL_OW_BLUE", 1)
 
   -- Battle fronts are replaced only on the already-created UI state for a
   -- positively identified Conference battle. Shared class picture tables
   -- stay untouched, which preserves every ordinary trainer battle.
   local BATTLE_FRONTS = {
+    AJ = mod.path .. "/assets/aj_front.png",
+    LARRY = mod.path .. "/assets/larry_front.png",
+    ASH = mod.path .. "/assets/ash_front.png",
+    YELLOW = mod.path .. "/assets/yellow_front.png",
+    EUSINE = mod.path .. "/assets/eusine_front.png",
+    JULIANA = mod.path .. "/assets/juliana_front.png",
+    LEAF = mod.path .. "/assets/leaf_front.png",
+    LEAR = mod.path .. "/assets/lear_front.png",
+    LILLIE = mod.path .. "/assets/lillie_front.png",
+    LOOKER = mod.path .. "/assets/looker_front.png",
+    BARRY = mod.path .. "/assets/barry_front.png",
+    BILL = mod.path .. "/assets/bill_front.png",
+    COLRESS = mod.path .. "/assets/colress_front.png",
+    HUGH = mod.path .. "/assets/hugh_front.png",
+    MAXIE = mod.path .. "/assets/maxie_front.png",
+    WALLY = mod.path .. "/assets/wally_front.png",
+    GLORIA = mod.path .. "/assets/gloria_front.png",
+    OFFICER_JENNY = mod.path .. "/assets/officer_jenny_front.png",
+    RUIN_MANIAC = mod.path .. "/assets/ruin_maniac_front.png",
+    CHEF = mod.path .. "/assets/chef_front.png",
+    VOLKNER = mod.path .. "/assets/volkner_front.png",
+    ARMORED_MEWTWO = mod.path .. "/assets/armored_mewtwo_front.png",
     BRENDAN = mod.path .. "/assets/brendan_front.png",
     DAWN = mod.path .. "/assets/dawn_front.png",
     GREEN = mod.path .. "/assets/green_front.png",
@@ -244,13 +337,44 @@ return function(mod)
     ROCKET_GRUNT_F = mod.path .. "/assets/rocket_grunt_f_front.png",
     ROXIE = mod.path .. "/assets/roxie_front.png",
     PIERS = mod.path .. "/assets/piers_front.png",
-    NEMONA = mod.path .. "/assets/nemona_front.png",
+    PROBE_WAITRESS = mod.path .. "/assets/probe_waitress_front.png",
+    PROBE_PAJAMAS = mod.path .. "/assets/probe_pajamas_front.png",
+    PROBE_HOODIE = mod.path .. "/assets/probe_hoodie_front.png",
+    PROBE_VEST_GLASSES = mod.path .. "/assets/probe_vest_glasses_front.png",
+    PROBE_GYMNAST = mod.path .. "/assets/probe_gymnast_front.png",
+    PROBE_MUSCLE_MAN = mod.path .. "/assets/probe_muscle_man_front.png",
+    PROBE_DELIVERY = mod.path .. "/assets/probe_delivery_front.png",
+    PROBE_GREEN_HAIR_GIRL = mod.path .. "/assets/probe_green_hair_girl_front.png",
+    PROBE_OLD_MAN = mod.path .. "/assets/probe_old_man_front.png",
+    PROBE_BLUE_HAIR = mod.path .. "/assets/probe_blue_hair_front.png",
   }
 
   -- These portraits are pre-colored with their chosen Gold palette.
   -- Mark only them true-color so their borrowed trainer classes cannot
   -- remap the art through an unrelated class palette during battle.
   local TRUE_COLOR_FRONTS = {
+    AJ = true,
+    LARRY = true,
+    ASH = true,
+    YELLOW = true,
+    EUSINE = true,
+    JULIANA = true,
+    LEAF = true,
+    LEAR = true,
+    LILLIE = true,
+    LOOKER = true,
+    BARRY = true,
+    BILL = true,
+    COLRESS = true,
+    HUGH = true,
+    MAXIE = true,
+    WALLY = true,
+    GLORIA = true,
+    OFFICER_JENNY = true,
+    RUIN_MANIAC = true,
+    CHEF = true,
+    VOLKNER = true,
+    ARMORED_MEWTWO = true,
     LYRA = true,
     MAY = true,
     MICHAEL = true,
@@ -272,7 +396,16 @@ return function(mod)
     ROCKET_GRUNT_F = true,
     ROXIE = true,
     PIERS = true,
-    NEMONA = true,
+    PROBE_WAITRESS = true,
+    PROBE_PAJAMAS = true,
+    PROBE_HOODIE = true,
+    PROBE_VEST_GLASSES = true,
+    PROBE_GYMNAST = true,
+    PROBE_MUSCLE_MAN = true,
+    PROBE_DELIVERY = true,
+    PROBE_GREEN_HAIR_GIRL = true,
+    PROBE_OLD_MAN = true,
+    PROBE_BLUE_HAIR = true,
   }
 
   local ROUNDS = 4
@@ -293,13 +426,13 @@ return function(mod)
   -- leader anchor gives each venue a fixed difficulty a step above the badge
   -- that let you in, consistent town to town by construction.
   ----------------------------------------------------------------------
-  -- THE POOL (0.9.0+): 64 challengers across four tiers -- the design
+  -- THE POOL (1.1.37): 82 challengers across four tiers -- the design
   -- pass's roster draft (ROSTER_NOTES.md), with the four shipped
   -- characters folded in. Each RUN draws one name per tier (newDraw
   -- below), so no two tournaments need repeat.
   --
   -- Every class, member, sprite and species below was verified against
-  -- rom_manifest_gold.json THIS session -- the draft's TODO/CONFIRM
+  -- all three Gen 2 ROM manifests THIS session -- the draft's TODO/CONFIRM
   -- placeholders are all resolved. Notable finds: SCHOOLBOY has a real
   -- member JOE, HIKER has ANTHONY1 and MICHAEL, so those three battle
   -- under their actual names; MR__MIME is spelled with TWO underscores;
@@ -311,7 +444,7 @@ return function(mod)
 
   -- ========================= TIER 1 =========================
   { key = "AJ", tier = 1, class = "BUG_CATCHER", member = "DON",
-    sprite = "SPRITE_YOUNGSTER", name = "A.J.",
+    sprite = "SPRITE_IPC_AJ", name = "A.J.",
     chat = "A.J.: I warmed up\non six GEODUDE.",
     intro = "A.J.: My gym\nnever lost.\fNeither do I.",
     win  = "My streak...\fFine. Take it.",
@@ -565,7 +698,7 @@ return function(mod)
               { species = "DITTO",      delta = 0 } } },
 
   { key = "YELLOW", tier = 3, class = "PICNICKER", member = "HOPE",
-    sprite = "SPRITE_LASS", name = "YELLOW",
+    sprite = "SPRITE_IPC_YELLOW", name = "YELLOW",
     chat = "YELLOW: The forest\nsays hello.",
     intro = "YELLOW: Let's be\ngentle... mostly.",
     win = "Everyone's ok?\nThen I'm happy.",
@@ -812,8 +945,8 @@ return function(mod)
               { species = "MUK",     delta = 0 },
               { species = "CROBAT",  delta = 1 } } },
 
-  -- TODO/CONFIRM on device: Piers uses Drawnamu's upper-body figure crop so
-  -- his face, hair, arm and microphone remain readable in Gold's 56x56 slot.
+  -- TODO/CONFIRM on device: Piers uses Yogurcomics' commissioned native
+  -- Gold-size front and overworld art, converted without resizing.
   { key = "PIERS", tier = 3, class = "JANINE", member = "JANINE1",
     sprite = "SPRITE_IPC_PIERS", name = "PIERS",
     chat = "PIERS: No gimmicks.\nJust battle.",
@@ -826,19 +959,388 @@ return function(mod)
               { species = "SNEASEL",  delta = 0 },
               { species = "HOUNDOOM", delta = 1 } } },
 
-  -- TODO/CONFIRM on device: overworld face readability and palette fit.
-  -- Converted from Mid117's Scarlet-era sheet via convert_trainer.py.
-  { key = "NEMONA", tier = 3, class = "COOLTRAINERF", member = "FRAN",
-    sprite = "SPRITE_IPC_NEMONA", name = "NEMONA",
-    chat = "NEMONA: Finally!\nA tournament!\fI'm battling\nEVERYONE!",
-    intro = "NEMONA: I've been\nwaiting for this!\fLet's go ALL OUT!",
-    win = "That was SO GOOD!\fI want a rematch\nalready!",
-    loss = "YES! That's what\nI'm talking about!\fBest fight yet!",
-    afterWin = "NEMONA: Don't go\nyet! One more?",
-    afterLoss = "NEMONA: We HAVE\nto do this again!\fPromise me!",
-    party = { { species = "STEELIX",  delta = 0 },
-              { species = "KINGDRA",  delta = 0 },
-              { species = "AMPHAROS", delta = 1 } } },
+  { key = "LARRY", tier = 3, class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_LARRY", name = "LARRY",
+    chat = "LARRY: I was told\nto report here.",
+    intro = "LARRY: Let's get\nthis over with.",
+    win = "A loss. That's\novertime, I suppose.",
+    loss = "Back to work.",
+    afterWin = "LARRY: I'll file\nthe paperwork.",
+    afterLoss = "LARRY: Lunch break\nis nearly over.",
+    -- Gen 2 stand-ins for Komala, Dudunsparce and Staraptor.
+    party = { { species = "SNORLAX",   delta = 0 },
+              { species = "DUNSPARCE", delta = 0 },
+              { species = "PIDGEOT",   delta = 1 } } },
+
+  { key = "ASH", tier = 3, class = "COOLTRAINERM", member = "NICK",
+    sprite = "SPRITE_IPC_ASH", name = "ASH",
+    chat = "ASH: I choose you!",
+    intro = "ASH: PIKACHU,\nlet's do this!",
+    win = "That was an awesome\nbattle!",
+    loss = "All right! We won!",
+    afterWin = "ASH: We'll train\nand try again.",
+    afterLoss = "ASH: Thanks for\na great match!",
+    party = { { species = "PIKACHU",   delta = 0 },
+              { species = "SNORLAX",   delta = 0 },
+              { species = "CHARIZARD", delta = 1 } } },
+
+  { key = "EUSINE", tier = 2, class = "PSYCHIC_T", member = "HERMAN",
+    sprite = "SPRITE_IPC_EUSINE", name = "EUSINE",
+    chat = "EUSINE: A legend\nled me here.",
+    intro = "EUSINE: Show me\nyour rare spirit!",
+    win = "An elegant battle.\nI learned much.",
+    loss = "The chase continues!",
+    afterWin = "EUSINE: One step\ncloser to SUICUNE.",
+    afterLoss = "EUSINE: SUICUNE\nwill hear of this!",
+    -- Eusine's complete Crystal team.
+    party = { { species = "DROWZEE",    delta = 0 },
+              { species = "HAUNTER",    delta = 0 },
+              { species = "ELECTRODE",  delta = 1 } } },
+
+  { key = "JULIANA", tier = 2, class = "PICNICKER", member = "HOPE",
+    sprite = "SPRITE_IPC_JULIANA", name = "JULIANA",
+    chat = "JULIANA: It feels\nlike treasure!",
+    intro = "JULIANA: Let's go,\npartners!",
+    win = "What a great lesson!",
+    loss = "Adventure complete!",
+    afterWin = "JULIANA: There's\nalways another path.",
+    afterLoss = "JULIANA: One for\nthe scrapbook!",
+    -- Gen 2 interpretation retained from the earlier concept test.
+    party = { { species = "MEGANIUM",  delta = 0 },
+              { species = "SHUCKLE",   delta = 0 },
+              { species = "DRAGONITE", delta = 1 } } },
+
+  { key = "LEAF", tier = 3, class = "COOLTRAINERF", member = "GWEN",
+    sprite = "SPRITE_IPC_LEAF", name = "LEAF",
+    chat = "LEAF: KANTO skills\ntravel well.",
+    intro = "LEAF: EEVEE,\nshow our bond!",
+    win = "That was a great run!",
+    loss = "Our bond held strong!",
+    afterWin = "LEAF: We'll find\na new way forward.",
+    afterLoss = "LEAF: EEVEE knew\nwe could do it!",
+    -- Kanto- and Masters-inspired Gen 2 team.
+    party = { { species = "EEVEE",    delta = 0 },
+              { species = "LAPRAS",   delta = 0 },
+              { species = "VENUSAUR", delta = 1 } } },
+
+  { key = "LEAR", tier = 3, class = "PSYCHIC_T", member = "HERMAN",
+    sprite = "SPRITE_IPC_LEAR", name = "LEAR",
+    chat = "LEAR: A king needs\nno introduction.",
+    intro = "LEAR: Witness\nroyal strength!",
+    win = "You earned my notice.",
+    loss = "A fitting royal win!",
+    afterWin = "LEAR: I will not\nforget this result.",
+    afterLoss = "LEAR: Remember\nwho rules here.",
+    -- Gen 2 royal and psychic stand-ins for Lear's later-generation roster.
+    party = { { species = "PERSIAN",     delta = 0 },
+              { species = "MISDREAVUS",  delta = 0 },
+              { species = "ALAKAZAM",    delta = 1 } } },
+
+  { key = "LILLIE", tier = 2, class = "LASS", member = "ELLEN",
+    sprite = "SPRITE_IPC_LILLIE", name = "LILLIE",
+    chat = "LILLIE: I want to\ngrow stronger too.",
+    intro = "LILLIE: Everyone,\ndo your best!",
+    win = "We learned so much.",
+    loss = "We were brave!",
+    afterWin = "LILLIE: We'll keep\npracticing.",
+    afterLoss = "LILLIE: Thank you,\neveryone.",
+    -- Gen 2 interpretation retained from the earlier concept test.
+    party = { { species = "VULPIX",   delta = 0 },
+              { species = "CLEFAIRY", delta = 0 },
+              { species = "UMBREON",  delta = 1 } } },
+
+  { key = "LOOKER", tier = 2, class = "OFFICER", member = "KEITH",
+    sprite = "SPRITE_IPC_LOOKER", name = "LOOKER",
+    chat = "LOOKER: This arena\nis under watch.",
+    intro = "LOOKER: The battle\ncase begins!",
+    win = "Case remains open.",
+    loss = "Case closed!",
+    afterWin = "LOOKER: I require\nmore evidence.",
+    afterLoss = "LOOKER: A clean\nlawful victory!",
+    -- Gen 2 detective, police-dog and Croagunk stand-ins.
+    party = { { species = "NOCTOWL",   delta = 0 },
+              { species = "HOUNDOOM",  delta = 0 },
+              { species = "POLIWRATH", delta = 1 } } },
+
+  { key = "BARRY", tier = 2, class = "COOLTRAINERM", member = "RYAN",
+    sprite = "SPRITE_IPC_BARRY", name = "BARRY",
+    chat = "BARRY: You're late!\nThat's a fine!",
+    intro = "BARRY: Thud! Let's\nget moving!",
+    win = "What just happened?",
+    loss = "Too slow! Too slow!",
+    afterWin = "BARRY: Next time\nI'll be faster!",
+    afterLoss = "BARRY: New record!",
+    -- Compact Gen 2 interpretation of Barry's Sinnoh roster.
+    party = { { species = "HERACROSS", delta = 0 },
+              { species = "SNORLAX",   delta = 0 },
+              { species = "RAPIDASH",  delta = 1 } } },
+
+  { key = "BILL", tier = 1, class = "SCIENTIST", member = "ROSS",
+    sprite = "SPRITE_IPC_BILL", name = "BILL",
+    chat = "BILL: This setup\nis fascinating!",
+    intro = "BILL: Let's test\nour connection!",
+    win = "Back to the\ndrawing board!",
+    loss = "Experiment\nsuccessful!",
+    afterWin = "BILL: Your team\ngave me an idea.",
+    afterLoss = "BILL: Come see my\nPC sometime!",
+    -- Bill has no native trainer portrait, so this private art makes his
+    -- existing Gen 2 character a distinct Conference challenger.
+    party = { { species = "EEVEE",    delta = 0 },
+              { species = "CLEFAIRY", delta = 0 },
+              { species = "PORYGON",  delta = 1 } } },
+
+  { key = "COLRESS", tier = 3, class = "SCIENTIST", member = "ROSS",
+    sprite = "SPRITE_IPC_COLRESS", name = "COLRESS",
+    chat = "COLRESS: What\nunlocks strength?",
+    intro = "COLRESS: Show me\nyour answer!",
+    win = "Excellent results!",
+    loss = "The theory holds.",
+    afterWin = "COLRESS: Your bond\nis remarkable.",
+    afterLoss = "COLRESS: More data\nfor the model.",
+    party = { { species = "MAGNETON", delta = 0 },
+              { species = "PORYGON2", delta = 0 },
+              { species = "SCIZOR",   delta = 1 } } },
+
+  { key = "HUGH", tier = 2, class = "COOLTRAINERM", member = "RYAN",
+    sprite = "SPRITE_IPC_HUGH", name = "HUGH",
+    chat = "HUGH: I won't let\nfriends be stolen!",
+    intro = "HUGH: Put your\nheart into it!",
+    win = "I need more strength.",
+    loss = "That's true resolve!",
+    afterWin = "HUGH: I'll keep\npushing forward.",
+    afterLoss = "HUGH: Never leave\na friend behind!",
+    party = { { species = "FEAROW", delta = 0 },
+              { species = "MAGMAR", delta = 0 },
+              { species = "TAUROS", delta = 1 } } },
+
+  { key = "MAXIE", tier = 3, class = "EXECUTIVEM", member = "EXECUTIVEM_2",
+    sprite = "SPRITE_IPC_MAXIE", name = "MAXIE",
+    chat = "MAXIE: Land fuels\nall progress.",
+    intro = "MAXIE: Team MAGMA\nwill demonstrate!",
+    win = "My plan failed.",
+    loss = "The land expands!",
+    afterWin = "MAXIE: I must\nrevise the plan.",
+    afterLoss = "MAXIE: Progress\nrequires resolve.",
+    party = { { species = "HOUNDOOM", delta = 0 },
+              { species = "CROBAT",   delta = 0 },
+              { species = "MAGCARGO", delta = 1 } } },
+
+  { key = "WALLY", tier = 2, class = "COOLTRAINERM", member = "NICK",
+    sprite = "SPRITE_IPC_WALLY", name = "WALLY",
+    chat = "WALLY: I finally\nmade it here!",
+    intro = "WALLY: Let's grow\ntogether!",
+    win = "You helped me grow.",
+    loss = "We did it together!",
+    afterWin = "WALLY: I'll train\nfor our rematch.",
+    afterLoss = "WALLY: Thank you\nfor believing!",
+    -- Gallade and Altaria are represented by Gen 2 Psychic and Dragon picks.
+    party = { { species = "XATU",      delta = 0 },
+              { species = "MAGNETON",  delta = 0 },
+              { species = "DRAGONITE", delta = 1 } } },
+
+  { key = "GLORIA", tier = 3, class = "COOLTRAINERF", member = "GWEN",
+    sprite = "SPRITE_IPC_GLORIA", name = "GLORIA",
+    chat = "GLORIA: Champion\ncoming through!",
+    intro = "GLORIA: Let's give\nit everything!",
+    win = "That was brilliant!",
+    loss = "A win for us!",
+    afterWin = "GLORIA: Next time,\nI'll be ready.",
+    afterLoss = "GLORIA: Cheers!\nWhat a battle!",
+    -- Gen 2 stand-ins for a Galar player-character championship team.
+    party = { { species = "FERALIGATR", delta = 0 },
+              { species = "TYPHLOSION", delta = 0 },
+              { species = "SKARMORY",   delta = 1 } } },
+
+  { key = "OFFICER_JENNY", tier = 1, class = "OFFICER", member = "KEITH",
+    sprite = "SPRITE_IPC_OFFICER_JENNY", name = "JENNY",
+    chat = "JENNY: Keep this\nbattle orderly!",
+    intro = "JENNY: You're clear\nto begin!",
+    win = "Case remains open.",
+    loss = "Order restored!",
+    afterWin = "JENNY: I'll file\na full report.",
+    afterLoss = "JENNY: Clean match.\nCarry on!",
+    -- Anime-inspired police roster led by her signature Growlithe line.
+    party = { { species = "GROWLITHE", delta = 0 },
+              { species = "NOCTOWL",   delta = 0 },
+              { species = "ARCANINE",  delta = 1 } } },
+
+  { key = "RUIN_MANIAC", tier = 2, class = "HIKER", member = "ANTHONY1",
+    sprite = "SPRITE_IPC_RUIN_MANIAC", name = "RUIN MANIAC",
+    chat = "RUIN MANIAC: I\ndug up a battle!",
+    intro = "RUIN MANIAC: Old\npower, awaken!",
+    win = "A historic upset!",
+    loss = "Ancient power wins!",
+    afterWin = "RUIN MANIAC: Back\nto the dig site.",
+    afterLoss = "RUIN MANIAC: A\nfind for the ages!",
+    party = { { species = "OMASTAR",    delta = 0 },
+              { species = "KABUTOPS",   delta = 0 },
+              { species = "AERODACTYL", delta = 1 } } },
+
+  { key = "VOLKNER", tier = 3, class = "LT_SURGE", member = "LT_SURGE1",
+    sprite = "SPRITE_IPC_VOLKNER", name = "VOLKNER",
+    chat = "VOLKNER: Show me a\nbattle worth feeling.",
+    intro = "VOLKNER: Let's make\nsome sparks fly!",
+    win = "Now that's a real\nchallenge!",
+    loss = "The current was\ntoo strong!",
+    afterWin = "VOLKNER: That woke\nme right up.",
+    afterLoss = "VOLKNER: Good. I\nneeded that battle.",
+    -- Gen 2 stand-ins for Volkner's Sinnoh electric specialists:
+    -- Electabuzz represents Electivire, which does not exist in Gen 2.
+    party = { { species = "JOLTEON",    delta = 0 },
+              { species = "RAICHU",     delta = 0 },
+              { species = "ELECTABUZZ", delta = 1 } } },
+
+  -- Explicit user-approved exception to the usual trainer-only rule.
+  -- Armored Mewtwo is a private visual probe, never a random draw.
+  { key = "ARMORED_MEWTWO", tier = 1, devOnly = true,
+    class = "PSYCHIC_T", member = "HERMAN",
+    sprite = "SPRITE_IPC_ARMORED_MEWTWO", name = "A.MEWTWO",
+    chat = "ARMORED MEWTWO:\nSystems online.",
+    intro = "ARMORED MEWTWO:\nCombat test begins.",
+    win = "Armor integrity\ncompromised.",
+    loss = "Combat test\ncomplete.",
+    afterWin = "ARMORED MEWTWO:\nRecalibrating.",
+    afterLoss = "ARMORED MEWTWO:\nTarget subdued.",
+    party = { { species = "MEWTWO", delta = 0 } } },
+
+  -- TODO/CONFIRM: Chef is a visual-test identity rather than a permanent
+  -- Conference character. One Raticate is intentional for the Ratatouille
+  -- joke and keeps this first-round sprite check short.
+  { key = "CHEF", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_CHEF", name = "CHEF",
+    chat = "CHEF: Today's\nspecial is ready!",
+    intro = "CHEF: RATICATE,\ntake the table!",
+    win = "Back to the kitchen!",
+    loss = "Compliments to\nthe chef!",
+    afterWin = "CHEF: I'll revise\nthe recipe.",
+    afterLoss = "CHEF: Perfect!\nService complete.",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  -- ================= PRIVATE NPC-PAIRING PROBES =================
+  -- These generic classes are intentionally NOT Conference roster choices.
+  -- `devOnly` keeps them out of TIERS below, while the first-round option can
+  -- still exercise the full owned-NPC, battle-front and party paths. The same
+  -- neutral three-mon team isolates sprite testing from roster design.
+  { key = "PROBE_WAITRESS", tier = 1, devOnly = true,
+    class = "BEAUTY", member = "SAMANTHA",
+    sprite = "SPRITE_IPC_PROBE_WAITRESS", name = "WAITRESS",
+    chat = "WAITRESS: Private\nsprite test.",
+    intro = "WAITRESS: Let's\ntest this look!",
+    win = "Test complete.", loss = "Test complete.",
+    afterWin = "WAITRESS: Art\nreview complete.",
+    afterLoss = "WAITRESS: Art\nreview complete.",
+    party = { { species = "PIDGEY", delta = 0 },
+              { species = "RATTATA", delta = 0 },
+              { species = "SPEAROW", delta = 1 } } },
+
+  { key = "PROBE_PAJAMAS", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_PROBE_PAJAMAS", name = "PAJAMAS",
+    chat = "PAJAMAS: Private\nsprite test.",
+    intro = "PAJAMAS: Let's\ntest this look!",
+    win = "Test complete.", loss = "Test complete.",
+    afterWin = "PAJAMAS: Art\nreview complete.",
+    afterLoss = "PAJAMAS: Art\nreview complete.",
+    party = { { species = "PIDGEY", delta = 0 },
+              { species = "RATTATA", delta = 0 },
+              { species = "SPEAROW", delta = 1 } } },
+
+  { key = "PROBE_HOODIE", tier = 1, devOnly = true,
+    class = "SCHOOLBOY", member = "JOE",
+    sprite = "SPRITE_IPC_PROBE_HOODIE", name = "HOODIE TRAINER",
+    chat = "HOODIE: Private\nsprite test.",
+    intro = "HOODIE: Let's\ntest this look!",
+    win = "Test complete.", loss = "Test complete.",
+    afterWin = "HOODIE: Art\nreview complete.",
+    afterLoss = "HOODIE: Art\nreview complete.",
+    party = { { species = "PIDGEY", delta = 0 },
+              { species = "RATTATA", delta = 0 },
+              { species = "SPEAROW", delta = 1 } } },
+
+  { key = "PROBE_VEST_GLASSES", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_PROBE_VEST_GLASSES", name = "VEST TRAINER",
+    chat = "VEST TRAINER:\nPrivate sprite test.",
+    intro = "VEST TRAINER:\nTesting this look!",
+    win = "Test complete.", loss = "Test complete.",
+    afterWin = "VEST TRAINER:\nReview complete.",
+    afterLoss = "VEST TRAINER:\nReview complete.",
+    party = { { species = "PIDGEY", delta = 0 },
+              { species = "RATTATA", delta = 0 },
+              { species = "SPEAROW", delta = 1 } } },
+
+  { key = "PROBE_GYMNAST", tier = 1, devOnly = true,
+    class = "PICNICKER", member = "HOPE",
+    sprite = "SPRITE_IPC_PROBE_GYMNAST", name = "GYMNAST",
+    chat = "GYMNAST: Private\nsprite test.",
+    intro = "GYMNAST: Let's\ntest this look!",
+    win = "Test complete.", loss = "Test complete.",
+    afterWin = "GYMNAST: Art\nreview complete.",
+    afterLoss = "GYMNAST: Art\nreview complete.",
+    party = { { species = "PIDGEY", delta = 0 },
+              { species = "RATTATA", delta = 0 },
+              { species = "SPEAROW", delta = 1 } } },
+
+  { key = "PROBE_MUSCLE_MAN", tier = 1, devOnly = true,
+    class = "BLACKBELT_T", member = "YOSHI",
+    sprite = "SPRITE_IPC_PROBE_MUSCLE_MAN", name = "MUSCLE MAN",
+    chat = "MUSCLE MAN:\nPrivate sprite test.",
+    intro = "MUSCLE MAN:\nTesting this look!",
+    win = "Test complete.", loss = "Test complete.",
+    afterWin = "MUSCLE MAN:\nReview complete.",
+    afterLoss = "MUSCLE MAN:\nReview complete.",
+    party = { { species = "PIDGEY", delta = 0 },
+              { species = "RATTATA", delta = 0 },
+              { species = "SPEAROW", delta = 1 } } },
+
+  { key = "PROBE_DELIVERY", tier = 1, devOnly = true,
+    class = "CAMPER", member = "TODD1",
+    sprite = "SPRITE_IPC_PROBE_DELIVERY", name = "DELIVERY BOY",
+    chat = "DELIVERY BOY:\nPrivate sprite test.",
+    intro = "DELIVERY BOY:\nTesting this look!",
+    win = "Test complete.", loss = "Test complete.",
+    afterWin = "DELIVERY BOY:\nReview complete.",
+    afterLoss = "DELIVERY BOY:\nReview complete.",
+    party = { { species = "PIDGEY", delta = 0 },
+              { species = "RATTATA", delta = 0 },
+              { species = "SPEAROW", delta = 1 } } },
+
+  { key = "PROBE_GREEN_HAIR_GIRL", tier = 1, devOnly = true,
+    class = "LASS", member = "ALICE",
+    sprite = "SPRITE_IPC_PROBE_GREEN_HAIR_GIRL", name = "GREEN-HAIR GIRL",
+    chat = "GREEN-HAIR GIRL:\nPrivate sprite test.",
+    intro = "GREEN-HAIR GIRL:\nTesting this look!",
+    win = "Test complete.", loss = "Test complete.",
+    afterWin = "GREEN-HAIR GIRL:\nReview complete.",
+    afterLoss = "GREEN-HAIR GIRL:\nReview complete.",
+    party = { { species = "PIDGEY", delta = 0 },
+              { species = "RATTATA", delta = 0 },
+              { species = "SPEAROW", delta = 1 } } },
+
+  { key = "PROBE_OLD_MAN", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_PROBE_OLD_MAN", name = "OLD MAN",
+    chat = "OLD MAN: Private\nsprite test.",
+    intro = "OLD MAN: Let's\ntest this look!",
+    win = "Test complete.", loss = "Test complete.",
+    afterWin = "OLD MAN: Art\nreview complete.",
+    afterLoss = "OLD MAN: Art\nreview complete.",
+    party = { { species = "PIDGEY", delta = 0 },
+              { species = "RATTATA", delta = 0 },
+              { species = "SPEAROW", delta = 1 } } },
+
+  { key = "PROBE_BLUE_HAIR", tier = 1, devOnly = true,
+    class = "YOUNGSTER", member = "MIKEY",
+    sprite = "SPRITE_IPC_PROBE_BLUE_HAIR", name = "BLUE-HAIR KID",
+    chat = "BLUE-HAIR KID:\nPrivate sprite test.",
+    intro = "BLUE-HAIR KID:\nTesting this look!",
+    win = "Test complete.", loss = "Test complete.",
+    afterWin = "BLUE-HAIR KID:\nReview complete.",
+    afterLoss = "BLUE-HAIR KID:\nReview complete.",
+    party = { { species = "PIDGEY", delta = 0 },
+              { species = "RATTATA", delta = 0 },
+              { species = "SPEAROW", delta = 1 } } },
 
   { key = "JESSIE_JAMES", tier = 2, class = "EXECUTIVEM", member = "EXECUTIVEM_1",
     sprite = "SPRITE_ROCKET_GIRL", name = "JESSIE & JAMES",
@@ -1157,8 +1659,10 @@ return function(mod)
   local BY_KEY, TIERS = {}, { {}, {}, {}, {} }
   for _, foe in ipairs(ROSTER) do
     BY_KEY[foe.key] = foe
-    local t = TIERS[foe.tier]
-    t[#t + 1] = foe.key
+    if not foe.devOnly then
+      local t = TIERS[foe.tier]
+      t[#t + 1] = foe.key
+    end
   end
 
   ----------------------------------------------------------------------
@@ -1172,7 +1676,7 @@ return function(mod)
   -- own name and party (Schemas.lua gen2Fields), and a PATCH folds through
   -- Merge.deepMerge, which unwraps the documented `__append` wrapper
   -- (Merge.lua:37-48). So appending leaves every vanilla row -- and every
-  -- vanilla row's INDEX -- untouched: no existing trainer in Gold changes.
+  -- vanilla row's INDEX -- untouched: no existing trainer changes.
   -- A bare `trainers = {...}` would have replaced the list and quietly
   -- deleted them, which is why the wrapper matters.
   --
@@ -1323,8 +1827,9 @@ return function(mod)
   end
 
   ----------------------------------------------------------------------
-  -- Venues, keyed by the centre whose stairs were climbed. Map ids from
-  -- rom_manifest_gold.json, badge keys from Battle.lua:193.
+  -- Venues, keyed by the centre whose stairs were climbed. These symbolic
+  -- map ids exist in Gold, Silver and Crystal; Crystal assigns Goldenrod a
+  -- different numeric map index, which is why no numeric index is stored.
   ----------------------------------------------------------------------
   local VENUES = {
     VIOLET_POKECENTER_1F     = { town = "VIOLET",     title = "QUALIFIER",    leader = "FALKNER" },
@@ -1349,8 +1854,11 @@ return function(mod)
     { key = "probe_rows", type = "toggle",
       label = "Diagnostic rows", default = false },
     { key = "dev_art_guest", type = "choice",
-      label = "DEV: Cleared art guest",
-      choices = { { "Random", "" }, { "Brendan", "BRENDAN" },
+      label = "DEV: First-round guest",
+      choices = { { "Random", "" }, { "A.J.", "AJ" },
+                  { "Larry", "LARRY" }, { "Ash", "ASH" },
+                  { "Yellow", "YELLOW" },
+                  { "Brendan", "BRENDAN" },
                   { "Dawn", "DAWN" }, { "Green", "GREEN" },
                   { "Hilbert", "HILBERT" }, { "Hilda", "HILDA" },
                   { "Lyra", "LYRA" }, { "May", "MAY" },
@@ -1368,7 +1876,28 @@ return function(mod)
                   { "Rocket Grunt M", "ROCKET_GRUNT_M" },
                   { "Rocket Grunt F", "ROCKET_GRUNT_F" },
                   { "Roxie", "ROXIE" }, { "Piers", "PIERS" },
-                  { "Nemona", "NEMONA" } },
+                  { "Eusine", "EUSINE" }, { "Juliana", "JULIANA" },
+                  { "Leaf", "LEAF" }, { "Lear", "LEAR" },
+                  { "Lillie", "LILLIE" }, { "Looker", "LOOKER" },
+                  { "Barry", "BARRY" }, { "Bill", "BILL" },
+                  { "Colress", "COLRESS" }, { "Hugh", "HUGH" },
+                  { "Maxie", "MAXIE" }, { "Wally", "WALLY" },
+                  { "Gloria", "GLORIA" },
+                  { "Officer Jenny", "OFFICER_JENNY" },
+                  { "Ruin Maniac", "RUIN_MANIAC" },
+                  { "Volkner", "VOLKNER" },
+                  { "PROBE: Armored Mewtwo", "ARMORED_MEWTWO" },
+                  { "PROBE: Chef", "CHEF" },
+                  { "PROBE: Waitress", "PROBE_WAITRESS" },
+                  { "PROBE: Pajamas", "PROBE_PAJAMAS" },
+                  { "PROBE: Hoodie", "PROBE_HOODIE" },
+                  { "PROBE: Vest + Glasses", "PROBE_VEST_GLASSES" },
+                  { "PROBE: Gymnast", "PROBE_GYMNAST" },
+                  { "PROBE: Muscle Man", "PROBE_MUSCLE_MAN" },
+                  { "PROBE: Delivery Boy", "PROBE_DELIVERY" },
+                  { "PROBE: Green-Hair Girl", "PROBE_GREEN_HAIR_GIRL" },
+                  { "PROBE: Old Man", "PROBE_OLD_MAN" },
+                  { "PROBE: Blue-Hair Kid", "PROBE_BLUE_HAIR" } },
       default = "" },
   })
 
@@ -1688,10 +2217,16 @@ return function(mod)
   -- set by a tournament loss, consumed by map.reloaded: walk the loser out
   local escortPending = false
   -- TRUE only between engaging OUR challenger and that battle ending. The
-  -- trainer.party hook runs for every trainer battle in Gold, so this is
+  -- trainer.party hook runs for every trainer battle in Gen 2, so this is
   -- the difference between substituting a team into the tournament and
   -- substituting it into somebody's Route 34 Camper.
   local ourBattle = false
+  -- The exact short array handed to World:startBattle for rounds 1-3.
+  -- Gen 2's voluntary and forced switch screens sometimes omit their party
+  -- option and otherwise fall back to save.party, exposing benched Pokemon
+  -- that cannot actually enter this battle. Keep the active array so those
+  -- screens can display the same three members as Battle itself.
+  local activePlayerParty = nil
 
   -- The tournament's first three rounds are three-on-three. Pass a short
   -- ARRAY to the battle without ever shortening save.party itself: each slot
@@ -1713,16 +2248,18 @@ return function(mod)
       end
 
       World.startBattle = function(self, opts, onDone)
-        if ourBattle and round() < ROUNDS then
+        if ourBattle then
+          activePlayerParty = nil
           local save = self and self.game and self.game.save
           local party = save and save.party
-          if type(opts) == "table" and type(party) == "table"
-              and #party > 0 then
+          if round() < ROUNDS and type(opts) == "table"
+              and type(party) == "table" and #party > 0 then
             local capped = {}
             for i = 1, math.min(3, #party) do
               capped[i] = party[i]
             end
             opts.party = capped
+            activePlayerParty = capped
           end
         end
         return original(self, opts, onDone)
@@ -1733,7 +2270,42 @@ return function(mod)
 
   installPlayerPartyCap()
 
-  -- Private 1.1.4+ battle-front tests. Gold normally resolves trainer pictures
+  -- Spell of the Unown proved this missing-opts.party case on device:
+  -- Battle owns the correct short array, but Gen 2's voluntary and forced
+  -- switch openers construct PartyMenu options without copying it. PartyMenu
+  -- then falls back to save.party and displays all six. Inject the active
+  -- Conference array only while our positively-owned battle is live.
+  local function installPlayerPartyMenuCap()
+    local ok, err = pcall(function()
+      local PartyMenu = require("src.ui.gen2.PartyMenu")
+      if type(PartyMenu) ~= "table" or type(PartyMenu.new) ~= "function" then
+        error("Gen 2 PartyMenu.new unavailable")
+      end
+      PartyMenu._ipcOriginals = PartyMenu._ipcOriginals or {}
+      PartyMenu._ipcOriginals.new = PartyMenu._ipcOriginals.new
+        or PartyMenu.new
+      local original = PartyMenu._ipcOriginals.new
+      if type(original) ~= "function" then
+        error("Gen 2 PartyMenu.new original unavailable")
+      end
+
+      PartyMenu.new = function(game, opts)
+        if ourBattle and activePlayerParty and type(opts) == "table"
+            and opts.party == nil then
+          local cappedOpts = {}
+          for key, value in pairs(opts) do cappedOpts[key] = value end
+          cappedOpts.party = activePlayerParty
+          opts = cappedOpts
+        end
+        return original(game, opts)
+      end
+    end)
+    if not ok then errs("PARTY MENU CAP\n%s", tostring(err)) end
+  end
+
+  installPlayerPartyMenuCap()
+
+  -- Private 1.1.4+ battle-front tests. Gen 2 normally resolves trainer pictures
   -- by CLASS, so replacing a class table entry would repaint every vanilla
   -- trainer of that class. Keep every proven class/member carrier and party
   -- completely intact; replace only the already-built UI instance's picture,
@@ -2207,6 +2779,7 @@ return function(mod)
       -- in the game, so it needs a positive signal rather than guessing
       -- from the class -- see the hook below for what that cost.
       ourBattle = true
+      activePlayerParty = nil
       local world = mod.world:overworld()
       if world and world.scriptVars then
         world.scriptVars[VAR_BATTLETYPE] = BATTLETYPE_CANLOSE
@@ -2236,6 +2809,7 @@ return function(mod)
       -- mod bailing out) must not leave the flag set for whoever the player
       -- fights next.
       ourBattle = false
+      activePlayerParty = nil
       if not pending() then return end
       setPending(false)
       local res = ev and ev.result
@@ -2270,6 +2844,13 @@ return function(mod)
         escortPending = "lose"
         return
       end
+      if spawnedFoeKey == "ROXIE" then
+        local wins = defeatedGuests()
+        wins.ROXIE = true
+        mod.save:set("guestWins", wins)
+        local villaOk, villaErr = syncVillaGuest()
+        if villaOk == nil then probe("VILLA SYNC FAIL\n%s", tostring(villaErr)) end
+      end
       local n = round() + 1
       setRound(n)
       probe(n > ROUNDS and "CARD CLEARED" or ("ROUND %d"):format(n))
@@ -2293,15 +2874,7 @@ return function(mod)
     -- teleport, dig, another mod's warp -- so a still-armed escort is stale
     -- by definition. (To reach the 2F stairs legitimately they must cross
     -- the 1F, which lands here and disarms first.)
-    if mapId ~= LOBBY and mapId ~= ARENA and mapId ~= VANILLA_ARENA then
-      disarmStaleEscort(mapId)
-    end
-    -- SPIKE: redirect vanilla Colosseum to the custom arena room.
-    -- Land near the door (cell 7,9 = floor row), facing up toward the arena.
-    if mapId == VANILLA_ARENA then
-      mod.world:warpTo(ARENA, 7, 9, "up")
-      return
-    end
+    if mapId ~= LOBBY and mapId ~= ARENA then disarmStaleEscort(mapId) end
     local world = mod.world:overworld()
     if not world then return end
     if mapId == LOBBY then
@@ -2325,6 +2898,12 @@ return function(mod)
   end)
 
   mod.events:on("game.ready", function()
+    local called, villaOk, villaErr = pcall(syncVillaGuest)
+    if not called then
+      errs("villa sync\n%s", tostring(villaOk))
+    elseif villaOk == nil then
+      errs("villa sync\n%s", tostring(villaErr))
+    end
     local ok, cur = pcall(function() return mod.world:current() end)
     if ok and cur then pcall(place, cur.mapId) end
   end)
@@ -2350,7 +2929,7 @@ return function(mod)
   -- random later. "BEGIN!" stays constant on purpose -- that one IS the
   -- catchphrase.
   -- Three variants per round (the design pass's), drawn at random per
-  -- call, so a 64-deep pool doesn't share one fixed sentence per slot.
+  -- call, so an 82-deep pool doesn't share one fixed sentence per slot.
   local HYPE = {
     { "Round ONE, folks!\nFresh faces!",
       "The card is set!\nHere we GO, folks!",
@@ -2448,8 +3027,8 @@ return function(mod)
   -- won, and one who uninstalls it keeps the record. This mod never reads
   -- the field back and nothing anywhere revokes it.
   --
-  -- Keyed by MAP ID, not town name: it comes from rom_manifest_gold.json,
-  -- it is stable, and "INDIGO PLATEAU" has a space in it. One Conference
+  -- Keyed by MAP ID, not town name: it is stable across all Gen 2 manifests,
+  -- and "INDIGO PLATEAU" has a space in it. One Conference
   -- ribbon is the agreed design, so the resolver only needs "any venue
   -- count > 0" -- but per-venue counts cost nothing to write here and
   -- leave per-venue ribbons open later without a save migration.
@@ -2582,7 +3161,8 @@ return function(mod)
       rows = {
         { "text", venueWelcome(town, title) },
         { "text", ("%d rounds. One\nchallenger each."):format(ROUNDS) },
-        { "text", "Three per side\nuntil the final." },
+        { "text", "ONLY PARTY SLOTS\n1-3 can fight.\fAll six return for\nthe final." },
+        { "text", "Reorder your party\nbefore you enter." },
         { "text", "Through the far\ndoor. Good luck." },
       }
       -- Said BEFORE the welcome, so the player learns why the bracket
@@ -2716,8 +3296,8 @@ return function(mod)
     -- {species, level} rows into Gen 2 battle mons. Built through the
     -- engine's OWN builder so these mons match a vanilla trainer's exactly
     -- -- level-up movesets and the cart's fixed 9/8/8/8/8 trainer DVs
-    -- (Trainers.lua:82-88). Safe here ONLY because this mod is Gold-only;
-    -- a dual-generation mod must not copy it.
+    -- (Trainers.lua:82-88). Safe here because every supported target is Gen 2
+    -- and uses this builder; a cross-generation mod must branch instead.
     local Trainers = require("src.world.gen2.Trainers")
     local data = mod.game and mod.game.data
     if not data then return nil end
@@ -2729,16 +3309,16 @@ return function(mod)
   mod.hooks:wrap("trainer.party", function(next, class, member, party)
     local base = next()
     local ok, res = pcall(function()
-      -- ONLY OUR BATTLE. This hook runs for EVERY trainer battle in Gold,
+      -- ONLY OUR BATTLE. This hook runs for EVERY trainer battle in Gen 2,
       -- and 0.5.1's class-only scan matched vanilla trainers of a shared
       -- class: on device, Route 34's CAMPER ROLAND fought with TODD's
-      -- BUTTERFREE and PIDGEOTTO instead of his own Lv.9 NIDORAN. With 64
+      -- BUTTERFREE and PIDGEOTTO instead of his own Lv.9 NIDORAN. With 82
       -- challengers that scan covered ~19 classes -- most trainers in
       -- Johto. `ourBattle` is set by world.trainer_engaged only when the
       -- engaged NPC is our own arena challenger, and cleared when the
       -- battle ends, so this is positive knowledge instead of a guess.
       if not ourBattle then return nil end
-      -- WHICH challenger: the one physically on the arena floor. 64 entries
+      -- WHICH challenger: the one physically on the arena floor. 82 entries
       -- share carriers (CAMPER x3, GENTLEMAN x2, HIKER x3), so the class
       -- cannot tell them apart, and after a win the round has already moved
       -- on -- the person standing there is the one being fought.

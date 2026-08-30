@@ -28,7 +28,7 @@ presentation backgrounds map to grayscale value 255, the source light tone to
 170, the source theme color to 85, and the outline to 0. No pixels were
 redrawn or interpolated.
 
-## Bea, Mina and Nate frame mapping
+## Bea, Mina and legacy Nate frame mapping
 
 The newer sheets use different layouts. All coordinates below are inclusive.
 
@@ -39,9 +39,10 @@ The newer sheets use different layouts. All coordinates below are inclusive.
 - **Mina:** the battle portrait is x 8–63, y 48–103. Her eight walking frames
   are four directions across by two animation phases. Front, back and right
   are selected from each phase; the engine mirrors the right-side frame.
-- **Nate:** the battle portrait is x 1–56, y 1–56. The first walking row at
-  y 60–75 already contains stand down/up/side followed by step down/up/side.
-  The extra lower rows remain only in the preserved source sheet.
+- **Legacy Nate:** the earlier DracoZ test portrait is x 1–56, y 1–56. Its
+  first walking row at y 60–75 contains stand down/up/side followed by step
+  down/up/side. Version 1.1.35 no longer uses either runtime crop; the source
+  remains only as credited historical conversion evidence.
 
 Michael's runtime files were regenerated from `michael.png` in 1.1.16 rather
 than recoloring a previous output.
@@ -110,44 +111,137 @@ indices without interpolation.
 - `sirwhibbles_team_rocket.png`: 230×285
 - `roxie_gsc_style_by_piacarrot_d59kzez.png`: 181×233
 - `roxie_gen3_overworld_by_ulithiumdragon_dbj7tlr.png`: 128×192 (uniform 2× enlargement of a 64×96 native sheet)
-- `piers_overworld_by_cyberstryke7.png`: 256×384 (uniform 4× enlargement of a 64×96 native sheet)
-- `gym_leaders_portraits_by_drawnamu.png`: 947×121
+- `roxie_tharkka_battle_sheet.png`: 1120×975 (uniform 5× enlargement of a 224×195 native presentation sheet)
+- `roxie_tharkka_overworld_sheet.png`: 1835×495 (uniform 5× enlargement of a 367×99 native presentation sheet)
+- `piers_yogurcomics_battle_front.png` and transparent variant: 56×56
+- `piers_yogurcomics_overworld_red.png` / `blue.png` and transparent variants: 48×48
+- `piers_yogurcomics_battle_back.png` / `no_hand.png` and transparent variants: 48×48
 - The other MOLLY sheets: 128×194 (one variant)
 
-## Roxie Gen III-to-Gen II overworld adaptation
+The local TheBrawlUnit A.J. source is 190×132, an exact 2× enlargement of a
+95×66 native sheet. It is not bundled because permission to redistribute the
+complete source sheet was not separately stated.
 
-The UlithiumDragon source is a pixel-perfect 2× enlargement of a four-column,
-four-row Gen III grid. It is first reduced without interpolation to native
-16×24 cells. Rows are down, left, right and up; columns alternate step and
-standing frames. The runtime sheet uses column 2 for standing and column 1 for
-the matching step, selecting down, up and left-side rows in Gold's order. Gold
-mirrors the side frame in-engine.
+The local Bani Larry, Ash, Yellow, Nate, Eusine, Juliana, Leaf, Lear, Lillie,
+Looker and Chef sources share the same injector-sheet layout. Only their documented
+runtime regions are converted; the complete sheets are not bundled.
 
-Each selected 16×24 frame preserves its first eight occupied native hair/face
-rows pixel-for-pixel, then selects eight endpoint-preserving torso/leg rows.
-No image resize or interpolation is applied. Transparent pixels become 255;
-dark outline becomes 0; colored and middle tones become 85; and light
-hair/skin becomes 170. This row selection needs device confirmation. The
-Piacarrot front is the exact 56×56 region x 20–75, y 11–66;
-its presentation whites are normalized and its purple, skin and outline map
-to a four-color RGB front.
+## Roxie commissioned source adaptation
 
-## Piers source adaptation
+tharkka's two commissioned presentation sheets are exact 5× nearest-neighbour
+enlargements. The converter verifies every 5×5 block before recovering the
+224×195 battle sheet and 367×99 overworld sheet without interpolation. The
+runtime front is the lower full-color 56×56 region at x 13–68, y 118–173.
+Only its one-pixel black presentation frame and olive canvas are replaced by
+battle white; all eight commissioned sprite colors remain intact.
 
-`piers_overworld_by_cyberstryke7.png` is a perfectly uniform 4× enlargement
-of a native 64×96 Gen III walking sheet. It is restored without interpolation
-to sixteen 16×24 cells. The same down/up/left selection used for Roxie is
-stacked in Gold's stand-down, stand-up, stand-side, step-down, step-up,
-step-side order. Like Roxie, each frame preserves eight native hair/face rows
-and selects eight endpoint-preserving body rows rather than resizing the full
-figure. The source's black/dark outline maps to 0, middle gray and magenta
-to 85, light hair/skin to 170, and transparency to 255.
+The walking set uses the commissioned first-row standing down, up and left
+poses and the matching second-row step poses. Its occupied rectangles are
+15–16 pixels wide and 15–16 pixels tall. Each complete drawing is centered
+horizontally and bottom-aligned on a native 16×16 canvas, preserving every
+commissioned sprite pixel without clipping, resampling or redrawing. Black,
+navy and skin pixels map to Gen 2 values 0, 85 and 170; the presentation
+background maps to 255. Gold mirrors the side frame in-engine. The older
+Piacarrot/UlithiumDragon conversion is retained as historical source evidence
+only and is not used by the current runtime.
 
-Piers is zero-based figure 9 in `gym_leaders_portraits_by_drawnamu.png`. The
-runtime front uses the tighter 64×64 upper-body region x 509–572 and y 18–81,
-reduced to 56×56 with nearest-neighbor sampling and mapped to black, magenta,
-light and white. No adjacent leader pixels are included. The resulting face,
-hair, arm and microphone readability require device confirmation.
+As of 1.1.33, device feedback confirmed the full-color battle front and asked
+for lighter overworld hair. In each frame, only value-85 pixels inside the
+commissioned head region are reassigned to value 170. The body pixels below
+that per-frame boundary retain value 85, so the clothing remains pink while
+the hair resolves through the light Gold palette entry. This changes 320
+color assignments without moving, adding, deleting or resizing any source
+pixel.
+
+## Piers commissioned source adaptation
+
+Yogurcomics' commissioned overworld art is already a native 48×48 grid of
+nine 16×16 frames. Its rows are down, up and side; its columns are first
+walk phase, standing and second walk phase. Runtime order is r1c2, r2c2,
+r3c2, r1c1, r2c1 and r3c1: stand-down, stand-up, stand-side, step-down,
+step-up and step-side. No frame is resized or interpolated. The blue
+transparent variant supplies the selected pixels; transparent/edge-removal
+alpha below 128 becomes background 255, and opaque outline, blue theme and
+skin map to 0, 85 and 170. As of 1.1.23, Gold's `PAL_OW_BROWN` supplies
+the display colors so the theme shade is darker and more neutral while the
+outline remains black.
+
+As of 1.1.24, the runtime sheet uses a black-heavy custom mapping. Former
+theme pixels become value 0. Original outline pixels remain 0 when they touch
+the background or define light face/skin shapes; only enclosed lines
+surrounded by the former theme shade become value 85 for Brown interior
+detail. Values 170 and 255 are unchanged. This changes color assignments
+only—no commissioned pixel is moved, added, resized or interpolated.
+
+The commissioned battle front is already exactly 56×56. It is not cropped
+or resized. Its transparent variant is reduced deterministically to black,
+magenta, gray and white so the existing true-color Conference front path can
+render it without borrowing Janine's palette. The supplied battle-back,
+no-hand, red-overworld and alternate background variants are retained as
+source evidence but are not runtime assets in this opponent-only tournament.
+
+## A.J. directly approved source adaptation
+
+TheBrawlUnit's supplied 190×132 sheet is an exact 2× nearest-neighbour
+enlargement; every 2×2 source block is identical. It is reduced without
+interpolation to 95×66. The battle portrait is the native region x 0–55,
+y 0–55. The six walking cells are 16×16 at x 59 and 76, with row starts
+y 3, 20 and 37. Reading the standing column down (down/up/side) and then the
+step column down produces Gold's runtime order exactly. White, black, green
+and skin pixels map to 255, 0, 85 and 170 for the private overworld sheet.
+The portrait remains true-color RGB using the source's black, dark green,
+skin and normalized white. The bottom A.J. presentation label is not included.
+
+## Bani injector-sheet source adaptation
+
+All eleven selected 800×300 sheets share the same Crystal Clear injector layout.
+The battle front is cropped exactly at x 153–208, y 93–148, producing 56×56.
+The complete six-frame walking strip is cropped exactly at x 375–390,
+y 53–148, producing 16×96 in Gold's native frame order. Neither region is
+resized, interpolated or redrawn. Palette samples, the 48×48 back portrait,
+40×56 trainer-card portrait, surf strips, labels and white presentation
+canvas remain outside the crops. Each true-color front retains Bani's four
+source colors. Walking white, black, theme and skin pixels map to Gold indices
+255, 0, 85 and 170. Larry, Yellow, Lear and Looker request PAL_OW_BROWN; Ash,
+Nate and Chef request PAL_OW_BLUE; Eusine, Juliana and Lillie request PAL_OW_PINK;
+and Leaf requests PAL_OW_GREEN.
+
+Version 1.1.34 intentionally imports only one sheet per character: Juliana's
+Violet design and Leaf's standard design. Alternate forms, Pokémon-species
+sheets, native Johto gym-leader art, Santa Claus, and generic or unidentified
+Chef/Lass/White Haired Girl sheets remain outside the runtime.
+
+Version 1.1.35 replaces the earlier Nate runtime pair with Bani's Nate sheet.
+His 56×56 front retains Bani's four source colors, and his six walking frames
+use the closest blue Gold overworld palette. The complete source is not
+bundled.
+
+Version 1.1.36 adds Chef through the same exact crop path. Chef's front keeps
+Bani's four colors, while the walking strip maps to the closest blue Gold
+palette. The source sheet is not bundled and Chef remains dev-only.
+
+## 1.1.37 KiravelSoul injector sheets
+
+Volkner and Armored Mewtwo use the same exact 800×300 injector coordinates:
+x 153–208, y 93–148 for the native 56×56 battle front and x 375–390,
+y 53–148 for the native six-frame 16×96 walking strip. No runtime region is
+resized, interpolated or redrawn. Volkner's RGB portrait retains black,
+blue, blond and white; his walking values map to Gold's brown overworld
+palette. Armored Mewtwo's RGB portrait retains black, dark violet, light
+violet and white; its walking values map to Gold's pink overworld palette.
+The complete presentation sheets are not bundled.
+
+## 1.1.35 creator-folder injector sheets
+
+Barry by NolanKrawczak; Bill, Colress, Hugh, Maxie and Wally by RoyalGuard;
+and Gloria, Officer Jenny and Ruin Maniac by TeamHistoryWaffles use the same
+800×300 injector layout and the same exact crop boxes as Bani's sheets. Their
+battle fronts are preserved as four-color RGB images. Their walking strips
+map source black, theme, light/skin and white to values 0, 85, 170 and 255.
+Barry and Bill request PAL_OW_BROWN; Colress, Hugh and Officer Jenny request
+PAL_OW_BLUE; Maxie requests PAL_OW_RED; and Wally, Gloria and Ruin Maniac
+request PAL_OW_GREEN. No source crop is resized, interpolated or redrawn, and
+no complete creator sheet is included in the mod.
 
 ## 1.1.21 SirWhibbles side-frame and palette corrections
 
@@ -166,67 +260,9 @@ shade 170 Gold's standard skin entry instead of the rock palette's ochre entry.
 
 Every runtime overworld file must be 16×96, mode `L`, with exactly values
 `[0, 85, 170, 255]` and no alpha. Battle fronts are 56×56 with no alpha.
-Twenty-one fronts are pre-colored RGB images—the previous twelve plus the
-Rocket Executive, Archer, Ariana, Proton, Petrel, both Rocket Grunts, Roxie and
-Piers—while the other seven retain the four-value `L` format. The build
-therefore contains 26 overworld files and 28 fronts (54 runtime PNGs total).
+Fifty-three fronts are pre-colored RGB images, including the eleven Bani portraits and
+the nine 1.1.35 creator-folder portraits, while the other seven retain the
+four-value `L` format. The build therefore contains 58 overworld files and 60
+fronts (118 runtime PNGs total).
 The build audit re-runs
 these checks before packaging.
-
-## 1.1.22 — Roxie and Piers rebuilt after device rejection
-
-The 1.1.21 conversions were rejected on device. Root causes, and what
-replaced them (scripts: `sprite-sources/convert_roxie_piers_ow.py` and
-`convert_roxie_piers_fronts.py`, both rerunnable):
-
-- **Overworlds** (both): any 24-to-16 squeeze — uniform or "first 8 rows
-  plus selected body rows" — blends or cuts the face. Now: crop each
-  frame to content, protect a hand-identified face band, and greedily
-  drop the rows most similar to their upper neighbour until 16 remain.
-  Silhouette-defining transition rows survive because they differ from
-  their neighbours. The stand frame's row map is reused verbatim on its
-  step frame so the walk cycle cannot jitter. Side frames use source row
-  2, which natively faces left as the engine expects.
-- **Roxie overworld quantization**: saturation-aware. Colored clothing
-  (navy dress, bow) goes to 85; low-saturation white-hair shading
-  flattens into 170 so the head reads as flat light with black features
-  — which is how Gen 2 itself draws white hair.
-- **Roxie front**: Piacarrot's sheet contains a pure 2x of a NATIVE
-  56x56 GSC sprite (verified: every 2x2 block uniform). Descaled and
-  snapped 49 stray pixels to the four target colors. No resampling.
-- **Piers front**: 1.1.21 used hot pink as the only dark hue, so his
-  grey jacket and mane quantized to pink-or-white speckle. The dark hue
-  is now grey-purple (96,80,112), absorbing jacket mids, hair shading
-  and the pink accents. The FULL Drawnamu figure (mic stand included)
-  is fitted at 89/56 scale by area-weighted majority vote over
-  already-quantized colors with black-outline priority — replacing the
-  rejected upper-body crop. His white face is canon (palest character
-  in Galar), so it maps to white, not skin.
-
-## 1.1.23 — second device round
-
-Three findings from the 1.1.22 device test, folded into the same two
-scripts (rerunnable):
-
-- **Side frames faced right on device**; both sheets now mirror the
-  side stand/step frames (defaults `ROX_MIRROR=1`, `PIE_MIRROR=1`).
-- **The pink OW palette renders 85 as saturated red.** Judging the
-  sheets in neutral grey missed this — the 1.1.23 preview pass renders
-  through a simulated palette instead. 85 is now an accent tone only:
-  Roxie's navy tights/dark stripes moved to 0 and her dress lights to
-  170; Piers' mane fill returned to 0 (canon black mane, white spikes
-  at 170) with jacket shadow darks at 0.
-- **Piers front** crops at the boot tops (rows 0-74) so the figure
-  scales 3/4 instead of 5/8, plus a lone-pixel despeckle pass.
-
-## 1.1.24 — faces framed by hand; portrait framing settled
-
-- **Face edits** (`sprite-sources/edit_roxie_piers_faces.py`, runs after
-  the OW converter): black face frame, hairline, one-row 2px eyes and
-  mouth, hand-placed per frame — the convention vanilla's white-haired
-  Granny uses. Conversion alone cannot produce this: the sources' faces
-  are too small for their features to survive any mapping.
-- **Piers portrait**: native upper-body crop, final. Three candidates
-  compared; his ~9px face survives no rescale in either direction. The
-  1.1.21 crop was rejected wearing the pink-speckle palette — framing
-  was never the problem.
