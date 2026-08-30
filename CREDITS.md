@@ -33,6 +33,11 @@ permitted. Direct-use approvals and source-page terms are recorded in
 | Bea | `bea.png` | `assets/bea.png`, `assets/bea_front.png` | KIRB/YOSHI |
 | Bill | Bill.png (local cleared source; not bundled) | assets/bill.png, assets/bill_front.png | RoyalGuard |
 | Chef (developer-selector test) | Chef.png (local cleared source; not bundled) | assets/chef.png, assets/chef_front.png | Bani |
+| Duplica (visual substitute) | Lass.png (local cleared source; not bundled) | assets/duplica.png, assets/duplica_front.png | Bani — `Lass` used as a visual substitute, not bespoke Duplica art |
+| Giselle (visual substitute) | White Haired Girl.png (local cleared source; not bundled) | assets/giselle.png, assets/giselle_front.png | Bani — `White Haired Girl` used as a visual substitute, not bespoke Giselle art |
+| Suzie (visual substitute) | Lass (RBY).png (local cleared source; not bundled) | assets/suzie.png, assets/suzie_front.png | Bani — `Lass (RBY)` used as a visual substitute, not bespoke Suzie art |
+| Ranger | Ranger.png (local cleared source; not bundled) | assets/ranger.png, assets/ranger_front.png | Bani |
+| Ball Guy | BallGuy.png (local cleared source; not bundled) | assets/ballguy.png, assets/ballguy_front.png | CyUzi |
 | Volkner | Volkner.png (local cleared source; not bundled) | assets/volkner.png, assets/volkner_front.png | KiravelSoul |
 | Armored Mewtwo (developer-selector exception) | Armored_Mewtwo.png (local cleared source; not bundled) | assets/armored_mewtwo.png, assets/armored_mewtwo_front.png | KiravelSoul |
 | Archer | `sirwhibbles_team_rocket.png` | `assets/archer.png`, `assets/archer_front.png` | SirWhibbles |
@@ -69,31 +74,6 @@ permitted. Direct-use approvals and source-page terms are recorded in
 | Roxie | `roxie_tharkka_battle_sheet.png`; `roxie_tharkka_overworld_sheet.png` | `assets/roxie.png`, `assets/roxie_front.png` | tharkka (commissioned through Fiverr) |
 | Piers | `piers_yogurcomics_battle_front_transparent.png`; `piers_yogurcomics_overworld_blue_transparent.png` | `assets/piers.png`, `assets/piers_front.png` | Yogurcomics (commissioned) |
 
-### Developer-selector NPC probes
-
-The following ten generic pairings are present only to test sprite rendering
-through the first-round developer selector. Their battle portraits are by
-**JustinNuggets**, who permits credit as either **JustinNuggets** or
-**Substitube**. Their overworld art comes from the Gen 2 Additional NPCs Pack
-by **FrenchOrange** and **Catwithnojob**. The pairings remain outside the
-normal roster until their character identities and permanent teams are chosen.
-
-| Probe | Installed assets | Battle portrait | Overworld art |
-| --- | --- | --- | --- |
-| Waitress | `assets/probe_waitress.png`, `assets/probe_waitress_front.png` | JustinNuggets (Substitube) | FrenchOrange; Catwithnojob |
-| Pajamas | `assets/probe_pajamas.png`, `assets/probe_pajamas_front.png` | JustinNuggets (Substitube) | FrenchOrange; Catwithnojob |
-| Hoodie | `assets/probe_hoodie.png`, `assets/probe_hoodie_front.png` | JustinNuggets (Substitube) | FrenchOrange; Catwithnojob |
-| Vest + Glasses | `assets/probe_vest_glasses.png`, `assets/probe_vest_glasses_front.png` | JustinNuggets (Substitube) | FrenchOrange; Catwithnojob |
-| Gymnast | `assets/probe_gymnast.png`, `assets/probe_gymnast_front.png` | JustinNuggets (Substitube) | FrenchOrange; Catwithnojob |
-| Muscle Man | `assets/probe_muscle_man.png`, `assets/probe_muscle_man_front.png` | JustinNuggets (Substitube) | FrenchOrange; Catwithnojob |
-| Delivery Boy | `assets/probe_delivery.png`, `assets/probe_delivery_front.png` | JustinNuggets (Substitube) | FrenchOrange; Catwithnojob |
-| Green-Hair Girl | `assets/probe_green_hair_girl.png`, `assets/probe_green_hair_girl_front.png` | JustinNuggets (Substitube) | FrenchOrange; Catwithnojob |
-| Old Man | `assets/probe_old_man.png`, `assets/probe_old_man_front.png` | JustinNuggets (Substitube) | FrenchOrange; Catwithnojob |
-| Blue-Hair Kid | `assets/probe_blue_hair.png`, `assets/probe_blue_hair_front.png` | JustinNuggets (Substitube) | FrenchOrange; Catwithnojob |
-
-The source pack requests that projects link to its Eevee Expo resource page
-rather than redistribute the pack, so no original pack archive is included.
-
 The wider Brendan, Dawn, May, and Pokémon Stadium sheets contain additional
 variants. This test build uses the leftmost/default variant from each sheet.
 Bea and Mina use the documented subset of their larger walking-pose grids.
@@ -114,11 +94,18 @@ A.J. uses a custom battle-and-overworld sheet by TheBrawlUnit under direct
 express approval confirmed by the user. The local source is an exact 2×
 enlargement; only the mechanically converted runtime pair is included because
 separate permission to redistribute the complete source sheet was not stated.
-Larry, Ash, Yellow, Nate, Eusine, Juliana, Leaf, Lear, Lillie, Looker and Chef use
-complete battle-and-overworld injector sheets by Bani. The user confirmed the
-Pokémon-related Bani sheets are cleared for use with Bani credit. Only their
-exact runtime crops are included; the complete presentation sheets are not
-redistributed because separate source-sheet permission was not stated.
+Larry, Ash, Yellow, Nate, Eusine, Juliana, Leaf, Lear, Lillie, Looker, Chef and
+Ranger use battle-and-overworld injector sheets by Bani. Bani expressly
+approved use of their sprites and requested credit in the project's staff
+credits and/or wherever the project is distributed. Bani's `Lass`, `White
+Haired Girl`, and `Lass (RBY)` sheets are used as visual substitutes for
+Duplica, Giselle, and Suzie respectively; they are not presented as bespoke
+artwork of those characters. Only their exact runtime crops are included; the
+complete presentation sheets are not redistributed.
+
+Ball Guy uses the matching `BallGuy` injector sheet by CyUzi under direct
+artist confirmation with credit required. Only its exact runtime crops are
+included.
 
 Chef is a developer-selector-only visual test with one Raticate and does not
 enter ordinary tournament draws.

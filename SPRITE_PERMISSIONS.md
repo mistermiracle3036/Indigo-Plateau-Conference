@@ -18,6 +18,11 @@ follow-up before public release.
 | Looker custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-28 |
 | Nate custom battle and overworld set | Bani | User-confirmed cleared for use with visible Bani credit | Not supplied — approved directly | 2026-08-30 |
 | Chef custom battle and overworld set | Bani | User-confirmed cleared for use with visible Bani credit | Not supplied — approved directly | 2026-08-30 |
+| Duplica visual substitute (Bani `Lass` sheet) | Bani | Bani expressly approved use of their sprites and requested credit in the project's staff credits and/or wherever the project is distributed | Not supplied — Crystal Clear archive is not addressable per file | 2026-08-30 |
+| Giselle visual substitute (Bani `White Haired Girl` sheet) | Bani | Bani expressly approved use of their sprites and requested credit in the project's staff credits and/or wherever the project is distributed | Not supplied — Crystal Clear archive is not addressable per file | 2026-08-30 |
+| Suzie visual substitute (Bani `Lass (RBY)` sheet) | Bani | Bani expressly approved use of their sprites and requested credit in the project's staff credits and/or wherever the project is distributed | Not supplied — Crystal Clear archive is not addressable per file | 2026-08-30 |
+| Ranger custom battle and overworld set | Bani | Bani expressly approved use of their sprites and requested credit in the project's staff credits and/or wherever the project is distributed | Not supplied — Crystal Clear archive is not addressable per file | 2026-08-30 |
+| Ball Guy custom battle and overworld set | CyUzi | Use confirmed directly by the artist; credit required | Not supplied — Crystal Clear archive is not addressable per file | 2026-08-30 |
 | Volkner custom battle and overworld set | KiravelSoul | User-confirmed creator-folder terms equivalent to or less restrictive than Limesar; visible credit is sufficient | Not supplied — local cleared source | 2026-08-30 |
 | Armored Mewtwo custom battle and overworld set | KiravelSoul | Same confirmed creator-folder terms; user explicitly approved this Pokémon-as-trainer exception | Not supplied — local cleared source | 2026-08-30 |
 | Barry custom battle and overworld set | NolanKrawczak | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
@@ -61,22 +66,6 @@ follow-up before public release.
 | Roxie legacy test overworld (not used by the current runtime) | UlithiumDragon | Permission to edit confirmed by the user | Not supplied — local editable sheet | 2026-08-19 |
 | Piers commissioned sprite set | Yogurcomics | User-confirmed commissioned artwork for total use | Not supplied — commissioned directly | 2026-08-21 |
 
-## Generic NPC probe assets
-
-The user supplied the original source pages and their permission statements on
-2026-08-22 and 2026-08-23. The battle portraits are free to use with credit as
-either JustinNuggets or Substitube. The overworld pack is free to use and edit
-with credit to both FrenchOrange and Catwithnojob. Its page asks projects not
-to redistribute the pack and to link to the resource instead; the original
-pack archive is therefore excluded from the mod zip.
-
-| Probe asset group | Artist / compiler | Recorded terms | Source | Status |
-| --- | --- | --- | --- | --- |
-| Ten custom trainer-class battle portraits | JustinNuggets (Substitube) | “Free to use with credit” | https://www.deviantart.com/justinnuggets/art/Free-To-Use-Custom-Trainer-Sprites-963667141 | **Cleared with credit** |
-| Waitress, Pajamas, Hoodie, Vest + Glasses, Gymnast, Green-Hair Girl and Old Man overworlds | FrenchOrange; Catwithnojob; pack contains Pokémon Trading Card Game-derived sprites | Free to use and edit with credit; link instead of redistributing the pack | https://eeveeexpo.com/resources/1687/ | **Cleared with credit/link** |
-| Muscle Man and Blue-Hair Kid overworlds | FrenchOrange; Catwithnojob; pack contains Robopon-derived sprites | Free to use and edit with credit; link instead of redistributing the pack | https://eeveeexpo.com/resources/1687/ | **Cleared with credit/link** |
-| Delivery Boy overworld | FrenchOrange; Catwithnojob; pack contains Monster Race-derived sprites | Free to use and edit with credit; link instead of redistributing the pack | https://eeveeexpo.com/resources/1687/ | **Cleared with credit/link** |
-
 The Jessie & James grid cell is visually definitive. The Oak row records only
 the permission for the source sheet; the character identification remains
 `TODO/CONFIRM` because the source grid itself does not label individual cells.
@@ -97,11 +86,17 @@ includes only the converted runtime portrait and walking sheet; the complete
 source sheet is not redistributed without a separately recorded grant for
 source-sheet redistribution.
 
-The Larry, Ash, Yellow, Nate, Eusine, Juliana, Leaf, Lear, Lillie, Looker and Chef
-injector sheets are all credited to Bani. The user confirmed that the
-Pokémon-related Bani sheets are cleared for use with Bani credit. This build
-includes only their converted 56×56 battle fronts and 16×96 walking strips,
+The Larry, Ash, Yellow, Nate, Eusine, Juliana, Leaf, Lear, Lillie, Looker, Chef
+and Ranger injector sheets are all credited to Bani. Bani expressly approved
+use of their sprites and requested credit in the project's staff credits
+and/or wherever the project is distributed. Bani's `Lass`, `White Haired
+Girl`, and `Lass (RBY)` sheets are used only as visual substitutes for
+Duplica, Giselle, and Suzie respectively, not as bespoke character art. This
+build includes only converted 56×56 battle fronts and 16×96 walking strips,
 not the complete source sheets.
+
+Ball Guy's injector sheet is credited to CyUzi. Use was confirmed directly by
+the artist with credit required. Only its native runtime crops are bundled.
 
 The Barry sheet is credited to NolanKrawczak; Bill, Colress, Hugh, Maxie and
 Wally are credited to RoyalGuard; and Gloria, Officer Jenny and Ruin Maniac

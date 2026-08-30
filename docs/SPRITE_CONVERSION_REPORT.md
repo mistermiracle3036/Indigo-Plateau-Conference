@@ -260,9 +260,12 @@ shade 170 Gold's standard skin entry instead of the rock palette's ochre entry.
 
 Every runtime overworld file must be 16×96, mode `L`, with exactly values
 `[0, 85, 170, 255]` and no alpha. Battle fronts are 56×56 with no alpha.
-Fifty-three fronts are pre-colored RGB images, including the eleven Bani portraits and
+Forty-four fronts are pre-colored RGB images, including the eleven Bani portraits and
 the nine 1.1.35 creator-folder portraits, while the other seven retain the
-four-value `L` format. The build therefore contains 58 overworld files and 60
-fronts (118 runtime PNGs total).
+four-value `L` format. The assets directory therefore contains 49 overworld
+files and 51 fronts (100 character PNGs total); two of those files are the
+dormant, unregistered Nemona conversion pair. The 98 files referenced by
+`main.lua` comprise 48 overworld sheets and 50 fronts. One additional PNG is
+the non-character arena tilesheet.
 The build audit re-runs
 these checks before packaging.

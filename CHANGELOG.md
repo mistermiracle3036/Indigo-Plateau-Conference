@@ -5,6 +5,31 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.38
+
+**Five more challengers get faces of their own.** Duplica, Giselle, Suzie,
+Ranger and Ball Guy stop borrowing generic trainer-class sprites. Duplica was
+one of three women sharing the vanilla LASS sprite; Ball Guy was a SUPER NERD;
+Ranger was a YOUNGSTER. All five now have their own overworld art and battle
+portrait, and all five are selectable from the first-round developer option so
+each one can be checked directly.
+
+Duplica, Giselle and Suzie use Bani sheets as documented visual substitutes
+rather than bespoke art of those characters — the runtime files are copied
+byte-for-byte from Johto Quest Pack's existing conversions, so the two mods
+show the same faces. Ranger is Bani's matching Ranger sheet, and Ball Guy is
+CyUzi's BallGuy sheet, used with the artist's direct confirmation and credit.
+
+**The ten generic art probes are gone.** The waitress, pajamas, hoodie, vest,
+gymnast, muscle man, delivery boy, green-hair girl, old man and blue-hair kid
+were placeholders for evaluating sprite rendering, never real challengers.
+They have served their purpose and their assets, credits and selector rows are
+all removed. Armored Mewtwo and Chef remain as the two developer-only entries.
+
+No roster keys, tiers, classes, carrier members, names, dialogue or parties
+changed in this build. The normal pool remains 82 challengers.
+
+
 ## 1.1.37
 
 **KiravelSoul's Volkner joins the normal tournament roster.** His tier-three

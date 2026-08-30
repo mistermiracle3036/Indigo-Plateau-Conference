@@ -7,14 +7,23 @@ relicense Pokémon characters, ROM-derived material, or Nintendo trademarks.
 
 ## Included custom artwork
 
-This private test build includes 118 converted runtime assets: 58 six-frame
-overworld sheets and 60 56×56 battle portraits. Ninety-eight assets cover the
-50 release-cleared or previously documented custom-art characters. A.J.'s
+This private test build includes 110 converted character assets: 54 six-frame
+overworld sheets and 56 56×56 battle portraits. One hundred eight are referenced
+by the current runtime and cover 55 release-cleared or previously documented
+custom-art characters. The remaining two are dormant, unregistered Nemona
+conversion files retained unchanged for review. The assets directory also
+contains one non-character arena tilesheet. A.J.'s
 custom battle and overworld set is by **TheBrawlUnit**, used with direct
 express approval confirmed by the user. Larry, Ash, Yellow, Nate, Eusine,
-Juliana, Leaf, Lear, Lillie, Looker and Chef use battle-and-overworld sets by **Bani**,
-cleared by the user for use with Bani credit. Their complete presentation
-sheets are not redistributed. Eleven individual source sheets plus one miscellaneous grid are
+Juliana, Leaf, Lear, Lillie, Looker, Chef and Ranger use battle-and-overworld
+sets by **Bani**. Bani expressly approved use of their sprites and requested
+credit in the project's staff credits and/or wherever the project is
+distributed. Bani's `Lass` sheet is used as a visual substitute for Duplica,
+`White Haired Girl` as a visual substitute for Giselle, and `Lass (RBY)` as a
+visual substitute for Suzie. These sheets are not presented as bespoke artwork
+of those three characters. Their complete presentation sheets are not
+redistributed. Ball Guy uses a matching injector sheet by **CyUzi**, under
+direct artist confirmation with credit required. Eleven individual source sheets plus one miscellaneous grid are
 by **MOLLY**; the individual
 sheets state **“Credit is nice, but not required.”** and the grid states
 **“Credit would be nice, but is not required.”** Bea is by
@@ -35,16 +44,6 @@ overworld set by **Yogurcomics**. The 31 original cleared-source images are reta
 `docs/sprite-sources/`, and the character-to-file mapping is recorded in
 [CREDITS.md](CREDITS.md).
 
-The remaining 20 runtime assets are ten additional developer-selector visual probes.
-Their battle portraits are by **JustinNuggets** (also credited as
-**Substitube**) and are free to use with credit. Their overworld sprites are
-from the Gen 2 Additional NPCs Pack by **FrenchOrange** and **Catwithnojob**,
-free to use and edit with credit: seven are derived from Pokémon Trading Card
-Game sprites, two from Robopon and one from Monster Race. The pack's resource
-page asks projects to link there instead of redistributing the pack, so the
-original archive and source sheets are not included in this mod. Source links
-and terms are recorded in [SPRITE_PERMISSIONS.md](SPRITE_PERMISSIONS.md).
-
 The cleared-art conversion only clips the selected source frames, removes the presentation
 background, rearranges the six walking frames where supplied, and maps source
 colors to Gold’s four palette indices. Roxie's commissioned sheets are exact
@@ -57,8 +56,12 @@ his 16×16 overworld frames are only rearranged and palette-mapped. Jessie
 Gold-cache overworld art.
 A.J.'s exact 2× source enlargement is reduced with nearest-neighbour sampling,
 then its already-native 56×56 front and six 16×16 walking cells are extracted without interpolation.
-The Bani sheets provide native runtime regions at x 153–208, y 93–148 for
-the fronts and x 375–390, y 53–148 for the walking strips. The NolanKrawczak,
+The Bani and CyUzi sheets provide native runtime regions at x 153–208, y 93–148
+for the fronts and x 375–390, y 53–148 for the walking strips. Bani's Ranger
+walking cell was normalized by a direct four-color luminance substitution;
+CyUzi's Ball Guy walking cell was already normalized and was cropped without
+remapping. The six Duplica, Giselle, and Suzie runtime files were copied
+byte-for-byte from Johto Quest Pack's already-converted assets. The NolanKrawczak,
 RoyalGuard, TeamHistoryWaffles and KiravelSoul sheets use the same native
 injector regions.
 Those regions are cropped exactly, without resampling. The earlier DracoZ
@@ -69,13 +72,6 @@ Chef is available only through the first-round developer selector and carries
 one Raticate for a short visual test. It does not enter normal random draws.
 Armored Mewtwo is likewise developer-selector-only, fields one Mewtwo, and is
 an explicit user-approved exception to the usual trainer-only rule.
-
-For the private probes, the RPGXP-style 16×20 cells hold all opaque pixels in
-their top 16 rows; only the four transparent rows are omitted. Six Gold frames
-are rearranged without resizing. Portraits are centered and bottom-aligned;
-detached 7×16 palette-reference swatches are removed from Pajamas, Vest +
-Glasses, Gymnast and Green-Hair Girl. The cleaned art fits without clipping or
-resizing. No probe is included in ordinary random tournament draws.
 
 No artwork from the earlier Crystal Clear Sprite Injector proof-of-concept is
 included. The announcer and all remaining characters use art already present

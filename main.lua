@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.37"
+  local VERSION = "1.1.38"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -168,16 +168,11 @@ return function(mod)
                                    "SPRITE_IPC_CHEF",
                                    "SPRITE_IPC_VOLKNER",
                                    "SPRITE_IPC_ARMORED_MEWTWO",
-                                   "SPRITE_IPC_PROBE_WAITRESS",
-                                   "SPRITE_IPC_PROBE_PAJAMAS",
-                                   "SPRITE_IPC_PROBE_HOODIE",
-                                   "SPRITE_IPC_PROBE_VEST_GLASSES",
-                                   "SPRITE_IPC_PROBE_GYMNAST",
-                                   "SPRITE_IPC_PROBE_MUSCLE_MAN",
-                                   "SPRITE_IPC_PROBE_DELIVERY",
-                                   "SPRITE_IPC_PROBE_GREEN_HAIR_GIRL",
-                                   "SPRITE_IPC_PROBE_OLD_MAN",
-                                   "SPRITE_IPC_PROBE_BLUE_HAIR" } }
+                                   "SPRITE_IPC_DUPLICA",
+                                   "SPRITE_IPC_GISELLE",
+                                   "SPRITE_IPC_SUZIE",
+                                   "SPRITE_IPC_RANGER",
+                                   "SPRITE_IPC_BALLGUY" } }
 
   local LOBBY = "POKECENTER_2F"
   local ARENA = "COLOSSEUM"
@@ -269,19 +264,12 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_CHEF", "chef.png", "PAL_OW_BLUE", 1)
   registerGuestSprite("SPRITE_IPC_VOLKNER", "volkner.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_ARMORED_MEWTWO", "armored_mewtwo.png", "PAL_OW_PINK", 4)
-  -- Private visual probes. These ten generic classes are selectable only
-  -- through the first-round developer option and are excluded from normal
-  -- tournament draws. Their source credits and permission links are recorded.
-  registerGuestSprite("SPRITE_IPC_PROBE_WAITRESS", "probe_waitress.png", "PAL_OW_RED", 0)
-  registerGuestSprite("SPRITE_IPC_PROBE_PAJAMAS", "probe_pajamas.png", "PAL_OW_BLUE", 1)
-  registerGuestSprite("SPRITE_IPC_PROBE_HOODIE", "probe_hoodie.png", "PAL_OW_BLUE", 1)
-  registerGuestSprite("SPRITE_IPC_PROBE_VEST_GLASSES", "probe_vest_glasses.png", "PAL_OW_GREEN", 2)
-  registerGuestSprite("SPRITE_IPC_PROBE_GYMNAST", "probe_gymnast.png", "PAL_OW_PINK", 4)
-  registerGuestSprite("SPRITE_IPC_PROBE_MUSCLE_MAN", "probe_muscle_man.png", "PAL_OW_BLUE", 1)
-  registerGuestSprite("SPRITE_IPC_PROBE_DELIVERY", "probe_delivery.png", "PAL_OW_GREEN", 2)
-  registerGuestSprite("SPRITE_IPC_PROBE_GREEN_HAIR_GIRL", "probe_green_hair_girl.png", "PAL_OW_GREEN", 2)
-  registerGuestSprite("SPRITE_IPC_PROBE_OLD_MAN", "probe_old_man.png", "PAL_OW_RED", 0)
-  registerGuestSprite("SPRITE_IPC_PROBE_BLUE_HAIR", "probe_blue_hair.png", "PAL_OW_BLUE", 1)
+  -- The three JQP exports use Bani sheets as documented visual substitutes.
+  registerGuestSprite("SPRITE_IPC_DUPLICA", "duplica.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_GISELLE", "giselle.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_SUZIE", "suzie.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_RANGER", "ranger.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_BALLGUY", "ballguy.png", "PAL_OW_RED", 0)
 
   -- Battle fronts are replaced only on the already-created UI state for a
   -- positively identified Conference battle. Shared class picture tables
@@ -337,16 +325,11 @@ return function(mod)
     ROCKET_GRUNT_F = mod.path .. "/assets/rocket_grunt_f_front.png",
     ROXIE = mod.path .. "/assets/roxie_front.png",
     PIERS = mod.path .. "/assets/piers_front.png",
-    PROBE_WAITRESS = mod.path .. "/assets/probe_waitress_front.png",
-    PROBE_PAJAMAS = mod.path .. "/assets/probe_pajamas_front.png",
-    PROBE_HOODIE = mod.path .. "/assets/probe_hoodie_front.png",
-    PROBE_VEST_GLASSES = mod.path .. "/assets/probe_vest_glasses_front.png",
-    PROBE_GYMNAST = mod.path .. "/assets/probe_gymnast_front.png",
-    PROBE_MUSCLE_MAN = mod.path .. "/assets/probe_muscle_man_front.png",
-    PROBE_DELIVERY = mod.path .. "/assets/probe_delivery_front.png",
-    PROBE_GREEN_HAIR_GIRL = mod.path .. "/assets/probe_green_hair_girl_front.png",
-    PROBE_OLD_MAN = mod.path .. "/assets/probe_old_man_front.png",
-    PROBE_BLUE_HAIR = mod.path .. "/assets/probe_blue_hair_front.png",
+    DUPLICA = mod.path .. "/assets/duplica_front.png",
+    GISELLE = mod.path .. "/assets/giselle_front.png",
+    SUZIE = mod.path .. "/assets/suzie_front.png",
+    RANGER = mod.path .. "/assets/ranger_front.png",
+    BALLGUY = mod.path .. "/assets/ballguy_front.png",
   }
 
   -- These portraits are pre-colored with their chosen Gold palette.
@@ -396,16 +379,11 @@ return function(mod)
     ROCKET_GRUNT_F = true,
     ROXIE = true,
     PIERS = true,
-    PROBE_WAITRESS = true,
-    PROBE_PAJAMAS = true,
-    PROBE_HOODIE = true,
-    PROBE_VEST_GLASSES = true,
-    PROBE_GYMNAST = true,
-    PROBE_MUSCLE_MAN = true,
-    PROBE_DELIVERY = true,
-    PROBE_GREEN_HAIR_GIRL = true,
-    PROBE_OLD_MAN = true,
-    PROBE_BLUE_HAIR = true,
+    DUPLICA = true,
+    GISELLE = true,
+    SUZIE = true,
+    RANGER = true,
+    BALLGUY = true,
   }
 
   local ROUNDS = 4
@@ -478,7 +456,7 @@ return function(mod)
               { species = "STARYU",   delta = 0 } } },
 
   { key = "DUPLICA", tier = 1, class = "LASS", member = "ALICE",
-    sprite = "SPRITE_LASS", name = "DUPLICA",
+    sprite = "SPRITE_IPC_DUPLICA", name = "DUPLICA",
     chat = "DUPLICA: Guess\nwho I am today!",
     intro = "DUPLICA: Copy\nthis if you can!",
     win = "Even DITTO can't\ncopy that...",
@@ -512,7 +490,7 @@ return function(mod)
               { species = "MAGNEMITE", delta = 0 } } },
 
   { key = "BALLGUY", tier = 1, class = "JUGGLER", member = "FRITZ",
-    sprite = "SPRITE_SUPER_NERD", name = "BALL GUY",
+    sprite = "SPRITE_IPC_BALLGUY", name = "BALL GUY",
     chat = "BALL GUY: Have I\ngot a ball for\fyou! ...Later.",
     intro = "BALL GUY: Let's\nhave a ball!",
     win = "Even my head\nis deflated...",
@@ -537,7 +515,7 @@ return function(mod)
               { species = "SLOWPOKE",   delta = 0 } } },
 
   { key = "RANGER", tier = 1, class = "CAMPER", member = "DEAN",
-    sprite = "SPRITE_YOUNGSTER", name = "RANGER",
+    sprite = "SPRITE_IPC_RANGER", name = "RANGER",
     chat = "RANGER: These\nPOKeMON? Wild.\fWe're friends.",
     intro = "RANGER: Nature\nlends a hand!",
     win = "They fought for\nme. That's plenty.",
@@ -550,7 +528,7 @@ return function(mod)
 
   -- ========================= TIER 2 =========================
   { key = "GISELLE", tier = 2, class = "BEAUTY", member = "VICTORIA",
-    sprite = "SPRITE_COOLTRAINER_F", name = "GISELLE",
+    sprite = "SPRITE_IPC_GISELLE", name = "GISELLE",
     chat = "GISELLE: Which\nschool did you\fattend? ...Oh.",
     intro = "GISELLE: Top of\nmy class.\fDo keep up.",
     win  = "Top marks.\fFor today.",
@@ -589,7 +567,7 @@ return function(mod)
               { species = "MANKEY",     delta = 0 } } },
 
   { key = "SUZIE", tier = 2, class = "BEAUTY", member = "SAMANTHA",
-    sprite = "SPRITE_BEAUTY", name = "SUZIE",
+    sprite = "SPRITE_IPC_SUZIE", name = "SUZIE",
     chat = "SUZIE: Brushed,\nfed, and ready.",
     intro = "SUZIE: Show me\nyour bond.",
     win = "Beauty isn't\neverything...",
@@ -1217,131 +1195,6 @@ return function(mod)
     afterLoss = "CHEF: Perfect!\nService complete.",
     party = { { species = "RATICATE", delta = 0 } } },
 
-  -- ================= PRIVATE NPC-PAIRING PROBES =================
-  -- These generic classes are intentionally NOT Conference roster choices.
-  -- `devOnly` keeps them out of TIERS below, while the first-round option can
-  -- still exercise the full owned-NPC, battle-front and party paths. The same
-  -- neutral three-mon team isolates sprite testing from roster design.
-  { key = "PROBE_WAITRESS", tier = 1, devOnly = true,
-    class = "BEAUTY", member = "SAMANTHA",
-    sprite = "SPRITE_IPC_PROBE_WAITRESS", name = "WAITRESS",
-    chat = "WAITRESS: Private\nsprite test.",
-    intro = "WAITRESS: Let's\ntest this look!",
-    win = "Test complete.", loss = "Test complete.",
-    afterWin = "WAITRESS: Art\nreview complete.",
-    afterLoss = "WAITRESS: Art\nreview complete.",
-    party = { { species = "PIDGEY", delta = 0 },
-              { species = "RATTATA", delta = 0 },
-              { species = "SPEAROW", delta = 1 } } },
-
-  { key = "PROBE_PAJAMAS", tier = 1, devOnly = true,
-    class = "GENTLEMAN", member = "GREGORY",
-    sprite = "SPRITE_IPC_PROBE_PAJAMAS", name = "PAJAMAS",
-    chat = "PAJAMAS: Private\nsprite test.",
-    intro = "PAJAMAS: Let's\ntest this look!",
-    win = "Test complete.", loss = "Test complete.",
-    afterWin = "PAJAMAS: Art\nreview complete.",
-    afterLoss = "PAJAMAS: Art\nreview complete.",
-    party = { { species = "PIDGEY", delta = 0 },
-              { species = "RATTATA", delta = 0 },
-              { species = "SPEAROW", delta = 1 } } },
-
-  { key = "PROBE_HOODIE", tier = 1, devOnly = true,
-    class = "SCHOOLBOY", member = "JOE",
-    sprite = "SPRITE_IPC_PROBE_HOODIE", name = "HOODIE TRAINER",
-    chat = "HOODIE: Private\nsprite test.",
-    intro = "HOODIE: Let's\ntest this look!",
-    win = "Test complete.", loss = "Test complete.",
-    afterWin = "HOODIE: Art\nreview complete.",
-    afterLoss = "HOODIE: Art\nreview complete.",
-    party = { { species = "PIDGEY", delta = 0 },
-              { species = "RATTATA", delta = 0 },
-              { species = "SPEAROW", delta = 1 } } },
-
-  { key = "PROBE_VEST_GLASSES", tier = 1, devOnly = true,
-    class = "GENTLEMAN", member = "GREGORY",
-    sprite = "SPRITE_IPC_PROBE_VEST_GLASSES", name = "VEST TRAINER",
-    chat = "VEST TRAINER:\nPrivate sprite test.",
-    intro = "VEST TRAINER:\nTesting this look!",
-    win = "Test complete.", loss = "Test complete.",
-    afterWin = "VEST TRAINER:\nReview complete.",
-    afterLoss = "VEST TRAINER:\nReview complete.",
-    party = { { species = "PIDGEY", delta = 0 },
-              { species = "RATTATA", delta = 0 },
-              { species = "SPEAROW", delta = 1 } } },
-
-  { key = "PROBE_GYMNAST", tier = 1, devOnly = true,
-    class = "PICNICKER", member = "HOPE",
-    sprite = "SPRITE_IPC_PROBE_GYMNAST", name = "GYMNAST",
-    chat = "GYMNAST: Private\nsprite test.",
-    intro = "GYMNAST: Let's\ntest this look!",
-    win = "Test complete.", loss = "Test complete.",
-    afterWin = "GYMNAST: Art\nreview complete.",
-    afterLoss = "GYMNAST: Art\nreview complete.",
-    party = { { species = "PIDGEY", delta = 0 },
-              { species = "RATTATA", delta = 0 },
-              { species = "SPEAROW", delta = 1 } } },
-
-  { key = "PROBE_MUSCLE_MAN", tier = 1, devOnly = true,
-    class = "BLACKBELT_T", member = "YOSHI",
-    sprite = "SPRITE_IPC_PROBE_MUSCLE_MAN", name = "MUSCLE MAN",
-    chat = "MUSCLE MAN:\nPrivate sprite test.",
-    intro = "MUSCLE MAN:\nTesting this look!",
-    win = "Test complete.", loss = "Test complete.",
-    afterWin = "MUSCLE MAN:\nReview complete.",
-    afterLoss = "MUSCLE MAN:\nReview complete.",
-    party = { { species = "PIDGEY", delta = 0 },
-              { species = "RATTATA", delta = 0 },
-              { species = "SPEAROW", delta = 1 } } },
-
-  { key = "PROBE_DELIVERY", tier = 1, devOnly = true,
-    class = "CAMPER", member = "TODD1",
-    sprite = "SPRITE_IPC_PROBE_DELIVERY", name = "DELIVERY BOY",
-    chat = "DELIVERY BOY:\nPrivate sprite test.",
-    intro = "DELIVERY BOY:\nTesting this look!",
-    win = "Test complete.", loss = "Test complete.",
-    afterWin = "DELIVERY BOY:\nReview complete.",
-    afterLoss = "DELIVERY BOY:\nReview complete.",
-    party = { { species = "PIDGEY", delta = 0 },
-              { species = "RATTATA", delta = 0 },
-              { species = "SPEAROW", delta = 1 } } },
-
-  { key = "PROBE_GREEN_HAIR_GIRL", tier = 1, devOnly = true,
-    class = "LASS", member = "ALICE",
-    sprite = "SPRITE_IPC_PROBE_GREEN_HAIR_GIRL", name = "GREEN-HAIR GIRL",
-    chat = "GREEN-HAIR GIRL:\nPrivate sprite test.",
-    intro = "GREEN-HAIR GIRL:\nTesting this look!",
-    win = "Test complete.", loss = "Test complete.",
-    afterWin = "GREEN-HAIR GIRL:\nReview complete.",
-    afterLoss = "GREEN-HAIR GIRL:\nReview complete.",
-    party = { { species = "PIDGEY", delta = 0 },
-              { species = "RATTATA", delta = 0 },
-              { species = "SPEAROW", delta = 1 } } },
-
-  { key = "PROBE_OLD_MAN", tier = 1, devOnly = true,
-    class = "GENTLEMAN", member = "GREGORY",
-    sprite = "SPRITE_IPC_PROBE_OLD_MAN", name = "OLD MAN",
-    chat = "OLD MAN: Private\nsprite test.",
-    intro = "OLD MAN: Let's\ntest this look!",
-    win = "Test complete.", loss = "Test complete.",
-    afterWin = "OLD MAN: Art\nreview complete.",
-    afterLoss = "OLD MAN: Art\nreview complete.",
-    party = { { species = "PIDGEY", delta = 0 },
-              { species = "RATTATA", delta = 0 },
-              { species = "SPEAROW", delta = 1 } } },
-
-  { key = "PROBE_BLUE_HAIR", tier = 1, devOnly = true,
-    class = "YOUNGSTER", member = "MIKEY",
-    sprite = "SPRITE_IPC_PROBE_BLUE_HAIR", name = "BLUE-HAIR KID",
-    chat = "BLUE-HAIR KID:\nPrivate sprite test.",
-    intro = "BLUE-HAIR KID:\nTesting this look!",
-    win = "Test complete.", loss = "Test complete.",
-    afterWin = "BLUE-HAIR KID:\nReview complete.",
-    afterLoss = "BLUE-HAIR KID:\nReview complete.",
-    party = { { species = "PIDGEY", delta = 0 },
-              { species = "RATTATA", delta = 0 },
-              { species = "SPEAROW", delta = 1 } } },
-
   { key = "JESSIE_JAMES", tier = 2, class = "EXECUTIVEM", member = "EXECUTIVEM_1",
     sprite = "SPRITE_ROCKET_GIRL", name = "JESSIE & JAMES",
     chat = "JESSIE & JAMES:\nPrepare for trouble!",
@@ -1886,18 +1739,13 @@ return function(mod)
                   { "Officer Jenny", "OFFICER_JENNY" },
                   { "Ruin Maniac", "RUIN_MANIAC" },
                   { "Volkner", "VOLKNER" },
+                  { "Duplica", "DUPLICA" },
+                  { "Giselle", "GISELLE" },
+                  { "Suzie", "SUZIE" },
+                  { "Ranger", "RANGER" },
+                  { "Ball Guy", "BALLGUY" },
                   { "PROBE: Armored Mewtwo", "ARMORED_MEWTWO" },
-                  { "PROBE: Chef", "CHEF" },
-                  { "PROBE: Waitress", "PROBE_WAITRESS" },
-                  { "PROBE: Pajamas", "PROBE_PAJAMAS" },
-                  { "PROBE: Hoodie", "PROBE_HOODIE" },
-                  { "PROBE: Vest + Glasses", "PROBE_VEST_GLASSES" },
-                  { "PROBE: Gymnast", "PROBE_GYMNAST" },
-                  { "PROBE: Muscle Man", "PROBE_MUSCLE_MAN" },
-                  { "PROBE: Delivery Boy", "PROBE_DELIVERY" },
-                  { "PROBE: Green-Hair Girl", "PROBE_GREEN_HAIR_GIRL" },
-                  { "PROBE: Old Man", "PROBE_OLD_MAN" },
-                  { "PROBE: Blue-Hair Kid", "PROBE_BLUE_HAIR" } },
+                  { "PROBE: Chef", "CHEF" } },
       default = "" },
   })
 

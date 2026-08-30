@@ -14,10 +14,12 @@ different field every time, ending at the Indigo Plateau Conference itself.
 > please include the version from the load banner and which other mods you
 > had enabled.
 
-> **Sprite-test build.** Version 1.1.37 contains twelve credited dev-only art
-> probes. They are excluded from normal tournament draws and remain available
-> only through the first-round developer selector while their permanent roster
-> roles are evaluated.
+> **Sprite-test build.** Version 1.1.38 gives Duplica, Giselle, Suzie, Ranger
+> and Ball Guy their own art in place of generic trainer-class sprites, and
+> retires the ten generic art probes. Two credited dev-only art probes remain.
+> They are excluded from normal tournament draws and available only through the
+> first-round developer selector while their permanent roster roles are
+> evaluated.
 
 > **KiravelSoul test.** Version 1.1.37 adds Volkner to the normal roster and
 > adds Armored Mewtwo only to **DEV: First-round guest**. Armored Mewtwo is an
@@ -113,7 +115,7 @@ Two options appear on the mod's own options screen in this test build.
 | Option | Default | What it does |
 | --- | --- | --- |
 | Diagnostic rows | **Off** | Prints what the mod is doing to the mod manager's `[ERRS]` screen |
-| DEV: First-round guest | **Random** | Forces one of the 48 cleared guests or 12 private art probes into round one so each sprite can be tested directly; the probes never enter a random draw |
+| DEV: First-round guest | **Random** | Forces one of the 53 cleared guests or 2 private art probes into round one so each sprite can be tested directly; the probes never enter a random draw |
 
 Leave it off for normal play. **Turn it on if you're reporting a bug** —
 it's the only way to see what happened, since there's no console on a
@@ -180,16 +182,15 @@ By **Mister Miracle**
 - No artwork from the earlier Crystal Clear proof-of-concept is included.
 - A.J.'s directly approved custom battle and overworld art is by
   **TheBrawlUnit**.
-- Larry, Ash, Yellow, Nate, Eusine, Juliana, Leaf, Lear, Lillie, Looker and Chef battle
-  and overworld art is by **Bani**, cleared for use with Bani credit.
+- Larry, Ash, Yellow, Nate, Eusine, Juliana, Leaf, Lear, Lillie, Looker, Chef and
+  Ranger battle and overworld art is by **Bani**, cleared for use with Bani
+  credit. Duplica, Giselle and Suzie use Bani sheets as documented visual
+  substitutes rather than bespoke art of those characters.
+- Ball Guy's battle and overworld art is by **CyUzi**, used with the artist's
+  direct confirmation and required credit.
 - Volkner and the developer-only Armored Mewtwo exception use battle and
   overworld art by **KiravelSoul**, under the same user-confirmed visible-credit
   terms as the other approved creator folders.
-- Ten generic class test portraits are credited to **JustinNuggets
-  (Substitube)**; their Additional NPCs Pack overworld art is credited to
-  **FrenchOrange** and **Catwithnojob**. The source pack is linked in the
-  permissions record and is not redistributed with the mod.
-
 Pokémon and Pokémon character names are trademarks of Nintendo, Creatures
 Inc. and GAME FREAK inc. This is an unofficial fan project, not affiliated
 with or endorsed by any of them.
