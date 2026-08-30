@@ -5,6 +5,29 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.39
+
+**Six cleared-art challengers join the normal draw.** N, Ingo, Pokémon
+Breeder, Santa, Nurse Joy and Modern Red each receive a private overworld
+sprite, Conference-only battle portrait, additive trainer identity, dialogue
+and a Gen 2-compatible party. The pool grows from 82 to 88 challengers.
+
+N fields Magneton, Aerodactyl and Umbreon; Ingo fields Gligar, Machamp and
+Alakazam; the Breeder fields Pichu, Togetic and Blissey; Santa fields Stantler,
+Snorlax and Delibird; and Nurse Joy fields Chansey, Wigglytuff and Blissey.
+Modern Red uses the substantially different Pokémon Origins League roster:
+Persian, Scyther, Dodrio, Jolteon, Lapras and Charizard.
+
+All six are available in **DEV: First-round guest** for direct phone testing.
+Their trainer members are appended under `IPC_*` identifiers and their parties
+continue to be substituted only after a positively identified Conference
+battle, so no vanilla or shared trainer party is replaced.
+
+N, Ingo and Nurse Joy use Blaklyte art; Pokémon Breeder uses ArtsyAlraune art;
+Santa and Modern Red use Bani art. All are credited in the player-visible mod
+card and the detailed attribution records.
+
+
 ## 1.1.38
 
 **Five more challengers get faces of their own.** Duplica, Giselle, Suzie,

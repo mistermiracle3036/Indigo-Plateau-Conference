@@ -16,6 +16,12 @@ follow-up before public release.
 | Lear custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-28 |
 | Lillie (Ponytail) custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-28 |
 | Looker custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-28 |
+| N custom battle and overworld set | Blaklyte | User-confirmed creator-name credit is sufficient for use | Not supplied — local cleared source | 2026-08-30 |
+| Ingo (Legends: Arceus) custom battle and overworld set | Blaklyte | User-confirmed creator-name credit is sufficient for use | Not supplied — local cleared source | 2026-08-30 |
+| Pokémon Breeder custom battle and overworld set | ArtsyAlraune | User-confirmed creator-name credit is sufficient for use | Not supplied — local cleared source | 2026-08-30 |
+| Santa custom battle and overworld set | Bani | Bani expressly approved use with visible creator credit | Not supplied — local cleared source | 2026-08-30 |
+| Nurse Joy custom battle and overworld set | Blaklyte | User-confirmed creator-name credit is sufficient for use | Not supplied — local cleared source | 2026-08-30 |
+| Modern Red custom battle and overworld set | Bani | Bani expressly approved use with visible creator credit | Not supplied — local cleared source | 2026-08-30 |
 | Nate custom battle and overworld set | Bani | User-confirmed cleared for use with visible Bani credit | Not supplied — approved directly | 2026-08-30 |
 | Chef custom battle and overworld set | Bani | User-confirmed cleared for use with visible Bani credit | Not supplied — approved directly | 2026-08-30 |
 | Duplica visual substitute (Bani `Lass` sheet) | Bani | Bani expressly approved use of their sprites and requested credit in the project's staff credits and/or wherever the project is distributed | Not supplied — Crystal Clear archive is not addressable per file | 2026-08-30 |
@@ -86,14 +92,19 @@ includes only the converted runtime portrait and walking sheet; the complete
 source sheet is not redistributed without a separately recorded grant for
 source-sheet redistribution.
 
-The Larry, Ash, Yellow, Nate, Eusine, Juliana, Leaf, Lear, Lillie, Looker, Chef
-and Ranger injector sheets are all credited to Bani. Bani expressly approved
+The Larry, Ash, Yellow, Nate, Eusine, Juliana, Leaf, Lear, Lillie, Looker, Chef,
+Ranger, Santa and Modern Red injector sheets are all credited to Bani. Bani expressly approved
 use of their sprites and requested credit in the project's staff credits
 and/or wherever the project is distributed. Bani's `Lass`, `White Haired
 Girl`, and `Lass (RBY)` sheets are used only as visual substitutes for
 Duplica, Giselle, and Suzie respectively, not as bespoke character art. This
 build includes only converted 56×56 battle fronts and 16×96 walking strips,
 not the complete source sheets.
+
+N, Ingo and Nurse Joy are credited to Blaklyte, and Pokémon Breeder is
+credited to ArtsyAlraune. The user confirmed that these creator-folder terms
+are satisfied by visible creator credit. Only the converted runtime crops are
+included; the complete injector sheets are not redistributed.
 
 Ball Guy's injector sheet is credited to CyUzi. Use was confirmed directly by
 the artist with credit required. Only its native runtime crops are bundled.

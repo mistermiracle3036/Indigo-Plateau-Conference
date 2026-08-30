@@ -27,6 +27,12 @@ permitted. Direct-use approvals and source-page terms are recorded in
 | Lear | Lear.png (local cleared source; not bundled) | assets/lear.png, assets/lear_front.png | Bani |
 | Lillie | Lillie (Ponytail).png (local cleared source; not bundled) | assets/lillie.png, assets/lillie_front.png | Bani |
 | Looker | Looker.png (local cleared source; not bundled) | assets/looker.png, assets/looker_front.png | Bani |
+| N | N.png (local cleared source; not bundled) | assets/n.png, assets/n_front.png | Blaklyte |
+| Ingo (Legends: Arceus) | Ingo (PLA).png (local cleared source; not bundled) | assets/ingo.png, assets/ingo_front.png | Blaklyte |
+| Pokémon Breeder | Pokemon_Breeder.png (local cleared source; not bundled) | assets/breeder.png, assets/breeder_front.png | ArtsyAlraune |
+| Santa | Santa Claus.png (local cleared source; not bundled) | assets/santa.png, assets/santa_front.png | Bani |
+| Nurse Joy | Nurse_Joy.png (local cleared source; not bundled) | assets/nurse_joy.png, assets/nurse_joy_front.png | Blaklyte |
+| Modern Red | Red (Modern).png (local cleared source; not bundled) | assets/modern_red.png, assets/modern_red_front.png | Bani |
 | Nate | Nate.png (local cleared source; not bundled) | assets/nate.png, assets/nate_front.png | Bani |
 | A.J. | aj - TheBrawlUnit.png (local approved source; not bundled) | assets/aj.png, assets/aj_front.png | TheBrawlUnit |
 | Barry | Barry.png (local cleared source; not bundled) | assets/barry.png, assets/barry_front.png | NolanKrawczak |
@@ -117,7 +123,9 @@ Only the native runtime regions are included. Armored Mewtwo is an explicit
 user-approved exception to the normal trainer-only selection rule and remains
 developer-selector-only.
 
-Barry uses NolanKrawczak art; Bill, Colress, Hugh, Maxie and Wally use
+N, Ingo and Nurse Joy use Blaklyte art; Pokémon Breeder uses ArtsyAlraune
+art; and Santa and Modern Red use Bani art. Barry uses NolanKrawczak art;
+Bill, Colress, Hugh, Maxie and Wally use
 RoyalGuard art; and Gloria, Officer Jenny and Ruin Maniac use
 TeamHistoryWaffles art. The user confirmed that the creator-folder names are
 the required visible attribution and that these sheets are cleared for use.

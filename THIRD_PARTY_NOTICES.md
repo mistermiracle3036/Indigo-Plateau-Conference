@@ -7,15 +7,15 @@ relicense Pokémon characters, ROM-derived material, or Nintendo trademarks.
 
 ## Included custom artwork
 
-This private test build includes 110 converted character assets: 54 six-frame
-overworld sheets and 56 56×56 battle portraits. One hundred eight are referenced
-by the current runtime and cover 55 release-cleared or previously documented
+This private test build includes 122 converted character assets: 60 six-frame
+overworld sheets and 62 56×56 battle portraits. One hundred twenty are referenced
+by the current runtime and cover 61 release-cleared or previously documented
 custom-art characters. The remaining two are dormant, unregistered Nemona
 conversion files retained unchanged for review. The assets directory also
 contains one non-character arena tilesheet. A.J.'s
 custom battle and overworld set is by **TheBrawlUnit**, used with direct
 express approval confirmed by the user. Larry, Ash, Yellow, Nate, Eusine,
-Juliana, Leaf, Lear, Lillie, Looker, Chef and Ranger use battle-and-overworld
+Juliana, Leaf, Lear, Lillie, Looker, Chef, Ranger, Santa and Modern Red use battle-and-overworld
 sets by **Bani**. Bani expressly approved use of their sprites and requested
 credit in the project's staff credits and/or wherever the project is
 distributed. Bani's `Lass` sheet is used as a visual substitute for Duplica,
@@ -23,7 +23,9 @@ distributed. Bani's `Lass` sheet is used as a visual substitute for Duplica,
 visual substitute for Suzie. These sheets are not presented as bespoke artwork
 of those three characters. Their complete presentation sheets are not
 redistributed. Ball Guy uses a matching injector sheet by **CyUzi**, under
-direct artist confirmation with credit required. Eleven individual source sheets plus one miscellaneous grid are
+direct artist confirmation with credit required. N, Ingo and Nurse Joy are by
+**Blaklyte**, and Pokémon Breeder is by **ArtsyAlraune**, under the confirmed
+creator-folder visible-credit terms. Eleven individual source sheets plus one miscellaneous grid are
 by **MOLLY**; the individual
 sheets state **“Credit is nice, but not required.”** and the grid states
 **“Credit would be nice, but is not required.”** Bea is by

@@ -14,12 +14,10 @@ different field every time, ending at the Indigo Plateau Conference itself.
 > please include the version from the load banner and which other mods you
 > had enabled.
 
-> **Sprite-test build.** Version 1.1.38 gives Duplica, Giselle, Suzie, Ranger
-> and Ball Guy their own art in place of generic trainer-class sprites, and
-> retires the ten generic art probes. Two credited dev-only art probes remain.
-> They are excluded from normal tournament draws and available only through the
-> first-round developer selector while their permanent roster roles are
-> evaluated.
+> **Six-new-challenger test.** Version 1.1.39 adds N, Ingo, Pokémon Breeder,
+> Santa, Nurse Joy and Modern Red to the normal tournament draw with credited
+> custom battle and overworld art. All six can be forced into round one through
+> **DEV: First-round guest** for quick phone testing.
 
 > **KiravelSoul test.** Version 1.1.37 adds Volkner to the normal roster and
 > adds Armored Mewtwo only to **DEV: First-round guest**. Armored Mewtwo is an
@@ -101,7 +99,7 @@ anything rebalances.
 - **A run in progress survives quitting.** The bracket travels with your
   in-game save, so loading an older save rewinds the tournament with it.
 
-**Every run fields a different card.** The roster is 82 challengers across
+**Every run fields a different card.** The roster is 88 challengers across
 four escalating tiers, and each run draws one per tier. A new draw never
 repeats the previous run's pick in a tier, so back-to-back tournaments
 always look different. Challengers speak for themselves — an introduction
@@ -115,7 +113,7 @@ Two options appear on the mod's own options screen in this test build.
 | Option | Default | What it does |
 | --- | --- | --- |
 | Diagnostic rows | **Off** | Prints what the mod is doing to the mod manager's `[ERRS]` screen |
-| DEV: First-round guest | **Random** | Forces one of the 53 cleared guests or 2 private art probes into round one so each sprite can be tested directly; the probes never enter a random draw |
+| DEV: First-round guest | **Random** | Forces one of the 59 cleared guests or 2 private art probes into round one so each sprite can be tested directly; the probes never enter a random draw |
 
 Leave it off for normal play. **Turn it on if you're reporting a bug** —
 it's the only way to see what happened, since there's no console on a

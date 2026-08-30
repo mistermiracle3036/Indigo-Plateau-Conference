@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.38"
+  local VERSION = "1.1.39"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -172,7 +172,13 @@ return function(mod)
                                    "SPRITE_IPC_GISELLE",
                                    "SPRITE_IPC_SUZIE",
                                    "SPRITE_IPC_RANGER",
-                                   "SPRITE_IPC_BALLGUY" } }
+                                   "SPRITE_IPC_BALLGUY",
+                                   "SPRITE_IPC_N",
+                                   "SPRITE_IPC_INGO",
+                                   "SPRITE_IPC_BREEDER",
+                                   "SPRITE_IPC_SANTA",
+                                   "SPRITE_IPC_NURSE_JOY",
+                                   "SPRITE_IPC_MODERN_RED" } }
 
   local LOBBY = "POKECENTER_2F"
   local ARENA = "COLOSSEUM"
@@ -270,6 +276,12 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_SUZIE", "suzie.png", "PAL_OW_BLUE", 1)
   registerGuestSprite("SPRITE_IPC_RANGER", "ranger.png", "PAL_OW_RED", 0)
   registerGuestSprite("SPRITE_IPC_BALLGUY", "ballguy.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_N", "n.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_INGO", "ingo.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_BREEDER", "breeder.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_SANTA", "santa.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_NURSE_JOY", "nurse_joy.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_MODERN_RED", "modern_red.png", "PAL_OW_RED", 0)
 
   -- Battle fronts are replaced only on the already-created UI state for a
   -- positively identified Conference battle. Shared class picture tables
@@ -330,6 +342,12 @@ return function(mod)
     SUZIE = mod.path .. "/assets/suzie_front.png",
     RANGER = mod.path .. "/assets/ranger_front.png",
     BALLGUY = mod.path .. "/assets/ballguy_front.png",
+    N = mod.path .. "/assets/n_front.png",
+    INGO = mod.path .. "/assets/ingo_front.png",
+    BREEDER = mod.path .. "/assets/breeder_front.png",
+    SANTA = mod.path .. "/assets/santa_front.png",
+    NURSE_JOY = mod.path .. "/assets/nurse_joy_front.png",
+    MODERN_RED = mod.path .. "/assets/modern_red_front.png",
   }
 
   -- These portraits are pre-colored with their chosen Gold palette.
@@ -384,6 +402,12 @@ return function(mod)
     SUZIE = true,
     RANGER = true,
     BALLGUY = true,
+    N = true,
+    INGO = true,
+    BREEDER = true,
+    SANTA = true,
+    NURSE_JOY = true,
+    MODERN_RED = true,
   }
 
   local ROUNDS = 4
@@ -404,7 +428,7 @@ return function(mod)
   -- leader anchor gives each venue a fixed difficulty a step above the badge
   -- that let you in, consistent town to town by construction.
   ----------------------------------------------------------------------
-  -- THE POOL (1.1.37): 82 challengers across four tiers -- the design
+  -- THE POOL (1.1.39): 88 challengers across four tiers -- the design
   -- pass's roster draft (ROSTER_NOTES.md), with the four shipped
   -- characters folded in. Each RUN draws one name per tier (newDraw
   -- below), so no two tournaments need repeat.
@@ -1491,6 +1515,85 @@ return function(mod)
               { species = "GYARADOS", delta = 0 },
               { species = "RHYDON",   delta = 1 } } },
 
+  { key = "N", tier = 3, class = "COOLTRAINERM", member = "NICK",
+    sprite = "SPRITE_IPC_N", name = "N",
+    chat = "N: I can hear the\nvoices of POKEMON.",
+    intro = "N: Let me hear\nyour truth!",
+    win = "Your bond is clear.",
+    loss = "Our voices reached\none another.",
+    afterWin = "N: Your friends\nstill believe in you.",
+    afterLoss = "N: Keep seeking\nyour own truth.",
+    -- Gen 2 stand-ins for Klinklang, Archeops and Zoroark.
+    party = { { species = "MAGNETON",   delta = 0 },
+              { species = "AERODACTYL", delta = 0 },
+              { species = "UMBREON",    delta = 1 } } },
+
+  { key = "INGO", tier = 3, class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_INGO", name = "INGO",
+    chat = "INGO: All aboard\nfor the next battle!",
+    intro = "INGO: Departing\nfor victory!",
+    win = "A splendid route!",
+    loss = "We arrived on time!",
+    afterWin = "INGO: I must\nrevise our timetable.",
+    afterLoss = "INGO: Bravo!\nExcellent battling!",
+    -- Legends: Arceus-inspired team, with Gligar for Gliscor.
+    party = { { species = "GLIGAR",   delta = 0 },
+              { species = "MACHAMP",  delta = 0 },
+              { species = "ALAKAZAM", delta = 1 } } },
+
+  { key = "BREEDER", tier = 2, class = "POKEFANF", member = "BEVERLY1",
+    sprite = "SPRITE_IPC_BREEDER", name = "BREEDER",
+    chat = "BREEDER: Care makes\nevery partner bloom.",
+    intro = "BREEDER: Show me\nhow you've grown!",
+    win = "What wonderful care!",
+    loss = "They grew up strong!",
+    afterWin = "BREEDER: That bond\nwas lovely to see.",
+    afterLoss = "BREEDER: Come back\nafter some rest.",
+    party = { { species = "PICHU",    delta = -1 },
+              { species = "TOGETIC",  delta = 0 },
+              { species = "BLISSEY",  delta = 1 } } },
+
+  { key = "SANTA", tier = 2, class = "POKEFANM", member = "WILLIAM",
+    sprite = "SPRITE_IPC_SANTA", name = "SANTA",
+    chat = "SANTA: Have you been\ntraining nicely?",
+    intro = "SANTA: A battle\nwrapped just for you!",
+    win = "A gift well earned!",
+    loss = "Ho ho! What a win!",
+    afterWin = "SANTA: Keep that\nbright spirit.",
+    afterLoss = "SANTA: DELIBIRD\nmade the delivery!",
+    party = { { species = "STANTLER", delta = 0 },
+              { species = "SNORLAX",  delta = 0 },
+              { species = "DELIBIRD", delta = 1 } } },
+
+  { key = "NURSE_JOY", tier = 2, class = "POKEFANF", member = "RUTH",
+    sprite = "SPRITE_IPC_NURSE_JOY", name = "NURSE JOY",
+    chat = "JOY: Your team looks\nready and rested.",
+    intro = "JOY: A healthy team\nis a strong team!",
+    win = "A perfect recovery!",
+    loss = "Everyone did well!",
+    afterWin = "JOY: Come see me\nif anyone needs care.",
+    afterLoss = "JOY: We hope to\nsee you again!",
+    party = { { species = "CHANSEY",     delta = 0 },
+              { species = "WIGGLYTUFF", delta = 0 },
+              { species = "BLISSEY",    delta = 1 } } },
+
+  { key = "MODERN_RED", tier = 4, customMember = true,
+    class = "RED", member = "RED1",
+    sprite = "SPRITE_IPC_MODERN_RED", name = "MODERN RED",
+    chat = "RED: Every journey\nstarts somewhere.",
+    intro = "RED: Let's make this\na battle to remember!",
+    win = "That was incredible!",
+    loss = "We made it together!",
+    afterWin = "RED: I'll keep\ntraveling and learning.",
+    afterLoss = "RED: Meet me at\nthe next challenge!",
+    -- Red's Pokemon Origins League roster, distinct from Mt. Silver Red.
+    party = { { species = "PERSIAN",   delta = -1 },
+              { species = "SCYTHER",   delta = 0 },
+              { species = "DODRIO",    delta = 0 },
+              { species = "JOLTEON",   delta = 0 },
+              { species = "LAPRAS",    delta = 1 },
+              { species = "CHARIZARD", delta = 2 } } },
+
   -- RED never speaks. All six lines are silence, per the design pass.
   { key = "RED", tier = 4, class = "RED", member = "RED1",
     sprite = "SPRITE_RED", name = "RED",
@@ -1744,6 +1847,11 @@ return function(mod)
                   { "Suzie", "SUZIE" },
                   { "Ranger", "RANGER" },
                   { "Ball Guy", "BALLGUY" },
+                  { "N", "N" }, { "Ingo", "INGO" },
+                  { "Pokemon Breeder", "BREEDER" },
+                  { "Santa", "SANTA" },
+                  { "Nurse Joy", "NURSE_JOY" },
+                  { "Modern Red", "MODERN_RED" },
                   { "PROBE: Armored Mewtwo", "ARMORED_MEWTWO" },
                   { "PROBE: Chef", "CHEF" } },
       default = "" },
