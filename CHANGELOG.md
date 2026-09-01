@@ -7,12 +7,36 @@ heading always equals the version in `manifest.json`.
 
 ## 1.1.43
 
+**Updating from 1.0.2?** Four things changed that you will notice.
+
+**The preliminaries are three-on-three.** You bring three Pokemon to rounds
+one through three and all six to the final, and it is your first three party
+slots that fight — so the order you keep your team in now matters.
+
+**It runs on Silver and Crystal, not just Gold.** Same tournament, same
+challengers, no separate install.
+
+**Almost everyone has their own face now.** The circuit used to dress its
+challengers in generic trainer-class sprites, so three different women could
+share one Lass. 57 characters now have art of their own, drawn by credited
+artists, and the roster has grown to 88 challengers across the four tiers —
+so a run pulls a different card each time.
+
+**Beating Roxie can open her Sandalwood Villa show,** if you also have the
+Sandalwood Town mod installed.
+
+Everything else since 1.0.2 has been art corrections and polish on the above.
+
+**New in this version:**
+
 - The two Rocket Grunts now use Gold's own grunt sprites instead of custom
   copies. They looked almost identical to the originals, and the copies had
   a cut edge on one frame that the real ones do not.
 - Lorelei's sprite was missing nearly half her width from the side and
   back views -- the original crop sliced her down one edge. Re-cut from the
   artist's sheet; 205 pixels of her come back.
+- The dormant Nemona art no longer rides along in the download, and the
+  artist credits now match exactly what the build ships.
 
 ## 1.1.42
 

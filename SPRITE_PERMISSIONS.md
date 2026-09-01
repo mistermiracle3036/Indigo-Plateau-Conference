@@ -65,8 +65,6 @@ follow-up before public release.
 | Ariana | SirWhibbles | “Free to use, with credits please!” | https://www.deviantart.com/sirwhibbles/art/Public-Team-Rocket-s-Ready-to-Rumble-Updated-728467968 | 2026-08-19 |
 | Proton | SirWhibbles | “Free to use, with credits please!” | https://www.deviantart.com/sirwhibbles/art/Public-Team-Rocket-s-Ready-to-Rumble-Updated-728467968 | 2026-08-19 |
 | Petrel | SirWhibbles | “Free to use, with credits please!” | https://www.deviantart.com/sirwhibbles/art/Public-Team-Rocket-s-Ready-to-Rumble-Updated-728467968 | 2026-08-19 |
-| Rocket Grunt (male) | SirWhibbles | “Free to use, with credits please!” | https://www.deviantart.com/sirwhibbles/art/Public-Team-Rocket-s-Ready-to-Rumble-Updated-728467968 | 2026-08-19 |
-| Rocket Grunt (female) | SirWhibbles | “Free to use, with credits please!” | https://www.deviantart.com/sirwhibbles/art/Public-Team-Rocket-s-Ready-to-Rumble-Updated-728467968 | 2026-08-19 |
 | Roxie commissioned battle and overworld set | tharkka | User-confirmed commissioned artwork for total use | Not supplied — commissioned through Fiverr | 2026-08-28 |
 | Roxie legacy test battle portrait (not used by the current runtime) | Piacarrot | Credit supplied by the user; no permission statement was embedded in the local PNG | Not supplied — local file | 2026-08-19 |
 | Roxie legacy test overworld (not used by the current runtime) | UlithiumDragon | Permission to edit confirmed by the user | Not supplied — local editable sheet | 2026-08-19 |

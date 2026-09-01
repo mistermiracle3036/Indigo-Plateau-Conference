@@ -83,8 +83,10 @@ variants. This test build uses the leftmost/default variant from each sheet.
 Bea and Mina use the documented subset of their larger walking-pose grids.
 SirWhibbles' Kanto sheet supplies complete battle and overworld sets for
 Lorelei and Agatha. His Team Rocket sheet supplies Giovanni, the original GSC
-Rocket Executive, Archer, Ariana, Proton, Petrel, and the male and female
-Rocket Executive. The MOLLY miscellaneous grid supplies battle
+Rocket Executive, Archer, Ariana, Proton and Petrel. The male and female
+Rocket Grunts are no longer among them: they use Gold's own grunt art from
+the player's cache, so no SirWhibbles grunt asset is bundled. The MOLLY
+miscellaneous grid supplies battle
 portraits only, so Jessie & James and Oak use vanilla Gold-cache overworld art.
 Roxie's current battle and overworld art is a commissioned matching set by
 tharkka, used with the user's confirmation of total-use rights. The earlier

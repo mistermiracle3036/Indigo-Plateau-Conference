@@ -7,12 +7,13 @@ relicense Pokémon characters, ROM-derived material, or Nintendo trademarks.
 
 ## Included custom artwork
 
-This private test build includes 122 converted character assets: 60 six-frame
-overworld sheets and 62 56×56 battle portraits. One hundred twenty are referenced
-by the current runtime and cover 61 release-cleared or previously documented
-custom-art characters. The remaining two are dormant, unregistered Nemona
-conversion files retained unchanged for review. The assets directory also
-contains one non-character arena tilesheet. A.J.'s
+This private test build includes 116 converted character assets: 57 six-frame
+overworld sheets and 59 56×56 battle portraits. Every one of them is referenced
+by the current runtime, and together they cover 57 release-cleared or
+previously documented custom-art characters. The assets directory also
+contains one non-character arena tilesheet and nothing else. The dormant
+Nemona conversion files are retained unchanged under `docs/sprite-sources/`,
+which is excluded from the distributed archive. A.J.'s
 custom battle and overworld set is by **TheBrawlUnit**, used with direct
 express approval confirmed by the user. Larry, Ash, Yellow, Nate, Eusine,
 Juliana, Leaf, Lear, Lillie, Looker, Chef, Ranger, Santa and Modern Red use battle-and-overworld
