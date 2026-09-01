@@ -5,6 +5,18 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.41
+
+**Ariana has her hair back.** The crop that produced her walking sprite ran
+tight and sliced the top of her hair into a flat horizontal line. She is
+re-cut from the source sheet using its own cell boundaries and re-synced from
+the shared canonical master, so she looks the same here as in every other mod
+that uses her.
+
+Nothing else changed. This build exists so the re-cut can be checked on a
+phone; the 1.1.40 zip still carried the old crop.
+
+
 ## 1.1.40
 
 **Team Rocket lines up on the grid properly.** Archer, Ariana, Giovanni,
