@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.41"
+  local VERSION = "1.1.42"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -3151,6 +3151,39 @@ return function(mod)
   -- scripted warp does not -- so the mod handing out the way home was both
   -- unnecessary and the source of the dead staircase.
 
+  -- TURNING TO FACE THE PLAYER. Gold turns a talked-to NPC from inside the
+  -- script VM: Vm:emitFace calls the facePlayer hook (src/script/gen2/Vm.lua
+  -- :2403, wired at src/world/gen2/World.lua:934). An ARMED challenger goes
+  -- through the cart's trainer arm, so it enters the VM and turns for free.
+  -- Our UNARMED challenger does not -- it is a kind="none" fall-through that
+  -- never reaches the VM at all -- so before the announcer called the round
+  -- the challenger kept its spawn facing and stared past the player.
+  --
+  -- This mirrors NPC:facePlayer's own axis test (src/world/gen2/Npc.lua
+  -- :318-332) rather than inverting the player's facing, so it resolves a
+  -- counter or an off-axis approach the same way the engine would.
+  --
+  -- Safe on both counts that make scriptFace a no-op: MOVE_STANDING_DOWN (6)
+  -- is not a FIXED_FACING_MOVE row (Npc.lua:64-68), and a "stand" NPC's
+  -- update returns before any facing write of its own (Npc.lua:611), so the
+  -- turn sticks instead of being overwritten on the next frame.
+  local function faceTowardPlayer(mapId, npcName, nx, ny)
+    local here = mod.world:current()
+    if not here or not here.x or not here.y then return end
+    local dx, dy = here.x - nx, here.y - ny
+    if dx == 0 and dy == 0 then return end
+    local dir
+    if math.abs(dx) > math.abs(dy) then
+      dir = dx > 0 and "right" or "left"
+    else
+      dir = dy > 0 and "down" or "up"
+    end
+    local handle = mod.world:npc(mapId, npcName)
+    if not handle then return end
+    local ok = pcall(function() return handle:face(dir) end)
+    if not ok then probe("FACE FAIL\n%s", tostring(npcName)) end
+  end
+
   mod.events:on("world.interacted", function(ev)
     local ok, err = pcall(function()
       if not ev or ev.kind ~= "none" then return end
@@ -3229,8 +3262,11 @@ return function(mod)
         end
 
         -- Unarmed challenger: their flavour line, as often as you like.
+        -- Turn them first, so they look at the player for the chat the way
+        -- they already do once the announcer has armed them.
         if foe and foeObj and not foeObj.trainer
            and foeObj.x == ev.x and foeObj.y == ev.y then
+          faceTowardPlayer(ARENA, FOE_NAME, ev.x, ev.y)
           mod.world:queueScript({ { "text", foe.chat or "..." } })
           return
         end

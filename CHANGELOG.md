@@ -5,6 +5,16 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.42
+
+**Challengers look at you when you talk to them.** Before the announcer
+started the round, talking to your opponent got their line while they carried
+on staring at the wall. They turn to face you now, the same way they already
+did once the announcer had called the round.
+
+The announcer and the host still behave as they did.
+
+
 ## 1.1.41
 
 **Ariana has her hair back.** The crop that produced her walking sprite ran
