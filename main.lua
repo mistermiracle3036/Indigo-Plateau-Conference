@@ -219,7 +219,7 @@ return function(mod)
   end
 
   registerGuestSprite("SPRITE_IPC_BRENDAN", "brendan.png", "PAL_OW_RED", 0)
-  registerGuestSprite("SPRITE_IPC_DAWN", "dawn.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_DAWN", "dawn.png", "PAL_OW_PINK", 4)
   registerGuestSprite("SPRITE_IPC_GREEN", "green.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_HILBERT", "hilbert.png", "PAL_OW_RED", 0)
   registerGuestSprite("SPRITE_IPC_HILDA", "hilda.png", "PAL_OW_RED", 0)
