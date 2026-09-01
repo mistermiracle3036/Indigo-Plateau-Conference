@@ -5,6 +5,12 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.43
+
+- The two Rocket Grunts now use Gold's own grunt sprites instead of custom
+  copies. They looked almost identical to the originals, and the copies had
+  a cut edge on one frame that the real ones do not.
+
 ## 1.1.42
 
 **Challengers look at you when you talk to them.** Before the announcer

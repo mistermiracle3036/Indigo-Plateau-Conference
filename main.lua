@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.42"
+  local VERSION = "1.1.43"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -142,8 +142,6 @@ return function(mod)
                                    "SPRITE_IPC_ARIANA",
                                    "SPRITE_IPC_PROTON",
                                    "SPRITE_IPC_PETREL",
-                                   "SPRITE_IPC_ROCKET_GRUNT_M",
-                                   "SPRITE_IPC_ROCKET_GRUNT_F",
                                    "SPRITE_IPC_ROXIE",
                                    "SPRITE_IPC_PIERS",
                                    "SPRITE_IPC_AJ",
@@ -242,8 +240,6 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_ARIANA", "ariana.png", "PAL_OW_RED", 0)
   registerGuestSprite("SPRITE_IPC_PROTON", "proton.png", "PAL_OW_PINK", 4)
   registerGuestSprite("SPRITE_IPC_PETREL", "petrel.png", "PAL_OW_GREEN", 2)
-  registerGuestSprite("SPRITE_IPC_ROCKET_GRUNT_M", "rocket_grunt_m.png", "PAL_OW_BROWN", 3)
-  registerGuestSprite("SPRITE_IPC_ROCKET_GRUNT_F", "rocket_grunt_f.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_ROXIE", "roxie.png", "PAL_OW_PINK", 4)
   -- Piers' native theme pixels are black-heavy in this asset; Brown is
   -- retained only for enclosed detail lines that would disappear in black.
@@ -333,8 +329,6 @@ return function(mod)
     ARIANA = mod.path .. "/assets/ariana_front.png",
     PROTON = mod.path .. "/assets/proton_front.png",
     PETREL = mod.path .. "/assets/petrel_front.png",
-    ROCKET_GRUNT_M = mod.path .. "/assets/rocket_grunt_m_front.png",
-    ROCKET_GRUNT_F = mod.path .. "/assets/rocket_grunt_f_front.png",
     ROXIE = mod.path .. "/assets/roxie_front.png",
     PIERS = mod.path .. "/assets/piers_front.png",
     DUPLICA = mod.path .. "/assets/duplica_front.png",
@@ -393,8 +387,6 @@ return function(mod)
     ARIANA = true,
     PROTON = true,
     PETREL = true,
-    ROCKET_GRUNT_M = true,
-    ROCKET_GRUNT_F = true,
     ROXIE = true,
     PIERS = true,
     DUPLICA = true,
@@ -1352,7 +1344,7 @@ return function(mod)
 
   { key = "ROCKET_GRUNT_M", tier = 1,
     class = "GRUNTM", member = "GRUNTM_1",
-    sprite = "SPRITE_IPC_ROCKET_GRUNT_M", name = "ROCKET GRUNT",
+    sprite = "SPRITE_ROCKET", name = "ROCKET GRUNT",
     chat = "GRUNT: Hey! This\nround belongs to us!",
     intro = "GRUNT: Team Rocket,\nattack!",
     win = "I knew this job\nwas trouble!",
@@ -1365,7 +1357,7 @@ return function(mod)
 
   { key = "ROCKET_GRUNT_F", tier = 1,
     class = "GRUNTF", member = "GRUNTF_1",
-    sprite = "SPRITE_IPC_ROCKET_GRUNT_F", name = "ROCKET GRUNT",
+    sprite = "SPRITE_ROCKET_GIRL", name = "ROCKET GRUNT",
     chat = "GRUNT: The uniform\nmeans business.",
     intro = "GRUNT: Hand over\nthat victory!",
     win = "The boss won't\nlike this...",

@@ -1,12 +1,16 @@
 {
   "id": "indigo_conference",
   "name": "Indigo Plateau Conference",
-  "version": "1.1.42",
+  "version": "1.1.43",
   "api": 2,
   "entry": "main.lua",
   "profile": "content",
   "category": "QUEST",
-  "games": ["gold", "silver", "crystal"],
+  "games": [
+    "gold",
+    "silver",
+    "crystal"
+  ],
   "game_version": ">=0.2.22 <2.0.0",
   "priority": 100,
   "affects_link": false,

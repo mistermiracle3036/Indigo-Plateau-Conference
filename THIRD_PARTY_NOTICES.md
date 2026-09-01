@@ -38,7 +38,9 @@ satisfies the terms for those folders. Volkner and the developer-only Armored
 Mewtwo exception are by **KiravelSoul** under the same confirmed creator-folder
 terms. Lorelei and Agatha use SirWhibbles' public GSC Kanto
 sheet. Giovanni, the original GSC Rocket Executive, Archer, Ariana, Proton,
-Petrel, and both Rocket Grunts use his public Team Rocket sheet. Both source
+and Petrel use his public Team Rocket sheet. The Rocket Grunts use
+Gold's own art from the player's cache -- no custom sprite is bundled
+for them. Both source
 pages state **“Free to use, with credits please!”** Roxie uses a commissioned
 battle-and-overworld set by **tharkka**, commissioned through Fiverr and
 confirmed by the user for total use. Piers uses a commissioned battle and

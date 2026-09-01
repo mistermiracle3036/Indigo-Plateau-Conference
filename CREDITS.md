@@ -75,8 +75,6 @@ permitted. Direct-use approvals and source-page terms are recorded in
 | Petrel | `sirwhibbles_team_rocket.png` | `assets/petrel.png`, `assets/petrel_front.png` | SirWhibbles |
 | Proton | `sirwhibbles_team_rocket.png` | `assets/proton.png`, `assets/proton_front.png` | SirWhibbles |
 | Rocket Executive (original GSC design) | `sirwhibbles_team_rocket.png` | `assets/rocket_executive.png`, `assets/rocket_executive_front.png` | SirWhibbles |
-| Rocket Grunt (female) | `sirwhibbles_team_rocket.png` | `assets/rocket_grunt_f.png`, `assets/rocket_grunt_f_front.png` | SirWhibbles |
-| Rocket Grunt (male) | `sirwhibbles_team_rocket.png` | `assets/rocket_grunt_m.png`, `assets/rocket_grunt_m_front.png` | SirWhibbles |
 | Roxie | `roxie_tharkka_battle_sheet.png`; `roxie_tharkka_overworld_sheet.png` | `assets/roxie.png`, `assets/roxie_front.png` | tharkka (commissioned through Fiverr) |
 | Piers | `piers_yogurcomics_battle_front_transparent.png`; `piers_yogurcomics_overworld_blue_transparent.png` | `assets/piers.png`, `assets/piers_front.png` | Yogurcomics (commissioned) |
 
@@ -86,7 +84,7 @@ Bea and Mina use the documented subset of their larger walking-pose grids.
 SirWhibbles' Kanto sheet supplies complete battle and overworld sets for
 Lorelei and Agatha. His Team Rocket sheet supplies Giovanni, the original GSC
 Rocket Executive, Archer, Ariana, Proton, Petrel, and the male and female
-Rocket Grunts. The MOLLY miscellaneous grid supplies battle
+Rocket Executive. The MOLLY miscellaneous grid supplies battle
 portraits only, so Jessie & James and Oak use vanilla Gold-cache overworld art.
 Roxie's current battle and overworld art is a commissioned matching set by
 tharkka, used with the user's confirmation of total-use rights. The earlier
