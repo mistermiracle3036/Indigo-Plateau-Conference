@@ -5,6 +5,20 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.40
+
+**Team Rocket lines up on the grid properly.** Archer, Ariana, Giovanni,
+Petrel, Proton, the Rocket Executive and both Rocket Grunts were sitting one
+to two pixels too far left inside their frames — worst on the side-facing
+frames, which is why talking to one from the side made its face look chopped
+against the edge of its cell. All eight are re-synced from the shared
+canonical masters, so they now match every other walker on the grid and look
+the same here as they do in the other mods that use them.
+
+Only the position inside the frame changed. The art, its greyscale values and
+every roster entry are untouched.
+
+
 ## 1.1.39
 
 **Six cleared-art challengers join the normal draw.** N, Ingo, Pokémon
