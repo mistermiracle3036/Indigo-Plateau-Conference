@@ -99,7 +99,7 @@ anything rebalances.
 - **A run in progress survives quitting.** The bracket travels with your
   in-game save, so loading an older save rewinds the tournament with it.
 
-**Every run fields a different card.** The roster is 88 challengers across
+**Every run fields a different card.** The roster is 89 challengers across
 four escalating tiers, and each run draws one per tier. A new draw never
 repeats the previous run's pick in a tier, so back-to-back tournaments
 always look different. Challengers speak for themselves — an introduction

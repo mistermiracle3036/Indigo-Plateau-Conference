@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.43"
+  local VERSION = "1.1.59"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -137,11 +137,9 @@ return function(mod)
                                    "SPRITE_IPC_GIOVANNI",
                                    "SPRITE_IPC_LORELEI",
                                    "SPRITE_IPC_AGATHA",
-                                   "SPRITE_IPC_ROCKET_EXECUTIVE",
                                    "SPRITE_IPC_ARCHER",
                                    "SPRITE_IPC_ARIANA",
                                    "SPRITE_IPC_PROTON",
-                                   "SPRITE_IPC_PETREL",
                                    "SPRITE_IPC_ROXIE",
                                    "SPRITE_IPC_PIERS",
                                    "SPRITE_IPC_AJ",
@@ -161,9 +159,7 @@ return function(mod)
                                    "SPRITE_IPC_MAXIE",
                                    "SPRITE_IPC_WALLY",
                                    "SPRITE_IPC_GLORIA",
-                                   "SPRITE_IPC_OFFICER_JENNY",
                                    "SPRITE_IPC_RUIN_MANIAC",
-                                   "SPRITE_IPC_CHEF",
                                    "SPRITE_IPC_VOLKNER",
                                    "SPRITE_IPC_ARMORED_MEWTWO",
                                    "SPRITE_IPC_DUPLICA",
@@ -176,7 +172,27 @@ return function(mod)
                                    "SPRITE_IPC_BREEDER",
                                    "SPRITE_IPC_SANTA",
                                    "SPRITE_IPC_NURSE_JOY",
-                                   "SPRITE_IPC_MODERN_RED" } }
+                                   "SPRITE_IPC_MODERN_RED", "SPRITE_IPC_FANTINA",
+                                   "SPRITE_IPC_ARTIST",
+                                   "SPRITE_IPC_BOARDER",
+                                   "SPRITE_IPC_BUCK",
+                                   "SPRITE_IPC_CHERYL",
+                                   "SPRITE_IPC_CYNTHIA",
+                                   "SPRITE_IPC_ENGINEER",
+                                   "SPRITE_IPC_IVY",
+                                   "SPRITE_IPC_MARLEY",
+                                   "SPRITE_IPC_MARY",
+                                   "SPRITE_IPC_MAYLENE",
+                                   "SPRITE_IPC_MIRA",
+                                   "SPRITE_IPC_RILEY",
+                                   "SPRITE_IPC_STEVEN",
+                                   "SPRITE_IPC_TAMER",
+                                   "SPRITE_IPC_VETERAN_M",
+                                   "SPRITE_IPC_WALKER",
+                                   "SPRITE_IPC_CAPTAIN",
+                                   "SPRITE_IPC_EXTERMINATOR",
+                                   "SPRITE_IPC_SLOT_MANIAC",
+                                 } }
 
   local LOBBY = "POKECENTER_2F"
   local ARENA = "COLOSSEUM"
@@ -206,7 +222,7 @@ return function(mod)
   -- Cleared art test. Every supplied walking set becomes a private six-frame
   -- sprite record. Guest trainer members are appended later; no vanilla
   -- sprite, trainer member, shared portrait or party is replaced.
-  local function registerGuestSprite(id, file, palette, paletteId)
+  local function registerGuestSprite(id, file, palette, paletteId, trueColor)
     mod.content.sprites:register(id, {
       id = id,
       image = mod.path .. "/assets/" .. file,
@@ -215,11 +231,12 @@ return function(mod)
       spriteType = "WALKING_SPRITE",
       palette = palette,
       paletteId = paletteId,
+      trueColor = trueColor,
     })
   end
 
   registerGuestSprite("SPRITE_IPC_BRENDAN", "brendan.png", "PAL_OW_RED", 0)
-  registerGuestSprite("SPRITE_IPC_DAWN", "dawn.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_DAWN", "dawn.png", "PAL_OW_PINK", 4, true)
   registerGuestSprite("SPRITE_IPC_GREEN", "green.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_HILBERT", "hilbert.png", "PAL_OW_RED", 0)
   registerGuestSprite("SPRITE_IPC_HILDA", "hilda.png", "PAL_OW_RED", 0)
@@ -232,24 +249,22 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_STADIUM_PLAYER", "stadium_player.png", "PAL_OW_RED", 0)
   registerGuestSprite("SPRITE_IPC_ROSA", "rosa.png", "PAL_OW_RED", 0)
   registerGuestSprite("SPRITE_IPC_WES", "wes.png", "PAL_OW_BLUE", 1)
-  registerGuestSprite("SPRITE_IPC_GIOVANNI", "giovanni.png", "PAL_OW_BROWN", 3)
-  registerGuestSprite("SPRITE_IPC_LORELEI", "lorelei.png", "PAL_OW_RED", 0)
-  registerGuestSprite("SPRITE_IPC_AGATHA", "agatha.png", "PAL_OW_PINK", 4)
-  registerGuestSprite("SPRITE_IPC_ROCKET_EXECUTIVE", "rocket_executive.png", "PAL_OW_RED", 0)
-  registerGuestSprite("SPRITE_IPC_ARCHER", "archer.png", "PAL_OW_BLUE", 1)
-  registerGuestSprite("SPRITE_IPC_ARIANA", "ariana.png", "PAL_OW_RED", 0)
-  registerGuestSprite("SPRITE_IPC_PROTON", "proton.png", "PAL_OW_PINK", 4)
-  registerGuestSprite("SPRITE_IPC_PETREL", "petrel.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_GIOVANNI", "giovanni.png", "PAL_OW_BROWN", 3, true)
+  registerGuestSprite("SPRITE_IPC_LORELEI", "lorelei.png", "PAL_OW_RED", 0, true)
+  registerGuestSprite("SPRITE_IPC_AGATHA", "agatha.png", "PAL_OW_PINK", 4, true)
+  registerGuestSprite("SPRITE_IPC_ARCHER", "archer.png", "PAL_OW_BLUE", 1, true)
+  registerGuestSprite("SPRITE_IPC_ARIANA", "ariana.png", "PAL_OW_RED", 0, true)
+  registerGuestSprite("SPRITE_IPC_PROTON", "proton.png", "PAL_OW_PINK", 4, true)
   registerGuestSprite("SPRITE_IPC_ROXIE", "roxie.png", "PAL_OW_PINK", 4)
   -- Piers' native theme pixels are black-heavy in this asset; Brown is
   -- retained only for enclosed detail lines that would disappear in black.
   registerGuestSprite("SPRITE_IPC_PIERS", "piers.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_AJ", "aj.png", "PAL_OW_GREEN", 2)
-  registerGuestSprite("SPRITE_IPC_LARRY", "larry.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_LARRY", "larry.png", "PAL_OW_BROWN", 3, true)
   registerGuestSprite("SPRITE_IPC_ASH", "ash.png", "PAL_OW_BLUE", 1)
-  registerGuestSprite("SPRITE_IPC_YELLOW", "yellow.png", "PAL_OW_BROWN", 3)
-  registerGuestSprite("SPRITE_IPC_EUSINE", "eusine.png", "PAL_OW_PINK", 4)
-  registerGuestSprite("SPRITE_IPC_JULIANA", "juliana.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_YELLOW", "yellow.png", "PAL_OW_BROWN", 3, true)
+  registerGuestSprite("SPRITE_IPC_EUSINE", "eusine.png", "PAL_OW_PINK", 4, true)
+  registerGuestSprite("SPRITE_IPC_JULIANA", "juliana.png", "PAL_OW_PINK", 4, true)
   registerGuestSprite("SPRITE_IPC_LEAF", "leaf.png", "PAL_OW_GREEN", 2)
   registerGuestSprite("SPRITE_IPC_LEAR", "lear.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_LILLIE", "lillie.png", "PAL_OW_PINK", 4)
@@ -257,23 +272,23 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_BARRY", "barry.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_BILL", "bill.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_COLRESS", "colress.png", "PAL_OW_BLUE", 1)
-  registerGuestSprite("SPRITE_IPC_HUGH", "hugh.png", "PAL_OW_BLUE", 1)
-  registerGuestSprite("SPRITE_IPC_MAXIE", "maxie.png", "PAL_OW_RED", 0)
-  registerGuestSprite("SPRITE_IPC_WALLY", "wally.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_HUGH", "hugh.png", "PAL_OW_BLUE", 1, true)
+  registerGuestSprite("SPRITE_IPC_MAXIE", "maxie.png", "PAL_OW_RED", 0, true)
+  registerGuestSprite("SPRITE_IPC_WALLY", "wally.png", "PAL_OW_GREEN", 2, true)
   registerGuestSprite("SPRITE_IPC_GLORIA", "gloria.png", "PAL_OW_GREEN", 2)
-  registerGuestSprite("SPRITE_IPC_OFFICER_JENNY", "officer_jenny.png", "PAL_OW_BLUE", 1)
-  registerGuestSprite("SPRITE_IPC_RUIN_MANIAC", "ruin_maniac.png", "PAL_OW_BROWN", 3)
-  registerGuestSprite("SPRITE_IPC_CHEF", "chef.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_RUIN_MANIAC", "ruin_maniac.png", "PAL_OW_BROWN", 3, true)
   registerGuestSprite("SPRITE_IPC_VOLKNER", "volkner.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_ARMORED_MEWTWO", "armored_mewtwo.png", "PAL_OW_PINK", 4)
   -- The three JQP exports use Bani sheets as documented visual substitutes.
-  registerGuestSprite("SPRITE_IPC_DUPLICA", "duplica.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_DUPLICA", "duplica.png", "PAL_OW_PINK", 4, true)
   registerGuestSprite("SPRITE_IPC_GISELLE", "giselle.png", "PAL_OW_BLUE", 1)
   registerGuestSprite("SPRITE_IPC_SUZIE", "suzie.png", "PAL_OW_BLUE", 1)
   registerGuestSprite("SPRITE_IPC_RANGER", "ranger.png", "PAL_OW_RED", 0)
   registerGuestSprite("SPRITE_IPC_BALLGUY", "ballguy.png", "PAL_OW_RED", 0)
-  registerGuestSprite("SPRITE_IPC_N", "n.png", "PAL_OW_GREEN", 2)
-  registerGuestSprite("SPRITE_IPC_INGO", "ingo.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_N", "n.png", "PAL_OW_GREEN", 2, true)
+  -- Commissioned purple with vanilla NPC skin tone in GBC mode.
+  registerGuestSprite("SPRITE_IPC_FANTINA", "fantina.png", "PAL_OW_PINK", 4, true)
+  registerGuestSprite("SPRITE_IPC_INGO", "ingo.png", "PAL_OW_BROWN", 3, true)
   registerGuestSprite("SPRITE_IPC_BREEDER", "breeder.png", "PAL_OW_GREEN", 2)
   registerGuestSprite("SPRITE_IPC_SANTA", "santa.png", "PAL_OW_RED", 0)
   registerGuestSprite("SPRITE_IPC_NURSE_JOY", "nurse_joy.png", "PAL_OW_PINK", 4)
@@ -282,7 +297,42 @@ return function(mod)
   -- Battle fronts are replaced only on the already-created UI state for a
   -- positively identified Conference battle. Shared class picture tables
   -- stay untouched, which preserves every ordinary trainer battle.
+  -- Drop-in assets and exact palette specification from OW_COLORS.json.
+  registerGuestSprite("SPRITE_IPC_ARTIST", "artist.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_BOARDER", "boarder.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_BUCK", "buck.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_CHERYL", "cheryl.png", "PAL_OW_GREEN", 2, true)
+  registerGuestSprite("SPRITE_IPC_CYNTHIA", "cynthia.png", "PAL_OW_BLUE", 1, true)
+  registerGuestSprite("SPRITE_IPC_ENGINEER", "engineer.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_IVY", "ivy.png", "PAL_OW_BLUE", 1, true)
+  registerGuestSprite("SPRITE_IPC_MARLEY", "marley.png", "PAL_OW_BLUE", 1, true)
+  registerGuestSprite("SPRITE_IPC_MARY", "mary.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_MAYLENE", "maylene.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_MIRA", "mira.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_RILEY", "riley.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_STEVEN", "steven.png", "PAL_OW_BLUE", 1, true)
+  registerGuestSprite("SPRITE_IPC_TAMER", "tamer.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_VETERAN_M", "veteran_m.png", "PAL_OW_BLUE", 1, true)
+  registerGuestSprite("SPRITE_IPC_WALKER", "walker.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_CAPTAIN", "captain.png", "PAL_OW_BLUE", 1, true)
+  registerGuestSprite("SPRITE_IPC_EXTERMINATOR", "exterminator.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_SLOT_MANIAC", "slot_maniac.png", "PAL_OW_BROWN", 3)
+
   local BATTLE_FRONTS = {
+    ARTIST = mod.path .. "/assets/artist_front.png",
+    BUCK = mod.path .. "/assets/buck_front.png",
+    CHERYL = mod.path .. "/assets/cheryl_front.png",
+    CYNTHIA = mod.path .. "/assets/cynthia_front.png",
+    ENGINEER = mod.path .. "/assets/engineer_front.png",
+    IVY = mod.path .. "/assets/ivy_front.png",
+    MARLEY = mod.path .. "/assets/marley_front.png",
+    MAYLENE = mod.path .. "/assets/maylene_front.png",
+    MIRA = mod.path .. "/assets/mira_front.png",
+    RILEY = mod.path .. "/assets/riley_front.png",
+    STEVEN = mod.path .. "/assets/steven_front.png",
+    TAMER = mod.path .. "/assets/tamer_front.png",
+    VETERAN_M = mod.path .. "/assets/veteran_m_front.png",
+    WALKER = mod.path .. "/assets/walker_front.png",
     AJ = mod.path .. "/assets/aj_front.png",
     LARRY = mod.path .. "/assets/larry_front.png",
     ASH = mod.path .. "/assets/ash_front.png",
@@ -321,22 +371,18 @@ return function(mod)
     WES = mod.path .. "/assets/wes_front.png",
     JESSIE_JAMES = mod.path .. "/assets/jessie_james_front.png",
     GIOVANNI = mod.path .. "/assets/giovanni_front.png",
-    OAK = mod.path .. "/assets/oak_front.png",
     LORELEI = mod.path .. "/assets/lorelei_front.png",
     AGATHA = mod.path .. "/assets/agatha_front.png",
-    ROCKET_EXECUTIVE = mod.path .. "/assets/rocket_executive_front.png",
     ARCHER = mod.path .. "/assets/archer_front.png",
     ARIANA = mod.path .. "/assets/ariana_front.png",
     PROTON = mod.path .. "/assets/proton_front.png",
-    PETREL = mod.path .. "/assets/petrel_front.png",
     ROXIE = mod.path .. "/assets/roxie_front.png",
     PIERS = mod.path .. "/assets/piers_front.png",
-    DUPLICA = mod.path .. "/assets/duplica_front.png",
     GISELLE = mod.path .. "/assets/giselle_front.png",
-    SUZIE = mod.path .. "/assets/suzie_front.png",
     RANGER = mod.path .. "/assets/ranger_front.png",
     BALLGUY = mod.path .. "/assets/ballguy_front.png",
     N = mod.path .. "/assets/n_front.png",
+    FANTINA = mod.path .. "/assets/fantina_front.png",
     INGO = mod.path .. "/assets/ingo_front.png",
     BREEDER = mod.path .. "/assets/breeder_front.png",
     SANTA = mod.path .. "/assets/santa_front.png",
@@ -348,6 +394,20 @@ return function(mod)
   -- Mark only them true-color so their borrowed trainer classes cannot
   -- remap the art through an unrelated class palette during battle.
   local TRUE_COLOR_FRONTS = {
+    ARTIST = true,
+    BUCK = true,
+    CHERYL = true,
+    CYNTHIA = true,
+    ENGINEER = true,
+    IVY = true,
+    MARLEY = true,
+    MAYLENE = true,
+    MIRA = true,
+    RILEY = true,
+    STEVEN = true,
+    TAMER = true,
+    VETERAN_M = true,
+    WALKER = true,
     AJ = true,
     LARRY = true,
     ASH = true,
@@ -379,22 +439,18 @@ return function(mod)
     WES = true,
     JESSIE_JAMES = true,
     GIOVANNI = true,
-    OAK = true,
     LORELEI = true,
     AGATHA = true,
-    ROCKET_EXECUTIVE = true,
     ARCHER = true,
     ARIANA = true,
     PROTON = true,
-    PETREL = true,
     ROXIE = true,
     PIERS = true,
-    DUPLICA = true,
     GISELLE = true,
-    SUZIE = true,
     RANGER = true,
     BALLGUY = true,
     N = true,
+    FANTINA = true,
     INGO = true,
     BREEDER = true,
     SANTA = true,
@@ -434,7 +490,224 @@ return function(mod)
   -- types share the generic sheets), so those are mapped to the closest
   -- real sheet. Tier 4 rides named classes: real name AND real portrait.
   ----------------------------------------------------------------------
+  -- Optional provider loads first through the manifest dependency ordering.
+  -- Use its stable string id; Expanded Species owns numeric allocation.
+  local polishedPack = mod.find and mod.find("polished_species_pack")
+  local polishedIds = polishedPack and polishedPack.exports and polishedPack.exports.ids
+  local fantinaAce = polishedIds and polishedIds.MISMAGIUS or "MISDREAVUS"
+  local function expandedPick(key, fallback)
+    return polishedIds and polishedIds[key] or fallback
+  end
   local ROSTER = {
+  -- 1.1.50 visual-only guests. Temporary one-Raticate teams, never random.
+  { key = "ARTIST", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_ARTIST", name = "ARTIST",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "BOARDER", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_BOARDER", name = "BOARDER",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "BUCK", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_BUCK", name = "BUCK",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "CHERYL", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_CHERYL", name = "CHERYL",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "CYNTHIA", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_CYNTHIA", name = "CYNTHIA",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = expandedPick("TOGEKISS", "TOGETIC"), delta = 0 } } },
+
+  { key = "ENGINEER", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_ENGINEER", name = "ENGINEER",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "IVY", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_IVY", name = "IVY",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "MARLEY", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_MARLEY", name = "MARLEY",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "MARY", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_MARY", name = "MARY",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "MAYLENE", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_MAYLENE", name = "MAYLENE",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "MIRA", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_MIRA", name = "MIRA",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "RILEY", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_RILEY", name = "RILEY",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "STEVEN", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_STEVEN", name = "STEVEN",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "TAMER", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_TAMER", name = "TAMER",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "VETERAN_M", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_VETERAN_M", name = "VETERAN M",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "WALKER", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_WALKER", name = "WALKER",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "CAPTAIN", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_CAPTAIN", name = "CAPTAIN",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "EXTERMINATOR", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_EXTERMINATOR", name = "EXTERMINATOR",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
+
+  { key = "SLOT_MANIAC", tier = 1, devOnly = true,
+    class = "GENTLEMAN", member = "GREGORY",
+    sprite = "SPRITE_IPC_SLOT_MANIAC", name = "SLOT MANIAC",
+    chat = "A color test!\nTake a close look.",
+    intro = "Let's test art!",
+    win = "A fine test!",
+    loss = "Thanks for a test!",
+    afterWin = "How did it look?",
+    afterLoss = "How did it look?",
+    party = { { species = "RATICATE", delta = 0 } } },
 
   -- ========================= TIER 1 =========================
   { key = "AJ", tier = 1, class = "BUG_CATCHER", member = "DON",
@@ -1091,8 +1364,8 @@ return function(mod)
     loss = "The theory holds.",
     afterWin = "COLRESS: Your bond\nis remarkable.",
     afterLoss = "COLRESS: More data\nfor the model.",
-    party = { { species = "MAGNETON", delta = 0 },
-              { species = "PORYGON2", delta = 0 },
+    party = { { species = expandedPick("MAGNEZONE", "MAGNETON"), delta = 0 },
+              { species = expandedPick("PORYGON_Z", "PORYGON2"), delta = 0 },
               { species = "SCIZOR",   delta = 1 } } },
 
   { key = "HUGH", tier = 2, class = "COOLTRAINERM", member = "RYAN",
@@ -1146,7 +1419,7 @@ return function(mod)
               { species = "SKARMORY",   delta = 1 } } },
 
   { key = "OFFICER_JENNY", tier = 1, class = "OFFICER", member = "KEITH",
-    sprite = "SPRITE_IPC_OFFICER_JENNY", name = "JENNY",
+    sprite = "SPRITE_OFFICER", palette = 9, name = "JENNY",
     chat = "JENNY: Keep this\nbattle orderly!",
     intro = "JENNY: You're clear\nto begin!",
     win = "Case remains open.",
@@ -1178,11 +1451,10 @@ return function(mod)
     loss = "The current was\ntoo strong!",
     afterWin = "VOLKNER: That woke\nme right up.",
     afterLoss = "VOLKNER: Good. I\nneeded that battle.",
-    -- Gen 2 stand-ins for Volkner's Sinnoh electric specialists:
-    -- Electabuzz represents Electivire, which does not exist in Gen 2.
+    -- Optional evolved ace; vanilla Electabuzz remains the no-pack fallback.
     party = { { species = "JOLTEON",    delta = 0 },
               { species = "RAICHU",     delta = 0 },
-              { species = "ELECTABUZZ", delta = 1 } } },
+              { species = expandedPick("ELECTIVIRE", "ELECTABUZZ"), delta = 1 } } },
 
   -- Explicit user-approved exception to the usual trainer-only rule.
   -- Armored Mewtwo is a private visual probe, never a random draw.
@@ -1202,7 +1474,7 @@ return function(mod)
   -- joke and keeps this first-round sprite check short.
   { key = "CHEF", tier = 1, devOnly = true,
     class = "GENTLEMAN", member = "GREGORY",
-    sprite = "SPRITE_IPC_CHEF", name = "CHEF",
+    sprite = "SPRITE_GENTLEMAN", palette = 11, name = "CHEF",
     chat = "CHEF: Today's\nspecial is ready!",
     intro = "CHEF: RATICATE,\ntake the table!",
     win = "Back to the kitchen!",
@@ -1234,7 +1506,7 @@ return function(mod)
     afterLoss = "GIOVANNI: Loyalty\nfollows strength.",
     party = { { species = "PERSIAN",  delta = 0 },
               { species = "NIDOKING", delta = 0 },
-              { species = "RHYDON",   delta = 1 } } },
+              { species = expandedPick("RHYPERIOR", "RHYDON"), delta = 1 } } },
 
   -- TODO/CONFIRM on device: the MOLLY source grid is unlabeled; cell r5c6
   -- is the Oak-like lab-coat portrait selected for this test build.
@@ -1279,7 +1551,7 @@ return function(mod)
 
   { key = "ROCKET_EXECUTIVE", tier = 3,
     class = "EXECUTIVEM", member = "EXECUTIVEM_1",
-    sprite = "SPRITE_IPC_ROCKET_EXECUTIVE", name = "ROCKET EXECUTIVE",
+    sprite = "SPRITE_ROCKET", palette = 8, name = "ROCKET EXECUTIVE",
     chat = "EXECUTIVE: This\noperation is classified.",
     intro = "EXECUTIVE: Team\nRocket takes control!",
     win = "This setback will\nbe dealt with.",
@@ -1331,7 +1603,7 @@ return function(mod)
 
   { key = "PETREL", tier = 2,
     class = "EXECUTIVEM", member = "EXECUTIVEM_4",
-    sprite = "SPRITE_IPC_PETREL", name = "PETREL",
+    sprite = "SPRITE_ROCKET", palette = 10, name = "PETREL",
     chat = "PETREL: Which face\nshould I wear today?",
     intro = "PETREL: The joke\nis on you!",
     win = "Even I didn't see\nthat coming.",
@@ -1507,6 +1779,19 @@ return function(mod)
               { species = "GYARADOS", delta = 0 },
               { species = "RHYDON",   delta = 1 } } },
 
+  { key = "FANTINA", tier = 3, class = "MEDIUM", member = "MARTHA",
+    sprite = "SPRITE_IPC_FANTINA", name = "FANTINA",
+    chat = "FANTINA: A dance!\nA battle! Both!",
+    intro = "FANTINA: Now we\nbegin our show!",
+    win = "Oh! Magnifique!",
+    loss = "Such a lovely\nperformance!",
+    afterWin = "FANTINA: You have\nsuch fine spirit!",
+    afterLoss = "FANTINA: We must\ndance again!",
+    -- Native fallback keeps the tournament usable without the species pack.
+    party = { { species = "HAUNTER", delta = 0 },
+              { species = "GENGAR", delta = 0 },
+              { species = fantinaAce, delta = 1 } } },
+
   { key = "N", tier = 3, class = "COOLTRAINERM", member = "NICK",
     sprite = "SPRITE_IPC_N", name = "N",
     chat = "N: I can hear the\nvoices of POKEMON.",
@@ -1602,6 +1887,52 @@ return function(mod)
               { species = "SNORLAX",   delta = 0 },
               { species = "PIKACHU",   delta = 2 } } },
   }
+
+  -- Cleared September 2026: private comparison identities, never replacements.
+  -- Keep source filenames distinct so approved shared/canonical art stays intact.
+  do
+    local artTests = {
+      { key = "MIROR_B", name = "MIROR B", file = "mirorb" },
+      { key = "RINA_CIARA", name = "RINA", file = "rina_ciara" },
+      { key = "RUI_CIARA", name = "RUI", file = "rui_ciara" },
+      { key = "CHOBIN_CIARA_GECKO557", name = "CHOBIN", file = "chobin_ciara_gecko557" },
+    }
+    for _, art in ipairs(artTests) do
+      local foe
+      if art.source then
+        for _, existing in ipairs(ROSTER) do
+          if existing.key == art.source then
+            foe = {}
+            for k, v in pairs(existing) do foe[k] = v end
+            foe.party = {}
+            for i, mon in ipairs(existing.party) do
+              foe.party[i] = {}
+              for k, v in pairs(mon) do foe.party[i][k] = v end
+            end
+            break
+          end
+        end
+        assert(foe, "IPC comparison source missing: " .. art.source)
+      else
+        foe = {
+          tier = 1, class = "GENTLEMAN", member = "GREGORY", name = art.name,
+          chat = "Sprite test only.\nTeam not final.",
+          intro = "Let's test this\nnew look!",
+          win = "Thanks for trying!", loss = "Thanks for trying!",
+          afterWin = "How did the new\nsprites look?",
+          afterLoss = "How did the new\nsprites look?",
+          party = { { species = "RATICATE", delta = 0 } },
+        }
+      end
+      foe.key, foe.devOnly = art.key, true
+      foe.sprite = "SPRITE_IPC_" .. art.key
+      mod.exports.owns.sprites[#mod.exports.owns.sprites + 1] = foe.sprite
+      registerGuestSprite(foe.sprite, art.file .. ".png", "PAL_OW_BROWN", 3, true)
+      BATTLE_FRONTS[art.key] = mod.path .. "/assets/" .. art.file .. "_front.png"
+      TRUE_COLOR_FRONTS[art.key] = true
+      ROSTER[#ROSTER + 1] = foe
+    end
+  end
 
   -- key -> entry, and tier -> list of keys, for the draw
   local BY_KEY, TIERS = {}, { {}, {}, {}, {} }
@@ -1803,11 +2134,39 @@ return function(mod)
       label = "Diagnostic rows", default = false },
     { key = "dev_art_guest", type = "choice",
       label = "DEV: First-round guest",
-      choices = { { "Random", "" }, { "A.J.", "AJ" },
-                  { "Larry", "LARRY" }, { "Ash", "ASH" },
+      choices = { { "Random", "" },
+                  { "Artist", "ARTIST" },
+                  { "Boarder", "BOARDER" },
+                  { "Buck", "BUCK" },
+                  { "Cheryl", "CHERYL" },
+                  { "Cynthia", "CYNTHIA" },
+                  { "Engineer", "ENGINEER" },
+                  { "Ivy", "IVY" },
+                  { "Marley", "MARLEY" },
+                  { "Mary", "MARY" },
+                  { "Maylene", "MAYLENE" },
+                  { "Mira", "MIRA" },
+                  { "Riley", "RILEY" },
+                  { "Steven", "STEVEN" },
+                  { "Tamer", "TAMER" },
+                  { "Veteran (M)", "VETERAN_M" },
+                  { "Walker", "WALKER" },
+                  { "Captain", "CAPTAIN" },
+                  { "Exterminator", "EXTERMINATOR" },
+                  { "Slot Maniac", "SLOT_MANIAC" },
+                  { "Proton", "PROTON" }, { "Giovanni", "GIOVANNI" },
+                  { "Hugh", "HUGH" }, { "Archer", "ARCHER" },
+                  { "Wally", "WALLY" }, { "N", "N" },
+                  { "Ruin Maniac", "RUIN_MANIAC" },
+                  { "Maxie", "MAXIE" }, { "Dawn", "DAWN" },
+                  { "Eusine", "EUSINE" }, { "Agatha", "AGATHA" },
+                  { "Duplica", "DUPLICA" }, { "Juliana", "JULIANA" },
+                  { "Larry", "LARRY" }, { "Ingo", "INGO" },
+                  { "Ariana", "ARIANA" }, { "Lorelei", "LORELEI" },
                   { "Yellow", "YELLOW" },
+                  { "A.J.", "AJ" }, { "Ash", "ASH" },
                   { "Brendan", "BRENDAN" },
-                  { "Dawn", "DAWN" }, { "Green", "GREEN" },
+                  { "Green", "GREEN" },
                   { "Hilbert", "HILBERT" }, { "Hilda", "HILDA" },
                   { "Lyra", "LYRA" }, { "May", "MAY" },
                   { "Michael", "MICHAEL" },
@@ -1816,36 +2175,35 @@ return function(mod)
                   { "Stadium Trainer", "STADIUM_PLAYER" },
                   { "Rosa", "ROSA" }, { "Wes", "WES" },
                   { "Jessie & James", "JESSIE_JAMES" },
-                  { "Giovanni", "GIOVANNI" }, { "Oak", "OAK" },
-                  { "Lorelei", "LORELEI" }, { "Agatha", "AGATHA" },
+                  { "Oak", "OAK" },
                   { "Rocket Executive", "ROCKET_EXECUTIVE" },
-                  { "Archer", "ARCHER" }, { "Ariana", "ARIANA" },
-                  { "Proton", "PROTON" }, { "Petrel", "PETREL" },
+                  { "Petrel", "PETREL" },
                   { "Rocket Grunt M", "ROCKET_GRUNT_M" },
                   { "Rocket Grunt F", "ROCKET_GRUNT_F" },
                   { "Roxie", "ROXIE" }, { "Piers", "PIERS" },
-                  { "Eusine", "EUSINE" }, { "Juliana", "JULIANA" },
                   { "Leaf", "LEAF" }, { "Lear", "LEAR" },
-                  { "Lillie", "LILLIE" }, { "Looker", "LOOKER" },
+                  { "Lillie", "LILLIE" },
+                  { "Looker", "LOOKER" },
                   { "Barry", "BARRY" }, { "Bill", "BILL" },
-                  { "Colress", "COLRESS" }, { "Hugh", "HUGH" },
-                  { "Maxie", "MAXIE" }, { "Wally", "WALLY" },
+                  { "Colress", "COLRESS" },
                   { "Gloria", "GLORIA" },
                   { "Officer Jenny", "OFFICER_JENNY" },
-                  { "Ruin Maniac", "RUIN_MANIAC" },
                   { "Volkner", "VOLKNER" },
-                  { "Duplica", "DUPLICA" },
                   { "Giselle", "GISELLE" },
                   { "Suzie", "SUZIE" },
                   { "Ranger", "RANGER" },
                   { "Ball Guy", "BALLGUY" },
-                  { "N", "N" }, { "Ingo", "INGO" },
                   { "Pokemon Breeder", "BREEDER" },
                   { "Santa", "SANTA" },
                   { "Nurse Joy", "NURSE_JOY" },
                   { "Modern Red", "MODERN_RED" },
+                  { "Fantina", "FANTINA" },
                   { "PROBE: Armored Mewtwo", "ARMORED_MEWTWO" },
-                  { "PROBE: Chef", "CHEF" } },
+                  { "PROBE: Chef", "CHEF" },
+                  { "NEW: Miror B", "MIROR_B" },
+                  { "NEW: Rina", "RINA_CIARA" },
+                  { "NEW: Rui", "RUI_CIARA" },
+                  { "NEW: Chobin", "CHOBIN_CIARA_GECKO557" } },
       default = "" },
   })
 
@@ -2024,7 +2382,8 @@ return function(mod)
   -- path without corrupting tournament save state.
   local function forcedArtGuest()
     local key = mod.options:get("dev_art_guest")
-    if type(key) == "string" and BATTLE_FRONTS[key] and BY_KEY[key] then
+    -- A custom battle front is optional; walker-only guests use a placeholder.
+    if type(key) == "string" and BY_KEY[key] then
       return key
     end
     return nil
@@ -2276,12 +2635,30 @@ return function(mod)
       BattleState.new = function(game, opts)
         local state = original(game, opts)
         local front = ourBattle and BATTLE_FRONTS[spawnedFoeKey]
+        -- These pictures are loaded from the player's imported ROM cache.
+        -- Never distribute copies or replace a shared trainer class record.
+        local romClasses = { DUPLICA = "LASS", SUZIE = "LASS",
+          OAK = "POKEMON_PROF", PETREL = "EXECUTIVEM",
+          ROCKET_EXECUTIVE = "EXECUTIVEM" }
+        local romClass = ourBattle and romClasses[spawnedFoeKey]
+        if romClass then
+          local hud = game and game.data and game.data.gen2MenuGfx
+            and game.data.gen2MenuGfx.battleHud
+          front = hud and hud.trainerPics and hud.trainerPics[romClass]
+          if not front then
+            probe("ROM GUEST PIC\n%s", romClass)
+          end
+        end
         if front and state then
           local loaded, image = pcall(Assets.image, front)
           if loaded and image then
             state.enemyTrainerImage = image
             state.enemyTrainerPath = front
             state.enemyTrainerTrueColor = TRUE_COLOR_FRONTS[spawnedFoeKey] == true
+            if romClass then
+              state.enemyTrainerTrueColor = false
+              state.enemyTrainerClass = romClass -- native picture palette
+            end
             state.showEnemyTrainer = true
           else
             probe("GUEST PIC %s\n%s", tostring(spawnedFoeKey), tostring(image))
@@ -2660,7 +3037,7 @@ return function(mod)
     -- call is what arms them (armFoe below), which is the developer's
     -- talk-to-start structure: every character gets a pre-battle moment.
     local id, err = mod.world:spawnNpc(ARENA, {
-      name = FOE_NAME, sprite = foe.sprite,
+      name = FOE_NAME, sprite = foe.sprite, palette = foe.palette,
       x = fx, y = fy, movement = MOVE_STANDING_DOWN,
     })
     if not id then return "foe fail " .. tostring(err) end

@@ -1,5 +1,33 @@
 # Credits
 
+## Private 1.1.50 custom-character test
+
+Art from **Polished Crystal**, with per-asset attribution retained:
+
+| Artist | Assets used |
+|---|---|
+| Kuroko Aizawa | Artist, Engineer and Cheryl: overworld and battle sprites |
+| Kuroko Aizawa / JaceDeane | Professor Ivy: overworld and battle sprites |
+| bloodless (BloodlessNS) | Buck, Maylene and Veteran (M): overworld and battle sprites |
+| isamuakai01 | Cynthia and Steven: overworld and battle sprites |
+| SCMidna / Freeline | Riley, Marley and Mira: overworld sprites |
+| Rangi42 / Polished Crystal | Riley, Marley and Mira: battle sprites |
+| Kage | Walker: overworld and battle sprites |
+| Pyro | Tamer: overworld and battle sprites |
+| FrenchOrange | Boarder: overworld sprite only |
+| mauvesea | DJ Mary: overworld sprite only |
+| EeVeeEe1999 | Captain, Exterminator and Slot Maniac: overworld sprites only, free to use with credit |
+
+This uses art from Polished Crystal, not an attribution to vanilla pokecrystal.
+The supplied color-test conversions are copied without additional editing.
+Steven's supplied battle portrait includes the prepared light-blue hair treatment.
+No unprovided battle art is included: five guests use an existing vanilla
+Gentleman portrait as a temporary stand-in.
+
+Private testing only. Public release remains blocked pending the portfolio's
+in-game credits screen. Shared registry and canonical assets are unchanged.
+
+
 **Indigo Plateau Conference** is by **Mister Miracle**
 ([@mistermiracle3036](https://github.com/mistermiracle3036)).
 
@@ -18,6 +46,7 @@ permitted. Direct-use approvals and source-page terms are recorded in
 
 | Character | Source PNG | Installed assets | Artist |
 | --- | --- | --- | --- |
+| Fantina (commissioned) | Fantina - Blaklyte c.png (source not bundled) | assets/fantina.png, assets/fantina_front.png | Blaklyte — commissioned artwork |
 | Larry | larry - Bani.png (local cleared source; not bundled) | assets/larry.png, assets/larry_front.png | Bani |
 | Ash | ash - bani.png (local cleared source; not bundled) | assets/ash.png, assets/ash_front.png | Bani |
 | Yellow | yellow - Bani.png (local cleared source; not bundled) | assets/yellow.png, assets/yellow_front.png | Bani |

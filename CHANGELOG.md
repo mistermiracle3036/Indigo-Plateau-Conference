@@ -5,6 +5,121 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.59
+
+Private combined art-cleanup and approved-colors/Ciara integration build.
+Remove seven flagged Nintendo-derived PNGs and the two bundled executive
+portraits. Chef uses the ROM Gentleman walker, Jenny the Officer, and
+Petrel/Executive the Rocket with explicit palettes. Duplica/Suzie use the
+ROM Lass portrait; Oak uses the ROM Professor; both executives use the ROM
+male Executive portrait. No ROM graphics are bundled as replacements.
+Retains approved 1.1.55 colors/guests and Rina, Rui and Chobin from 1.1.57.
+Rejected alternatives and recoloring experiments remain excluded.
+
+## 1.1.58
+
+Private commissioned Miror B sprite test by Blaklyte. Select NEW: Miror B
+in DEV: First-round guest to inspect the walking and battle art with a
+one-Raticate placeholder team. Preserve the battle colors and source walker
+red, with vanilla skin. The walker shares a color for light hair and skin;
+both remain skin-colored for this first test. Normal draws stay unchanged.
+Keep approved Rina, Rui and Chobin; remove the rejected Ciara alternatives
+for Lillie, Michael and Wes, retaining their original approved versions.
+
+## 1.1.57
+
+Private sprite comparison build based on the approved 1.1.55 art baseline.
+Ciara's Lillie, Michael and Wes alternatives sit immediately after their
+current counterparts in DEV: First-round guest. Current teams and normal
+tournament appearances stay unchanged. Rina and Rui (Ciara), and Chobin
+(Ciara and gecko557), are new dev-only guests with one Raticate test teams.
+These are not finalized character parties. All six have walking and battle
+sprites, with visible artist credits. No rejected Volkner or Cliff art.
+
+## 1.1.55
+
+Start from approved 1.1.51 visuals; no Steven recoloring experiments included.
+With Polished Species Pack 0.2.0, Volkner uses Electivire, Colress uses
+Magnezone and Porygon-Z, Giovanni uses Rhyperior, and the dev-only Cynthia
+test uses Togekiss. Cynthia remains a one-Pokemon visual/battle probe, not
+a random tournament entrant. Older/absent packs retain native fallbacks.
+No quest gifts, evolution methods or unrelated teams changed.
+
+## 1.1.51
+
+Fix dev selection ignoring guests without custom battle portraits. Mary,
+Captain, Slot Maniac, Boarder and Exterminator now override the random draw
+correctly, keeping their own overworld sprite and trainer name while using
+the Gentleman battle portrait placeholder.
+
+Phone feedback: Cheryl's overworld main color is dark green; Veteran (M)'s
+is charcoal-black. Skin, frames, battle portraits, parties and dev ordering
+are unchanged. Other colors, including the prior Archer/Maxie batch, are
+approved by the developer and retained.
+Mary, Captain, Slot Maniac, Boarder and Exterminator still use the documented
+Gentleman battle placeholder because this package provides no fronts for them.
+
+## 1.1.50
+
+Private color test for 19 cleared custom guests: 16 using art from Polished
+Crystal and three by EeVeeEe1999. They appear consecutively after Random in
+the first-round dev selector, grouped by source then alphabetically.
+Supplied assets and palettes are used unchanged: 19 walkers, five true-color
+walkers, 14 colored battle portraits, and five Gentleman placeholder portraits.
+All new guests are dev-only with temporary one-Raticate test parties.
+Existing guests, teams, Nurse Joy and previous color improvements are unchanged.
+Not for public release: the portfolio in-game credits screen is still pending.
+
+## 1.1.49
+
+Second selective main-color test: Proton, Giovanni, Hugh, Archer, Wally, N,
+Ruin Maniac, Maxie and Dawn are consecutive immediately after Random in the
+first-round dev selector. Vanilla skin, outlines, frame geometry, portraits
+and parties remain unchanged. Previous approved color tests are retained.
+Generic Rocket Executive is excluded from this batch as a native trainer
+class. Micah and Nemona are not included; neither is cleared for use.
+Shared registry assets and other mods remain unchanged.
+
+## 1.1.48
+
+Selective overworld main-color test for Eusine, Agatha, Duplica, Juliana,
+Larry, Ingo, Ariana, Lorelei and Yellow. Vanilla skin, black outlines and
+frame geometry are preserved; only the main palette slot changes.
+These nine guests are consecutive immediately after Random in the first-round
+dev selector. Nurse Joy, battle portraits and parties remain unchanged.
+Test-only colors: shared canonical assets and other mods are not modified.
+
+## 1.1.47
+
+Fantina keeps her commissioned purple overworld hair and clothing, with the
+warmer vanilla Crystal NPC skin tone (RGB5 31,19,10). Outlines, transparency,
+frame layouts, battle portrait and parties are unchanged.
+
+## 1.1.46
+
+Fantina's overworld sprite uses Blaklyte's original purple and peach colors
+in GBC color mode, with a transparent background. All six walking frames
+retain their exact pixels. Battle art, parties and other guests are unchanged.
+
+## 1.1.45
+
+Fantina now fields Mismagius when Polished Species Pack is installed alongside
+Expanded Species. Without the optional pack, she keeps Misdreavus. Her private
+Conference party uses the provider's stable species id; other trainers and
+vanilla Misdreavus remain unchanged. Includes all commissioned Fantina art and
+first-round selection from 1.1.44.
+
+## 1.1.44
+
+Fantina joins with commissioned battle and overworld art by Blaklyte.
+Select Fantina under DEV: First-round guest to test her directly.
+Her tier-three test team is Haunter, Gengar and Misdreavus. The roster now
+contains 89 challengers. Her private member uses the existing additive path.
+
+Commissioned art is recorded separately from free-to-use sheets. The source
+folder is `Blakyte commissions`; a filename suffix `c` denotes a commission.
+Only the native runtime crops are bundled, with player-visible creator credit.
+
 ## 1.1.43
 
 **Updating from 1.0.2?** Four things changed that you will notice.

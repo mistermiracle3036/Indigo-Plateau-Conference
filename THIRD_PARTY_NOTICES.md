@@ -1,5 +1,33 @@
 # Third-party notices
 
+## Private 1.1.50 custom-character test
+
+Art from **Polished Crystal**, with per-asset attribution retained:
+
+| Artist | Assets used |
+|---|---|
+| Kuroko Aizawa | Artist, Engineer and Cheryl: overworld and battle sprites |
+| Kuroko Aizawa / JaceDeane | Professor Ivy: overworld and battle sprites |
+| bloodless (BloodlessNS) | Buck, Maylene and Veteran (M): overworld and battle sprites |
+| isamuakai01 | Cynthia and Steven: overworld and battle sprites |
+| SCMidna / Freeline | Riley, Marley and Mira: overworld sprites |
+| Rangi42 / Polished Crystal | Riley, Marley and Mira: battle sprites |
+| Kage | Walker: overworld and battle sprites |
+| Pyro | Tamer: overworld and battle sprites |
+| FrenchOrange | Boarder: overworld sprite only |
+| mauvesea | DJ Mary: overworld sprite only |
+| EeVeeEe1999 | Captain, Exterminator and Slot Maniac: overworld sprites only, free to use with credit |
+
+This uses art from Polished Crystal, not an attribution to vanilla pokecrystal.
+The supplied color-test conversions are copied without additional editing.
+Steven's supplied battle portrait includes the prepared light-blue hair treatment.
+No unprovided battle art is included: five guests use an existing vanilla
+Gentleman portrait as a temporary stand-in.
+
+Private testing only. Public release remains blocked pending the portfolio's
+in-game credits screen. Shared registry and canonical assets are unchanged.
+
+
 ## Scope of the licence
 
 The MIT licence in [LICENSE](LICENSE) covers this mod’s own code. It does not
@@ -7,9 +35,13 @@ relicense Pokémon characters, ROM-derived material, or Nintendo trademarks.
 
 ## Included custom artwork
 
-This private test build includes 116 converted character assets: 57 six-frame
-overworld sheets and 59 56×56 battle portraits. Every one of them is referenced
-by the current runtime, and together they cover 57 release-cleared or
+Fantina's battle and overworld art is commissioned from Blaklyte, supplied by
+the developer on 2026-09-08. Only the runtime crops are bundled. This commission
+is recorded separately from the artist's free-to-use library.
+
+This private test build includes 118 converted character assets: 58 six-frame
+overworld sheets and 60 56×56 battle portraits. Every one of them is referenced
+by the current runtime, and together they cover 58 release-cleared or
 previously documented custom-art characters. The assets directory also
 contains one non-character arena tilesheet and nothing else. The dormant
 Nemona conversion files are retained unchanged under `docs/sprite-sources/`,
@@ -95,3 +127,36 @@ in the player’s imported Pokémon Gold cache.
 Pokémon and Pokémon character names are trademarks of Nintendo, Creatures Inc.
 and GAME FREAK inc. This mod is an unofficial fan project, is not affiliated
 with or endorsed by them, and claims no rights to their material.
+# Art cleanup in 1.1.59
+
+The seven flagged Nintendo-derived PNGs and two executive portrait PNGs
+have been removed. No edited replacements are distributed. Chef now uses
+the player's ROM Gentleman walker; Jenny uses Officer. Petrel and Rocket
+Executive use ROM Rocket walkers with explicit green/red palettes and the
+ROM male Executive portrait. Duplica/Suzie portraits use ROM Lass; Oak uses
+ROM Professor. These ROM graphics are referenced at runtime, not shipped.
+Historical attribution below does not license or describe these removed
+assets in the current build. Retained Chef/Jenny custom battle portraits
+remain credited to Bani/TeamHistoryWaffles respectively. Generated registry
+credits are to be refreshed by the owning agent AFTER intake registry rebuild.
+
+# Approved Ciara assets and commissioned Miror B (private build 1.1.58)
+
+Rina and Rui battle/overworld art: Ciara.
+Chobin battle/overworld art: Ciara and gecko557 jointly.
+The developer confirmed permission on 2026-09-10 and retained these three.
+Rejected Ciara Lillie/Michael/Wes alternatives are not included.
+Original existing versions retain their previous attribution.
+
+Miror B battle and overworld art: commissioned from Blaklyte.
+The native front and six-frame walker are cropped without scaling or
+redrawing. Walker skin uses the approved vanilla skin shade; red remains
+as supplied. The light hair and skin share one source color, so both use
+that skin shade. No region-specific repaint has been applied. Front colors
+are unchanged. White exterior background is transparent in the walker.
+
+Native labelled walking and front cells were cropped without resizing or
+redrawing. Walkers use the source main-color swatch, vanilla skin, black,
+and transparency; battle fronts retain the sheet's supplied colors.
+New guests are dev-only pending team design.
+These permissions do not imply blanket approval for unrelated art.

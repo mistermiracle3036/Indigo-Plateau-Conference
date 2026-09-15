@@ -7,6 +7,7 @@ follow-up before public release.
 
 | Character | Artist | Terms (verbatim) | Source URL | Retrieved (date) |
 | --- | --- | --- | --- | --- |
+| Fantina commissioned battle and overworld set | Blaklyte | User-confirmed commissioned art supplied for integration; separate from free-to-use library | Blakyte commissions/Fantina - Blaklyte c.png; c denotes commission | 2026-09-08 |
 | Larry custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-24 |
 | Ash custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-24 |
 | Yellow custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-24 |
