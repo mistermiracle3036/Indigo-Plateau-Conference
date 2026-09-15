@@ -5,6 +5,46 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.60
+
+**Updating from 1.0.2?** Five things changed that you will notice.
+
+**The preliminaries are three-on-three.** You bring three Pokemon to rounds
+one through three and all six to the final, and it is your first three party
+slots that fight — so the order you keep your team in now matters.
+
+**It runs on Silver and Crystal, not just Gold.** Same tournament, same
+challengers, no separate install.
+
+**Almost everyone has their own face now.** The circuit used to dress its
+challengers in generic trainer-class sprites. Most characters now have art of
+their own, drawn by credited artists, and the roster has grown to 89
+challengers across the four tiers — so a run pulls a different card each
+time. Cynthia, Steven, Fantina and a dozen more joined in the last stretch.
+
+**Beating Roxie can open her Sandalwood Villa show,** if you also have the
+Sandalwood Town mod installed.
+
+**Challengers look at you when you talk to them,** and Team Rocket lines up
+on the grid like everyone else.
+
+Everything else since 1.0.2 has been art corrections and polish on the above.
+
+**New in this version:**
+
+Thirty challengers were the wrong colour on the overworld. Their walking
+sprites had been re-saved with grey values Gold's palette does not use, so
+the game tinted them off — most visibly Agatha, Archer, Ariana, Dawn,
+Giovanni, Lorelei, Larry, Yellow, Cynthia and Steven. Twenty-nine are
+restored byte-for-byte from the shared master store, which is the same art
+these characters wear in every other mod. Nothing about who they are, what
+they say or what they field has changed.
+
+Miror B keeps his test-build colours for now: his sprite has no master to
+restore from yet, and he is not in any draw, so nothing you can meet is
+affected.
+
+
 ## 1.1.59
 
 Private combined art-cleanup and approved-colors/Ciara integration build.
