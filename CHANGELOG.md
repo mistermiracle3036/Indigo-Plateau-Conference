@@ -4,6 +4,10 @@ All notable changes to Indigo Plateau Conference are documented here.
 Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
+## 1.0.3
+
+Updating from v1.0.2? NPCs answer again on the current engine; nothing else changed.
+
 ## 1.0.2
 
 **Updating from 1.0.1?** Documentation only -- nothing in the game
