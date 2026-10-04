@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.0.2"
+  local VERSION = "1.0.3"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -1987,6 +1987,19 @@ return function(mod)
 
   mod.events:on("world.interacted", function(ev)
     local ok, err = pcall(function()
+      -- Engine 0.3.50+ emits "npc" (ev.target = the live object) for an
+      -- unscripted runtime actor where older engines emitted "none" with
+      -- the faced cell. Accept "npc" ONLY for this mod's own runtime object
+      -- with no scriptKey (JQP 0.23.2 matchesInteractedActor), and hand the
+      -- router below the same "none" press at that object's cell that the
+      -- older engine sent -- so a native NPC press never reaches the
+      -- escort-on-any-press path, and every branch below is unchanged.
+      if ev and ev.kind == "npc" then
+        local d = ev.target and ev.target.def
+        if not (d and d.runtime == true and d.owner == mod.id
+            and not d.scriptKey) then return end
+        ev = { mapId = ev.mapId, kind = "none", x = d.x, y = d.y }
+      end
       if not ev or ev.kind ~= "none" then return end
       local world = mod.world:overworld()
       if ev.mapId == LOBBY then
