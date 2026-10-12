@@ -39,21 +39,20 @@ somewhere else is untouched.
 <details>
 <summary>Why can I only use three Pokémon?</summary>
 
-Rounds 1–3 are **three-on-three preliminaries**. Only Pokémon in your first
-three party slots enter those battles. Reorder your party before entering
-the Colosseum if you want a different team.
+Small rounds let you choose any **one to three** non-Egg Pokémon before
+battle. B finishes after at least one pick; choosing three starts automatically.
+Unselected members stay safely in your saved party and cannot be switched in.
 
-Pokémon in slots 4–6 remain safely in your saved party, but they are benched
-and no longer appear in the battle switch menu. **All six Pokémon return for
-round four, the final.**
+Violet and Goldenrod are 3/3/3/3; Ecruteak is 3/3/3/6; Blackthorn is
+6/6/6/6; Indigo is 3/3/6/6. You may enter with fewer than the cap.
 </details>
 
 <details>
 <summary>Can I do it more than once?</summary>
 
 Yes, as many times as you like. Win a title and the announcer invites you
-back and draws a fresh card. Every run fields a different set of
-challengers.
+back and draws a fresh weighted card. Recent challengers are less likely
+to reappear, but repeats remain possible.
 </details>
 
 <details>
@@ -63,12 +62,12 @@ You're **eliminated**, not wiped out. There's no blackout: you keep your
 money, you aren't dumped back at a Pokémon Center, and your team is healed
 where it stands.
 
-Your **PP is not restored**, though, so starting another run immediately
-isn't free.
+Your whole party's **HP, status and PP are restored free** before and after
+every match, including Pokémon that sat out.
 
-Elimination sends you back to round one with a **completely new field** —
-even if you lost in round one. Retrying never means grinding the same face
-twice.
+Elimination sends you back to round one with a **fresh weighted draw** —
+even if you lost in round one. Recently faced trainers are less likely
+to appear again, but repeats remain possible.
 </details>
 
 <details>
@@ -117,8 +116,8 @@ leader, not to your team.
 <details>
 <summary>Who is in the roster?</summary>
 
-**89 challengers across four tiers**, and each run draws one from each —
-so a card is four opponents, escalating.
+**89 challengers across four tiers**, with cup- and round-specific tier
+weights. A card has four opponents, not necessarily one from each tier.
 
 Broadly: anime one-offs and rookies in tier 1; rivals and specialists in
 tier 2; the Orre cast and manga trainers in tier 3; and a legacy tier of
@@ -139,9 +138,10 @@ No vanilla trainer anywhere in Johto is altered to do this.
 <details>
 <summary>Will I see the same challengers every time?</summary>
 
-No. Each run draws one challenger per tier at random, and a new draw never
-repeats the previous run's pick in that tier. Back-to-back tournaments
-always look different.
+Not usually. The previous five cups reduce repeat chances, strongest for
+the most recent encounter. Same-run repeats are also much less likely,
+but neither is a hard ban. Loading your save keeps its existing opponents
+and team variants rather than rerolling them.
 </details>
 
 ## Other mods

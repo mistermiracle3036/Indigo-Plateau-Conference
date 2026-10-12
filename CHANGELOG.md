@@ -5,6 +5,25 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.68
+
+Private phone test: approved Gen 1/2 weighted cups and authored teams.
+
+- All 89 normal entrants have Early/Middle/Full teams and explicit three- and
+  six-member parties. Existing Full cores and offsets are retained.
+- Cup-specific tier weights, round multipliers, strength weights, five-cup
+  recency penalties and reduced same-run repeats replace one-trainer-per-tier draws.
+- Opponents and team variants are saved once per cup. Old saved draws keep their
+  opponent keys and round progress, migrating deterministically to Full variants.
+- Correct venue/round party sizes; choose one to three non-Egg party members for
+  small rounds. Full rounds allow the entire party, even when fewer than six.
+- Free full-party HP, status and PP restoration before and after each match.
+- Levels use venue leader maximum plus round progression, not trainer tier.
+- Lawrence/Molly legendary variants are extremely rare, Full-strength and Indigo
+  only, at most one per cup run. Ordinary teams have no legendaries.
+- Developer-only entrants remain excluded. No new species packs or sprite changes.
+- Version 1.1.67 was an abandoned, undelivered experiment; it is not incorporated.
+
 ## 1.1.66
 
 Fix gray overworld sprites and opaque boxes around Lovrina, Rui and Chobin.

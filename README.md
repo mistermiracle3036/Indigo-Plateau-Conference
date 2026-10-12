@@ -85,24 +85,31 @@ anything rebalances.
 ## How a run works
 
 - **Four rounds**, one challenger each.
-- **Rounds 1–3 use only party slots 1–3.** Reorder your party before
-  entering; Pokémon in slots 4–6 are benched and do not appear in the
-  battle switch menu. All six return for the final.
+- **Small rounds let you choose 1–3 Pokémon before battle.** Choose any
+  party members in fighting order; after at least one choice, B finishes.
+  Choosing three starts automatically. Eggs cannot fight. Full rounds use
+  your whole party; you may enter with fewer than six.
+- **Formats vary by cup:** Violet and Goldenrod use three all four rounds;
+  Ecruteak uses 3/3/3/6; Blackthorn uses six throughout; Indigo uses 3/3/6/6.
 - **Win all four** and the title is yours, with a send-off from the
   announcer.
 - **Lose any round and you're eliminated** — back to round one with a
   brand-new field of challengers. Losing here is not a blackout: you don't
   lose money and you aren't sent to a Pokémon Center. Your team is patched
-  up where it stands. PP is *not* restored, so a fresh run is never free.
+  up where it stands. Full-party HP, status and PP are restored free before
+  and after every match, including benched Pokémon.
 - **It's repeatable.** Take a title and you can enter again; the announcer
   draws a new card.
 - **A run in progress survives quitting.** The bracket travels with your
   in-game save, so loading an older save rewinds the tournament with it.
 
-**Every run fields a different card.** The roster is 89 challengers across
-four escalating tiers, and each run draws one per tier. A new draw never
-repeats the previous run's pick in a tier, so back-to-back tournaments
-always look different. Challengers speak for themselves — an introduction
+**Every new run rolls a weighted card.** The roster is 89 challengers across
+four tiers. Earlier cups favour weaker trainers; later cups and rounds
+favour stronger trainers without strict tier bans. Each opponent also gets
+an authored Early, Middle or Full team. Recent encounters and same-run
+repeats are less likely, not impossible. The saved card includes team variants.
+Lawrence and Molly's legendary variants are very rare and Indigo-only.
+Challengers speak for themselves — an introduction
 on the way in, a parting line on the way out — and they battle under their
 own names.
 

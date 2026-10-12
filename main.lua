@@ -43,8 +43,10 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.66"
+  local VERSION = "1.1.68"
   local MOD_ID = "indigo_conference"
+  local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
+  local Cups = assert(load(assert(mod:read("weighted_cups.lua")), "IPC cups"))()(weightedTeams)
 
   mod.exports.version = VERSION
   local function defeatedGuests()
@@ -2045,6 +2047,9 @@ return function(mod)
   -- the CURRENT round now that a challenger's tier no longer fixes their
   -- position (the same character could headline different tiers later)
   local round
+  local currentCard
+  local buildParty
+  local probe
 
   local function leaderTop(class)
     local td = mod.game and mod.game.data and mod.game.data.gen2Trainers
@@ -2091,14 +2096,21 @@ return function(mod)
       probe("NO ANCHOR\n%s", tostring(v and v.leader or "no venue"))
       return nil
     end
-    return top + LEADER_STEP + (((foe.tier or round()) - 1) * ROUND_STEP)
+    return top + LEADER_STEP + ((round() - 1) * ROUND_STEP)
   end
 
   local function scaled(foe)
     local base = levelBase(foe)
     if not base then return nil end   -- no anchor: decline, never guess
     local out = {}
-    for _, row in ipairs(foe.party) do
+    local composition = foe.party
+    if not foe.devOnly then
+      local card = currentCard()
+      local pick = card.rounds[round()]
+      composition = pick and pick.key == foe.key and pick.party
+        or weightedTeams[foe.key].variants.Full[Cups.cap(card.venue, round())]
+    end
+    for _, row in ipairs(composition) do
       local lv = base + (row.delta or 0)
       if lv < 2 then lv = 2 elseif lv > 100 then lv = 100 end
       out[#out + 1] = { species = row.species, level = lv }
@@ -2240,7 +2252,7 @@ return function(mod)
   -- in memory immediately and mod.options:get reads exactly that
   -- (Loader.lua:1038), so a toggle takes effect in the SAME session on
   -- Gold; and toggling it on a Red boot persists it across relaunches.
-  local function probe(fmt, ...)
+  probe = function(fmt, ...)
     if mod.options:get("probe_rows") ~= true then return end
     errs(fmt, ...)
     -- Mirrored to the log as well. reportError only feeds the in-game
@@ -2380,15 +2392,7 @@ return function(mod)
   end
 
   local function parseDraw(s)
-    if type(s) ~= "string" then return nil end
-    local keys = {}
-    for k in s:gmatch("[^,]+") do keys[#keys + 1] = k end
-    if #keys ~= ROUNDS then return nil end
-    for t, k in ipairs(keys) do
-      local foe = BY_KEY[k]
-      if not foe or foe.tier ~= t then return nil end
-    end
-    return keys
+    return Cups.parse(s, BY_KEY)
   end
 
   -- A first-round art override, deliberately separate from the persisted
@@ -2406,23 +2410,34 @@ return function(mod)
   end
 
   local function newDraw()
-    local prev = parseDraw(mod.save:get("draw", nil))
-    local picks = {}
-    for t = 1, ROUNDS do
-      local pool = TIERS[t]
-      local pick = pool[math.random(#pool)]
-      if prev and #pool > 1 then
-        while pick == prev[t] do pick = pool[math.random(#pool)] end
-      end
-      picks[t] = pick
+    local _, id = venue()
+    assert(Cups.cups[id], "No cup for draw")
+    local history = Cups.history(mod.save:get("cupHistory", {}), mod.save:get("weightedCard"))
+    mod.save:set("cupHistory", history)
+    local card = Cups.draw(id, BY_KEY, history)
+    mod.save:set("weightedCard", card)
+    mod.save:set("draw", table.concat(card.keys, ","))
+    probe("DRAW %s %s %s %s", unpack(card.keys))
+    return card.keys
+  end
+
+  currentCard = function()
+    local _, id = venue()
+    local card = mod.save:get("weightedCard")
+    if Cups.valid(card, BY_KEY) and card.venue == id then return card end
+    local legacy = not card and parseDraw(mod.save:get("draw", nil))
+    if legacy then
+      card = Cups.draw(id, BY_KEY, {}, nil, legacy)
+      for i = 1, math.min(round() - 1, ROUNDS) do card.encountered[#card.encountered + 1] = legacy[i] end
+      mod.save:set("weightedCard", card)
+      return card
     end
-    mod.save:set("draw", table.concat(picks, ","))
-    probe("DRAW %s %s %s %s", picks[1], picks[2], picks[3], picks[4])
-    return picks
+    newDraw()
+    return mod.save:get("weightedCard")
   end
 
   local function currentDraw()
-    return parseDraw(mod.save:get("draw", nil)) or newDraw()
+    return currentCard().keys
   end
 
   local function currentFoe()
@@ -2575,14 +2590,49 @@ return function(mod)
           activePlayerParty = nil
           local save = self and self.game and self.game.save
           local party = save and save.party
-          if round() < ROUNDS and type(opts) == "table"
-              and type(party) == "table" and #party > 0 then
-            local capped = {}
-            for i = 1, math.min(3, #party) do
-              capped[i] = party[i]
+          if type(opts) == "table" and type(party) == "table" then
+            -- The script remains parked on onDone while the player chooses.
+            -- Do not mutate or reorder save.party; battle mons are original references.
+            local eligible = {}
+            for _, mon in ipairs(party) do if not mon.isEgg then eligible[#eligible + 1] = mon end end
+            local size = Cups.cap(currentCard().venue, round())
+            self:healParty()
+            if #eligible == 0 then
+              ourBattle = false
+              if onDone then onDone("lose") end
+              return false
             end
-            opts.party = capped
-            activePlayerParty = capped
+            local function begin(chosen)
+              opts.party = chosen
+              activePlayerParty = chosen
+              return original(self, opts, onDone)
+            end
+            if size == 6 then return begin(eligible) end
+            local Screens = require("src.ui.Screens")
+            local chosen, remaining = {}, eligible
+            local choose
+            choose = function()
+              Screens.push(self.game, "Gen2PartyMenu", {
+                party = remaining,
+                prompt = ("PICK %d/3. B:DONE"):format(#chosen + 1),
+                onChoose = function(index)
+                  local mon = remaining[index]
+                  if not mon then return end
+                  self.game.stack:pop()
+                  chosen[#chosen + 1] = mon
+                  table.remove(remaining, index)
+                  if #chosen == 3 or #remaining == 0 then begin(chosen) else choose() end
+                end,
+                onCancel = function()
+                  -- Must choose at least one; B then starts with fewer than three.
+                  if #chosen == 0 then return end
+                  self.game.stack:pop()
+                  begin(chosen)
+                end,
+              })
+            end
+            choose()
+            return true
           end
         end
         return original(self, opts, onDone)
@@ -3073,6 +3123,14 @@ return function(mod)
   local function armFoe(world, foe)
     local obj = objectNamed(world, ARENA, FOE_NAME)
     if not obj then return false end
+    -- Refuse visibly before the trainer script starts if any authored species
+    -- cannot build. Never knowingly substitute a carrier's unrelated party.
+    local rows = scaled(foe)
+    local ok, built = pcall(buildParty, rows)
+    if not rows or not ok or not built or #built ~= #rows then
+      errs("TEAM BUILD FAILED\n%s", foe.key)
+      return false
+    end
     obj.trainer = { class = foe.classIx, member = foe.memberIx,
                     seenText = foe.seenKey, winText = foe.winKey,
                     lossText = foe.lossKey }
@@ -3156,6 +3214,9 @@ return function(mod)
       local res = ev and ev.result
       probe("BATTLE %s", tostring(res))
       defangFoe()
+      -- All party members, including benched ones: HP, status and PP.
+      local healWorld = mod.world:overworld()
+      if healWorld and healWorld.healParty then healWorld:healParty() end
       -- THE ESCORT NOW FOLLOWS EVERY RESULT (the developer's call): win or
       -- lose, the next step -- or an A press on anybody -- plays the
       -- announcer's line and warps the player to the 2F door cell, where
@@ -3168,12 +3229,6 @@ return function(mod)
         -- was CANLOSE so no blackout is coming, and the party is healed
         -- where they stand. hp and status only; PP stays spent, which
         -- keeps a fresh run from being free.
-        for _, mon in ipairs((mod.game and mod.game.save and mod.game.save.party) or {}) do
-          if mon and mon.stats and mon.stats.hp then
-            mon.hp = mon.stats.hp
-            mon.status = nil
-          end
-        end
         if round() > 1 then
           setRound(1)
           probe("ELIMINATED\nback to R1")
@@ -3477,11 +3532,11 @@ return function(mod)
     -- about; at round 1 this is a silent re-binding.
     local owner = runVenue()
     local forfeited = false
-    if venueId and owner and owner ~= venueId and r > 1 then
+    if venueId and owner and owner ~= venueId then
       probe("VENUE SWITCH\n%s -> %s", tostring(owner), tostring(venueId))
       setRound(1)
       newDraw()
-      forfeited = true
+      forfeited = r > 1
       r = 1
     end
     if venueId then setRunVenue(venueId) end
@@ -3502,8 +3557,8 @@ return function(mod)
       rows = {
         { "text", venueWelcome(town, title) },
         { "text", ("%d rounds. One\nchallenger each."):format(ROUNDS) },
-        { "text", "ONLY PARTY SLOTS\n1-3 can fight.\fAll six return for\nthe final." },
-        { "text", "Reorder your party\nbefore you enter." },
+        { "text", "Small rounds: pick\n1-3 before battle.\fB finishes after\nat least one pick." },
+        { "text", "Full rounds use\nyour whole party.\fFree HP, status\nand PP recovery." },
         { "text", "Through the far\ndoor. Good luck." },
       }
       -- Said BEFORE the welcome, so the player learns why the bracket
@@ -3641,6 +3696,10 @@ return function(mod)
           else
             local armed = armFoe(world, foe)
             probe("ARM %s\n%s", armed and "OK" or "FAIL", tostring(foe.key))
+            if not armed then
+              mod.world:queueScript({ { "text", "Team data problem.\nRound not started.\fCheck mod ERRORS\nand report it." } })
+              return
+            end
             mod.world:queueScript({
               { "text", ("ANNOUNCER: ROUND\n%d of %d, folks!"):format(round(), ROUNDS) },
               { "text", ("Facing you --\n%s!"):format(foe.name or foe.key) },
@@ -3676,7 +3735,7 @@ return function(mod)
   -- a name and a member of 1. Match on the class either way and use the
   -- run state, not the arguments, to decide WHICH challenger this is.
   ----------------------------------------------------------------------
-  local function buildParty(rows)
+  buildParty = function(rows)
     -- An internals require, deliberately: no mod-facing seam turns
     -- {species, level} rows into Gen 2 battle mons. Built through the
     -- engine's OWN builder so these mons match a vanilla trainer's exactly
@@ -3723,13 +3782,19 @@ return function(mod)
         return nil
       end
       local built = buildParty(rows)
-      if not built then
+      if not built or #built ~= #rows then
         -- Keep the vanilla party rather than field an opponent with no
         -- stats. A real battle beats a broken one.
         probe("BUILD FAIL\n%s", foe.key)
         return nil
       end
       setPending(true)
+      if not foe.devOnly and not (round() == 1 and forcedArtGuest()) then
+        local card = currentCard()
+        card.encountered = card.encountered or {}
+        card.encountered[#card.encountered + 1] = foe.key
+        mod.save:set("weightedCard", card)
+      end
       -- Report the level actually used, so a wrong anchor is visible on the
       -- screen rather than inferred from how hard the battle felt.
       probe("R%d %s\n%d mons Lv%d", round(), foe.key, #built,

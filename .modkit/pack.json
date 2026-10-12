@@ -1,15 +1,15 @@
 {
   "modkit": "1.0.0",
-  "packed_at": "2026-10-11T21:02:34Z",
+  "packed_at": "2026-10-12T01:57:58Z",
   "id": "indigo_conference",
-  "version": "1.1.66",
+  "version": "1.1.68",
   "api": 2,
   "engine_range": ">=0.2.22 <2.0.0",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 72861,
-      "sha256": "8e44b1ecc983d6e514c9e9aa2916919e0e37c96610a623f5d1604936c9bb137a"
+      "bytes": 74042,
+      "sha256": "3dcb83e497b0fcca6b823bd4856c7c158b5dbce8421d6293ab5c339dae264300"
     },
     {
       "path": "CREDITS.md",
@@ -18,8 +18,8 @@
     },
     {
       "path": "FAQ.md",
-      "bytes": 8553,
-      "sha256": "b164d71822311a2ca4aaa1f055c277499eb204e2b3cce7bf9962cfb79f041b98"
+      "bytes": 8772,
+      "sha256": "0658f546d5f03462261d5ed4ec207dbe4b78cb4be7a8fa8b613cfbc8bbc78197"
     },
     {
       "path": "LICENSE",
@@ -28,8 +28,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 10169,
-      "sha256": "cd072cc6ade659e6f583463207ae25c9e923de173c99597b5b5cd06b17071756"
+      "bytes": 10660,
+      "sha256": "0251a09f2d3180807e7c9e3ab5f6999112e1173ee2ff7a88d8a831d115e83195"
     },
     {
       "path": "SPRITE_PERMISSIONS.md",
@@ -828,18 +828,28 @@
     },
     {
       "path": "main.lua",
-      "bytes": 176133,
-      "sha256": "502f76a6d9d2c0c0341e6d33ee9adac33dce4b5695b5c34ec119b49bdbe85938"
+      "bytes": 179278,
+      "sha256": "1f799bac12923dcfca03bc13a44fe21bc708238034383b44ad067bdeb6895885"
     },
     {
       "path": "manifest.json",
       "bytes": 825,
-      "sha256": "5d48b95377d88bd68aa0b022073e68be80f003ed1fdc81d2294b656265fe6615"
+      "sha256": "1ce5c19569a6658c4c3d59c989223300add54546b112243430f6b3aca7265651"
     },
     {
       "path": "mod.card",
       "bytes": 2766,
       "sha256": "693c23d57317322b804e9ccb8afd22561b12d9715dbfccf72f0f9895d699e0e0"
+    },
+    {
+      "path": "weighted_cups.lua",
+      "bytes": 4833,
+      "sha256": "47a2fa03cb9d6c15ff8765094218d8024eb4f0338b9a449303b0876299936c90"
+    },
+    {
+      "path": "weighted_teams.lua",
+      "bytes": 98177,
+      "sha256": "708780678bcf737b843e213f79fa7de1e17ab7d42f5b43a9f4c0b0981e05021f"
     }
   ],
   "lint": {
