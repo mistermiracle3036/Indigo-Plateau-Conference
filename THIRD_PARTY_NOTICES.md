@@ -150,7 +150,7 @@ credits are to be refreshed by the owning agent AFTER intake registry rebuild.
 
 # Approved Ciara assets and commissioned Miror B (private build 1.1.58)
 
-Rina and Rui battle/overworld art: Ciara.
+Lovrina (previously mislabeled Rina) and Rui battle/overworld art: Ciara.
 Chobin battle/overworld art: Ciara and gecko557 jointly.
 The developer confirmed permission on 2026-09-10 and retained these three.
 Rejected Ciara Lillie/Michael/Wes alternatives are not included.

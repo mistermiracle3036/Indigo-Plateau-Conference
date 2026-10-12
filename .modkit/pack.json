@@ -1,20 +1,20 @@
 {
   "modkit": "1.0.0",
-  "packed_at": "2026-10-11T15:54:07Z",
+  "packed_at": "2026-10-11T17:44:02Z",
   "id": "indigo_conference",
-  "version": "1.1.63",
+  "version": "1.1.64",
   "api": 2,
   "engine_range": ">=0.2.22 <2.0.0",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 71790,
-      "sha256": "b738d2e5ab358ea20fa17710c871c7b93368ebcbbace029228eaf779ffc76b7b"
+      "bytes": 72161,
+      "sha256": "ff6990aa785fd0956dd69c253b22c2da81999e00ea81d984abc134b67832ea5d"
     },
     {
       "path": "CREDITS.md",
-      "bytes": 13758,
-      "sha256": "9b1654b1ddb52b3ad45e34eb7b1aeb4e8cf642733493732a4d36b47f9fec0d68"
+      "bytes": 13902,
+      "sha256": "7c1e52041ae95c3c25f0cc1b59eb543e7a533cc1e8d33bec328944ce50530064"
     },
     {
       "path": "FAQ.md",
@@ -38,8 +38,8 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 10785,
-      "sha256": "9bcbdfcd761006043d06b7907b49f501b4d2bb33fd4cd8c79444b1b3c976635e"
+      "bytes": 10817,
+      "sha256": "57a978693b0ada55219454fa6f6be9cecb3b679fe3aa6610e4fc6432d7cf4727"
     },
     {
       "path": "assets/agatha.png",
@@ -818,18 +818,18 @@
     },
     {
       "path": "main.lua",
-      "bytes": 175476,
-      "sha256": "da50fbea6204415b7aef57711da16b71365ffc53964c878ab516996b403a1bed"
+      "bytes": 175783,
+      "sha256": "d007cec70c2c1ffc695e86342575728668f8a03cf83eaed5a5e51a54fa18ae45"
     },
     {
       "path": "manifest.json",
       "bytes": 825,
-      "sha256": "84086c8be54e575d9ad908d6f6496de88a1cbd35111363a35710f547ffc33831"
+      "sha256": "e5db647a57e2dbc0516f5cef6aff59e7ed9fc8b1476f8a0aed31803bf59edf4d"
     },
     {
       "path": "mod.card",
-      "bytes": 2694,
-      "sha256": "65606121eebdff90cd730ff2ea97aab97cc9ef31f84ad9d4c91c2c0821ecd34e"
+      "bytes": 2697,
+      "sha256": "3828ee9b6b19dd0567504b2d09f6c93282f30f38620e9da7d29b906ba8a95ad3"
     }
   ],
   "lint": {

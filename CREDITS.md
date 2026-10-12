@@ -1,5 +1,8 @@
 # Credits
 
+Lovrina's battle and overworld art is by **Ciara**, used with permission.
+Previously mislabeled Rina; legacy asset filenames remain unchanged.
+
 ## Private 1.1.63 commissioned Mr Nobody test
 
 Mr Nobody battle and overworld sprite art commissioned from **Bani**.

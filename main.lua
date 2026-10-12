@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.63"
+  local VERSION = "1.1.64"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -1895,7 +1895,11 @@ return function(mod)
       { key = "MR_NOBODY", name = "MR NOBODY", file = "mr_nobody_bani" },
       { key = "ROBOTMAN_THARKKA", name = "ROBOTMAN", file = "robotman_tharkka" },
       { key = "MIROR_B", name = "MIROR B", file = "mirorb" },
-      { key = "RINA_CIARA", name = "RINA", file = "rina_ciara" },
+      -- Preserve the existing ID and asset filenames for saved test selections.
+      { key = "RINA_CIARA", name = "LOVRINA", file = "rina_ciara",
+        party = { { species = "CORSOLA", delta = 0 },
+                  { species = "BUTTERFREE", delta = 0 },
+                  { species = "WIGGLYTUFF", delta = 0 } } },
       { key = "RUI_CIARA", name = "RUI", file = "rui_ciara" },
       { key = "CHOBIN_CIARA_GECKO557", name = "CHOBIN", file = "chobin_ciara_gecko557" },
     }
@@ -1926,6 +1930,7 @@ return function(mod)
           party = { { species = "RATICATE", delta = 0 } },
         }
       end
+      if art.party then foe.party = art.party end
       foe.key, foe.devOnly = art.key, true
       foe.sprite = "SPRITE_IPC_" .. art.key
       mod.exports.owns.sprites[#mod.exports.owns.sprites + 1] = foe.sprite
@@ -2205,7 +2210,7 @@ return function(mod)
                   { "TEST: Mr Nobody", "MR_NOBODY" },
                   { "TEST: Robotman", "ROBOTMAN_THARKKA" },
                   { "NEW: Miror B", "MIROR_B" },
-                  { "NEW: Rina", "RINA_CIARA" },
+                  { "NEW: Lovrina", "RINA_CIARA" },
                   { "NEW: Rui", "RUI_CIARA" },
                   { "NEW: Chobin", "CHOBIN_CIARA_GECKO557" } },
       default = "" },

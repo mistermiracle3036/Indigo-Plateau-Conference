@@ -5,6 +5,14 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.64
+
+Correct the Ciara character's displayed name from Rina to Lovrina, including
+the developer selector and player-visible credits. Replace her temporary
+Raticate with the approved Gen 2-available team: Corsola, Butterfree and
+Wigglytuff. She remains developer-only; normal cup draws are unchanged.
+The original sprite files and saved selection ID are preserved.
+
 ## 1.1.63
 
 Private art test: add commissioned Mr Nobody sprites by Bani to the first-round
