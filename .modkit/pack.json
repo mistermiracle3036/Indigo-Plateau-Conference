@@ -1,15 +1,15 @@
 {
   "modkit": "1.0.0",
-  "packed_at": "2026-09-19T03:09:11Z",
+  "packed_at": "2026-09-19T05:56:32Z",
   "id": "indigo_conference",
-  "version": "1.1.61",
+  "version": "1.1.62",
   "api": 2,
   "engine_range": ">=0.2.22 <2.0.0",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 71149,
-      "sha256": "02fc336cc49816938105613df1e8019a131f563ac68960d15570d10ff8355927"
+      "bytes": 71452,
+      "sha256": "e5b3064561a7fa9e72c38d07af5d37d9943432998ca92ba91662b4066e645e08"
     },
     {
       "path": "CREDITS.md",
@@ -38,8 +38,8 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 9973,
-      "sha256": "ba16c3481477be5f34a30dff1b58b352e037961d7303882a67777dfda5d3473b"
+      "bytes": 10373,
+      "sha256": "0800d4af8ee3321db5e8fb98ee029873c10e138fd1b57a20d5f0255d77fe9cc7"
     },
     {
       "path": "assets/agatha.png",
@@ -648,13 +648,13 @@
     },
     {
       "path": "assets/robotman_tharkka.png",
-      "bytes": 815,
-      "sha256": "52e69d946e0ad956dbdd4f6f71db7374e630e5f1e015273cdd2731c0b7c790b6"
+      "bytes": 842,
+      "sha256": "3c216375f7c9c43c5d0dd79e7e5371b32260ef721d9d9f44a835e1987034cb49"
     },
     {
       "path": "assets/robotman_tharkka_front.png",
-      "bytes": 1509,
-      "sha256": "71c03cdaa30b018fe91d4cb0575f29271640a82f4936b763c0d02b0552d06920"
+      "bytes": 1523,
+      "sha256": "446b6c45163115d5496faa481e72e33255df33d7bb24795e7bdc2a72eff4fc0c"
     },
     {
       "path": "assets/rosa.png",
@@ -809,12 +809,12 @@
     {
       "path": "main.lua",
       "bytes": 174920,
-      "sha256": "5382cba3248cf33b34a06505c034b755f49d170da36d2ce151c78560e1219ad2"
+      "sha256": "88330f7286176a6675fc6df3b0a9f158dcf2fb6e7c7dea5950555cd59cf60870"
     },
     {
       "path": "manifest.json",
       "bytes": 825,
-      "sha256": "2c8606818104bd97e8733b3b17e2536a434af8c64746c4c091d1a61dfd37f0f7"
+      "sha256": "9b07f9f112128b39fb967cc0ea47c49abb2b00eb5c960f6d02c5814bd00c1afc"
     },
     {
       "path": "mod.card",

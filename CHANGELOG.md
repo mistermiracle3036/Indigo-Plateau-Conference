@@ -5,6 +5,13 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.62
+
+Private Robotman orange revision: stronger orange metal in both battle and
+overworld art. Recolor blue head/face areas to orange shadow in all six
+walking frames, retaining blue clothes, outlines and pixel geometry.
+Same TEST: Robotman entry and dev-only placeholder team; no other changes.
+
 ## 1.1.61
 
 Private Robotman / Cliff sprite test using newly commissioned art by tharkka.

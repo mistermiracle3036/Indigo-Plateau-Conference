@@ -169,3 +169,10 @@ art, not ownership of the underlying character. This is an isolated private
 test; shared registry promotion/public distribution is not part of this build.
 Native art was extracted from the clean PSD composite; no generated sprites,
 comic reference pictures, watermark removal, or PSD source are distributed.
+# Private 1.1.62 palette revision
+
+At the developer's request, Robotman's metal is a stronger orange. Blue
+head/face pixels in the first nine rows of each native walking frame use
+orange shadow; clothing below remains unchanged. Battle metal shades were
+updated consistently. Commissioned artwork remains credited to tharkka.
+No geometry, alpha, outlines, clothing or other character assets changed.
