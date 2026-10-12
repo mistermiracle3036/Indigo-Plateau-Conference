@@ -160,3 +160,12 @@ redrawing. Walkers use the source main-color swatch, vanilla skin, black,
 and transparency; battle fronts retain the sheet's supplied colors.
 New guests are dev-only pending team design.
 These permissions do not imply blanket approval for unrelated art.
+# Private 1.1.61 Robotman test
+
+Robotman / Cliff battle and overworld sprite artwork commissioned from tharkka,
+as confirmed by the developer September 18, 2026. Orange palette adaptation
+requested by the developer. This attribution covers the commissioned sprite
+art, not ownership of the underlying character. This is an isolated private
+test; shared registry promotion/public distribution is not part of this build.
+Native art was extracted from the clean PSD composite; no generated sprites,
+comic reference pictures, watermark removal, or PSD source are distributed.

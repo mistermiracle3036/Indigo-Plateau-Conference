@@ -1,30 +1,25 @@
 {
   "modkit": "1.0.0",
-  "packed_at": "2026-09-15T18:33:44Z",
+  "packed_at": "2026-09-19T03:09:11Z",
   "id": "indigo_conference",
-  "version": "1.1.59",
+  "version": "1.1.61",
   "api": 2,
   "engine_range": ">=0.2.22 <2.0.0",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 68935,
-      "sha256": "46c992230938e687735d8228b65b1f49b2a23cd7cc7a341402209ff3ed6c6549"
+      "bytes": 71149,
+      "sha256": "02fc336cc49816938105613df1e8019a131f563ac68960d15570d10ff8355927"
     },
     {
       "path": "CREDITS.md",
-      "bytes": 13090,
-      "sha256": "e8fb3184167acc0ea6f9de6defdeaedf85c90cf94004e1340e4815b2554f4fa0"
+      "bytes": 13500,
+      "sha256": "ecff51b04b7612660a6f4f086b8380209265609be653ca365ae47e99536e170e"
     },
     {
       "path": "FAQ.md",
       "bytes": 8553,
       "sha256": "b164d71822311a2ca4aaa1f055c277499eb204e2b3cce7bf9962cfb79f041b98"
-    },
-    {
-      "path": "HANDBACK.md",
-      "bytes": 5740,
-      "sha256": "84b827bfca382b75a14382695252f02f57178c72dac4b63abbb6bfe39e9e3504"
     },
     {
       "path": "LICENSE",
@@ -37,29 +32,19 @@
       "sha256": "cd072cc6ade659e6f583463207ae25c9e923de173c99597b5b5cd06b17071756"
     },
     {
-      "path": "SPECIES-TEST.md",
-      "bytes": 1486,
-      "sha256": "c0afd90209a02104e4321d9e14cf2826c49aa55eb51dae9edfb8249afda77815"
-    },
-    {
       "path": "SPRITE_PERMISSIONS.md",
       "bytes": 14080,
       "sha256": "451a18655838410dabd8a3b60745e8132720cea1113a58c8f1c29e9228c5523e"
     },
     {
-      "path": "TESTING.md",
-      "bytes": 6001,
-      "sha256": "ab593d1b07f0be4cc0586e0f3e64aa2add3aa19c6ba8af9fc6486785babbf30e"
-    },
-    {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 9401,
-      "sha256": "32e25497922fbb745a69e0f2ab32c08248559d1d190d9a68a31c9408c1e7850d"
+      "bytes": 9973,
+      "sha256": "ba16c3481477be5f34a30dff1b58b352e037961d7303882a67777dfda5d3473b"
     },
     {
       "path": "assets/agatha.png",
-      "bytes": 695,
-      "sha256": "ed6555c44c3881a384737863491f8aa0a02091871f173ce0599dfd2d9afe43ec"
+      "bytes": 429,
+      "sha256": "1c4b9599d0ff693f507b696d8a97dcafcee53c5b8aa320893e0748ceefa6ed0a"
     },
     {
       "path": "assets/agatha_front.png",
@@ -78,8 +63,8 @@
     },
     {
       "path": "assets/archer.png",
-      "bytes": 684,
-      "sha256": "cadc2439d7cc664008564c0eb8f9a8faf9a647976ee150becc3163e48c487254"
+      "bytes": 406,
+      "sha256": "4b7eea6b056a39cc9fc3c60e337659eb73b18749f8ef7392fa98f28c611833f0"
     },
     {
       "path": "assets/archer_front.png",
@@ -93,8 +78,8 @@
     },
     {
       "path": "assets/ariana.png",
-      "bytes": 650,
-      "sha256": "0da9e56bda78f2c0b12b33fd5e6a5b075a967901dfd21f767c8e74926086135d"
+      "bytes": 393,
+      "sha256": "a75c1cd2ef130af4a6d26afb16b7327b2dbb83840ffdfcf0f7445f99d78853df"
     },
     {
       "path": "assets/ariana_front.png",
@@ -208,8 +193,8 @@
     },
     {
       "path": "assets/captain.png",
-      "bytes": 682,
-      "sha256": "94f3f3967f8b9667538701d47719d31864aaf01831cfefa384d77b98da0c1601"
+      "bytes": 425,
+      "sha256": "20c7f80271213251e73a83152842dace9eb9980fd1f1e8578b8159a63cbfaa52"
     },
     {
       "path": "assets/chef_front.png",
@@ -218,8 +203,8 @@
     },
     {
       "path": "assets/cheryl.png",
-      "bytes": 546,
-      "sha256": "df6bcec02a6b5bcc567a531f1c10f6ae6aa29f928848c475fbff53fe1178c92d"
+      "bytes": 352,
+      "sha256": "8f0eec820d2cd80a70b7f70a7fdeaaca98b5a19213c1a64eb3476eadb1b6ef97"
     },
     {
       "path": "assets/cheryl_front.png",
@@ -228,8 +213,8 @@
     },
     {
       "path": "assets/chobin_ciara_gecko557.png",
-      "bytes": 579,
-      "sha256": "2abee55db27b6959388896c73cb71be242558611cfe532f7022c250929fb6dce"
+      "bytes": 399,
+      "sha256": "bd9ea8c434bb1b7f584f5ba8503d5622dacb00807603be09e7071490d0273af3"
     },
     {
       "path": "assets/chobin_ciara_gecko557_front.png",
@@ -248,8 +233,8 @@
     },
     {
       "path": "assets/cynthia.png",
-      "bytes": 547,
-      "sha256": "4c81073660014cf5281e930e6650de20f9ea46ac24f70841c32fa6c4675c6ca6"
+      "bytes": 368,
+      "sha256": "f86cb369273cba9969fabb3127cebc9bd6412f722a75c66bfdee06b9ac666b55"
     },
     {
       "path": "assets/cynthia_front.png",
@@ -258,8 +243,8 @@
     },
     {
       "path": "assets/dawn.png",
-      "bytes": 743,
-      "sha256": "d748d65f038bac94b3afaf5e3b8a8ee9ce6751e9aeb049ba332e5e1081db0ac5"
+      "bytes": 480,
+      "sha256": "195c06cd874b9f10998b50e1ff9815a9b7b7f3f2849b4a2bfc3a5161a4379826"
     },
     {
       "path": "assets/dawn_front.png",
@@ -268,8 +253,8 @@
     },
     {
       "path": "assets/duplica.png",
-      "bytes": 663,
-      "sha256": "9f2a0e73259532c345a0271c70428649ec96f16119c61787fdffa6960052295f"
+      "bytes": 564,
+      "sha256": "a0484fe66e191ff29b413b15c0754faeeacfa33849e10128c5be24ef46cb63a3"
     },
     {
       "path": "assets/engineer.png",
@@ -283,8 +268,8 @@
     },
     {
       "path": "assets/eusine.png",
-      "bytes": 698,
-      "sha256": "af90a070a0232bf0824d890bc1f82afbeea4aecbbdd4212da359638d23b7c452"
+      "bytes": 417,
+      "sha256": "0cf23e59d037f02b59519276fbceed6bdfa780c84620a89ba427977f26214635"
     },
     {
       "path": "assets/eusine_front.png",
@@ -298,8 +283,8 @@
     },
     {
       "path": "assets/fantina.png",
-      "bytes": 743,
-      "sha256": "b608d07401ec14ddd9c417332e7da670196c6224595d58f03ed7d024d1638291"
+      "bytes": 442,
+      "sha256": "37ca68b498eca1418afbf236276d2b90607ad2c48aa7efbd5e3cf2002e6316aa"
     },
     {
       "path": "assets/fantina_front.png",
@@ -308,8 +293,8 @@
     },
     {
       "path": "assets/giovanni.png",
-      "bytes": 602,
-      "sha256": "7493b0956f45288ee0f67b288b63ae813b9a0a891596bb3efbf443d7503f92c1"
+      "bytes": 377,
+      "sha256": "4fcdfe5de2dfeb2e6211819d8cde17362f9981bb8c307bea940ef7592d456fa7"
     },
     {
       "path": "assets/giovanni_front.png",
@@ -368,8 +353,8 @@
     },
     {
       "path": "assets/hugh.png",
-      "bytes": 715,
-      "sha256": "4eae245e46d8522a15808e12aa0243e9b1737bba4d3e1661cb3be19a89c3cabd"
+      "bytes": 408,
+      "sha256": "8ae34ae5f74b06cb01d1f3277ed289fc58656a302af18d38d685931c6c5ed39b"
     },
     {
       "path": "assets/hugh_front.png",
@@ -378,8 +363,8 @@
     },
     {
       "path": "assets/ingo.png",
-      "bytes": 607,
-      "sha256": "db2badf8371e66a709654209ca425827e75a2ba916071cf91266a4e3d207698d"
+      "bytes": 375,
+      "sha256": "013e9488115fbbecfc93b0a8b33f226416ff97ad33064cd9f573fc5230117336"
     },
     {
       "path": "assets/ingo_front.png",
@@ -388,8 +373,8 @@
     },
     {
       "path": "assets/ivy.png",
-      "bytes": 701,
-      "sha256": "2bd9e7e50fd68ab94ed6f8115ab265f8d4882a4b31877db449e9438a9a0b7477"
+      "bytes": 401,
+      "sha256": "f1712172120c936f395a4524166e04cc36e6c122aa6bee1d42f5f194130a9c82"
     },
     {
       "path": "assets/ivy_front.png",
@@ -403,8 +388,8 @@
     },
     {
       "path": "assets/juliana.png",
-      "bytes": 726,
-      "sha256": "4592506bba12f5670a1ae18c0653f3f7e16f5c4624d438ae551f3c7c3ab0dd3d"
+      "bytes": 455,
+      "sha256": "e77247df4fdf5380ae5ff1c287a329e4acd1fe13512c3d93f5e752ed82378566"
     },
     {
       "path": "assets/juliana_front.png",
@@ -413,8 +398,8 @@
     },
     {
       "path": "assets/larry.png",
-      "bytes": 613,
-      "sha256": "62f995d162df2c096de372e39fec794f14d992747555639a33d5d57c1b90f25b"
+      "bytes": 373,
+      "sha256": "d0882338fd4b59bf68273b84ebcb89da42912d5866f69be958ad36caef74e0c9"
     },
     {
       "path": "assets/larry_front.png",
@@ -463,8 +448,8 @@
     },
     {
       "path": "assets/lorelei.png",
-      "bytes": 655,
-      "sha256": "13ad5fc10005d0301f6f2c27291ce5e260f42e3a2140eb8792b66ab58de6b102"
+      "bytes": 410,
+      "sha256": "caa8aa4389b31535f5a40ca67283f8d7aa62fc7f46dfca7e487a80b30de930a6"
     },
     {
       "path": "assets/lorelei_front.png",
@@ -483,8 +468,8 @@
     },
     {
       "path": "assets/marley.png",
-      "bytes": 559,
-      "sha256": "946665b9e438cb2982c974f2f104840e66dd86e9a8fee4956bd4f7fab3f583bf"
+      "bytes": 363,
+      "sha256": "40dfd5628ce117f89917c2096646dadcca7d8c4c33361e8e676da18aaf1f6ab2"
     },
     {
       "path": "assets/marley_front.png",
@@ -498,8 +483,8 @@
     },
     {
       "path": "assets/maxie.png",
-      "bytes": 665,
-      "sha256": "3973e467527798d233c8d33cddfd6ed60911f5596c8b91ede5208635032e5195"
+      "bytes": 416,
+      "sha256": "97192e1aa51552d1ee9faba977a308ef55622854219e9c873059d16727590650"
     },
     {
       "path": "assets/maxie_front.png",
@@ -578,8 +563,8 @@
     },
     {
       "path": "assets/n.png",
-      "bytes": 703,
-      "sha256": "d4d6da5f8ca8ddd31bbb777c6154238f76b8c5900fbd3b437d62173fd66a1634"
+      "bytes": 441,
+      "sha256": "4dc09a16cf264f3053e3941245c38e43f672ae8b34e14951af752e265109367e"
     },
     {
       "path": "assets/n_front.png",
@@ -623,8 +608,8 @@
     },
     {
       "path": "assets/proton.png",
-      "bytes": 647,
-      "sha256": "29481fbed2f3d107af30e0ca80b65d4d12627f2f3a1c2cc8b3edcf77d01536f0"
+      "bytes": 417,
+      "sha256": "545ac00ab3a2ee3b501ed3fa78fb0231ea64fabdce01992cc10b32fa4f2f5d25"
     },
     {
       "path": "assets/proton_front.png",
@@ -653,13 +638,23 @@
     },
     {
       "path": "assets/rina_ciara.png",
-      "bytes": 627,
-      "sha256": "9d45b20cb060b5ef1a35239e4c1b4a02e967294f14b9d8552242d4f117ce7021"
+      "bytes": 383,
+      "sha256": "5269fd062a18556597a4ff781d1a565f34a79084114243a235c5ec884a1abb53"
     },
     {
       "path": "assets/rina_ciara_front.png",
       "bytes": 974,
       "sha256": "e5d4a90d9235362d7cc8d9005d508c3981ce8f86070cadcdc1d1731f34aa683d"
+    },
+    {
+      "path": "assets/robotman_tharkka.png",
+      "bytes": 815,
+      "sha256": "52e69d946e0ad956dbdd4f6f71db7374e630e5f1e015273cdd2731c0b7c790b6"
+    },
+    {
+      "path": "assets/robotman_tharkka_front.png",
+      "bytes": 1509,
+      "sha256": "71c03cdaa30b018fe91d4cb0575f29271640a82f4936b763c0d02b0552d06920"
     },
     {
       "path": "assets/rosa.png",
@@ -683,8 +678,8 @@
     },
     {
       "path": "assets/rui_ciara.png",
-      "bytes": 589,
-      "sha256": "5b6c01b49d823140bf65b9a8e6789103a5b3dfbc07b70165a8bdf73ce9b14ace"
+      "bytes": 418,
+      "sha256": "db6cd5f62365e2ee6a1cd5022dace39c5ae06ec4ae38943d6e3a9fc2cefa4a43"
     },
     {
       "path": "assets/rui_ciara_front.png",
@@ -693,8 +688,8 @@
     },
     {
       "path": "assets/ruin_maniac.png",
-      "bytes": 624,
-      "sha256": "e6eca7207ad14acf70695b6c88f2e37d3d477ebec9f2286187fbf5c4730cd11b"
+      "bytes": 365,
+      "sha256": "2a52f8ccf5c94436e0bf71907bccac5f1ba8ecab7b9e78b35c097538b4af564e"
     },
     {
       "path": "assets/ruin_maniac_front.png",
@@ -728,8 +723,8 @@
     },
     {
       "path": "assets/steven.png",
-      "bytes": 684,
-      "sha256": "aa38751161d2a7d19fec427573d6614149e1008e3bef76edeedc81ae142657b1"
+      "bytes": 429,
+      "sha256": "e61f47322adc270d0728c69cc9b5d0dfa3a0a33a99a8d9bcb3d1043d679f4eff"
     },
     {
       "path": "assets/steven_front.png",
@@ -753,8 +748,8 @@
     },
     {
       "path": "assets/veteran_m.png",
-      "bytes": 613,
-      "sha256": "13e436a54c18f9f276d574bfc5fa82eb4355f7fcdbbb54ea357ff2cfbe51eac2"
+      "bytes": 396,
+      "sha256": "b64fb8583251efc010c3b5c5db7b5742e4a51d178e6944468794745dac7cd22a"
     },
     {
       "path": "assets/veteran_m_front.png",
@@ -783,8 +778,8 @@
     },
     {
       "path": "assets/wally.png",
-      "bytes": 688,
-      "sha256": "83adada491a2535f30c2efd14c3105c541fd8ff45108b67e37cb3e53dec944a6"
+      "bytes": 425,
+      "sha256": "7fbd5f6c38a7727588618c714aee51955d01e7bf037445af72c1149ed6ee84cc"
     },
     {
       "path": "assets/wally_front.png",
@@ -803,8 +798,8 @@
     },
     {
       "path": "assets/yellow.png",
-      "bytes": 656,
-      "sha256": "3f644d207699cbd3202d2493419540a5d54ee9b1fd8945fb82f127ab41e9d9f2"
+      "bytes": 394,
+      "sha256": "04683304af2add81e2f69695dcdc012a6b234d88527890c1a35bd27b1585629d"
     },
     {
       "path": "assets/yellow_front.png",
@@ -812,79 +807,19 @@
       "sha256": "3d1f1bb1afa396264374100b90e4ef9996847cf9137397e60525a95b2ead14be"
     },
     {
-      "path": "docs/AJ_RUNTIME_PREVIEW.png",
-      "bytes": 5267,
-      "sha256": "643712130249f705f4e11c9fdb938662290315114d90394132d66e26477e7f88"
-    },
-    {
-      "path": "docs/BANI_1_1_34_RUNTIME_PREVIEW.png",
-      "bytes": 22275,
-      "sha256": "639fdd566085d90ca20488aff677cbc32f9bc71dd28767a452d14b10c70f52b4"
-    },
-    {
-      "path": "docs/BANI_RUNTIME_PREVIEW.png",
-      "bytes": 11564,
-      "sha256": "b75af0753a919b5c74a8965fbb9feb3a22750338eeeeaa2fcb1da3d0a2425af7"
-    },
-    {
-      "path": "docs/CHEF_1_1_36_RUNTIME_PREVIEW.png",
-      "bytes": 4666,
-      "sha256": "14f1bc93dfc79a83383f129dd4b82202cb28089ef6ad68eeb72006ba4c782a81"
-    },
-    {
-      "path": "docs/CREATOR_1_1_35_RUNTIME_PREVIEW.png",
-      "bytes": 44818,
-      "sha256": "dc8ad1d21b49857e30b3b3c09332f45d2c072b7ead93232ed22d3b0bedea0348"
-    },
-    {
-      "path": "docs/KIRAVELSOUL_1_1_37_RUNTIME_PREVIEW.png",
-      "bytes": 9944,
-      "sha256": "a793f97332e5c63e8c343a32025936ce1fa12660ba00b034f746cc3bc658f1ac"
-    },
-    {
-      "path": "docs/NPC_PAIRINGS_RUNTIME_PREVIEW.png",
-      "bytes": 26521,
-      "sha256": "2eac2891c63872e06a45eb17b9e35ca1a5b52caf980189ceda5e49bc49f28d66"
-    },
-    {
-      "path": "docs/NPC_PAIRINGS_TEST.md",
-      "bytes": 2492,
-      "sha256": "db920cccbf485f2744cd0f8868470f8d3eed0e8c7d9e03c4753cf44765562e11"
-    },
-    {
-      "path": "docs/SPRITE_CONVERSION_REPORT.md",
-      "bytes": 14752,
-      "sha256": "a931a4d84e2924b38d758a17bd1d9446e0afb284602263072f805b85d493355a"
-    },
-    {
-      "path": "docs/announcer-sendoff.png",
-      "bytes": 111800,
-      "sha256": "f2a641a6515791f535bebd3dd1bdff7cca420ff38f03efa5e5e79c1b41a0f166"
-    },
-    {
-      "path": "docs/challenger-blue.png",
-      "bytes": 103194,
-      "sha256": "01a3c3195f84da1b287666ea01ac8518d856eb6c746017188e875bf6ce065110"
-    },
-    {
       "path": "main.lua",
-      "bytes": 174778,
-      "sha256": "96745336d1d8eeb8d3837cbffa362a9bbb7b38bbdb19f7931d9c3d861ae95604"
+      "bytes": 174920,
+      "sha256": "5382cba3248cf33b34a06505c034b755f49d170da36d2ce151c78560e1219ad2"
     },
     {
       "path": "manifest.json",
       "bytes": 825,
-      "sha256": "071c0edeea81638fd0e9fdebc92635314fca5931d2f5d5ae469c77ae291cacef"
+      "sha256": "2c8606818104bd97e8733b3b17e2536a434af8c64746c4c091d1a61dfd37f0f7"
     },
     {
       "path": "mod.card",
-      "bytes": 2531,
-      "sha256": "b41c22b0e4bd64eedb2b090745b424c5bf4ba96f0cbe5d5aca7d73966285280e"
-    },
-    {
-      "path": "tools/check_sprites.py",
-      "bytes": 4107,
-      "sha256": "a954502da2c9ba5a88842eb94352fa4903cbb2ad448ec292fabaac7b185c2fd9"
+      "bytes": 2624,
+      "sha256": "05c1062ac462a43abdc35d4b9daaa24507874d4b435ecc0fdfbf4894fbcff507"
     }
   ],
   "lint": {

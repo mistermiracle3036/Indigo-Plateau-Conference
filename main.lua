@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.60"
+  local VERSION = "1.1.61"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -1892,6 +1892,7 @@ return function(mod)
   -- Keep source filenames distinct so approved shared/canonical art stays intact.
   do
     local artTests = {
+      { key = "ROBOTMAN_THARKKA", name = "ROBOTMAN", file = "robotman_tharkka" },
       { key = "MIROR_B", name = "MIROR B", file = "mirorb" },
       { key = "RINA_CIARA", name = "RINA", file = "rina_ciara" },
       { key = "RUI_CIARA", name = "RUI", file = "rui_ciara" },
@@ -2200,6 +2201,7 @@ return function(mod)
                   { "Fantina", "FANTINA" },
                   { "PROBE: Armored Mewtwo", "ARMORED_MEWTWO" },
                   { "PROBE: Chef", "CHEF" },
+                  { "TEST: Robotman", "ROBOTMAN_THARKKA" },
                   { "NEW: Miror B", "MIROR_B" },
                   { "NEW: Rina", "RINA_CIARA" },
                   { "NEW: Rui", "RUI_CIARA" },

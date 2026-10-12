@@ -1,5 +1,13 @@
 # Credits
 
+## Private 1.1.61 commissioned Robotman test
+
+Robotman / Cliff battle and overworld art commissioned from **tharkka**.
+Native crops use the supplied clean PSD, not the watermarked preview PNG.
+The developer requested orange metal matching comic reference pictures;
+only palette colors were substituted. No pixels were redrawn or rescaled.
+The reference pictures and source PSD are not distributed in the mod.
+
 ## Private 1.1.50 custom-character test
 
 Art from **Polished Crystal**, with per-asset attribution retained:

@@ -5,6 +5,15 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.61
+
+Private Robotman / Cliff sprite test using newly commissioned art by tharkka.
+Select TEST: Robotman in DEV: First-round guest. Orange metal palette follows
+the supplied references; jacket, outlines and native pixel geometry remain
+unchanged. Dev-only one-Raticate placeholder team, not a normal entrant.
+No generated Robotman artwork or retired Nintendo-derived assets included.
+All 1.1.60 gameplay, ROM-art substitutions and existing character art retained.
+
 ## 1.1.60
 
 **Updating from 1.0.2?** Five things changed that you will notice.
