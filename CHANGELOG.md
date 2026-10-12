@@ -5,6 +5,13 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.66
+
+Fix gray overworld sprites and opaque boxes around Lovrina, Rui and Chobin.
+Restore their exact approved colored, transparent registry assets to match
+their existing true-color registrations. No redraw, palette redesign, team,
+battle portrait or cup-rule changes; Rika and all other 1.1.65 content remain.
+
 ## 1.1.65
 
 Add NEW: Rika to the developer first-round selector with her approved teal

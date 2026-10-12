@@ -1,15 +1,15 @@
 {
   "modkit": "1.0.0",
-  "packed_at": "2026-10-11T20:53:50Z",
+  "packed_at": "2026-10-11T21:02:34Z",
   "id": "indigo_conference",
-  "version": "1.1.65",
+  "version": "1.1.66",
   "api": 2,
   "engine_range": ">=0.2.22 <2.0.0",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 72543,
-      "sha256": "308cb91df410625a0c61939a3cb5c75ae3fac61de9c992d8bed9d59ee4c68ac1"
+      "bytes": 72861,
+      "sha256": "8e44b1ecc983d6e514c9e9aa2916919e0e37c96610a623f5d1604936c9bb137a"
     },
     {
       "path": "CREDITS.md",
@@ -213,8 +213,8 @@
     },
     {
       "path": "assets/chobin_ciara_gecko557.png",
-      "bytes": 399,
-      "sha256": "bd9ea8c434bb1b7f584f5ba8503d5622dacb00807603be09e7071490d0273af3"
+      "bytes": 579,
+      "sha256": "2abee55db27b6959388896c73cb71be242558611cfe532f7022c250929fb6dce"
     },
     {
       "path": "assets/chobin_ciara_gecko557_front.png",
@@ -658,8 +658,8 @@
     },
     {
       "path": "assets/rina_ciara.png",
-      "bytes": 383,
-      "sha256": "5269fd062a18556597a4ff781d1a565f34a79084114243a235c5ec884a1abb53"
+      "bytes": 627,
+      "sha256": "9d45b20cb060b5ef1a35239e4c1b4a02e967294f14b9d8552242d4f117ce7021"
     },
     {
       "path": "assets/rina_ciara_front.png",
@@ -698,8 +698,8 @@
     },
     {
       "path": "assets/rui_ciara.png",
-      "bytes": 418,
-      "sha256": "db6cd5f62365e2ee6a1cd5022dace39c5ae06ec4ae38943d6e3a9fc2cefa4a43"
+      "bytes": 589,
+      "sha256": "5b6c01b49d823140bf65b9a8e6789103a5b3dfbc07b70165a8bdf73ce9b14ace"
     },
     {
       "path": "assets/rui_ciara_front.png",
@@ -829,12 +829,12 @@
     {
       "path": "main.lua",
       "bytes": 176133,
-      "sha256": "228f4a70dc0497d354d8e2e0a7bf6f57b923f132fa59bad720c64116556e738b"
+      "sha256": "502f76a6d9d2c0c0341e6d33ee9adac33dce4b5695b5c34ec119b49bdbe85938"
     },
     {
       "path": "manifest.json",
       "bytes": 825,
-      "sha256": "bf58f055e70de675482034dca97769b93cd12d2280d565995ba16dc1212715c0"
+      "sha256": "5d48b95377d88bd68aa0b022073e68be80f003ed1fdc81d2294b656265fe6615"
     },
     {
       "path": "mod.card",
