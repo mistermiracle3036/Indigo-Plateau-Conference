@@ -5,6 +5,28 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.69
+
+Private phone test: expanded teams, behind a new setting.
+
+- New option **Teams (restart)**: *Gen 1/2* (default) or *Expanded*. Gen 1/2 is
+  exactly the 1.1.68 game and adds no Pokemon at all. Expanded gives 15
+  challengers (Guzma, Dawn, May, Brendan, Roxie, Piers, Larry, Colress, Maxie,
+  Wally, Volkner, Giovanni, Fantina, N, Ingo) their approved expanded teams;
+  odds, rounds, levels and rewards are unchanged. A change takes effect after
+  restarting the game, and the attendant says so.
+- A cup keeps the teams it was drawn with. If you load an expanded cup while
+  expanded teams are off, the attendant explains and offers to start a fresh
+  cup -- say NO and the cup is kept for when you switch back.
+- Expanded-species opponents can't be snagged (Pokemon Snag shows its usual
+  block and gives the ball back). Everyone else is snaggable as before.
+- DEV: new *Guest strength* (Full/Middle/Early). The 26 reviewed developer
+  trainers now bring their reviewed teams, expanded or Gen 1/2 per the setting;
+  team size follows the venue's round. Buck stays Gen 1/2 (two of his Pokemon
+  are not cleared). Guzma joins the guest list.
+- No longer reads the old Polished species pack; nothing it supplied was ever
+  used on the phone.
+
 ## 1.1.68
 
 Private phone test: approved Gen 1/2 weighted cups and authored teams.

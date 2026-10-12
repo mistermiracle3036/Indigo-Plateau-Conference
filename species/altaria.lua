@@ -1,0 +1,27 @@
+-- Approved compatibility mapping: official Erratic -> GROWTH_FAST (follow-up 2).
+-- Dex entry source: diamond.
+return { {
+  baseExp = 172,
+  baseStats = {attack = 70, defense = 90, hp = 75, specialAttack = 70, specialDefense = 105, speed = 80},
+  catchRate = 45,
+  cryBase = "DRAGONITE",
+  dex = 334,
+  dexEntry = {heightFt = 3, heightIn = 7, kind = "HUMMING", text = "It looks like a<NEXT>fluffy cloud when<NEXT>it is in flight.", text2 = "It hums with its<NEXT>soprano voice.", weightLbs = 45.4},
+  eggGroups = {"EGG_FLYING", "EGG_DRAGON"},
+  eggGroupsRaw = 78,
+  eggMoves = {},
+  eggSteps = 20,
+  entry_key = "pokemon:altaria:default:art:default",
+  evolutions = {},
+  genderRatio = 127,
+  growthRate = "GROWTH_FAST",
+  id = "ALTARIA",
+  items = {},
+  levelMoves = {{level = 1, move = "PECK"}, {level = 1, move = "GROWL"}, {level = 12, move = "FURY_ATTACK"}, {level = 20, move = "DRAGONBREATH"}, {level = 24, move = "SAFEGUARD"}, {level = 28, move = "SING"}, {level = 38, move = "TAKE_DOWN"}, {level = 50, move = "PERISH_SONG"}, {level = 56, move = "SKY_ATTACK"}, {level = 81, move = "MIST"}},
+  name = "ALTARIA",
+  palette = {normal = {{181, 181, 206}, {49, 107, 197}}, shiny = {{239, 247, 99}, {214, 156, 8}}},
+  slug = "altaria",
+  source = "official-stats",
+  tmhm = {"THIEF", "OUTRAGE", "ROCK_SMASH", "FIRE_BLAST", "FLAMETHROWER", "SUNNY_DAY", "SKY_ATTACK", "FLY", "SOLARBEAM", "EARTHQUAKE", "ICE_BEAM", "HYPER_BEAM", "HIDDEN_POWER", "SNORE", "FALSE_SWIPE", "FRUSTRATION", "RETURN", "ATTRACT", "DOUBLE_TEAM", "HEAL_BELL", "PROTECT", "PSYCH_UP", "ROAR", "SAFEGUARD", "SLEEP_TALK", "SUBSTITUTE", "SWAGGER", "TOXIC", "DREAM_EATER", "REST", "IRON_TAIL", "STEEL_WING", "RAIN_DANCE", "ENDURE", "BODY_SLAM", "SWIFT", "AGILITY", "FIRE_SPIN"},
+  types = {"DRAGON", "FLYING"},
+} }

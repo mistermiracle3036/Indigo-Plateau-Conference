@@ -1,6 +1,14 @@
 -- Pure cup rules. RNG is injected for deterministic tests; cards are saved once.
-return function(teams)
+-- 1.1.69: a card records the team TRACK it was drawn from ("gen12" or
+-- "expanded"). A card with no track predates 1.1.69 and means gen12, so every
+-- saved card keeps validating against the table it was actually drawn from --
+-- switching IPC's team setting never invalidates (and silently redraws) a cup.
+return function(tracks)
+  if tracks.gen12 == nil then tracks = { gen12 = tracks } end   -- bare table = gen12
+  local teams = tracks.gen12
   local M = { schema = 1 }
+  function M.trackOf(card) return type(card) == 'table' and card.track or 'gen12' end
+  function M.teams(track) return tracks[track or 'gen12'] end
   M.cups = {
     VIOLET_POKECENTER_1F = {{3,3,3,3},{65,25,8,2},{80,18,2}},
     GOLDENROD_POKECENTER_1F = {{3,3,3,3},{45,35,16,4},{55,40,5}},
@@ -47,7 +55,8 @@ return function(teams)
     return #out==4 and out or nil
   end
   function M.valid(card,byKey)
-    if type(card)~='table' or card.schema~=M.schema or not M.cups[card.venue]
+    local teams=type(card)=='table' and tracks[M.trackOf(card)]
+    if not teams or card.schema~=M.schema or not M.cups[card.venue]
         or type(card.rounds)~='table' or #card.rounds~=4
         or type(card.keys)~='table' or #card.keys~=4 then return false end
     local legends=0
@@ -68,7 +77,21 @@ return function(teams)
     end
     return legends<=1
   end
-  function M.draw(id,byKey,history,rng,legacy)
+  -- Species in a card's parties that isAvailable(species) rejects, sorted.
+  -- Empty means the card can be fought exactly as it was drawn.
+  function M.missing(card,isAvailable)
+    local out,seen={},{}
+    for _,row in ipairs(type(card)=='table' and card.rounds or {}) do
+      for _,mon in ipairs(type(row)=='table' and row.party or {}) do
+        local s=type(mon)=='table' and mon.species
+        if s and not seen[s] and not isAvailable(s) then seen[s]=true; out[#out+1]=s end
+      end
+    end
+    table.sort(out)
+    return out
+  end
+  function M.draw(id,byKey,history,rng,legacy,track)
+    local teams=assert(tracks[track or 'gen12'],'Unknown IPC team track')
     local cup=assert(M.cups[id]); rng=rng or math.random
     local pools={{},{},{},{}}
     -- Stable ordering means a deterministic RNG is reproducible across platforms.
@@ -76,7 +99,7 @@ return function(teams)
       if byKey[key] and not byKey[key].devOnly then table.insert(pools[def.tier],key) end
     end
     for _,pool in ipairs(pools) do table.sort(pool) end
-    local card={schema=M.schema,venue=id,rounds={},keys={},encountered={}}
+    local card={schema=M.schema,venue=id,rounds={},keys={},encountered={},track=track or 'gen12'}
     local hasLegend=false
     for r=1,4 do
       local key=legacy and legacy[r]

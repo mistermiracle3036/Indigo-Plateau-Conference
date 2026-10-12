@@ -1,0 +1,27 @@
+-- Art: Polished Crystal Two-Segment @ 8f3c7e9651e988d876e32a4c7ad9ef1bb76702a8; credit Sage Deoxys (catalog: SageDeoxys).
+-- Dex entry source: OPEN - open, pending developer.
+return { {
+  baseExp = 115,
+  baseStats = {attack = 100, defense = 80, hp = 125, specialAttack = 85, specialDefense = 75, speed = 55},
+  catchRate = 45,
+  cryBase = "DUNSPARCE",
+  dex = 982,
+  dexEntry = {heightFt = 11, heightIn = 10, kind = "Land Snake", text = "", text2 = "", weightLbs = 86.4},
+  eggGroups = {"EGG_GROUND", "EGG_GROUND"},
+  eggGroupsRaw = 85,
+  eggMoves = {},
+  eggSteps = 20,
+  entry_key = "pokemon:dudunsparce:two-segment-form:art:two-segment-form",
+  evolutions = {},
+  genderRatio = 127,
+  growthRate = "GROWTH_MEDIUM_FAST",
+  id = "DUDUNSPARCE",
+  items = {},
+  levelMoves = {{level = 1, move = "RAGE"}, {level = 1, move = "DEFENSE_CURL"}, {level = 3, move = "ROLLOUT"}, {level = 8, move = "PURSUIT"}, {level = 11, move = "SCREECH"}, {level = 13, move = "MUD_SLAP"}, {level = 18, move = "ANCIENTPOWER"}, {level = 21, move = "BODY_SLAM"}, {level = 23, move = "DRAGON_RAGE"}, {level = 28, move = "TAKE_DOWN"}, {level = 33, move = "DIG"}, {level = 36, move = "GLARE"}, {level = 38, move = "DOUBLE_EDGE"}, {level = 41, move = "EARTHQUAKE"}, {level = 48, move = "ENDURE"}, {level = 51, move = "REVERSAL"}, {level = 58, move = "OUTRAGE"}},
+  name = "DUDUNSPARCE",
+  palette = {normal = {{255, 197, 49}, {66, 123, 189}}, shiny = {{255, 197, 49}, {255, 41, 173}}},
+  slug = "dudunsparce-two-segment-form",
+  source = "polished-crystal data/pokemon/base_stats/dudunsparce.asm@8f3c7e9651e988d876e32a4c7ad9ef1bb76702a8",
+  tmhm = {"CURSE", "TOXIC", "HIDDEN_POWER", "SUNNY_DAY", "ICE_BEAM", "BLIZZARD", "PROTECT", "RAIN_DANCE", "IRON_TAIL", "THUNDERBOLT", "THUNDER", "EARTHQUAKE", "RETURN", "DIG", "SHADOW_BALL", "ROCK_SMASH", "DOUBLE_TEAM", "FLAMETHROWER", "FIRE_BLAST", "SUBSTITUTE", "REST", "ATTRACT", "THIEF", "ROCK_SLIDE", "THUNDER_WAVE", "STRENGTH", "AGILITY", "BATON_PASS", "BODY_SLAM", "COUNTER", "DEFENSE_CURL", "DOUBLE_EDGE", "DREAM_EATER", "ENDURE", "HEADBUTT", "ROLLOUT", "SLEEP_TALK", "SWAGGER", "ZAP_CANNON"},
+  types = {"NORMAL"},
+} }

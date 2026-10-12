@@ -1,0 +1,27 @@
+-- Approved compatibility mapping: official Erratic -> GROWTH_FAST (follow-up 2).
+-- Dex entry source: black-2.
+return { {
+  baseExp = 62,
+  baseStats = {attack = 40, defense = 60, hp = 45, specialAttack = 40, specialDefense = 75, speed = 50},
+  catchRate = 255,
+  cryBase = "PIDGEOT",
+  dex = 333,
+  dexEntry = {heightFt = 1, heightIn = 4, kind = "COTTON BIRD", text = "For some reason,<NEXT>it likes to land<NEXT>on people's heads", text2 = "softly and act<NEXT>like it's a hat.", weightLbs = 2.6},
+  eggGroups = {"EGG_FLYING", "EGG_DRAGON"},
+  eggGroupsRaw = 78,
+  eggMoves = {"AGILITY", "HAZE", "PURSUIT", "RAGE", "STEEL_WING"},
+  eggSteps = 20,
+  entry_key = "pokemon:swablu:default:art:default",
+  evolutions = {{into = "ALTARIA", level = 35, method = "EVOLVE_LEVEL"}},
+  genderRatio = 127,
+  growthRate = "GROWTH_FAST",
+  id = "SWABLU",
+  items = {},
+  levelMoves = {{level = 1, move = "PECK"}, {level = 1, move = "GROWL"}, {level = 8, move = "MIST"}, {level = 12, move = "FURY_ATTACK"}, {level = 20, move = "DRAGONBREATH"}, {level = 24, move = "SAFEGUARD"}, {level = 28, move = "SING"}, {level = 36, move = "TAKE_DOWN"}, {level = 44, move = "PERISH_SONG"}},
+  name = "SWABLU",
+  palette = {normal = {{181, 206, 206}, {49, 107, 197}}, shiny = {{239, 230, 140}, {197, 148, 0}}},
+  slug = "swablu",
+  source = "official-stats",
+  tmhm = {"THIEF", "OUTRAGE", "SUNNY_DAY", "SKY_ATTACK", "FLY", "SOLARBEAM", "ICE_BEAM", "HIDDEN_POWER", "SNORE", "FALSE_SWIPE", "FRUSTRATION", "RETURN", "ATTRACT", "DOUBLE_TEAM", "HEAL_BELL", "PROTECT", "PSYCH_UP", "SAFEGUARD", "SLEEP_TALK", "SUBSTITUTE", "SWAGGER", "TOXIC", "DREAM_EATER", "REST", "STEEL_WING", "RAIN_DANCE", "ENDURE", "BODY_SLAM", "SWIFT", "AGILITY"},
+  types = {"NORMAL", "FLYING"},
+} }

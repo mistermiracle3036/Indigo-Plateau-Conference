@@ -1,1 +1,64 @@
+# Exact paths (modkit matches whole relative paths, not globs or folders).
+# Regenerate when docs/, tools/ or tests/ gain a file: anything listed here
+# never ships; anything missing from it does.
 tests/
+HANDBACK.md
+indigo_conference-1.1.26.zip
+docs/AJ_RUNTIME_PREVIEW.png
+docs/BANI_1_1_34_RUNTIME_PREVIEW.png
+docs/BANI_RUNTIME_PREVIEW.png
+docs/CHEF_1_1_36_RUNTIME_PREVIEW.png
+docs/CREATOR_1_1_35_RUNTIME_PREVIEW.png
+docs/KIRAVELSOUL_1_1_37_RUNTIME_PREVIEW.png
+docs/NPC_PAIRINGS_RUNTIME_PREVIEW.png
+docs/NPC_PAIRINGS_TEST.md
+docs/SPRITE_CONVERSION_REPORT.md
+docs/announcer-sendoff.png
+docs/challenger-blue.png
+docs/sprite-sources/bea.png
+docs/sprite-sources/brendan.png
+docs/sprite-sources/convert_roxie_piers_fronts.py
+docs/sprite-sources/convert_roxie_piers_ow.py
+docs/sprite-sources/convert_trainer.py
+docs/sprite-sources/dawn.png
+docs/sprite-sources/edit_roxie_piers_faces.py
+docs/sprite-sources/green.png
+docs/sprite-sources/gym_leaders_portraits_by_drawnamu.png
+docs/sprite-sources/hilbert.png
+docs/sprite-sources/hilda.png
+docs/sprite-sources/lyra.png
+docs/sprite-sources/many misc characters.png
+docs/sprite-sources/may.png
+docs/sprite-sources/michael.png
+docs/sprite-sources/mina.png
+docs/sprite-sources/nate.png
+docs/sprite-sources/nemona.png
+docs/sprite-sources/nemona_by_mid117.png
+docs/sprite-sources/nemona_front.png
+docs/sprite-sources/nemona_ow_compare.png
+docs/sprite-sources/piers_overworld_by_cyberstryke7.png
+docs/sprite-sources/piers_yogurcomics_battle_back.png
+docs/sprite-sources/piers_yogurcomics_battle_back_no_hand.png
+docs/sprite-sources/piers_yogurcomics_battle_back_no_hand_transparent.png
+docs/sprite-sources/piers_yogurcomics_battle_back_transparent.png
+docs/sprite-sources/piers_yogurcomics_battle_front.png
+docs/sprite-sources/piers_yogurcomics_battle_front_transparent.png
+docs/sprite-sources/piers_yogurcomics_overworld_blue.png
+docs/sprite-sources/piers_yogurcomics_overworld_blue_transparent.png
+docs/sprite-sources/piers_yogurcomics_overworld_red.png
+docs/sprite-sources/piers_yogurcomics_overworld_red_transparent.png
+docs/sprite-sources/pokemon stadium.png
+docs/sprite-sources/rosa.png
+docs/sprite-sources/roxie_gen3_overworld_by_ulithiumdragon_dbj7tlr.png
+docs/sprite-sources/roxie_gsc_style_by_piacarrot_d59kzez.png
+docs/sprite-sources/roxie_tharkka_battle_sheet.png
+docs/sprite-sources/roxie_tharkka_overworld_sheet.png
+docs/sprite-sources/sirwhibbles_kanto.png
+docs/sprite-sources/sirwhibbles_team_rocket.png
+docs/sprite-sources/wes.png
+tests/cups_test.lua
+tests/species_harness.lua
+tools/check_sprites.py
+tools/gen_expanded.py
+tools/team_sources/IPC-developer-team-review-2026-10-11.json
+tools/team_sources/IPC-normal-team-variants-2026-10-11.json

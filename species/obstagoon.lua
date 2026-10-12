@@ -1,0 +1,27 @@
+-- Approved compatibility cap: official baseExp 260 -> 255 (follow-up 2).
+-- Dex entry source: OPEN - open, pending developer.
+return { {
+  baseExp = 255,
+  baseStats = {attack = 90, defense = 101, hp = 93, specialAttack = 60, specialDefense = 81, speed = 95},
+  catchRate = 45,
+  cryBase = "RATICATE",
+  dex = 862,
+  dexEntry = {heightFt = 5, heightIn = 3, kind = "BLOCKING", text = "", text2 = "", weightLbs = 101.4},
+  eggGroups = {"EGG_GROUND"},
+  eggGroupsRaw = 85,
+  eggMoves = {},
+  eggSteps = 15,
+  entry_key = "pokemon:obstagoon:default:art:default",
+  evolutions = {},
+  genderRatio = 127,
+  growthRate = "GROWTH_MEDIUM_FAST",
+  id = "OBSTAGOON",
+  items = {},
+  levelMoves = {{level = 1, move = "CROSS_CHOP"}, {level = 1, move = "SUBMISSION"}, {level = 1, move = "PIN_MISSILE"}, {level = 1, move = "TACKLE"}, {level = 1, move = "LEER"}, {level = 1, move = "SAND_ATTACK"}, {level = 1, move = "LICK"}, {level = 12, move = "HEADBUTT"}, {level = 18, move = "FURY_SWIPES"}, {level = 23, move = "REST"}, {level = 28, move = "TAKE_DOWN"}, {level = 35, move = "SCARY_FACE"}, {level = 42, move = "COUNTER"}, {level = 56, move = "DOUBLE_EDGE"}},
+  name = "OBSTAGOON",
+  palette = {normal = {{248, 72, 152}, {82, 114, 90}}, shiny = {{248, 72, 152}, {82, 114, 90}}},
+  slug = "obstagoon",
+  source = "official-stats",
+  tmhm = {"THIEF", "THUNDER", "THUNDERBOLT", "THUNDERPUNCH", "THUNDER_WAVE", "LOW_KICK", "FIRE_PUNCH", "SUNNY_DAY", "SHADOW_BALL", "BLIZZARD", "ICE_BEAM", "ICE_PUNCH", "ICY_WIND", "HYPER_BEAM", "SNORE", "ATTRACT", "PROTECT", "SLEEP_TALK", "SUBSTITUTE", "REST", "IRON_TAIL", "SURF", "RAIN_DANCE", "ENDURE", "MEGA_KICK", "BODY_SLAM", "MEGA_PUNCH", "SCREECH", "FOCUS_ENERGY", "SWIFT", "SCARY_FACE", "REVERSAL", "WHIRLPOOL", "DIG", "PIN_MISSILE"},
+  types = {"DARK", "NORMAL"},
+} }
