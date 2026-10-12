@@ -1,5 +1,12 @@
 # Third-party notices
 
+## Private 1.1.65 Rika test
+
+Commissioned Rika battle and overworld art by **Blaklyte**, cleared in the
+shared sprite registry. Both assets are copied byte-for-byte from the canonical
+store, using the developer-approved teal overworld variant. Blaklyte is also
+credited in the player-visible mod card. No source sheets are distributed.
+
 ## Private 1.1.63 Mr Nobody test
 
 Commissioned Mr Nobody battle and overworld art by **Bani**, supplied by the

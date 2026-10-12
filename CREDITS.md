@@ -1,5 +1,8 @@
 # Credits
 
+Rika's battle and overworld art was commissioned from **Blaklyte**.
+The approved teal overworld and battle portrait are reused without modification.
+
 Lovrina's battle and overworld art is by **Ciara**, used with permission.
 Previously mislabeled Rina; legacy asset filenames remain unchanged.
 

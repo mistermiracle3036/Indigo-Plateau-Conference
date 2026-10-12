@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.64"
+  local VERSION = "1.1.65"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -1892,6 +1892,11 @@ return function(mod)
   -- Keep source filenames distinct so approved shared/canonical art stays intact.
   do
     local artTests = {
+      { key = "RIKA", name = "RIKA", file = "rika",
+        palette = "PAL_OW_TREE", paletteId = 6,
+        party = { { species = "QUAGSIRE", delta = 0 },
+                  { species = "DUGTRIO", delta = 0 },
+                  { species = "DONPHAN", delta = 1 } } },
       { key = "MR_NOBODY", name = "MR NOBODY", file = "mr_nobody_bani" },
       { key = "ROBOTMAN_THARKKA", name = "ROBOTMAN", file = "robotman_tharkka" },
       { key = "MIROR_B", name = "MIROR B", file = "mirorb" },
@@ -1934,7 +1939,8 @@ return function(mod)
       foe.key, foe.devOnly = art.key, true
       foe.sprite = "SPRITE_IPC_" .. art.key
       mod.exports.owns.sprites[#mod.exports.owns.sprites + 1] = foe.sprite
-      registerGuestSprite(foe.sprite, art.file .. ".png", "PAL_OW_BROWN", 3, true)
+      registerGuestSprite(foe.sprite, art.file .. ".png",
+        art.palette or "PAL_OW_BROWN", art.paletteId or 3, true)
       BATTLE_FRONTS[art.key] = mod.path .. "/assets/" .. art.file .. "_front.png"
       TRUE_COLOR_FRONTS[art.key] = true
       ROSTER[#ROSTER + 1] = foe
@@ -2209,6 +2215,7 @@ return function(mod)
                   { "PROBE: Chef", "CHEF" },
                   { "TEST: Mr Nobody", "MR_NOBODY" },
                   { "TEST: Robotman", "ROBOTMAN_THARKKA" },
+                  { "NEW: Rika", "RIKA" },
                   { "NEW: Miror B", "MIROR_B" },
                   { "NEW: Lovrina", "RINA_CIARA" },
                   { "NEW: Rui", "RUI_CIARA" },

@@ -5,6 +5,14 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.65
+
+Add NEW: Rika to the developer first-round selector with her approved teal
+overworld art and commissioned Blaklyte battle portrait. Her test team is
+Quagsire, Dugtrio and Donphan, with no species-pack requirement. Rika stays
+out of normal tournament draws. Existing characters, teams and cup rules
+remain unchanged; weighted cups are not implemented in this test build.
+
 ## 1.1.64
 
 Correct the Ciara character's displayed name from Rina to Lovrina, including
