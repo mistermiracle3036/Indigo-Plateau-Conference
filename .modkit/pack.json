@@ -1,20 +1,20 @@
 {
   "modkit": "1.0.0",
-  "packed_at": "2026-09-19T05:56:32Z",
+  "packed_at": "2026-10-11T15:54:07Z",
   "id": "indigo_conference",
-  "version": "1.1.62",
+  "version": "1.1.63",
   "api": 2,
   "engine_range": ">=0.2.22 <2.0.0",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 71452,
-      "sha256": "e5b3064561a7fa9e72c38d07af5d37d9943432998ca92ba91662b4066e645e08"
+      "bytes": 71790,
+      "sha256": "b738d2e5ab358ea20fa17710c871c7b93368ebcbbace029228eaf779ffc76b7b"
     },
     {
       "path": "CREDITS.md",
-      "bytes": 13500,
-      "sha256": "ecff51b04b7612660a6f4f086b8380209265609be653ca365ae47e99536e170e"
+      "bytes": 13758,
+      "sha256": "9b1654b1ddb52b3ad45e34eb7b1aeb4e8cf642733493732a4d36b47f9fec0d68"
     },
     {
       "path": "FAQ.md",
@@ -38,8 +38,8 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 10373,
-      "sha256": "0800d4af8ee3321db5e8fb98ee029873c10e138fd1b57a20d5f0255d77fe9cc7"
+      "bytes": 10785,
+      "sha256": "9bcbdfcd761006043d06b7907b49f501b4d2bb33fd4cd8c79444b1b3c976635e"
     },
     {
       "path": "assets/agatha.png",
@@ -562,6 +562,16 @@
       "sha256": "4e97b2cc99bfd38744549df761e141faeb6e207633afc755d952a4cd29369af5"
     },
     {
+      "path": "assets/mr_nobody_bani.png",
+      "bytes": 435,
+      "sha256": "0c14feff8a8fd4e1c3e72efc3ec1dab14e1de0efc9b4ec04ee5ad2c14e21c132"
+    },
+    {
+      "path": "assets/mr_nobody_bani_front.png",
+      "bytes": 690,
+      "sha256": "880d50975f6353bd98cddd890d68a585daaa68a5ca4bbba7760bfe7eade05346"
+    },
+    {
       "path": "assets/n.png",
       "bytes": 441,
       "sha256": "4dc09a16cf264f3053e3941245c38e43f672ae8b34e14951af752e265109367e"
@@ -808,18 +818,18 @@
     },
     {
       "path": "main.lua",
-      "bytes": 174920,
-      "sha256": "88330f7286176a6675fc6df3b0a9f158dcf2fb6e7c7dea5950555cd59cf60870"
+      "bytes": 175476,
+      "sha256": "da50fbea6204415b7aef57711da16b71365ffc53964c878ab516996b403a1bed"
     },
     {
       "path": "manifest.json",
       "bytes": 825,
-      "sha256": "9b07f9f112128b39fb967cc0ea47c49abb2b00eb5c960f6d02c5814bd00c1afc"
+      "sha256": "84086c8be54e575d9ad908d6f6496de88a1cbd35111363a35710f547ffc33831"
     },
     {
       "path": "mod.card",
-      "bytes": 2624,
-      "sha256": "05c1062ac462a43abdc35d4b9daaa24507874d4b435ecc0fdfbf4894fbcff507"
+      "bytes": 2694,
+      "sha256": "65606121eebdff90cd730ff2ea97aab97cc9ef31f84ad9d4c91c2c0821ecd34e"
     }
   ],
   "lint": {

@@ -5,6 +5,13 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.63
+
+Private art test: add commissioned Mr Nobody sprites by Bani to the first-round
+developer selector. Original commission colors preserved; temporary one-Raticate
+team, excluded from normal tournament draws. Retains the 1.1.62 Robotman revision.
+Also carries forward public 1.0.3's owned-NPC interaction fix for engine 0.3.50+.
+
 ## 1.1.62
 
 Private Robotman orange revision: stronger orange metal in both battle and

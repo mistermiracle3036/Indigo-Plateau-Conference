@@ -1,5 +1,13 @@
 # Third-party notices
 
+## Private 1.1.63 Mr Nobody test
+
+Commissioned Mr Nobody battle and overworld art by **Bani**, supplied by the
+developer for this test. Exact native cells extracted, template borders and
+outside white background removed; original artwork colors retained. Bani is
+credited in the player-visible mod card. Registry intake is required before
+public release. This is an art test, not a finished tournament entrant.
+
 ## Private 1.1.50 custom-character test
 
 Art from **Polished Crystal**, with per-asset attribution retained:

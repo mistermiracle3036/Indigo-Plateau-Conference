@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.62"
+  local VERSION = "1.1.63"
   local MOD_ID = "indigo_conference"
 
   mod.exports.version = VERSION
@@ -1892,6 +1892,7 @@ return function(mod)
   -- Keep source filenames distinct so approved shared/canonical art stays intact.
   do
     local artTests = {
+      { key = "MR_NOBODY", name = "MR NOBODY", file = "mr_nobody_bani" },
       { key = "ROBOTMAN_THARKKA", name = "ROBOTMAN", file = "robotman_tharkka" },
       { key = "MIROR_B", name = "MIROR B", file = "mirorb" },
       { key = "RINA_CIARA", name = "RINA", file = "rina_ciara" },
@@ -2201,6 +2202,7 @@ return function(mod)
                   { "Fantina", "FANTINA" },
                   { "PROBE: Armored Mewtwo", "ARMORED_MEWTWO" },
                   { "PROBE: Chef", "CHEF" },
+                  { "TEST: Mr Nobody", "MR_NOBODY" },
                   { "TEST: Robotman", "ROBOTMAN_THARKKA" },
                   { "NEW: Miror B", "MIROR_B" },
                   { "NEW: Rina", "RINA_CIARA" },
@@ -3557,6 +3559,14 @@ return function(mod)
 
   mod.events:on("world.interacted", function(ev)
     local ok, err = pcall(function()
+      -- Carry forward the released 1.0.3 fix for engine 0.3.50+ NPC events.
+      -- Only normalize our own unscripted runtime actors, never vanilla NPCs.
+      if ev and ev.kind == "npc" then
+        local d = ev.target and ev.target.def
+        if not (d and d.runtime == true and d.owner == mod.id
+            and not d.scriptKey) then return end
+        ev = { mapId = ev.mapId, kind = "none", x = d.x, y = d.y }
+      end
       if not ev or ev.kind ~= "none" then return end
       local world = mod.world:overworld()
       if ev.mapId == LOBBY then

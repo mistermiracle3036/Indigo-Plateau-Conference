@@ -1,5 +1,11 @@
 # Credits
 
+## Private 1.1.63 commissioned Mr Nobody test
+
+Mr Nobody battle and overworld sprite art commissioned from **Bani**.
+Native crops retain the commission's original colors and pixel geometry.
+The comic reference image and source template are not distributed.
+
 ## Private 1.1.61 commissioned Robotman test
 
 Robotman / Cliff battle and overworld art commissioned from **tharkka**.
