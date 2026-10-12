@@ -1,15 +1,15 @@
 {
   "modkit": "1.0.0",
-  "packed_at": "2026-10-12T01:57:58Z",
+  "packed_at": "2026-10-12T16:44:53Z",
   "id": "indigo_conference",
-  "version": "1.1.68",
+  "version": "1.1.69",
   "api": 2,
   "engine_range": ">=0.2.22 <2.0.0",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 74042,
-      "sha256": "3dcb83e497b0fcca6b823bd4856c7c158b5dbce8421d6293ab5c339dae264300"
+      "bytes": 75293,
+      "sha256": "0775bc09a13a68cdbb35843f4c73980cd0c0585316742ecce9762b1ed2a4729c"
     },
     {
       "path": "CREDITS.md",
@@ -732,6 +732,691 @@
       "sha256": "dd45cfdcacc58a9ef186b816d26425296d824d67947831bd3a3038dc88d343bd"
     },
     {
+      "path": "assets/species/aggron_back.png",
+      "bytes": 540,
+      "sha256": "6abaa0f9677efe3c7c4a27f3408869c39ee2069cc0ac9dff407ce5d24f204ca6"
+    },
+    {
+      "path": "assets/species/aggron_front.png",
+      "bytes": 907,
+      "sha256": "e2d3c15e91a94496d3d686cc8dca9dd920b862298bc9a07600aaf6cb21c403eb"
+    },
+    {
+      "path": "assets/species/altaria_back.png",
+      "bytes": 513,
+      "sha256": "1cdae2f65ac2e15d033f73ab9e884cb200b7a6f478a4e5f23e32bdbca3e0fc87"
+    },
+    {
+      "path": "assets/species/altaria_front.png",
+      "bytes": 715,
+      "sha256": "f5f10ce236cf58db523c67c97e3d087e6dbe670ed8a2854287fd3d7720843b88"
+    },
+    {
+      "path": "assets/species/archen_back.png",
+      "bytes": 514,
+      "sha256": "2d15bf4eb8eaf850286f34489dbbeef2ebc2a03b63fa65dae7cfa403f63ee243"
+    },
+    {
+      "path": "assets/species/archen_front.png",
+      "bytes": 644,
+      "sha256": "4c78e6240f0e0402aba6b936fbc7c1be937aa6bbe921fc66babdce0886edeb09"
+    },
+    {
+      "path": "assets/species/archeops_back.png",
+      "bytes": 488,
+      "sha256": "5268f96c8998520a437ea79d02b2fa7711283862fc3980848176d6898ddd6b34"
+    },
+    {
+      "path": "assets/species/archeops_front.png",
+      "bytes": 915,
+      "sha256": "3eead4de6262a7b93147d1e570ccb75dc6103543ed1d3b319678dc9ff688e8c4"
+    },
+    {
+      "path": "assets/species/aron_back.png",
+      "bytes": 446,
+      "sha256": "9aec55398880e5e09346709ddb57c6c7956a947b5f1bfde0a7bdc14f10c91eca"
+    },
+    {
+      "path": "assets/species/aron_front.png",
+      "bytes": 392,
+      "sha256": "4a971366ceb416e949bc74f343598695bf9f33f962b3d45a9b105bf8674dcc26"
+    },
+    {
+      "path": "assets/species/barboach_back.png",
+      "bytes": 432,
+      "sha256": "f22bccb820075878c1844e61d7fb8ce623533c7f595049c510754ba6f21a8106"
+    },
+    {
+      "path": "assets/species/barboach_front.png",
+      "bytes": 429,
+      "sha256": "a6b958811b5893e0d80039a42a9d4abc810c3d5881f5a85ce2d9b09680aedccb"
+    },
+    {
+      "path": "assets/species/beautifly_back.png",
+      "bytes": 539,
+      "sha256": "5b79152db8d17c8fada5b5cd039346ba6f74b66828f4f0b1ce4d1f56aefd31ac"
+    },
+    {
+      "path": "assets/species/beautifly_front.png",
+      "bytes": 661,
+      "sha256": "0ecadad25fbd1c504c34c61c20a770e134bc9dfb3d48e17d9e9758f76d13a487"
+    },
+    {
+      "path": "assets/species/beldum_back.png",
+      "bytes": 491,
+      "sha256": "31460951ce1d8a34eab63aef4f922ed3a0ebc7b5a61113aa35be566edfaa0d97"
+    },
+    {
+      "path": "assets/species/beldum_front.png",
+      "bytes": 523,
+      "sha256": "f1bdd71a0c012e17403b757aaf47e3a51c04a7fd99f9e156353e5de89eeab3bb"
+    },
+    {
+      "path": "assets/species/blaziken_back.png",
+      "bytes": 457,
+      "sha256": "318451e34210e146ff27c34224a96e399523c28bf9d43d7cacc43b4233c89eb6"
+    },
+    {
+      "path": "assets/species/blaziken_front.png",
+      "bytes": 811,
+      "sha256": "ac4eb5c5dba4d7773f4930a8b6337315a7bc22969209b1cee8bfb88b4a381ae6"
+    },
+    {
+      "path": "assets/species/camerupt_back.png",
+      "bytes": 396,
+      "sha256": "3a6aa514125f4fd8c94fb45c7f5009071496009158ff5bf8e762cead452fc0c1"
+    },
+    {
+      "path": "assets/species/camerupt_front.png",
+      "bytes": 825,
+      "sha256": "69c02e881cfb256ab3230da0801ae3ae5584ac48e25cea253a1b58b3c1cbf23a"
+    },
+    {
+      "path": "assets/species/clodsire_back.png",
+      "bytes": 311,
+      "sha256": "43588112c205570a12e492c616c573cf2a39624358d4a0a7a48c9dcca83ebef0"
+    },
+    {
+      "path": "assets/species/clodsire_front.png",
+      "bytes": 509,
+      "sha256": "76fc363c5ffcb4d533fe020ec55c2c9264521b0a13a25d9158fe6157a32437d5"
+    },
+    {
+      "path": "assets/species/combusken_back.png",
+      "bytes": 404,
+      "sha256": "828b37179e94e88fd073199d4c4e1621967e56d14890a38e156eb30257756624"
+    },
+    {
+      "path": "assets/species/combusken_front.png",
+      "bytes": 615,
+      "sha256": "d5681fc0f081bf702cbe897b4ced537703e898f6184670548f0828f1cf1e1f62"
+    },
+    {
+      "path": "assets/species/delcatty_back.png",
+      "bytes": 483,
+      "sha256": "b761b9073278c9d0f277183ebbf6e01e159d8c2d3bdc8f495ad7a219310d0f46"
+    },
+    {
+      "path": "assets/species/delcatty_front.png",
+      "bytes": 747,
+      "sha256": "6f2af9fe85c4d38a6658b24ed06a99b4ecea80ab88ae4210919911b1a94704e2"
+    },
+    {
+      "path": "assets/species/dudunsparce-two-segment-form_back.png",
+      "bytes": 463,
+      "sha256": "b9b117e74d8e47784fcc482e2799fc0851bb72b99cd00e8b32924b553f5750e1"
+    },
+    {
+      "path": "assets/species/dudunsparce-two-segment-form_front.png",
+      "bytes": 701,
+      "sha256": "9696e9375a377f3bc1466d2d4b4d90ea334ecd2f7e40d10360cc4f9cb998a689"
+    },
+    {
+      "path": "assets/species/electivire_back.png",
+      "bytes": 511,
+      "sha256": "557e2ce1205ad3ff66adfc37c8066469de74f6c517cf599ec99873d1e0faa744"
+    },
+    {
+      "path": "assets/species/electivire_front.png",
+      "bytes": 884,
+      "sha256": "4e514e363923aa410a9337d13b76214f49368041f1964b5125fdb3cfb840bf7a"
+    },
+    {
+      "path": "assets/species/feebas_back.png",
+      "bytes": 479,
+      "sha256": "beb99850764c8c0d1178af7859d457b0e9fed3ca0fae7621513154a673d69eda"
+    },
+    {
+      "path": "assets/species/feebas_front.png",
+      "bytes": 522,
+      "sha256": "bc11222faefc465307359cbcf7d1e3eeb0a5c64db21742d3e73d9a0e115fdb50"
+    },
+    {
+      "path": "assets/species/gabite_back.png",
+      "bytes": 480,
+      "sha256": "a8ce6b8106e15280fd83f308c36a5800f428bfdadf1c717f991f031f4e5d111e"
+    },
+    {
+      "path": "assets/species/gabite_front.png",
+      "bytes": 699,
+      "sha256": "9a819a85b4c43674ba1c49e6f7a747e9978047b87ad6bf80e43da93e1e7eff4a"
+    },
+    {
+      "path": "assets/species/garbodor_back.png",
+      "bytes": 560,
+      "sha256": "20fa74d0bbc03f3f9b1d3088fa2b8a774985a4aedce53d873a756e74ffe92819"
+    },
+    {
+      "path": "assets/species/garbodor_front.png",
+      "bytes": 882,
+      "sha256": "cf0bb5ea5235a30042ec9c3f921d6f8c88fb1a2edb013fb0083d56bb3df24a5d"
+    },
+    {
+      "path": "assets/species/garchomp_back.png",
+      "bytes": 522,
+      "sha256": "04a7ef5197239ef65e6d3a0c090f9dd245f1b9e9e4ec19f63d52531f85189e11"
+    },
+    {
+      "path": "assets/species/garchomp_front.png",
+      "bytes": 844,
+      "sha256": "8a0ac9101657a865fdd3b7b16bf10c6e2085def0194288feb9b3e83ad94b1115"
+    },
+    {
+      "path": "assets/species/gardevoir_back.png",
+      "bytes": 503,
+      "sha256": "8ccdad1b4dd5a828bd68212c52eae43e7e52e5becb2cd2e98ffbb6600cfc9036"
+    },
+    {
+      "path": "assets/species/gardevoir_front.png",
+      "bytes": 698,
+      "sha256": "ed997e6c1ed89333fb4aba67ec186bba2e15459b2756ead6da5225e39996c551"
+    },
+    {
+      "path": "assets/species/gible_back.png",
+      "bytes": 538,
+      "sha256": "32137bb5b10385d4ddc5b0c61cb713f832e6555ed43385afe87fe3f904a3ddee"
+    },
+    {
+      "path": "assets/species/gible_front.png",
+      "bytes": 520,
+      "sha256": "06f01beb96372f85cd8d7a4a76047b044e2c07ace8273fb13aa3bf7d5c67a81c"
+    },
+    {
+      "path": "assets/species/gliscor_back.png",
+      "bytes": 504,
+      "sha256": "73f479f7e521a72c87b65a5061d294f5065bf1853f1c1cff628685c1698e6ba4"
+    },
+    {
+      "path": "assets/species/gliscor_front.png",
+      "bytes": 732,
+      "sha256": "fbe9f783ab91921f9a1fdb41f3bac2118b7532bc19244e7378dca711af55d9d7"
+    },
+    {
+      "path": "assets/species/golisopod_back.png",
+      "bytes": 577,
+      "sha256": "f2d5a68f12eaf8db2da5e8bc7c054459aad959a63b1e3295a95f737ccaf83e48"
+    },
+    {
+      "path": "assets/species/golisopod_front.png",
+      "bytes": 931,
+      "sha256": "ff976d972c874a1545a11221d55a1f8279abe6f2bc240937429f439f808e62c8"
+    },
+    {
+      "path": "assets/species/grovyle_back.png",
+      "bytes": 509,
+      "sha256": "f4a716982e089d270711703272ea16ebcd2e83225ad3a478c9db1a20195ae02b"
+    },
+    {
+      "path": "assets/species/grovyle_front.png",
+      "bytes": 638,
+      "sha256": "16b852c12d90e0d11bbe58384dac1d77aec75c680fec042bd0898d87915dce3c"
+    },
+    {
+      "path": "assets/species/kirlia_back.png",
+      "bytes": 554,
+      "sha256": "ecba907a777c8c13c2cc8cecd69965c0d3effe9c334b813b4fb7b9502d30d098"
+    },
+    {
+      "path": "assets/species/kirlia_front.png",
+      "bytes": 519,
+      "sha256": "52fca1092ff84e328c8a0f68b2e76db8bdeb0d2f77e8d6cecac83ff7f36ceb38"
+    },
+    {
+      "path": "assets/species/lairon_back.png",
+      "bytes": 444,
+      "sha256": "be0b808fad7084556fc6a0f1c335059f9b335484972b89d953556f3b106276cb"
+    },
+    {
+      "path": "assets/species/lairon_front.png",
+      "bytes": 747,
+      "sha256": "a8ef11c635d67e30d0dec5dcc47f65930abd75e389891215d06fb4e2be1ce898"
+    },
+    {
+      "path": "assets/species/lombre_back.png",
+      "bytes": 521,
+      "sha256": "a3ad4c4295992d141d1dae9091345406f62611b75a31cc5c50d5cba0c15af560"
+    },
+    {
+      "path": "assets/species/lombre_front.png",
+      "bytes": 584,
+      "sha256": "1e4a44d36174e6d940aa949d5aae81a8dbc4f9fed27cc921d77cbdd938e5f9a3"
+    },
+    {
+      "path": "assets/species/lotad_back.png",
+      "bytes": 470,
+      "sha256": "6904f1c75589410b919e3f84502537ea4bba034728ea017b5d841e63519bd20c"
+    },
+    {
+      "path": "assets/species/lotad_front.png",
+      "bytes": 440,
+      "sha256": "ec489fab4cadf85205d64117a74c8a890a2b76e00f0b4f19f4c3b701287bf228"
+    },
+    {
+      "path": "assets/species/lucario_back.png",
+      "bytes": 480,
+      "sha256": "c778d4095fa2cdafda87a79889554a3ee9e2a179be9dd228f546c5a55b42f979"
+    },
+    {
+      "path": "assets/species/lucario_front.png",
+      "bytes": 751,
+      "sha256": "5da8e432f36292eea15ca19afc1e2b184d33259a9ae4ee9e4704c0082da69427"
+    },
+    {
+      "path": "assets/species/ludicolo_back.png",
+      "bytes": 535,
+      "sha256": "ad536e35c76063984ef627018a16c0e5af8b8274d655147e50561ea587f5bf23"
+    },
+    {
+      "path": "assets/species/ludicolo_front.png",
+      "bytes": 829,
+      "sha256": "3ced7d33880af9971b1eeea49ca558ea9d98f0b15b5fc1073c91955e8d50db54"
+    },
+    {
+      "path": "assets/species/magnezone_back.png",
+      "bytes": 371,
+      "sha256": "367d1c0cc71521e647baf7a445d391e68a387d4bb05d74dba3bc0fcceb8c3cb5"
+    },
+    {
+      "path": "assets/species/magnezone_front.png",
+      "bytes": 744,
+      "sha256": "bb6dc2dedbf9fc43bcbd3e489395b5d13c90277bbda7173dc6b53e5e92040470"
+    },
+    {
+      "path": "assets/species/medicham_back.png",
+      "bytes": 531,
+      "sha256": "ab695ace878c840a50f0d5ebfa4007bd1f0367d6bd13aad88dedb1bcbe855423"
+    },
+    {
+      "path": "assets/species/medicham_front.png",
+      "bytes": 631,
+      "sha256": "cf1e9e283c2d9592f852ba11f965c604e119de43ea0c1cb6cd49e48ee21fb309"
+    },
+    {
+      "path": "assets/species/meditite_back.png",
+      "bytes": 499,
+      "sha256": "abf6a6dac9050e8cf6dafcaa651b56008fbe59477b0bb9483a10421e84266e1b"
+    },
+    {
+      "path": "assets/species/meditite_front.png",
+      "bytes": 493,
+      "sha256": "8537f3f5e62a340f5746f478224704ede120699c0a044ea53d6d9175ae58b890"
+    },
+    {
+      "path": "assets/species/metagross_back.png",
+      "bytes": 309,
+      "sha256": "080fa618731417d38d171773301c3b1368938cf87ccdcf793aab046939f0503b"
+    },
+    {
+      "path": "assets/species/metagross_front.png",
+      "bytes": 746,
+      "sha256": "118585f03acf5781ffec3832ed0e4e7aec051cadbc71c502e125da899bf1a32d"
+    },
+    {
+      "path": "assets/species/metang_back.png",
+      "bytes": 426,
+      "sha256": "15a1823a349565e17a2b286f1f90090b1db12f63a5279d59a423894347149c2f"
+    },
+    {
+      "path": "assets/species/metang_front.png",
+      "bytes": 782,
+      "sha256": "40cfced4df5064482f48ebe252313b5f9f3fa91f81a74342f16f62e8681d4e02"
+    },
+    {
+      "path": "assets/species/milotic_back.png",
+      "bytes": 420,
+      "sha256": "c8b70165e2f0acb01cd1fc74ba4740f0a87d88e9c9352cfe4069efa69289f243"
+    },
+    {
+      "path": "assets/species/milotic_front.png",
+      "bytes": 733,
+      "sha256": "c810dee9263c93b3946a491540cf5f1c0add14baac80a84ebfa738b0ac0c5850"
+    },
+    {
+      "path": "assets/species/mismagius_back.png",
+      "bytes": 570,
+      "sha256": "2397d2bd3fe7b0636f3fc6119e885cb594fe4464c20de429a30d103d924f2176"
+    },
+    {
+      "path": "assets/species/mismagius_front.png",
+      "bytes": 634,
+      "sha256": "dfa35b61e15c59c2370918b6f5800673e3e71d5073172faa6d2c29cafcf4f8ca"
+    },
+    {
+      "path": "assets/species/nincada_back.png",
+      "bytes": 417,
+      "sha256": "baf800b4836b296a351da3542d2e424076e87786850706cb0fab770e4085faac"
+    },
+    {
+      "path": "assets/species/nincada_front.png",
+      "bytes": 437,
+      "sha256": "97c01566ee357374420b4e91129d2d02b7787241a41a3ea29940662f9b7ed923"
+    },
+    {
+      "path": "assets/species/ninjask_back.png",
+      "bytes": 591,
+      "sha256": "6c328ec5b54d89424b23af281728fd4d2d6d708f76db95e5e00ca3461b6a9ca2"
+    },
+    {
+      "path": "assets/species/ninjask_front.png",
+      "bytes": 694,
+      "sha256": "6a25664a3688c8c3d17e68870d2a973396539a683f50d2b2c6be76c7dcca8169"
+    },
+    {
+      "path": "assets/species/numel_back.png",
+      "bytes": 463,
+      "sha256": "817226a1e5880f4d384e0cd1fb45e2cda4d3ed0eb5b5478140cec082d116eef3"
+    },
+    {
+      "path": "assets/species/numel_front.png",
+      "bytes": 551,
+      "sha256": "b320636eb4d2d2cb3137ee9856960896fad93a4af9411e8594c79b842300eeb3"
+    },
+    {
+      "path": "assets/species/obstagoon_front.png",
+      "bytes": 768,
+      "sha256": "a3db28c67be68ae580ed076adbc70de93ca4de89e1a9defa2eed29dd96e63726"
+    },
+    {
+      "path": "assets/species/piplup_back.png",
+      "bytes": 446,
+      "sha256": "55e4901be78b916a420667cc15f08f0671215f81ffa4ec00adf6d714011ac90f"
+    },
+    {
+      "path": "assets/species/piplup_front.png",
+      "bytes": 402,
+      "sha256": "e5a42508add6670f0191712bbd6bf7c77986e5f2b3ae4e2e47e7babe0c2dc1a8"
+    },
+    {
+      "path": "assets/species/porygon-z_back.png",
+      "bytes": 524,
+      "sha256": "e2bb33e72b78a1f936550854a427e96e783feb8d1a849c81566f6e9260683e41"
+    },
+    {
+      "path": "assets/species/porygon-z_front.png",
+      "bytes": 551,
+      "sha256": "f73cdfa7212c72bc0608171eb3049123b82902304a948edb4041160c2d0ab0a9"
+    },
+    {
+      "path": "assets/species/ralts_back.png",
+      "bytes": 376,
+      "sha256": "7dfc0d3600667bce7794026140316892953dc86a859cdec559b47f39ba9424d0"
+    },
+    {
+      "path": "assets/species/ralts_front.png",
+      "bytes": 396,
+      "sha256": "91eee1f98af43544aaf91921319ab6b56866dc7a3090adb253cbae02a8f0d54c"
+    },
+    {
+      "path": "assets/species/rhyperior_back.png",
+      "bytes": 495,
+      "sha256": "6ef0c40b1c23be37fa34ae461f05fb48fc238276ef7b5d22feee74d17d66ac08"
+    },
+    {
+      "path": "assets/species/rhyperior_front.png",
+      "bytes": 810,
+      "sha256": "cd4c9373bb1a1d3fd424e1e471f6012f5bee0cfeee49f0e07b0c9600e2caab8c"
+    },
+    {
+      "path": "assets/species/riolu_back.png",
+      "bytes": 514,
+      "sha256": "a5a78fa7077a0fd66acd99eeceb651c5f264134d069e6f1e5b4b8a149c897a4c"
+    },
+    {
+      "path": "assets/species/riolu_front.png",
+      "bytes": 494,
+      "sha256": "e3c434a1a0cf0d54e509e74a75193ae778071d4229cda5d11099b85f127d62bf"
+    },
+    {
+      "path": "assets/species/roselia_back.png",
+      "bytes": 596,
+      "sha256": "4d98f9a071eda959441af0ac5bdbe01dc9cf1dc04112b067bda9103295ef55b7"
+    },
+    {
+      "path": "assets/species/roselia_front.png",
+      "bytes": 634,
+      "sha256": "5fd8ae975fd14df1ea0a0f96e556e46f735206b7d7dc4ff60a9f5a98fa447e56"
+    },
+    {
+      "path": "assets/species/roserade_back.png",
+      "bytes": 575,
+      "sha256": "24fa2976dce5dbfc5ebb44a317c9122077424b12fc7103c3e61c79f26d833423"
+    },
+    {
+      "path": "assets/species/roserade_front.png",
+      "bytes": 719,
+      "sha256": "cf61351531bc6541438da48a62f7dd914f1a542aece2215db9c91c37ee09a7cd"
+    },
+    {
+      "path": "assets/species/sceptile_back.png",
+      "bytes": 537,
+      "sha256": "3cc3757a9411d4b7356e493a23f7bcdf2302bbf423f1efdac9e5698e5675b523"
+    },
+    {
+      "path": "assets/species/sceptile_front.png",
+      "bytes": 867,
+      "sha256": "92f172fae45a6f3556c92d578f4a2830d6d4e4d878c65a66867c52821620ea75"
+    },
+    {
+      "path": "assets/species/scolipede_back.png",
+      "bytes": 558,
+      "sha256": "4abd9db1d1e47617fab6a080c49b5eca6426697087c1a758b5adbcdea8b5bd2a"
+    },
+    {
+      "path": "assets/species/scolipede_front.png",
+      "bytes": 873,
+      "sha256": "5918d9abe675d806b7984841175dc91ef41867a26bd2e9174ee680c91f8ed22a"
+    },
+    {
+      "path": "assets/species/silcoon_back.png",
+      "bytes": 322,
+      "sha256": "61f4b1699d1b90fd20a51294ea778094565832f853c3151926c6333d4fe32b55"
+    },
+    {
+      "path": "assets/species/silcoon_front.png",
+      "bytes": 482,
+      "sha256": "807580b86d56481eaea0a6162edd533991c3e59d8a7205e6f0e2fe4cf07263d7"
+    },
+    {
+      "path": "assets/species/skitty_back.png",
+      "bytes": 494,
+      "sha256": "025ca75bbf01e97bb6ee2d3b9bf126cf021f2dff5c92ed5425a110d1da8a0463"
+    },
+    {
+      "path": "assets/species/skitty_front.png",
+      "bytes": 518,
+      "sha256": "dfde45ee34e57d436c327fe97eafd8de7c151ad47f56034dfcf0345f25f87c66"
+    },
+    {
+      "path": "assets/species/spiritomb_back.png",
+      "bytes": 537,
+      "sha256": "e0e66bae3aa4113bfa79679f4019edd49133bf78afc621f76b70f8c1b893879d"
+    },
+    {
+      "path": "assets/species/spiritomb_front.png",
+      "bytes": 635,
+      "sha256": "09811480a2aa64f940e69805fdaef7813fbaa981d0bda33ea8bc37e400d591d4"
+    },
+    {
+      "path": "assets/species/staraptor_back.png",
+      "bytes": 362,
+      "sha256": "7aef9194bfb8a68d0c144ca93468ea7da0a1c322b9913cf1e8b852f8b39a8310"
+    },
+    {
+      "path": "assets/species/staraptor_front.png",
+      "bytes": 665,
+      "sha256": "f6e0117af8b065cce5846ad762636fb3ec371dbe6f4f9723a2cbe9080bbc6fe9"
+    },
+    {
+      "path": "assets/species/staravia_back.png",
+      "bytes": 402,
+      "sha256": "b9b096ebe0b89542644bbf8991b20d20fb88f4d551bfe9c34954eacca5164a9e"
+    },
+    {
+      "path": "assets/species/staravia_front.png",
+      "bytes": 577,
+      "sha256": "bc7ca99f1434287f62534ea34d7effd6fd7c52598bc00d9958acc72e514e179f"
+    },
+    {
+      "path": "assets/species/starly_back.png",
+      "bytes": 482,
+      "sha256": "66dc74edcf75272e32c95d6fc2accde6f2215e76c84c1d2bd4d6ccecb85eb11a"
+    },
+    {
+      "path": "assets/species/starly_front.png",
+      "bytes": 454,
+      "sha256": "edbc08e6ab95d4a1f84a67d50f5510729f3f35d51a0828a3caa421bb1f094e1e"
+    },
+    {
+      "path": "assets/species/swablu_back.png",
+      "bytes": 504,
+      "sha256": "18492b2a9a6daaacd7961629a321888e65817a3cb245b00605bd58bf7f05c69a"
+    },
+    {
+      "path": "assets/species/swablu_front.png",
+      "bytes": 493,
+      "sha256": "7a52807bd933ad7c34ed040d358822a877fc6b51c67df4fd1d6440339f2293df"
+    },
+    {
+      "path": "assets/species/togekiss_back.png",
+      "bytes": 417,
+      "sha256": "37700c790a40fd5363f5c5f6c6ba108f3efa09906c9cf514236cf9a59294ede5"
+    },
+    {
+      "path": "assets/species/togekiss_front.png",
+      "bytes": 705,
+      "sha256": "ba2903876b30a45dcc5bc393a47a6b6cf9b2906e7d456d8d428b8d1b69c2f25e"
+    },
+    {
+      "path": "assets/species/torchic_back.png",
+      "bytes": 443,
+      "sha256": "eeae2b5f54d1b707b12ca1bb49e78f645284f470f976f54140e3aefe5c5782a7"
+    },
+    {
+      "path": "assets/species/torchic_front.png",
+      "bytes": 422,
+      "sha256": "77d16c081cd6638d3525970718e776ff01e2fffbe8d8f81ea5c5f01ca655bb88"
+    },
+    {
+      "path": "assets/species/treecko_back.png",
+      "bytes": 461,
+      "sha256": "01031eca01d6df18eff104234cfa68e1337c32fb48d40818905dc1df1b7e34cc"
+    },
+    {
+      "path": "assets/species/treecko_front.png",
+      "bytes": 492,
+      "sha256": "d48f9b6dc0e4f5865c8749fa4723b7eda3cccda9717947fd3028775d7490afe2"
+    },
+    {
+      "path": "assets/species/trubbish_back.png",
+      "bytes": 347,
+      "sha256": "5a803b7fd37eae4904688accb0072594d3e8bf5ed31f62c329a92e275a4d2698"
+    },
+    {
+      "path": "assets/species/trubbish_front.png",
+      "bytes": 449,
+      "sha256": "4b44e2a2aafb3fdb8b0f4320672fd7fc23f5a0ee289cdda2b3a81f129de90e7b"
+    },
+    {
+      "path": "assets/species/venipede_back.png",
+      "bytes": 436,
+      "sha256": "0dd32a04e36484b6099d2152bfd5c79ea2a6134251165a7dfebb093c9b8b3a61"
+    },
+    {
+      "path": "assets/species/venipede_front.png",
+      "bytes": 524,
+      "sha256": "f31452c1e613dce3baa412098616ee211b5f89433caee4b548503fa64c5e46da"
+    },
+    {
+      "path": "assets/species/whirlipede_back.png",
+      "bytes": 547,
+      "sha256": "997d27090d8ad022231bb7690dd31d809a5c238ae90d6271bec6cb74efaf956f"
+    },
+    {
+      "path": "assets/species/whirlipede_front.png",
+      "bytes": 695,
+      "sha256": "879050ea3c13e1828c9f489af87d999c997d19694bcb423a2082e5731a618653"
+    },
+    {
+      "path": "assets/species/whiscash_back.png",
+      "bytes": 456,
+      "sha256": "736ac81d0ef84a6abae9a4e607cf465a3844147ea825d37c2906fe633980f399"
+    },
+    {
+      "path": "assets/species/whiscash_front.png",
+      "bytes": 630,
+      "sha256": "0b9f622c07df32f5ba10d2fe6d18aa58753a17b44fd088b52c11041dcf4e8db5"
+    },
+    {
+      "path": "assets/species/wimpod_back.png",
+      "bytes": 465,
+      "sha256": "359a4165852a76c958b706ec8c5f352ace2dd30b58b9cffdfd65eec18ba5732e"
+    },
+    {
+      "path": "assets/species/wimpod_front.png",
+      "bytes": 529,
+      "sha256": "87520fc7586c68ecd8a566bb6de1585e512cb77c00909b9039785559e229bf37"
+    },
+    {
+      "path": "assets/species/wooper-paldean_back.png",
+      "bytes": 418,
+      "sha256": "5799ce0049245152afe224ec687021e29809b1bd2a53d88a3bd68832ef13e872"
+    },
+    {
+      "path": "assets/species/wooper-paldean_front.png",
+      "bytes": 436,
+      "sha256": "3b9ec100e28b0cd04c4fe81a2fb9283cdab165ee7cf9b0a627e45198082d2983"
+    },
+    {
+      "path": "assets/species/wurmple_back.png",
+      "bytes": 401,
+      "sha256": "a3e75c8a64ec82d3f1cd1668b0c0e4953b3803db75e5742a910debe9755d92ee"
+    },
+    {
+      "path": "assets/species/wurmple_front.png",
+      "bytes": 475,
+      "sha256": "bf54d6e1606c1c275ef09832e6dd14992eb37b82967acee9d753eec6e634b77c"
+    },
+    {
+      "path": "assets/species/zoroark_back.png",
+      "bytes": 504,
+      "sha256": "5544949b2002a253cc88a0ac030a085549bc16e1f3061e4823f3bd766a1ea48e"
+    },
+    {
+      "path": "assets/species/zoroark_front.png",
+      "bytes": 716,
+      "sha256": "87fea655c343b8bcca383351d395b66b8f01b4ea1fc75f548711754bf793fdc7"
+    },
+    {
+      "path": "assets/species/zorua_back.png",
+      "bytes": 409,
+      "sha256": "21200c973d7b7f610532f74530fdab526943057881185846081fe5a2fc70ad23"
+    },
+    {
+      "path": "assets/species/zorua_front.png",
+      "bytes": 511,
+      "sha256": "abac61d98af97631f4f498b1f75b6ab08b3449ccc3c690b419faaab23692787a"
+    },
+    {
       "path": "assets/stadium_player.png",
       "bytes": 380,
       "sha256": "011e20a28f802ee071524a1499cbe7171e460aa55fb7a2a69fbb2948fa19e4a5"
@@ -827,14 +1512,29 @@
       "sha256": "3d1f1bb1afa396264374100b90e4ef9996847cf9137397e60525a95b2ead14be"
     },
     {
+      "path": "dev_teams.lua",
+      "bytes": 55247,
+      "sha256": "93ba6db721041c4c3860e82fa34eed6b157dc63bb5817d122c98f71652f8ec5b"
+    },
+    {
+      "path": "expanded_teams.lua",
+      "bytes": 98238,
+      "sha256": "1b190cd501d5d2a4c882406cbbdeccac11363e67e901104a9df7e1699c7443f9"
+    },
+    {
+      "path": "lib/expanded_species_runtime.lua",
+      "bytes": 167139,
+      "sha256": "e0fc2f9ff20e7c43f8a45af88987d1e3b1b89904c44f7551e734aeeceb34c5d7"
+    },
+    {
       "path": "main.lua",
-      "bytes": 179278,
-      "sha256": "1f799bac12923dcfca03bc13a44fe21bc708238034383b44ad067bdeb6895885"
+      "bytes": 189502,
+      "sha256": "b7b4aa09e5d2db4741c39c65a71e0f2981129e823a2360e70af9b5addf6da1bd"
     },
     {
       "path": "manifest.json",
-      "bytes": 825,
-      "sha256": "1ce5c19569a6658c4c3d59c989223300add54546b112243430f6b3aca7265651"
+      "bytes": 781,
+      "sha256": "25eb21c0a2cfec5b02e0d0729b7b422c9cd06342a258ecea670f1057663fe824"
     },
     {
       "path": "mod.card",
@@ -842,9 +1542,364 @@
       "sha256": "693c23d57317322b804e9ccb8afd22561b12d9715dbfccf72f0f9895d699e0e0"
     },
     {
+      "path": "shared_species.json",
+      "bytes": 25002,
+      "sha256": "d65910779fdfa469e46a17e84bbd284e73fdade9871dfe9f166bd3830f69abe8"
+    },
+    {
+      "path": "species/aggron.lua",
+      "bytes": 3543,
+      "sha256": "208e23dcd981e84efa56bfc1c0dcbb19e9c21631eafba69e7f2f35533d8c5aee"
+    },
+    {
+      "path": "species/altaria.lua",
+      "bytes": 1807,
+      "sha256": "804662ef4bb73cde55449e6678e0164a01d7d2c697b24aaacdabeefbc0fa9f52"
+    },
+    {
+      "path": "species/archen.lua",
+      "bytes": 1681,
+      "sha256": "7bda3b3724ec98c1c837d13285d86024f1024c24f283e6ed890fe84544f52773"
+    },
+    {
+      "path": "species/archeops.lua",
+      "bytes": 1660,
+      "sha256": "0ff6b5550fad72f57db061d866a8786aa83c775915c35b935d185f59e4fedfc5"
+    },
+    {
+      "path": "species/aron.lua",
+      "bytes": 2898,
+      "sha256": "5354520a517575325cd543de608a2c41618b9778646ff92d39d0849ea29a9f45"
+    },
+    {
+      "path": "species/barboach.lua",
+      "bytes": 2592,
+      "sha256": "7dd54fcceba17629bb009f487e7c9c0ff97fc13c3bb648f360c5ec082aa08333"
+    },
+    {
+      "path": "species/beautifly.lua",
+      "bytes": 1546,
+      "sha256": "57993d02dbfef0d3e1a7a7dee47cb779f740f0b0642269a3cb0c52d043b53495"
+    },
+    {
+      "path": "species/beldum.lua",
+      "bytes": 1590,
+      "sha256": "c082d067f946adb17613d252ae3884c330acb7de42184435e8c12f2bbed414aa"
+    },
+    {
+      "path": "species/blaziken.lua",
+      "bytes": 1805,
+      "sha256": "dd8908f1830bdc209641b4d253df4b08c6ef67dd6ec3f912afc09299ce704862"
+    },
+    {
+      "path": "species/camerupt.lua",
+      "bytes": 1756,
+      "sha256": "83dd1937c2c55ee4b4fcefb57829416362c8a8a93d6d3db39d7c245864f2cd6f"
+    },
+    {
+      "path": "species/clodsire.lua",
+      "bytes": 2740,
+      "sha256": "69e0feeca1a54f47892f2136732fe0c03f58dd3a352dd2763401829128c243f1"
+    },
+    {
+      "path": "species/combusken.lua",
+      "bytes": 1835,
+      "sha256": "f5c46d2effd53bf0958b935c442c69c038a5c97966a96135be9b7d3858f46cff"
+    },
+    {
+      "path": "species/delcatty.lua",
+      "bytes": 2543,
+      "sha256": "b2b15871b550bf2e0b920c4d68fe83cd3f283cdc8a774b40e80b7d7c8007cedd"
+    },
+    {
+      "path": "species/dudunsparce-two-segment-form.lua",
+      "bytes": 2166,
+      "sha256": "c6e78ef2ac4a7cef3c1ffae743bc951ebbf94d65aa8d3c900bcabaa25136e70b"
+    },
+    {
+      "path": "species/electivire.lua",
+      "bytes": 2009,
+      "sha256": "5ea77cc5f67115d54a3962e72867154a154c01fe1e183a08f18b2772de12a044"
+    },
+    {
+      "path": "species/feebas.lua",
+      "bytes": 2772,
+      "sha256": "1f841eef6f4218c1caeaa7507fc173f4091f560bda65273623061206ef900292"
+    },
+    {
+      "path": "species/gabite.lua",
+      "bytes": 2653,
+      "sha256": "6cb1e73b3b480f18ec08940cd1b82161d81c942520c23e2510ccd884325f8dcf"
+    },
+    {
+      "path": "species/garbodor.lua",
+      "bytes": 1656,
+      "sha256": "4c7173665e0a4f4b9c9404d8f3cc949670c41d4672e0337c15bfa0d73bd7095a"
+    },
+    {
+      "path": "species/garchomp.lua",
+      "bytes": 3117,
+      "sha256": "a17e3e71c5f73937a4a7398df0b6479dd3c51314d194faaee0cdffff23cc2233"
+    },
+    {
+      "path": "species/gardevoir.lua",
+      "bytes": 1780,
+      "sha256": "03ab403e28837034663eac8c122cd97f799a25b4a463ccab5c51735feb85ba5e"
+    },
+    {
+      "path": "species/gible.lua",
+      "bytes": 2727,
+      "sha256": "2f279c3d1786a760129a565e082ec963664ba78cfb4299e0f4fcb1a674fc54cc"
+    },
+    {
+      "path": "species/gliscor.lua",
+      "bytes": 1770,
+      "sha256": "b1e476c29d2b3eb0bedcee1c4bda2a365acd74a5ac4c0c910d7744342db3d7ea"
+    },
+    {
+      "path": "species/golisopod.lua",
+      "bytes": 1618,
+      "sha256": "34d624c3833a768114a2b7d017b90e151e6af05bde28f8c4ff1d09c3b523f16c"
+    },
+    {
+      "path": "species/grovyle.lua",
+      "bytes": 1776,
+      "sha256": "a3b425099ac5731e21e0dcbbb486bcb8e162d374f2d5bdfd088a5bcccc4e3708"
+    },
+    {
+      "path": "species/kirlia.lua",
+      "bytes": 1929,
+      "sha256": "6acce9f597a783e7cd17c7b3f8bde265815cb00f5f4d911489f1d32e8b16f1d2"
+    },
+    {
+      "path": "species/lairon.lua",
+      "bytes": 2800,
+      "sha256": "50deebc3c3312f25e6e88236deb10902535243f2963240d9922d4f61de6754c3"
+    },
+    {
+      "path": "species/lombre.lua",
+      "bytes": 3104,
+      "sha256": "c77a6ed853ff4b6dfcb0f9099505afc42bbd7d09ea398f6814b7bb223d6207b0"
+    },
+    {
+      "path": "species/lotad.lua",
+      "bytes": 2819,
+      "sha256": "2ae7532a21da4c669e753ab0fe41476ec7811ca33fdb8579d892e23fa28c073a"
+    },
+    {
+      "path": "species/lucario.lua",
+      "bytes": 3364,
+      "sha256": "c48c58c6dd4155bb15cf342743a16f6e0cbb1ac0a5ff648debcd93e0943fa270"
+    },
+    {
+      "path": "species/ludicolo.lua",
+      "bytes": 3142,
+      "sha256": "48ff482c6a0b2e1bbeeb14358e311e8d6a66f9760daf2e123db76b2becc3fd04"
+    },
+    {
+      "path": "species/magnezone.lua",
+      "bytes": 2024,
+      "sha256": "cdf0e954e5c8be0316d6a281666bfe5c719bbed529bd8bfe2ecdd68d7e490306"
+    },
+    {
+      "path": "species/medicham.lua",
+      "bytes": 3164,
+      "sha256": "fe739df29d730103fd8666754ed27598b3bfbe64d8dd707641340472c1fd7e3d"
+    },
+    {
+      "path": "species/meditite.lua",
+      "bytes": 3197,
+      "sha256": "2c9d434a911d094436041f2d0a2fb8920e6b6824e58773a94fb9f196b79f7a70"
+    },
+    {
+      "path": "species/metagross.lua",
+      "bytes": 3183,
+      "sha256": "14179e81cbec4e6913b93c1e4c583df5ca07d0b534d5235f916cffc3a640d514"
+    },
+    {
+      "path": "species/metang.lua",
+      "bytes": 3454,
+      "sha256": "033b2a65cb8fd6bf3c039bc635c6ba2714d8ed60b064ccc7a82d24d2d97211e2"
+    },
+    {
+      "path": "species/milotic.lua",
+      "bytes": 2911,
+      "sha256": "8158ecef3f0622eeb5f57681736e00aedf54a155bd92989a5a25713a09dce40f"
+    },
+    {
+      "path": "species/mismagius.lua",
+      "bytes": 1575,
+      "sha256": "f4f07d4b2c83cca1e7b03072ef157ff6374525a460efb4b494df651118a11632"
+    },
+    {
+      "path": "species/nincada.lua",
+      "bytes": 3040,
+      "sha256": "0db19709d56a0090c98d069c2dc12039d7a1137b18cf23b5a881b236ae4a8484"
+    },
+    {
+      "path": "species/ninjask.lua",
+      "bytes": 3563,
+      "sha256": "f641afe3ae1f491eee89b6377380e11e651b7d243d2bd5c927ae4cd335ff8a95"
+    },
+    {
+      "path": "species/numel.lua",
+      "bytes": 1718,
+      "sha256": "52bd9f3e7e7714f9e434b9a1277653dfb0ed2cdc5d5c4869f715586c8d4561e8"
+    },
+    {
+      "path": "species/obstagoon.lua",
+      "bytes": 1822,
+      "sha256": "beb1662f0c6c6a4e132960bc203840cd642b4bc2cda1eb0a4b612bc18468112e"
+    },
+    {
+      "path": "species/piplup.lua",
+      "bytes": 1756,
+      "sha256": "3dd2a98d26d5da142b70991382b531280cef43553c7faa19b07b58d84135e998"
+    },
+    {
+      "path": "species/porygon-z.lua",
+      "bytes": 1896,
+      "sha256": "2c30c25cd807ce00dc95ea5a2ef0b449abfca9b516a1688b452af43c912843b1"
+    },
+    {
+      "path": "species/ralts.lua",
+      "bytes": 1850,
+      "sha256": "b6d7e13e35df4a2c6e2ce48813d20a66e1e66b1f4e282b7fad18e6e05fafb150"
+    },
+    {
+      "path": "species/rhyperior.lua",
+      "bytes": 2158,
+      "sha256": "3db901d0cb6a44b013189249e08dcd28f3f010762f70e2b18f117e5b3b038ef4"
+    },
+    {
+      "path": "species/riolu.lua",
+      "bytes": 3312,
+      "sha256": "9a3863327051387c574224a8022c88dcd31b030bbae7f6de85ed995d5eb47274"
+    },
+    {
+      "path": "species/roselia.lua",
+      "bytes": 3634,
+      "sha256": "5885b664da455b69f7150b16daea9d9769edb1887b09a4fb0920b2c9697e6b98"
+    },
+    {
+      "path": "species/roserade.lua",
+      "bytes": 3029,
+      "sha256": "674f101cc83c13af683ad272f4bab9d33bfcc79661ab394abf4b2601f54f7788"
+    },
+    {
+      "path": "species/sceptile.lua",
+      "bytes": 1776,
+      "sha256": "8b3d01a4375fc7f956b836cefa589ba114330bef466dc329cde1fea11b2d6bdb"
+    },
+    {
+      "path": "species/scolipede.lua",
+      "bytes": 1688,
+      "sha256": "89bf51565e724d29b5bb351d58c3fee0cb248026ee2acbf8a02cbe6536e57fff"
+    },
+    {
+      "path": "species/silcoon.lua",
+      "bytes": 1038,
+      "sha256": "fed8208c0cadbc993f1ea173b207f5ed565d263ff57a7d89c963e4837b11e945"
+    },
+    {
+      "path": "species/skitty.lua",
+      "bytes": 2943,
+      "sha256": "f6378ccf6209fb858709a84d66cfe91ff7439216c3a59c29e91fc319aacde89e"
+    },
+    {
+      "path": "species/spiritomb.lua",
+      "bytes": 2803,
+      "sha256": "47456a838639a07583a81a63d12bf5f9181a332c66841b00ea05767c7e0b0f63"
+    },
+    {
+      "path": "species/staraptor.lua",
+      "bytes": 1519,
+      "sha256": "7f70dcd28da35fe9f40a3c1c612b7a1782676ec1b8992deb95c053f56b957e58"
+    },
+    {
+      "path": "species/staravia.lua",
+      "bytes": 1511,
+      "sha256": "9fca9eccc0006ca353c120ad4c55acaacc8b6428b68faa480229b7a1fed24cb9"
+    },
+    {
+      "path": "species/starly.lua",
+      "bytes": 1562,
+      "sha256": "ab97cf366b7d9e661fd8ae030abc0fad5401a86020352f2215fea68ca7e39141"
+    },
+    {
+      "path": "species/swablu.lua",
+      "bytes": 1768,
+      "sha256": "5e9cdf9f9461f5529c5e0855bb844bdb65d0670a62d8d4343bb5a584368daf2c"
+    },
+    {
+      "path": "species/togekiss.lua",
+      "bytes": 2582,
+      "sha256": "a580c1f01a5a801cdb82147956c1443d67d1f51a0607aedc9e54afddef0082f2"
+    },
+    {
+      "path": "species/torchic.lua",
+      "bytes": 1736,
+      "sha256": "cbcd0b1bb2fc9da1053ff549cb66a5b6bb00b5187e9e2262490605a1ea5c0365"
+    },
+    {
+      "path": "species/treecko.lua",
+      "bytes": 1780,
+      "sha256": "34b460a87273c2816f2b9982bf4d88488591bdbed656b2962078d660e8dd5a3d"
+    },
+    {
+      "path": "species/trubbish.lua",
+      "bytes": 1631,
+      "sha256": "08c2a6fef82ba7479531e2fc8f30e8208ebeba986a7a7bfc2c84c95304f019c3"
+    },
+    {
+      "path": "species/venipede.lua",
+      "bytes": 1597,
+      "sha256": "3abd1e0577df38cbed864fccf7ce4afb1e18a53f6e11273be1db4028139e7c51"
+    },
+    {
+      "path": "species/whirlipede.lua",
+      "bytes": 1564,
+      "sha256": "e1873f7c9ce4382e13d8c194a0a0ef98aeee44f01dae9e9e52e4ea18d583f915"
+    },
+    {
+      "path": "species/whiscash.lua",
+      "bytes": 2797,
+      "sha256": "c998c587d439a624a52e89b8206073c2bdeb620ec5dc5a0507e746e7fd28519e"
+    },
+    {
+      "path": "species/wimpod.lua",
+      "bytes": 1251,
+      "sha256": "f86bcb0d7ed709a31a03f5c4b24615983c58689d3338ad5090fed18390b5e742"
+    },
+    {
+      "path": "species/wooper-paldean.lua",
+      "bytes": 2677,
+      "sha256": "40119b28923ac38789c77de916e1b92ed33981cfd46f993496d9d0cfc85c75c8"
+    },
+    {
+      "path": "species/wurmple.lua",
+      "bytes": 1247,
+      "sha256": "4f4c017b7980943bb12091f4d379374f0f50fa4484ab57f788b8a6d8b0fc2a90"
+    },
+    {
+      "path": "species/zoroark.lua",
+      "bytes": 1491,
+      "sha256": "57a5dc7ebb6ee96b2fd19ce539a40296ff8c19336adc769ac2f5baf3d473aa93"
+    },
+    {
+      "path": "species/zorua.lua",
+      "bytes": 1462,
+      "sha256": "55f13555052dc280aea53171581e8e2c30636b9ad5b8af8bdaa5cbcc88e17c30"
+    },
+    {
+      "path": "species_index.lua",
+      "bytes": 11032,
+      "sha256": "3489e4301cc916e2138e987f792145b69519cd462d0ee29b051fb48764ecbf89"
+    },
+    {
       "path": "weighted_cups.lua",
-      "bytes": 4833,
-      "sha256": "47a2fa03cb9d6c15ff8765094218d8024eb4f0338b9a449303b0876299936c90"
+      "bytes": 6106,
+      "sha256": "c1a9fa098da58b2b320600d48081e83b675dc07653ae47ada6f167741acde079"
     },
     {
       "path": "weighted_teams.lua",

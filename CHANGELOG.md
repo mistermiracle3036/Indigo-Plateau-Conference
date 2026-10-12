@@ -5,6 +5,15 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.70
+
+Private phone test: restore custom walker colours and transparency.
+
+- Restore the 26 pre-coloured walking sheets accidentally replaced with
+  opaque grayscale masters in 1.1.60, including Steven and N. Use the exact
+  historical coloured PNG bytes, preserving the chosen colours and outlines.
+- No team, weighting, expanded-species, save or battle portrait changes.
+
 ## 1.1.69
 
 Private phone test: expanded teams, behind a new setting.
