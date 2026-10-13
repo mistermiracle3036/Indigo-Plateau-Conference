@@ -5,17 +5,21 @@
   "format": "\\n = second line, \\f = next page (waits for A). Every page <= 2 lines, every line <= 18 characters.",
   "characters": [
     {
-      "key": "SCISSORMAN", "name": "SCISSORMAN", "order": 1,
-      "who": "Doom Patrol's Scissormen of ORQWITH: scissors for hands, cut people out of reality, speak in cut-up word salad (Morrison based it on spell-check suggestions); beaten, they leave only cloth.",
-      "chat": "SCISSORMAN:\nORQWITH lamp\fsorry cutting\nyesterday spoon.",
-      "intro": "SCISSORMAN:\nSnip reality.\fYou absent\ncrossroads now.",
-      "win": "Cloth. Only\ncloth.\fNothing inside\nfolded hush.",
-      "loss": "Cut out. Paper\nperson gone.\fScissors happy\nraining.",
-      "afterWin": "SCISSORMAN:\nYou remain\funcut. Strange\nbutter.",
-      "afterLoss": "SCISSORMAN:\nReturn paper\fshape. Later\nwalnut."
+      "key": "SCISSORMAN",
+      "name": "SCISSORMAN",
+      "order": 1,
+      "who": "Speaks only in anagrams: every word is real, each line uses exactly the letters of a hidden line (developer, 2026-10-13: give him anagrams; words must be words, meaning can be nonsense). Decoded: LISTEN. SNIP SPARE THREAD. / SWORD ARMED. REALITY ENDS. / NOTHING LEFT. / SNIP. YOU ARE SPARE. / YOU REMAIN. STRANGE. / RETURN NOW, SHAPE.",
+      "chat": "SCISSORMAN:\nSILENT. SPIN\fPEARS HATRED.",
+      "intro": "SCISSORMAN:\nWORDS DREAM.\fIRATELY DENS.",
+      "win": "NIGHT ON\nFELT.",
+      "loss": "PINS. YOU ERA\nPEARS.",
+      "afterWin": "SCISSORMAN:\nYOU MARINE.\fGARNETS.",
+      "afterLoss": "SCISSORMAN:\nTURNER WON,\fPHASE."
     },
     {
-      "key": "NESSA", "name": "NESSA", "order": 2,
+      "key": "NESSA",
+      "name": "NESSA",
+      "order": 2,
       "who": "Galar's Water-type gym leader from HULBURY, also a model: confident, sporty, wave imagery.",
       "chat": "NESSA: The water\nlooks calm.\fNot for long!",
       "intro": "NESSA: I came\nall the way from\fGALAR. Let's\nmake a splash!",
@@ -25,7 +29,9 @@
       "afterLoss": "NESSA: Keep your\nhead above water!"
     },
     {
-      "key": "MR_NOBODY", "name": "MR NOBODY", "order": 3,
+      "key": "MR_NOBODY",
+      "name": "MR NOBODY",
+      "order": 3,
       "who": "Doom Patrol's Mr Nobody: Brotherhood of Dada leader, gleeful absurdist who loves pointless, surreal mischief.",
       "chat": "MR NOBODY:\nWelcome to\fnowhere in\nparticular!",
       "intro": "MR NOBODY: Let's\nbattle in\fno direction\nat all!",
@@ -35,7 +41,9 @@
       "afterLoss": "MR NOBODY: Chin\nup, somebody!"
     },
     {
-      "key": "ROBOTMAN_THARKKA", "name": "ROBOTMAN", "order": 4,
+      "key": "ROBOTMAN_THARKKA",
+      "name": "ROBOTMAN",
+      "order": 4,
       "who": "Doom Patrol's Robotman, Cliff Steele: ex-racecar driver whose brain lives in a metal body; gruff, blunt, soft underneath.",
       "chat": "ROBOTMAN: Yeah,\nI'm all metal.\fGet over it.",
       "intro": "ROBOTMAN: Let's\nget this over\fwith, kid.",
@@ -45,7 +53,9 @@
       "afterLoss": "ROBOTMAN: Shake\nit off. I did."
     },
     {
-      "key": "RIKA", "name": "RIKA", "order": 5,
+      "key": "RIKA",
+      "name": "RIKA",
+      "order": 5,
       "who": "Paldea Elite Four, Ground type: laid-back, sharp, runs her battle like an interview.",
       "chat": "RIKA: Mind if I\nask a few\fquestions?",
       "intro": "RIKA: Let's see\nwhat you're\fmade of. Dig in!",
@@ -55,7 +65,9 @@
       "afterLoss": "RIKA: Dig deeper\nnext time."
     },
     {
-      "key": "RINA_CIARA", "name": "LOVRINA", "order": 6,
+      "key": "RINA_CIARA",
+      "name": "LOVRINA",
+      "order": 6,
       "who": "XD's Lovrina, Cipher scientist who designed Shadow Lugia: perky, flirty, vain.",
       "chat": "LOVRINA: Ooh,\nyou're cute!\fShame about\nyour team.",
       "intro": "LOVRINA: Let's\nsee if you're as\fgood as you look!",
@@ -65,7 +77,9 @@
       "afterLoss": "LOVRINA: Aww,\ndon't pout!"
     },
     {
-      "key": "RUI_CIARA", "name": "RUI", "order": 7,
+      "key": "RUI_CIARA",
+      "name": "RUI",
+      "order": 7,
       "who": "Colosseum's Rui from ORRE: kind and brave, can see the hearts of Shadow Pokemon.",
       "chat": "RUI: I can see\nyour POKEMON's\fhearts. They\nlook happy!",
       "intro": "RUI: I came all\nthe way from\fORRE. Let's go!",
@@ -75,7 +89,9 @@
       "afterLoss": "RUI: Rest up.\nYou'll get it!"
     },
     {
-      "key": "CHOBIN_CIARA_GECKO557", "name": "CHOBIN", "order": 8,
+      "key": "CHOBIN_CIARA_GECKO557",
+      "name": "CHOBIN",
+      "order": 8,
       "who": "XD's Chobin of GATEON PORT: self-declared genius inventor who talks about himself in the third person and shouts his own name.",
       "chat": "CHOBIN: CHOBIN\nis a genius!\fCHOBIN!",
       "intro": "CHOBIN: Behold\nCHOBIN's brain!",
@@ -85,7 +101,9 @@
       "afterLoss": "CHOBIN: Study\nCHOBIN's genius!"
     },
     {
-      "key": "MIROR_B", "name": "MIROR B", "order": 9,
+      "key": "MIROR_B",
+      "name": "MIROR B",
+      "order": 9,
       "who": "Cipher admin Miror B. from Colosseum/XD: disco afro, Ludicolo, everything is about dancing and the groove.",
       "chat": "MIROR B: Do you\nfeel the rhythm?",
       "intro": "MIROR B: Let's\ndance! Ha ha!",
