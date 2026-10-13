@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.71"
+  local VERSION = "1.1.72"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -1921,6 +1921,11 @@ return function(mod)
       -- swap it for a greyscale master (the 1.1.60-1.1.69 grey-box bug).
       -- Team: dev_teams.lua (tools/team_sources/IPC-developer-team-additions.json).
       { key = "SCISSORMAN", name = "SCISSORMAN", file = "scissorman_bani" },
+      -- 1.1.72: Bani commission (developer, 2026-10-13), same recipe and
+      -- trueColor registration as Scissorman/Mr Nobody. Her sheet carries a
+      -- fifth colour on 2 walker pixels (frame 5, hand) -- drawn that way,
+      -- kept as drawn.
+      { key = "NESSA", name = "NESSA", file = "nessa_bani" },
     }
     for _, art in ipairs(artTests) do
       local foe
@@ -2265,7 +2270,8 @@ return function(mod)
                   { "NEW: Lovrina", "RINA_CIARA" },
                   { "NEW: Rui", "RUI_CIARA" },
                   { "NEW: Chobin", "CHOBIN_CIARA_GECKO557" },
-                  { "NEW: Scissorman", "SCISSORMAN" } },
+                  { "NEW: Scissorman", "SCISSORMAN" },
+                  { "NEW: Nessa", "NESSA" } },
       default = "" },
   })
 

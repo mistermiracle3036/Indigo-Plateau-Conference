@@ -30,6 +30,36 @@
           "expanded_small": [{"species": "Gliscor", "offset": 0}, {"species": "KINGLER", "offset": 0}, {"species": "SCIZOR", "offset": 1}],
           "expanded_six": [{"species": "Gliscor", "offset": 0}, {"species": "KINGLER", "offset": 0}, {"species": "SCIZOR", "offset": 1}, {"species": "Ninjask", "offset": 0}, {"species": "Sceptile", "offset": 0}, {"species": "Golisopod", "offset": 0}]
         }
+      ],
+      "approved": "developer, 2026-10-13: \"teams look good\""
+    },
+    {
+      "key": "NESSA",
+      "name": "NESSA",
+      "theme": "Galar water gym leader: Goldeen signature, turtle ace standing in for Drednaw, fish and water around them",
+      "request": "developer, 2026-10-13: \"another new character, Nessa - please do the same\"",
+      "variants": [
+        {
+          "strength": "Early",
+          "gen12_small": [{"species": "GOLDEEN", "offset": 0}, {"species": "CHINCHOU", "offset": 0}, {"species": "SQUIRTLE", "offset": 1}],
+          "gen12_six": [{"species": "GOLDEEN", "offset": 0}, {"species": "CHINCHOU", "offset": 0}, {"species": "SQUIRTLE", "offset": 1}, {"species": "QWILFISH", "offset": 0}, {"species": "HORSEA", "offset": 0}, {"species": "STARYU", "offset": 0}],
+          "expanded_small": [{"species": "GOLDEEN", "offset": 0}, {"species": "Barboach", "offset": 0}, {"species": "SQUIRTLE", "offset": 1}],
+          "expanded_six": [{"species": "GOLDEEN", "offset": 0}, {"species": "Barboach", "offset": 0}, {"species": "SQUIRTLE", "offset": 1}, {"species": "Lotad", "offset": 0}, {"species": "Piplup", "offset": 0}, {"species": "CHINCHOU", "offset": 0}]
+        },
+        {
+          "strength": "Middle",
+          "gen12_small": [{"species": "SEAKING", "offset": 0}, {"species": "LANTURN", "offset": 0}, {"species": "WARTORTLE", "offset": 1}],
+          "gen12_six": [{"species": "SEAKING", "offset": 0}, {"species": "LANTURN", "offset": 0}, {"species": "WARTORTLE", "offset": 1}, {"species": "QWILFISH", "offset": 0}, {"species": "SEADRA", "offset": 0}, {"species": "STARYU", "offset": 0}],
+          "expanded_small": [{"species": "SEAKING", "offset": 0}, {"species": "Whiscash", "offset": 0}, {"species": "WARTORTLE", "offset": 1}],
+          "expanded_six": [{"species": "SEAKING", "offset": 0}, {"species": "Whiscash", "offset": 0}, {"species": "WARTORTLE", "offset": 1}, {"species": "Lombre", "offset": 0}, {"species": "LANTURN", "offset": 0}, {"species": "QWILFISH", "offset": 0}]
+        },
+        {
+          "strength": "Full",
+          "gen12_small": [{"species": "SEAKING", "offset": 0}, {"species": "LANTURN", "offset": 0}, {"species": "BLASTOISE", "offset": 1}],
+          "gen12_six": [{"species": "SEAKING", "offset": 0}, {"species": "LANTURN", "offset": 0}, {"species": "BLASTOISE", "offset": 1}, {"species": "QWILFISH", "offset": 0}, {"species": "KINGDRA", "offset": 0}, {"species": "STARMIE", "offset": 0}],
+          "expanded_small": [{"species": "SEAKING", "offset": 0}, {"species": "Milotic", "offset": 0}, {"species": "BLASTOISE", "offset": 1}],
+          "expanded_six": [{"species": "SEAKING", "offset": 0}, {"species": "Milotic", "offset": 0}, {"species": "BLASTOISE", "offset": 1}, {"species": "Whiscash", "offset": 0}, {"species": "Ludicolo", "offset": 0}, {"species": "KINGDRA", "offset": 0}]
+        }
       ]
     }
   ]

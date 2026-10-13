@@ -5,6 +5,18 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.72
+
+Private phone test: Nessa joins as a developer guest.
+
+- New DEV guest **Nessa** (art commissioned from Bani), in her own colours.
+  Pick "NEW: Nessa" in the DEV guest list.
+- A water team for every option: Goldeen/Seaking as her signature and the
+  Squirtle line as the ace in place of her Drednaw, with Chinchou/Lanturn,
+  Qwilfish, Horsea/Seadra/Kingdra and Staryu/Starmie; Expanded adds Barboach,
+  Whiscash, Lotad, Lombre, Ludicolo, Piplup and Milotic.
+- Includes everything in 1.1.71 (Scissorman), which never reached the phone.
+
 ## 1.1.71
 
 Private phone test: Scissorman joins as a developer guest.
