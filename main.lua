@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.72"
+  local VERSION = "1.1.73"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -1922,9 +1922,10 @@ return function(mod)
       -- Team: dev_teams.lua (tools/team_sources/IPC-developer-team-additions.json).
       { key = "SCISSORMAN", name = "SCISSORMAN", file = "scissorman_bani" },
       -- 1.1.72: Bani commission (developer, 2026-10-13), same recipe and
-      -- trueColor registration as Scissorman/Mr Nobody. Her sheet carries a
-      -- fifth colour on 2 walker pixels (frame 5, hand) -- drawn that way,
-      -- kept as drawn.
+      -- trueColor registration as Scissorman/Mr Nobody. 1.1.73: her sheet had
+      -- a fifth colour (206,148,99) on 2 walker pixels (frame 5, hand); the
+      -- developer called it a typo and asked for her skin tone (184,120,72),
+      -- so the shipped walker differs from convert_bani.py's raw output there.
       { key = "NESSA", name = "NESSA", file = "nessa_bani" },
     }
     for _, art in ipairs(artTests) do

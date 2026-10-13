@@ -5,6 +5,15 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.73
+
+Private phone test: Scissorman and Nessa, first time on the phone.
+
+- Nessa's walking sprite: two hand pixels in one frame were a slightly off
+  skin tone; they now match the rest of her skin.
+- Everything in 1.1.71 (Scissorman) and 1.1.72 (Nessa), which never reached
+  the phone, is included.
+
 ## 1.1.72
 
 Private phone test: Nessa joins as a developer guest.
