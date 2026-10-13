@@ -6,6 +6,13 @@ The approved teal overworld and battle portrait are reused without modification.
 Lovrina's battle and overworld art is by **Ciara**, used with permission.
 Previously mislabeled Rina; legacy asset filenames remain unchanged.
 
+## Private 1.1.71 commissioned Scissorman test
+
+Scissorman battle and overworld sprite art commissioned from **Bani**.
+Native crops retain the commission's original colors and pixel geometry
+(same crop and transparency recipe as Mr Nobody). The source sheet is not
+distributed.
+
 ## Private 1.1.63 commissioned Mr Nobody test
 
 Mr Nobody battle and overworld sprite art commissioned from **Bani**.

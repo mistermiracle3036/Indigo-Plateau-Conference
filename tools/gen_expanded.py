@@ -36,6 +36,9 @@ MOD = os.path.dirname(HERE)
 WORK = os.path.dirname(MOD)
 SRC_NORMAL = os.path.join(HERE, "team_sources", "IPC-normal-team-variants-2026-10-11.json")
 SRC_DEV = os.path.join(HERE, "team_sources", "IPC-developer-team-review-2026-10-11.json")
+# Developer trainers added after the 2026-10-11 review (Scissorman, 1.1.71),
+# same shape; appended after the reviewed 26.
+SRC_DEV_ADD = os.path.join(HERE, "team_sources", "IPC-developer-team-additions.json")
 CATALOG = os.path.join(WORK, "exchange", "species", "catalog.json")
 RUNTIMES = os.path.join(WORK, "exchange", "species", "runtime.json")
 ES_REPO = os.path.join(WORK, "Expanded-Species")
@@ -195,6 +198,10 @@ def main(argv):
     dev = load_json(SRC_DEV)
     assert normal["count"] == len(normal["trainers"]) == 89, "normal count"
     assert len(dev["trainers"]) == 26, "dev candidate count"
+    added = load_json(SRC_DEV_ADD)["trainers"]
+    clash = {t["key"] for t in added} & {t["key"] for t in dev["trainers"]}
+    assert not clash, f"added dev trainers already reviewed: {clash}"
+    dev["trainers"] = dev["trainers"] + added
 
     outputs = {}   # relative path -> bytes
     fails = []

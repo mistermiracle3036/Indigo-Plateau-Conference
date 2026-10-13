@@ -17,6 +17,7 @@ docs/announcer-sendoff.png
 docs/challenger-blue.png
 docs/sprite-sources/bea.png
 docs/sprite-sources/brendan.png
+docs/sprite-sources/convert_bani.py
 docs/sprite-sources/convert_roxie_piers_fronts.py
 docs/sprite-sources/convert_roxie_piers_ow.py
 docs/sprite-sources/convert_trainer.py
@@ -60,5 +61,6 @@ tests/cups_test.lua
 tests/species_harness.lua
 tools/check_sprites.py
 tools/gen_expanded.py
+tools/team_sources/IPC-developer-team-additions.json
 tools/team_sources/IPC-developer-team-review-2026-10-11.json
 tools/team_sources/IPC-normal-team-variants-2026-10-11.json

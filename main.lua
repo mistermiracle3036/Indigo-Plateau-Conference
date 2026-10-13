@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.70"
+  local VERSION = "1.1.71"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -1914,6 +1914,13 @@ return function(mod)
                   { species = "WIGGLYTUFF", delta = 0 } } },
       { key = "RUI_CIARA", name = "RUI", file = "rui_ciara" },
       { key = "CHOBIN_CIARA_GECKO557", name = "CHOBIN", file = "chobin_ciara_gecko557" },
+      -- 1.1.71: Bani commission (developer, 2026-10-13). Pre-coloured RGBA with
+      -- alpha, converted with Mr Nobody's recipe (docs/sprite-sources/
+      -- convert_bani.py reproduces his files pixel-exact), so it rides this
+      -- loop's trueColor registration exactly as Mr Nobody does -- NEVER
+      -- swap it for a greyscale master (the 1.1.60-1.1.69 grey-box bug).
+      -- Team: dev_teams.lua (tools/team_sources/IPC-developer-team-additions.json).
+      { key = "SCISSORMAN", name = "SCISSORMAN", file = "scissorman_bani" },
     }
     for _, art in ipairs(artTests) do
       local foe
@@ -2257,7 +2264,8 @@ return function(mod)
                   { "NEW: Miror B", "MIROR_B" },
                   { "NEW: Lovrina", "RINA_CIARA" },
                   { "NEW: Rui", "RUI_CIARA" },
-                  { "NEW: Chobin", "CHOBIN_CIARA_GECKO557" } },
+                  { "NEW: Chobin", "CHOBIN_CIARA_GECKO557" },
+                  { "NEW: Scissorman", "SCISSORMAN" } },
       default = "" },
   })
 

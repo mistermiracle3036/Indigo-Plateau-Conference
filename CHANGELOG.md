@@ -5,6 +5,18 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.71
+
+Private phone test: Scissorman joins as a developer guest.
+
+- New DEV guest **Scissorman** (art commissioned from Bani), drawn in his
+  own colours like Mr Nobody. Pick "NEW: Scissorman" in the DEV guest list.
+- A blade-and-pincer team for every option, built around Scyther and Scizor:
+  Gen 1/2 uses Krabby/Kingler, Paras, Gligar, Sandshrew/Sandslash,
+  Kabuto/Kabutops and Pinsir; Expanded adds Nincada, Ninjask, Wimpod,
+  Grovyle, Sceptile, Gliscor and Golisopod. Strength and the venue's team
+  size apply as for every developer guest.
+
 ## 1.1.70
 
 Private phone test: restore custom walker colours and transparency.

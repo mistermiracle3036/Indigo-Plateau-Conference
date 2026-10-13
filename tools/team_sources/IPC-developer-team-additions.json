@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-13",
+  "status": "developer-requested, awaiting the developer's look on the phone",
+  "request": "developer, 2026-10-13: \"new Bani commissioned trainer Scissorman ... dev character and include scissor themed team for all options - think Scyther - can use Hoenn mons if we have them\"",
+  "note": "Same shape as IPC-developer-team-review-2026-10-11.json trainers. Small = first three slots, six = small + three. Expanded uses only activated catalog species.",
+  "trainers": [
+    {
+      "key": "SCISSORMAN",
+      "name": "SCISSORMAN",
+      "theme": "blades, pincers and scythes: Scyther/Scizor core",
+      "variants": [
+        {
+          "strength": "Early",
+          "gen12_small": [{"species": "KRABBY", "offset": 0}, {"species": "PARAS", "offset": 0}, {"species": "SCYTHER", "offset": 1}],
+          "gen12_six": [{"species": "KRABBY", "offset": 0}, {"species": "PARAS", "offset": 0}, {"species": "SCYTHER", "offset": 1}, {"species": "SANDSHREW", "offset": 0}, {"species": "KABUTO", "offset": 0}, {"species": "GLIGAR", "offset": 0}],
+          "expanded_small": [{"species": "Nincada", "offset": 0}, {"species": "KRABBY", "offset": 0}, {"species": "SCYTHER", "offset": 1}],
+          "expanded_six": [{"species": "Nincada", "offset": 0}, {"species": "KRABBY", "offset": 0}, {"species": "SCYTHER", "offset": 1}, {"species": "Wimpod", "offset": 0}, {"species": "KABUTO", "offset": 0}, {"species": "GLIGAR", "offset": 0}]
+        },
+        {
+          "strength": "Middle",
+          "gen12_small": [{"species": "KINGLER", "offset": 0}, {"species": "GLIGAR", "offset": 0}, {"species": "SCYTHER", "offset": 1}],
+          "gen12_six": [{"species": "KINGLER", "offset": 0}, {"species": "GLIGAR", "offset": 0}, {"species": "SCYTHER", "offset": 1}, {"species": "SANDSLASH", "offset": 0}, {"species": "KABUTOPS", "offset": 0}, {"species": "PINSIR", "offset": 0}],
+          "expanded_small": [{"species": "Ninjask", "offset": 0}, {"species": "KINGLER", "offset": 0}, {"species": "SCYTHER", "offset": 1}],
+          "expanded_six": [{"species": "Ninjask", "offset": 0}, {"species": "KINGLER", "offset": 0}, {"species": "SCYTHER", "offset": 1}, {"species": "Grovyle", "offset": 0}, {"species": "KABUTOPS", "offset": 0}, {"species": "GLIGAR", "offset": 0}]
+        },
+        {
+          "strength": "Full",
+          "gen12_small": [{"species": "KINGLER", "offset": 0}, {"species": "KABUTOPS", "offset": 0}, {"species": "SCIZOR", "offset": 1}],
+          "gen12_six": [{"species": "KINGLER", "offset": 0}, {"species": "KABUTOPS", "offset": 0}, {"species": "SCIZOR", "offset": 1}, {"species": "PINSIR", "offset": 0}, {"species": "GLIGAR", "offset": 0}, {"species": "SCYTHER", "offset": 0}],
+          "expanded_small": [{"species": "Gliscor", "offset": 0}, {"species": "KINGLER", "offset": 0}, {"species": "SCIZOR", "offset": 1}],
+          "expanded_six": [{"species": "Gliscor", "offset": 0}, {"species": "KINGLER", "offset": 0}, {"species": "SCIZOR", "offset": 1}, {"species": "Ninjask", "offset": 0}, {"species": "Sceptile", "offset": 0}, {"species": "Golisopod", "offset": 0}]
+        }
+      ]
+    }
+  ]
+}
