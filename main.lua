@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.74"
+  local VERSION = "1.1.75"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -2331,6 +2331,25 @@ return function(mod)
           -- back is never drawn, and paths are provider-local -- they do not
           -- take part in the shared-record comparison.
           def.spriteBack = mod.assets:path(row.back or row.front)
+          -- 1.1.75: engine v0.3.61+ (722c2fc4, 2026-10-07) closed Gen 2's
+          -- dexEntry to { kind, text, text2, heightM, weightKg }; the catalog
+          -- definitions still carry imperial heightFt/heightIn/weightLbs, which
+          -- it rejects as unknown fields (device [ERRS], 2026-10-14:
+          -- "pokemon.AGGRON.dexEntry.weightLbs: unknown field"), so 1.1.74
+          -- registered none of the 69. Same values, in metric. Engines before
+          -- v0.3.61 have no Gen 2 dexEntry shape at all and accept either.
+          -- TODO(REQUESTS 123): drop once the catalog/runtime carry the
+          -- metric shape for every provider.
+          local d = def.dexEntry
+          if type(d) == "table" and (d.heightFt or d.heightIn or d.weightLbs) then
+            local inches = (tonumber(d.heightFt) or 0) * 12 + (tonumber(d.heightIn) or 0)
+            def.dexEntry = {
+              kind = d.kind, text = d.text, text2 = d.text2,
+              heightM = d.heightM or math.floor(inches * 0.254 + 0.5) / 10,
+              weightKg = d.weightKg or (tonumber(d.weightLbs)
+                and math.floor(tonumber(d.weightLbs) * 4.5359237 + 0.5) / 10),
+            }
+          end
           local rec, how = api.registerShared(mod, def)
           if rec then REGISTERED[row.id] = true
           else errs("SPECIES %s\n%s", row.id, tostring(how)) end

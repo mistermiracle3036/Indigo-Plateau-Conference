@@ -5,6 +5,15 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.75
+
+Private phone test: fix Expanded teams on the current engine.
+
+- With **Teams** on Expanded, none of the added Pokemon loaded on the current
+  game version: the error screen listed "SPECIES AGGRON ... dexEntry.weightLbs:
+  unknown field" and so on. The newer engine stores Pokedex height and weight
+  in metric; IPC now hands over the same values in metric, so all 69 load.
+
 ## 1.1.74
 
 Private phone test: every developer guest has their own lines.
