@@ -89,11 +89,39 @@ local function countRegistered(run)
   return n, missing
 end
 
+-- Every string anywhere under t (depth-limited), for "did this text land".
+local function strings(t, out, depth)
+  out = out or {}; depth = depth or 0
+  if type(t) == "string" then out[t] = true
+  elseif type(t) == "table" and depth < 6 then
+    for _, v in pairs(t) do strings(v, out, depth + 1) end
+  end
+  return out
+end
+
 -- 1. Gen 1/2: zero footprint.
 do
   local run = boot({ folder(IPC) }, "gen12")
   local m = run.mods.indigo_conference
   check(m and m.state == "loaded", "gen12: IPC loaded (" .. tostring(m and m.state) .. ")")
+  -- 1.1.74: the developer guests' approved lines reach the merged text, and
+  -- the colour-test / sprite-test placeholders are gone from it
+  local lines = assert(loadfile(IPC .. "/dev_lines.lua"))()
+  -- the text registry's mod-contributed values (on Gen 2 `text` targets
+  -- data.gen2Text, not data.text -- engine Schemas.lua R.text)
+  local reg = run.loader.content and run.loader.content.text
+  local text = strings(reg and reg:items() or {})
+  local landed, total = 0, 0
+  for _, l in pairs(lines) do
+    total = total + 3
+    for _, f in ipairs({ "intro", "win", "loss" }) do if text[l[f]] then landed = landed + 1 end end
+  end
+  check(landed == total, ("dev lines in merged text: %d/%d"):format(landed, total))
+  -- the placeholders' seen/win texts (colour tests; sprite tests) -- chat is
+  -- spoken by script, never registered, so it cannot be checked here
+  check(not text["Let's test art!"] and not text["A fine test!"]
+    and not text["Let's test this\nnew look!"] and not text["Thanks for trying!"],
+    "placeholder lines no longer registered")
   local n = countRegistered(run)
   check(n == 0, ("gen12: IPC registered %d species (want 0)"):format(n))
   local e = ipcErrors(run)

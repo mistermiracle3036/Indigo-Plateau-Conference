@@ -5,6 +5,16 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.74
+
+Private phone test: every developer guest has their own lines.
+
+- All 28 DEV guests replace their "colour test" / "sprite test" placeholder
+  lines with their own dialogue: arena chat, the line before battle, the
+  win and loss lines, and what they say after the battle. Scissorman speaks
+  only in anagrams; Mira talks about herself; Marley barely talks at all.
+- Ordinary challengers' lines are unchanged.
+
 ## 1.1.73
 
 Private phone test: Scissorman and Nessa, first time on the phone.

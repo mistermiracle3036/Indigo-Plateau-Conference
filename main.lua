@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.73"
+  local VERSION = "1.1.74"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -1964,6 +1964,22 @@ return function(mod)
       BATTLE_FRONTS[art.key] = mod.path .. "/assets/" .. art.file .. "_front.png"
       TRUE_COLOR_FRONTS[art.key] = true
       ROSTER[#ROSTER + 1] = foe
+    end
+  end
+
+  -- 1.1.74: the 28 developer guests' own dialogue, approved by the developer
+  -- on 2026-10-14 ("yeah all lines look good"), replacing the colour-test and
+  -- sprite-test placeholders. Generated (tools/gen_dev_lines.py) and applied
+  -- here, before the text registry is filled below, so every path -- chat,
+  -- seen text, win/loss, after-battle -- reads the same lines. Only DEV
+  -- guests are listed; no normal challenger's approved lines change.
+  do
+    local DEV_LINES = assert(load(assert(mod:read("dev_lines.lua")), "IPC dev lines"))()
+    for _, foe in ipairs(ROSTER) do
+      local lines = foe.devOnly and DEV_LINES[foe.key]
+      if lines then
+        for field, text in pairs(lines) do foe[field] = text end
+      end
     end
   end
 

@@ -60,9 +60,11 @@ docs/sprite-sources/wes.png
 tests/cups_test.lua
 tests/species_harness.lua
 tools/check_sprites.py
+tools/gen_dev_lines.py
 tools/gen_expanded.py
 tools/team_sources/IPC-developer-team-additions.json
 tools/team_sources/IPC-developer-team-review-2026-10-11.json
 tools/team_sources/IPC-normal-team-variants-2026-10-11.json
+tools/team_sources/dev-guest-dialogue-approved.json
 tools/team_sources/dev-guest-dialogue-batch1.json
 tools/team_sources/dev-guest-dialogue-batch2.json
