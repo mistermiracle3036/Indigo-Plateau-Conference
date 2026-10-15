@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.77"
+  local VERSION = "1.1.78"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -2331,6 +2331,12 @@ return function(mod)
           -- back is never drawn, and paths are provider-local -- they do not
           -- take part in the shared-record comparison.
           def.spriteBack = mod.assets:path(row.back or row.front)
+          -- 1.1.78 (REQUESTS 132, catalog 2026-10-14.1): a species whose catalog
+          -- definition carries `anim` gets its animation sheet from IPC's own
+          -- bundled copy. Provider-local path, ignored by sameSpeciesData.
+          if type(def.anim) == "table" and row.anim then
+            def.anim.sheet = mod.assets:path(row.anim)
+          end
           -- 1.1.77: runtime 0.8.2 (Expanded-Species 333be78) does what IPC's
           -- 1.1.75/1.1.76 shims did, for every provider alike: converts the
           -- catalog's imperial dexEntry to the metric shape engine v0.3.61+

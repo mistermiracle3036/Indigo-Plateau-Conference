@@ -5,6 +5,16 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.78
+
+Private phone test: Aggron's front animation (shared Pokemon list update).
+
+- Aggron carries its approved front animation from the shared Pokemon list.
+  It plays where the game animates fronts (Summary, Hall of Fame and the
+  like), not in battle, so in IPC's cups Aggron looks the same as before.
+- Keeps IPC in step with the shared list (revision 2026-10-14.1); the other
+  animated Pokemon follow as the list adds them.
+
 ## 1.1.77
 
 Private phone test: shared Pokemon runtime updated; nothing should look or

@@ -150,6 +150,19 @@ do
   end
   check(withCry == #index, ("expanded: %d/%d cries; missing %s"):format(withCry, #index,
     table.concat(noCry, ",")))
+  -- 1.1.78: every species whose catalog definition carries `anim` registers it
+  -- with the sheet pointing at IPC's own bundled copy (REQUESTS 132)
+  local animOk, animWant = 0, 0
+  local pokemon = run.loader.content and run.loader.content.pokemon
+  for _, row in ipairs(index) do
+    if row.anim then
+      animWant = animWant + 1
+      local rec = pokemon and pokemon:get(row.id)
+      local sheet = rec and type(rec.anim) == "table" and rec.anim.sheet
+      if type(sheet) == "string" and sheet:sub(-#row.anim) == row.anim then animOk = animOk + 1 end
+    end
+  end
+  check(animWant > 0 and animOk == animWant, ("expanded: %d/%d animations with IPC's sheet"):format(animOk, animWant))
   local e = ipcErrors(run)
   check(#e == 0, "expanded: no errors: " .. table.concat(e, " | "))
   run.release()
