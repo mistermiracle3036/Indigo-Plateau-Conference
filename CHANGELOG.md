@@ -5,6 +5,14 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.79
+
+Private phone test: Aggron's animation uses the artist's own timing.
+
+- Aggron's front animation now plays with Nuuk's own timing, which you chose
+  over the default (shared Pokemon list revision 2026-10-14.2). Same frames; in
+  IPC's cups Aggron still looks and sounds the same.
+
 ## 1.1.78
 
 Private phone test: Aggron's front animation (shared Pokemon list update).

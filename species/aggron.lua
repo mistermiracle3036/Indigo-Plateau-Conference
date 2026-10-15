@@ -28,7 +28,7 @@ return {
     evolutions = {},
     items = {},
     cryBase = "RHYHORN",
-    anim = {tiles = 7, play = {{1, 12}, {2, 12}, {3, 12}}, idle = {{254, 2}, {0, 8}, {4, 8}, {253, 1}}},
+    anim = {tiles = 7, play = {{1, 12}, {2, 6}, {1, 38}, {2, 6}, {3, 10}, {4, 6}}, idle = {{3, 10}, {4, 6}}},
     palette = {normal = {{165, 173, 197}, {74, 74, 99}}, shiny = {{148, 206, 165}, {33, 99, 115}}},
     dexEntry = {kind = "IRON ARMOR", heightFt = 6, heightIn = 11, weightLbs = 793.7, text = "While seeking iron<NEXT>for food, it digs<NEXT>tunnels by", text2 = "breaking through<NEXT>bedrock with its<NEXT>steel horns."},
     entry_key = "pokemon:aggron:default:art:default",

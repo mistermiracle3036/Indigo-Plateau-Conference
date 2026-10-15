@@ -1,12 +1,12 @@
 {
   "contract": "shared-pokemon-identity",
-  "catalog_revision": "2026-10-14.1",
+  "catalog_revision": "2026-10-14.2",
   "generated_by": "tools/gen_expanded.py",
   "provides": [
     {
       "entry_key": "pokemon:aggron:default:art:default",
       "registry_id": "AGGRON",
-      "definition_sha256": "2be6e5efd0fe843ecba063807d978a4b2ea76dc0e2c85b1f0f6b3d7752b27a35",
+      "definition_sha256": "abdf37d9d5155fc3ccf252292ab9407112698e26919319509d67bdfd95f270e4",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/aggron_front.png",
