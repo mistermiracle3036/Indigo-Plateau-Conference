@@ -5,6 +5,14 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.76
+
+Private phone test: the added Pokemon have cries.
+
+- With **Teams** on Expanded, all 69 added Pokemon now cry when they are sent
+  out, like the originals. Each borrows a Johto Pokemon's cry chosen for it
+  (Aggron sounds like Rhyhorn, for example); they were silent before.
+
 ## 1.1.75
 
 Private phone test: fix Expanded teams on the current engine.

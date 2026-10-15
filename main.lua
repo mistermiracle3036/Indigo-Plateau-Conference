@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.75"
+  local VERSION = "1.1.76"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -2353,6 +2353,28 @@ return function(mod)
           local rec, how = api.registerShared(mod, def)
           if rec then REGISTERED[row.id] = true
           else errs("SPECIES %s\n%s", row.id, tostring(how)) end
+          -- 1.1.76 (developer, 2026-10-14: "add cries"): each species gets the
+          -- cry its catalog definition names in `cryBase`, as an engine
+          -- derived cry ({ base = <vanilla cry> }, src/core/Sound.lua
+          -- resolveCry) -- no audio files. Until now nothing registered one,
+          -- so Sound.playCry found none and they were silent. Same rule as
+          -- registerShared: absent -> register; the identical cry from another
+          -- provider -> override (any carrier can be rolled back); a different
+          -- one -> leave it and say so, never a silent winner.
+          -- TODO(REQUESTS 131): move into the shared runtime/catalog.
+          if rec and type(def.cryBase) == "string" then
+            local cries = mod.content.cries
+            local cry = { base = def.cryBase }
+            local cur = cries:get(row.id)
+            if cur == nil then
+              cries:register(row.id, cry)
+            elseif type(cur) == "table" and cur.base == def.cryBase
+                and cur.pitch == nil and cur.length == nil then
+              cries:override(row.id, cry)
+            else
+              errs("CRY %s\nanother mod's cry\nkept", row.id)
+            end
+          end
         end)
         if not okRow then errs("SPECIES %s\n%s", row.id, tostring(rowErr)) end
       end

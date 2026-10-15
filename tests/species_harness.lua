@@ -35,7 +35,10 @@ local function crystalData()
   local data = {}
   local names = { "pokemon", "moves", "trainers", "items", "maps", "events", "sprites",
                   "icons", "palettes", "pokedex", "text", "constants", "encounters",
-                  "type_chart", "tilesets", "scripts", "marts", "landmarks" }
+                  "type_chart", "tilesets", "scripts", "marts", "landmarks",
+                  -- data.audio.cries: the derived cries (1.1.76) name vanilla
+                  -- bases, which the loader resolves against it
+                  "audio" }
   for _, n in ipairs(names) do
     local f = loadfile(CACHE .. n .. ".lua")
     if f then data[n] = f() end
@@ -136,6 +139,17 @@ do
   check(m and m.state == "loaded", "expanded: IPC loaded (" .. tostring(m and m.state) .. ")")
   local n, missing = countRegistered(run)
   check(n == #index, ("expanded: %d/%d registered; missing %s"):format(n, #index, table.concat(missing, ",")))
+  -- 1.1.76: every species has its catalog cry (a derived { base = cryBase })
+  local cries = run.loader.content and run.loader.content.cries
+  local withCry, noCry = 0, {}
+  for _, row in ipairs(index) do
+    local def = assert(loadfile(IPC .. "/" .. row.file))()[1]
+    local cry = cries and cries:get(row.id)
+    if type(cry) == "table" and cry.base == def.cryBase then withCry = withCry + 1
+    else noCry[#noCry + 1] = row.id end
+  end
+  check(withCry == #index, ("expanded: %d/%d cries; missing %s"):format(withCry, #index,
+    table.concat(noCry, ",")))
   local e = ipcErrors(run)
   check(#e == 0, "expanded: no errors: " .. table.concat(e, " | "))
   run.release()
