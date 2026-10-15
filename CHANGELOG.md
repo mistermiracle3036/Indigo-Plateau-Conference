@@ -5,6 +5,16 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.77
+
+Private phone test: shared Pokemon runtime updated; nothing should look or
+sound different.
+
+- The added Pokemon's metric Pokedex data and cries now come from the shared
+  runtime every mod uses (Expanded Species 0.8.2), instead of IPC's own fix-ups.
+  Same Pokemon, same cries -- this keeps IPC identical to other mods that add
+  the same species.
+
 ## 1.1.76
 
 Private phone test: the added Pokemon have cries.

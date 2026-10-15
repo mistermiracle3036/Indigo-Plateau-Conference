@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.76"
+  local VERSION = "1.1.77"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -2331,50 +2331,14 @@ return function(mod)
           -- back is never drawn, and paths are provider-local -- they do not
           -- take part in the shared-record comparison.
           def.spriteBack = mod.assets:path(row.back or row.front)
-          -- 1.1.75: engine v0.3.61+ (722c2fc4, 2026-10-07) closed Gen 2's
-          -- dexEntry to { kind, text, text2, heightM, weightKg }; the catalog
-          -- definitions still carry imperial heightFt/heightIn/weightLbs, which
-          -- it rejects as unknown fields (device [ERRS], 2026-10-14:
-          -- "pokemon.AGGRON.dexEntry.weightLbs: unknown field"), so 1.1.74
-          -- registered none of the 69. Same values, in metric. Engines before
-          -- v0.3.61 have no Gen 2 dexEntry shape at all and accept either.
-          -- TODO(REQUESTS 123): drop once the catalog/runtime carry the
-          -- metric shape for every provider.
-          local d = def.dexEntry
-          if type(d) == "table" and (d.heightFt or d.heightIn or d.weightLbs) then
-            local inches = (tonumber(d.heightFt) or 0) * 12 + (tonumber(d.heightIn) or 0)
-            def.dexEntry = {
-              kind = d.kind, text = d.text, text2 = d.text2,
-              heightM = d.heightM or math.floor(inches * 0.254 + 0.5) / 10,
-              weightKg = d.weightKg or (tonumber(d.weightLbs)
-                and math.floor(tonumber(d.weightLbs) * 4.5359237 + 0.5) / 10),
-            }
-          end
+          -- 1.1.77: runtime 0.8.2 (Expanded-Species 333be78) does what IPC's
+          -- 1.1.75/1.1.76 shims did, for every provider alike: converts the
+          -- catalog's imperial dexEntry to the metric shape engine v0.3.61+
+          -- requires on Gen 2, and registers each species' cryBase as a
+          -- derived cry (REQUESTS 123 part 1, 131 part 3). Both shims removed.
           local rec, how = api.registerShared(mod, def)
           if rec then REGISTERED[row.id] = true
           else errs("SPECIES %s\n%s", row.id, tostring(how)) end
-          -- 1.1.76 (developer, 2026-10-14: "add cries"): each species gets the
-          -- cry its catalog definition names in `cryBase`, as an engine
-          -- derived cry ({ base = <vanilla cry> }, src/core/Sound.lua
-          -- resolveCry) -- no audio files. Until now nothing registered one,
-          -- so Sound.playCry found none and they were silent. Same rule as
-          -- registerShared: absent -> register; the identical cry from another
-          -- provider -> override (any carrier can be rolled back); a different
-          -- one -> leave it and say so, never a silent winner.
-          -- TODO(REQUESTS 131): move into the shared runtime/catalog.
-          if rec and type(def.cryBase) == "string" then
-            local cries = mod.content.cries
-            local cry = { base = def.cryBase }
-            local cur = cries:get(row.id)
-            if cur == nil then
-              cries:register(row.id, cry)
-            elseif type(cur) == "table" and cur.base == def.cryBase
-                and cur.pitch == nil and cur.length == nil then
-              cries:override(row.id, cry)
-            else
-              errs("CRY %s\nkept other mod's", row.id)
-            end
-          end
         end)
         if not okRow then errs("SPECIES %s\n%s", row.id, tostring(rowErr)) end
       end
