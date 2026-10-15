@@ -2372,7 +2372,7 @@ return function(mod)
                 and cur.pitch == nil and cur.length == nil then
               cries:override(row.id, cry)
             else
-              errs("CRY %s\nanother mod's cry\nkept", row.id)
+              errs("CRY %s\nkept other mod's", row.id)
             end
           end
         end)
