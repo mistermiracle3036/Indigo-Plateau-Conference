@@ -5,6 +5,15 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.80
+
+Private phone test: four added Pokemon get new, animated art.
+
+- Gliscor, Mismagius, Rhyperior and Dudunsparce switch to the animated art
+  you chose (shared Pokemon list revision 2026-10-14.4): new front and back
+  pictures and colours for the first three, the same picture with an
+  animation for Dudunsparce. Credits follow the new artists.
+
 ## 1.1.79
 
 Private phone test: Aggron's animation uses the artist's own timing.

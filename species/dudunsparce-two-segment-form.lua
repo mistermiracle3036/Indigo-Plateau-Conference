@@ -5,6 +5,7 @@ return { {
   baseStats = {attack = 100, defense = 80, hp = 125, specialAttack = 85, specialDefense = 75, speed = 55},
   catchRate = 45,
   cryBase = "DUNSPARCE",
+  anim = {tiles = 7, play = {{1, 6}, {2, 6}, {1, 6}, {3, 6}, {1, 6}, {4, 6}, {1, 6}, {0, 6}}, idle = {{1, 6}, {2, 6}, {1, 6}, {2, 6}}},
   dex = 982,
   dexEntry = {heightFt = 11, heightIn = 10, kind = "Land Snake", text = "", text2 = "", weightLbs = 86.4},
   eggGroups = {"EGG_GROUND", "EGG_GROUND"},

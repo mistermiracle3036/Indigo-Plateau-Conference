@@ -1,6 +1,6 @@
 {
   "contract": "shared-pokemon-identity",
-  "catalog_revision": "2026-10-14.2",
+  "catalog_revision": "2026-10-14.4",
   "generated_by": "tools/gen_expanded.py",
   "provides": [
     {
@@ -137,11 +137,12 @@
     {
       "entry_key": "pokemon:dudunsparce:two-segment-form:art:two-segment-form",
       "registry_id": "DUDUNSPARCE",
-      "definition_sha256": "c6e78ef2ac4a7cef3c1ffae743bc951ebbf94d65aa8d3c900bcabaa25136e70b",
+      "definition_sha256": "a5a28e7ddf1c46aa43ecbf0c23c3eef9b976774d32215ad8b02cb6146b276728",
       "credit": "SageDeoxys",
       "assets": {
         "front": "assets/species/dudunsparce-two-segment-form_front.png",
-        "back": "assets/species/dudunsparce-two-segment-form_back.png"
+        "back": "assets/species/dudunsparce-two-segment-form_back.png",
+        "anim": "assets/species/dudunsparce-two-segment-form_anim.png"
       }
     },
     {
@@ -217,11 +218,12 @@
     {
       "entry_key": "pokemon:gliscor:default:art:default",
       "registry_id": "GLISCOR",
-      "definition_sha256": "b1e476c29d2b3eb0bedcee1c4bda2a365acd74a5ac4c0c910d7744342db3d7ea",
-      "credit": "Nekroba",
+      "definition_sha256": "d4f7bed355822e828356614058b18b9eca131dc4d6bad8260ff005f033a0b3b0",
+      "credit": "Nuuk",
       "assets": {
         "front": "assets/species/gliscor_front.png",
-        "back": "assets/species/gliscor_back.png"
+        "back": "assets/species/gliscor_back.png",
+        "anim": "assets/species/gliscor_anim.png"
       }
     },
     {
@@ -367,11 +369,12 @@
     {
       "entry_key": "pokemon:mismagius:default:art:default",
       "registry_id": "MISMAGIUS",
-      "definition_sha256": "f4f07d4b2c83cca1e7b03072ef157ff6374525a460efb4b494df651118a11632",
-      "credit": "RainbowDevs/Prism Team",
+      "definition_sha256": "ae0ba8a0f657a457509461c41040eb515355a16a4e333e82be27481c9819c094",
+      "credit": "bloodless (with SoupPotato)",
       "assets": {
         "front": "assets/species/mismagius_front.png",
-        "back": "assets/species/mismagius_back.png"
+        "back": "assets/species/mismagius_back.png",
+        "anim": "assets/species/mismagius_anim.png"
       }
     },
     {
@@ -446,11 +449,12 @@
     {
       "entry_key": "pokemon:rhyperior:default:art:default",
       "registry_id": "RHYPERIOR",
-      "definition_sha256": "3db901d0cb6a44b013189249e08dcd28f3f010762f70e2b18f117e5b3b038ef4",
-      "credit": "metalflygon08",
+      "definition_sha256": "a75b7a17a0b62adc469d1e12cb5ea13e2faa36cbbe916ad39be21387da4c9f4b",
+      "credit": "Scarlax (edited sprite by Egg3ggEgg)",
       "assets": {
         "front": "assets/species/rhyperior_front.png",
-        "back": "assets/species/rhyperior_back.png"
+        "back": "assets/species/rhyperior_back.png",
+        "anim": "assets/species/rhyperior_anim.png"
       }
     },
     {
