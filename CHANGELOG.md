@@ -5,6 +5,16 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.81
+
+Private phone test: no more text scrolling away unread.
+
+- 101 challenger lines that ran past the text box's width are split across
+  lines and pages, so every line waits for A instead of scrolling a third row
+  away. Every word is kept as written (approved 2026-10-17).
+- Internal: IPC's copy of the shared Pokemon list is updated to the latest
+  revision. Nothing changes in game.
+
 ## 1.1.80
 
 Private phone test: four added Pokemon get new, animated art.
