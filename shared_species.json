@@ -1,6 +1,6 @@
 {
   "contract": "shared-pokemon-identity",
-  "catalog_revision": "2026-10-14.4",
+  "catalog_revision": "2026-10-24.1",
   "generated_by": "tools/gen_expanded.py",
   "provides": [
     {
@@ -17,7 +17,7 @@
     {
       "entry_key": "pokemon:altaria:default:art:default",
       "registry_id": "ALTARIA",
-      "definition_sha256": "804662ef4bb73cde55449e6678e0164a01d7d2c697b24aaacdabeefbc0fa9f52",
+      "definition_sha256": "3f0bd1dd9c37322a59f2f290082312a8f47e1e76424addeda796d9e03b277806",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/altaria_front.png",
@@ -27,7 +27,7 @@
     {
       "entry_key": "pokemon:archen:default:art:default",
       "registry_id": "ARCHEN",
-      "definition_sha256": "7bda3b3724ec98c1c837d13285d86024f1024c24f283e6ed890fe84544f52773",
+      "definition_sha256": "32bd6d06d678b45a46c7a18d9f5de32f27893bdbd25124e9586685dc77647269",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/archen_front.png",
@@ -37,7 +37,7 @@
     {
       "entry_key": "pokemon:archeops:default:art:default",
       "registry_id": "ARCHEOPS",
-      "definition_sha256": "0ff6b5550fad72f57db061d866a8786aa83c775915c35b935d185f59e4fedfc5",
+      "definition_sha256": "27f2322ab0956e33a18c80f5a82f42957856f6bf390a3c8e6c80ff9c7633da85",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/archeops_front.png",
@@ -67,7 +67,7 @@
     {
       "entry_key": "pokemon:beautifly:default:art:default",
       "registry_id": "BEAUTIFLY",
-      "definition_sha256": "57993d02dbfef0d3e1a7a7dee47cb779f740f0b0642269a3cb0c52d043b53495",
+      "definition_sha256": "1bb4d36155c5454d5f94ce3db5d783a37a979799a7719fa86b8a331e02a253dc",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/beautifly_front.png",
@@ -87,7 +87,7 @@
     {
       "entry_key": "pokemon:blaziken:default:art:default",
       "registry_id": "BLAZIKEN",
-      "definition_sha256": "dd8908f1830bdc209641b4d253df4b08c6ef67dd6ec3f912afc09299ce704862",
+      "definition_sha256": "36ffef2e25d6f251160a8a6bd937b57c84fe436b8faca6e776785dcf827c129b",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/blaziken_front.png",
@@ -97,7 +97,7 @@
     {
       "entry_key": "pokemon:camerupt:default:art:default",
       "registry_id": "CAMERUPT",
-      "definition_sha256": "83dd1937c2c55ee4b4fcefb57829416362c8a8a93d6d3db39d7c245864f2cd6f",
+      "definition_sha256": "711f0be70bed3eef55ebfa0fd0fbaf38b6451582203f7f6a57d01e9c1e45def3",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/camerupt_front.png",
@@ -117,7 +117,7 @@
     {
       "entry_key": "pokemon:combusken:default:art:default",
       "registry_id": "COMBUSKEN",
-      "definition_sha256": "f5c46d2effd53bf0958b935c442c69c038a5c97966a96135be9b7d3858f46cff",
+      "definition_sha256": "29877781ced96ccadd9b720d2945c7e52ff819fe9ad847c2cb57126cb98fa1df",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/combusken_front.png",
@@ -137,7 +137,7 @@
     {
       "entry_key": "pokemon:dudunsparce:two-segment-form:art:two-segment-form",
       "registry_id": "DUDUNSPARCE",
-      "definition_sha256": "a5a28e7ddf1c46aa43ecbf0c23c3eef9b976774d32215ad8b02cb6146b276728",
+      "definition_sha256": "88a2b87904d7a6f4cdce5808f1c4edeed920501027a433253a5ff1bb86119440",
       "credit": "SageDeoxys",
       "assets": {
         "front": "assets/species/dudunsparce-two-segment-form_front.png",
@@ -148,7 +148,7 @@
     {
       "entry_key": "pokemon:electivire:default:art:default",
       "registry_id": "ELECTIVIRE",
-      "definition_sha256": "5ea77cc5f67115d54a3962e72867154a154c01fe1e183a08f18b2772de12a044",
+      "definition_sha256": "84838c6acc8d3ea368ce1f1cb4b2df31476bb9e2b7104c836ac39b8c7c70a447",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/electivire_front.png",
@@ -178,7 +178,7 @@
     {
       "entry_key": "pokemon:garbodor:default:art:default",
       "registry_id": "GARBODOR",
-      "definition_sha256": "4c7173665e0a4f4b9c9404d8f3cc949670c41d4672e0337c15bfa0d73bd7095a",
+      "definition_sha256": "6a5a6dd96bc005da023490cfc9610c8d3b05c5c7d943506e5680311d23693249",
       "credit": "COMBOY",
       "assets": {
         "front": "assets/species/garbodor_front.png",
@@ -198,7 +198,7 @@
     {
       "entry_key": "pokemon:gardevoir:default:art:default",
       "registry_id": "GARDEVOIR",
-      "definition_sha256": "03ab403e28837034663eac8c122cd97f799a25b4a463ccab5c51735feb85ba5e",
+      "definition_sha256": "4865f4b3a21b71aa430138dbbd020f850b812c9e32ed4e1a7300b11a419ffdb3",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/gardevoir_front.png",
@@ -218,7 +218,7 @@
     {
       "entry_key": "pokemon:gliscor:default:art:default",
       "registry_id": "GLISCOR",
-      "definition_sha256": "d4f7bed355822e828356614058b18b9eca131dc4d6bad8260ff005f033a0b3b0",
+      "definition_sha256": "80d87e4157de2ae8ce5d72da51d6e9a992b686316ca8d147bbd1cca7d5ef367b",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/gliscor_front.png",
@@ -229,7 +229,7 @@
     {
       "entry_key": "pokemon:golisopod:default:art:default",
       "registry_id": "GOLISOPOD",
-      "definition_sha256": "34d624c3833a768114a2b7d017b90e151e6af05bde28f8c4ff1d09c3b523f16c",
+      "definition_sha256": "a4f5e37bcd50f281eb077d0d520904ab5f9e0cb3e833cf931892694cdc6be89a",
       "credit": "lakeofdance (front), Falgaia (back)",
       "assets": {
         "front": "assets/species/golisopod_front.png",
@@ -239,7 +239,7 @@
     {
       "entry_key": "pokemon:grovyle:default:art:default",
       "registry_id": "GROVYLE",
-      "definition_sha256": "a3b425099ac5731e21e0dcbbb486bcb8e162d374f2d5bdfd088a5bcccc4e3708",
+      "definition_sha256": "2ce12dba5c260117407f6a71e099499d7f440a20fd3c77a4250c2c4507698735",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/grovyle_front.png",
@@ -249,7 +249,7 @@
     {
       "entry_key": "pokemon:kirlia:default:art:default",
       "registry_id": "KIRLIA",
-      "definition_sha256": "6acce9f597a783e7cd17c7b3f8bde265815cb00f5f4d911489f1d32e8b16f1d2",
+      "definition_sha256": "57bfa23e24aa207928137f044e660887636e9059f61e90e28edafd9753fd5613",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/kirlia_front.png",
@@ -309,7 +309,7 @@
     {
       "entry_key": "pokemon:magnezone:default:art:default",
       "registry_id": "MAGNEZONE",
-      "definition_sha256": "cdf0e954e5c8be0316d6a281666bfe5c719bbed529bd8bfe2ecdd68d7e490306",
+      "definition_sha256": "fb4d6289b621b938ae037b8246b154732bd610dd8504dc2424c77a321359e0d0",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/magnezone_front.png",
@@ -369,7 +369,7 @@
     {
       "entry_key": "pokemon:mismagius:default:art:default",
       "registry_id": "MISMAGIUS",
-      "definition_sha256": "ae0ba8a0f657a457509461c41040eb515355a16a4e333e82be27481c9819c094",
+      "definition_sha256": "76a729a26d9c0923d99cedeebe0930649a15d4a95b555f49974b1cc7d0606654",
       "credit": "bloodless (with SoupPotato)",
       "assets": {
         "front": "assets/species/mismagius_front.png",
@@ -400,7 +400,7 @@
     {
       "entry_key": "pokemon:numel:default:art:default",
       "registry_id": "NUMEL",
-      "definition_sha256": "52bd9f3e7e7714f9e434b9a1277653dfb0ed2cdc5d5c4869f715586c8d4561e8",
+      "definition_sha256": "707bf3ca72698072a085ba3c478a6d3d0e54d502b4897a59cbf3c1dbaf0fd287",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/numel_front.png",
@@ -410,7 +410,7 @@
     {
       "entry_key": "pokemon:obstagoon:default:art:default",
       "registry_id": "OBSTAGOON",
-      "definition_sha256": "beb1662f0c6c6a4e132960bc203840cd642b4bc2cda1eb0a4b612bc18468112e",
+      "definition_sha256": "67fab5d3aecdee54d750a4ee4cd0cf3c3c8fec5d1c55af08be56dde347a62743",
       "credit": "EeVeeEe1999",
       "assets": {
         "front": "assets/species/obstagoon_front.png"
@@ -419,7 +419,7 @@
     {
       "entry_key": "pokemon:piplup:default:art:default",
       "registry_id": "PIPLUP",
-      "definition_sha256": "3dd2a98d26d5da142b70991382b531280cef43553c7faa19b07b58d84135e998",
+      "definition_sha256": "4acc1cfe0cc858420bb2d885b9d777f66a56b5db4799c9e85f8e8cc23bbf222f",
       "credit": "bloodless",
       "assets": {
         "front": "assets/species/piplup_front.png",
@@ -429,7 +429,7 @@
     {
       "entry_key": "pokemon:porygon-z:default:art:default",
       "registry_id": "PORYGON_Z",
-      "definition_sha256": "2c30c25cd807ce00dc95ea5a2ef0b449abfca9b516a1688b452af43c912843b1",
+      "definition_sha256": "10d82cef14c5007d325e3b2b572f7137a8028f12a44a344dc0ed5707a93bd50a",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/porygon-z_front.png",
@@ -439,7 +439,7 @@
     {
       "entry_key": "pokemon:ralts:default:art:default",
       "registry_id": "RALTS",
-      "definition_sha256": "b6d7e13e35df4a2c6e2ce48813d20a66e1e66b1f4e282b7fad18e6e05fafb150",
+      "definition_sha256": "16fb72f0d48bf96b6af45ecf70565ca8ce9913cd843d31e0e9462377e26b78af",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/ralts_front.png",
@@ -449,7 +449,7 @@
     {
       "entry_key": "pokemon:rhyperior:default:art:default",
       "registry_id": "RHYPERIOR",
-      "definition_sha256": "a75b7a17a0b62adc469d1e12cb5ea13e2faa36cbbe916ad39be21387da4c9f4b",
+      "definition_sha256": "b8e487d1c61d56e03e725a40fdc1f5efeb96eccaf014850086aad5bbb4c7ffb0",
       "credit": "Scarlax (edited sprite by Egg3ggEgg)",
       "assets": {
         "front": "assets/species/rhyperior_front.png",
@@ -490,7 +490,7 @@
     {
       "entry_key": "pokemon:sceptile:default:art:default",
       "registry_id": "SCEPTILE",
-      "definition_sha256": "8b3d01a4375fc7f956b836cefa589ba114330bef466dc329cde1fea11b2d6bdb",
+      "definition_sha256": "d99065ca35773d5979618745510a013539f029805dbaa8ae9f785c6f382b36e7",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/sceptile_front.png",
@@ -500,7 +500,7 @@
     {
       "entry_key": "pokemon:scolipede:default:art:default",
       "registry_id": "SCOLIPEDE",
-      "definition_sha256": "89bf51565e724d29b5bb351d58c3fee0cb248026ee2acbf8a02cbe6536e57fff",
+      "definition_sha256": "57442e6263151c158875950979de2e7cec6e23453a1586a7bcfb7517b0e000e9",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/scolipede_front.png",
@@ -510,7 +510,7 @@
     {
       "entry_key": "pokemon:silcoon:default:art:default",
       "registry_id": "SILCOON",
-      "definition_sha256": "fed8208c0cadbc993f1ea173b207f5ed565d263ff57a7d89c963e4837b11e945",
+      "definition_sha256": "f5c342049b98103ff468d069bd5cf2663873cb70b6d609f9ab4164ff5750df0c",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/silcoon_front.png",
@@ -540,7 +540,7 @@
     {
       "entry_key": "pokemon:staraptor:default:art:default",
       "registry_id": "STARAPTOR",
-      "definition_sha256": "7f70dcd28da35fe9f40a3c1c612b7a1782676ec1b8992deb95c053f56b957e58",
+      "definition_sha256": "69ad90723bd3145ee7bbaa68c1ee7c1d2f158477af30d67db74020890deb1264",
       "credit": "bloodless",
       "assets": {
         "front": "assets/species/staraptor_front.png",
@@ -550,7 +550,7 @@
     {
       "entry_key": "pokemon:staravia:default:art:default",
       "registry_id": "STARAVIA",
-      "definition_sha256": "9fca9eccc0006ca353c120ad4c55acaacc8b6428b68faa480229b7a1fed24cb9",
+      "definition_sha256": "a23dcefb7ccab453eb4697c01d14f1b398a2eb07090ce43db0b413337809ad6b",
       "credit": "bloodless",
       "assets": {
         "front": "assets/species/staravia_front.png",
@@ -560,7 +560,7 @@
     {
       "entry_key": "pokemon:starly:default:art:default",
       "registry_id": "STARLY",
-      "definition_sha256": "ab97cf366b7d9e661fd8ae030abc0fad5401a86020352f2215fea68ca7e39141",
+      "definition_sha256": "c13ae932b6644907829b1aa90b80e5fa04cdf2b56ed3e98b04491748ebae8fbb",
       "credit": "COMBOY (front), bloodless (back)",
       "assets": {
         "front": "assets/species/starly_front.png",
@@ -570,7 +570,7 @@
     {
       "entry_key": "pokemon:swablu:default:art:default",
       "registry_id": "SWABLU",
-      "definition_sha256": "5e9cdf9f9461f5529c5e0855bb844bdb65d0670a62d8d4343bb5a584368daf2c",
+      "definition_sha256": "b6ca40bb7263d3a7cbb952682d872aa2927cc758cca2798a2dd9b5c22c41f714",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/swablu_front.png",
@@ -590,7 +590,7 @@
     {
       "entry_key": "pokemon:torchic:default:art:default",
       "registry_id": "TORCHIC",
-      "definition_sha256": "cbcd0b1bb2fc9da1053ff549cb66a5b6bb00b5187e9e2262490605a1ea5c0365",
+      "definition_sha256": "f8e751f62e2fce5872e4634a2909a0201e21a1f0c3f31b8cecd706b69811354a",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/torchic_front.png",
@@ -600,7 +600,7 @@
     {
       "entry_key": "pokemon:treecko:default:art:default",
       "registry_id": "TREECKO",
-      "definition_sha256": "34b460a87273c2816f2b9982bf4d88488591bdbed656b2962078d660e8dd5a3d",
+      "definition_sha256": "a00fa10f4a8957994864d8146843a9c58a89359b3cea5052932978039fac3623",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/treecko_front.png",
@@ -610,7 +610,7 @@
     {
       "entry_key": "pokemon:trubbish:default:art:default",
       "registry_id": "TRUBBISH",
-      "definition_sha256": "08c2a6fef82ba7479531e2fc8f30e8208ebeba986a7a7bfc2c84c95304f019c3",
+      "definition_sha256": "6aed0f9ecaf7610897f18fff25a82ff0543baed52729abc673f3bfcd391f1a6a",
       "credit": "COMBOY",
       "assets": {
         "front": "assets/species/trubbish_front.png",
@@ -620,7 +620,7 @@
     {
       "entry_key": "pokemon:venipede:default:art:default",
       "registry_id": "VENIPEDE",
-      "definition_sha256": "3abd1e0577df38cbed864fccf7ce4afb1e18a53f6e11273be1db4028139e7c51",
+      "definition_sha256": "e2e0096ff4a5d3f843c5303180bc1fb8c5db796bd9ffcd36cc4ab3a65d401187",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/venipede_front.png",
@@ -630,7 +630,7 @@
     {
       "entry_key": "pokemon:whirlipede:default:art:default",
       "registry_id": "WHIRLIPEDE",
-      "definition_sha256": "e1873f7c9ce4382e13d8c194a0a0ef98aeee44f01dae9e9e52e4ea18d583f915",
+      "definition_sha256": "2ec949a3aea2f21fc4f1ce744c25dd761c3adc0a0b7b72607d6728e32e7f080d",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/whirlipede_front.png",
@@ -650,7 +650,7 @@
     {
       "entry_key": "pokemon:wimpod:default:art:default",
       "registry_id": "WIMPOD",
-      "definition_sha256": "f86bcb0d7ed709a31a03f5c4b24615983c58689d3338ad5090fed18390b5e742",
+      "definition_sha256": "470fedeb6c0704ad961985bcbe5de62a2b3fce915190172e969ab95b7d697c36",
       "credit": "Bronzeswagger (front), leParagon (back)",
       "assets": {
         "front": "assets/species/wimpod_front.png",
@@ -670,7 +670,7 @@
     {
       "entry_key": "pokemon:wurmple:default:art:default",
       "registry_id": "WURMPLE",
-      "definition_sha256": "4f4c017b7980943bb12091f4d379374f0f50fa4484ab57f788b8a6d8b0fc2a90",
+      "definition_sha256": "72c78c3d8df43ded6d8fd56425244b2b3c6745523486ac4d6777295a0455360a",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/wurmple_front.png",
@@ -680,7 +680,7 @@
     {
       "entry_key": "pokemon:zoroark:default:art:default",
       "registry_id": "ZOROARK",
-      "definition_sha256": "57a5dc7ebb6ee96b2fd19ce539a40296ff8c19336adc769ac2f5baf3d473aa93",
+      "definition_sha256": "9497ecc139119d8c3ba0ba3a311661ec2caa25a333d1b39272069897961a4a8a",
       "credit": "Bummer",
       "assets": {
         "front": "assets/species/zoroark_front.png",
@@ -690,7 +690,7 @@
     {
       "entry_key": "pokemon:zorua:default:art:default",
       "registry_id": "ZORUA",
-      "definition_sha256": "55f13555052dc280aea53171581e8e2c30636b9ad5b8af8bdaa5cbcc88e17c30",
+      "definition_sha256": "6e50adebd2da2ca1a40a23e98cae29a17186f9fc8309bf0ecf89bed05229f140",
       "credit": "Bummer (front), COMBOY (back)",
       "assets": {
         "front": "assets/species/zorua_front.png",
