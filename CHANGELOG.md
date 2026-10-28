@@ -5,6 +5,13 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.82
+
+Private phone test: code cleanup only; nothing changes in game.
+
+- Removes leftover code from the retired Polished species pack. Every
+  challenger keeps exactly the team it had.
+
 ## 1.1.81
 
 Private phone test: no more text scrolling away unread.

@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.81"
+  local VERSION = "1.1.82"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -499,12 +499,10 @@ return function(mod)
   -- types share the generic sheets), so those are mapped to the closest
   -- real sheet. Tier 4 rides named classes: real name AND real portrait.
   ----------------------------------------------------------------------
-  -- 1.1.69: polished_species_pack is no longer read (rejected by the
-  -- developer; added species come from the shared catalog -- expanded_teams /
-  -- dev_teams). The phone never had the pack, so these always resolved to
-  -- the fallback, which is the approved team; the fallback is kept verbatim.
-  local fantinaAce = "MISDREAVUS"
-  local function expandedPick(_, fallback) return fallback end
+  -- 1.1.82 (REQUESTS 272): the polished_species_pack stub (expandedPick,
+  -- fantinaAce) is gone; each call site now names the fallback species it
+  -- always resolved to, which is the approved team. Added species come from
+  -- the shared catalog (expanded_teams / dev_teams).
   local ROSTER = {
   -- 1.1.50 visual-only guests. Temporary one-Raticate teams, never random.
   { key = "ARTIST", tier = 1, devOnly = true,
@@ -560,7 +558,7 @@ return function(mod)
     loss = "Thanks for a test!",
     afterWin = "How did it look?",
     afterLoss = "How did it look?",
-    party = { { species = expandedPick("TOGEKISS", "TOGETIC"), delta = 0 } } },
+    party = { { species = "TOGETIC", delta = 0 } } },
 
   { key = "ENGINEER", tier = 1, devOnly = true,
     class = "GENTLEMAN", member = "GREGORY",
@@ -1371,8 +1369,8 @@ return function(mod)
     loss = "The theory holds.",
     afterWin = "COLRESS: Your bond\nis remarkable.",
     afterLoss = "COLRESS: More data\nfor the model.",
-    party = { { species = expandedPick("MAGNEZONE", "MAGNETON"), delta = 0 },
-              { species = expandedPick("PORYGON_Z", "PORYGON2"), delta = 0 },
+    party = { { species = "MAGNETON", delta = 0 },
+              { species = "PORYGON2", delta = 0 },
               { species = "SCIZOR",   delta = 1 } } },
 
   { key = "HUGH", tier = 2, class = "COOLTRAINERM", member = "RYAN",
@@ -1461,7 +1459,7 @@ return function(mod)
     -- Optional evolved ace; vanilla Electabuzz remains the no-pack fallback.
     party = { { species = "JOLTEON",    delta = 0 },
               { species = "RAICHU",     delta = 0 },
-              { species = expandedPick("ELECTIVIRE", "ELECTABUZZ"), delta = 1 } } },
+              { species = "ELECTABUZZ", delta = 1 } } },
 
   -- Explicit user-approved exception to the usual trainer-only rule.
   -- Armored Mewtwo is a private visual probe, never a random draw.
@@ -1513,7 +1511,7 @@ return function(mod)
     afterLoss = "GIOVANNI: Loyalty\nfollows strength.",
     party = { { species = "PERSIAN",  delta = 0 },
               { species = "NIDOKING", delta = 0 },
-              { species = expandedPick("RHYPERIOR", "RHYDON"), delta = 1 } } },
+              { species = "RHYDON", delta = 1 } } },
 
   -- TODO/CONFIRM on device: the MOLLY source grid is unlabeled; cell r5c6
   -- is the Oak-like lab-coat portrait selected for this test build.
@@ -1797,7 +1795,7 @@ return function(mod)
     -- Native fallback keeps the tournament usable without the species pack.
     party = { { species = "HAUNTER", delta = 0 },
               { species = "GENGAR", delta = 0 },
-              { species = fantinaAce, delta = 1 } } },
+              { species = "MISDREAVUS", delta = 1 } } },
 
   { key = "N", tier = 3, class = "COOLTRAINERM", member = "NICK",
     sprite = "SPRITE_IPC_N", name = "N",
