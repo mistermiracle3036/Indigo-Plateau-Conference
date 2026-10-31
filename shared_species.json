@@ -1,6 +1,6 @@
 {
   "contract": "shared-pokemon-identity",
-  "catalog_revision": "2026-10-31.1",
+  "catalog_revision": "2026-10-31.2",
   "generated_by": "tools/gen_expanded.py",
   "provides": [
     {
@@ -131,7 +131,8 @@
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/delcatty_front.png",
-        "back": "assets/species/delcatty_back.png"
+        "back": "assets/species/delcatty_back.png",
+        "icon": "assets/species/delcatty_icon.png"
       }
     },
     {
@@ -202,7 +203,8 @@
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/gardevoir_front.png",
-        "back": "assets/species/gardevoir_back.png"
+        "back": "assets/species/gardevoir_back.png",
+        "icon": "assets/species/gardevoir_icon.png"
       }
     },
     {
@@ -243,7 +245,8 @@
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/grovyle_front.png",
-        "back": "assets/species/grovyle_back.png"
+        "back": "assets/species/grovyle_back.png",
+        "icon": "assets/species/grovyle_icon.png"
       }
     },
     {
@@ -253,7 +256,8 @@
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/kirlia_front.png",
-        "back": "assets/species/kirlia_back.png"
+        "back": "assets/species/kirlia_back.png",
+        "icon": "assets/species/kirlia_icon.png"
       }
     },
     {
@@ -423,7 +427,8 @@
       "credit": "bloodless",
       "assets": {
         "front": "assets/species/piplup_front.png",
-        "back": "assets/species/piplup_back.png"
+        "back": "assets/species/piplup_back.png",
+        "icon": "assets/species/piplup_icon.png"
       }
     },
     {
@@ -443,7 +448,8 @@
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/ralts_front.png",
-        "back": "assets/species/ralts_back.png"
+        "back": "assets/species/ralts_back.png",
+        "icon": "assets/species/ralts_icon.png"
       }
     },
     {
@@ -494,7 +500,8 @@
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/sceptile_front.png",
-        "back": "assets/species/sceptile_back.png"
+        "back": "assets/species/sceptile_back.png",
+        "icon": "assets/species/sceptile_icon.png"
       }
     },
     {
@@ -524,7 +531,8 @@
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/skitty_front.png",
-        "back": "assets/species/skitty_back.png"
+        "back": "assets/species/skitty_back.png",
+        "icon": "assets/species/skitty_icon.png"
       }
     },
     {
@@ -544,7 +552,8 @@
       "credit": "bloodless",
       "assets": {
         "front": "assets/species/staraptor_front.png",
-        "back": "assets/species/staraptor_back.png"
+        "back": "assets/species/staraptor_back.png",
+        "icon": "assets/species/staraptor_icon.png"
       }
     },
     {
@@ -554,7 +563,8 @@
       "credit": "bloodless",
       "assets": {
         "front": "assets/species/staravia_front.png",
-        "back": "assets/species/staravia_back.png"
+        "back": "assets/species/staravia_back.png",
+        "icon": "assets/species/staravia_icon.png"
       }
     },
     {
@@ -564,7 +574,8 @@
       "credit": "COMBOY (front), bloodless (back)",
       "assets": {
         "front": "assets/species/starly_front.png",
-        "back": "assets/species/starly_back.png"
+        "back": "assets/species/starly_back.png",
+        "icon": "assets/species/starly_icon.png"
       }
     },
     {
@@ -604,7 +615,8 @@
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/treecko_front.png",
-        "back": "assets/species/treecko_back.png"
+        "back": "assets/species/treecko_back.png",
+        "icon": "assets/species/treecko_icon.png"
       }
     },
     {

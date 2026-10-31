@@ -269,8 +269,10 @@ def main(argv):
         outputs[f"species/{slug}.lua"] = dbytes
         assets = {}
         # "anim" (catalog 2026-10-14.1+): the front-animation sheet, base frame
-        # first; main.lua points def.anim.sheet at it (REQUESTS 132)
-        for role in ("front", "back", "anim"):
+        # first; main.lua points def.anim.sheet at it (REQUESTS 132).
+        # "icon" (2026-10-31.2+): the 16x32 party icon; main.lua sets def.icon
+        # (REQUESTS 356)
+        for role in ("front", "back", "anim", "icon"):
             rel = (cl.get("asset_files") or {}).get(role)
             if not rel:
                 continue
@@ -280,10 +282,11 @@ def main(argv):
             dest = "assets/species/" + os.path.basename(rel)
             outputs[dest] = b
             assets[role] = dest
-        index.append('  { id = "%s", file = "species/%s.lua", front = "%s", back = %s, anim = %s, normal = %s },'
+        index.append('  { id = "%s", file = "species/%s.lua", front = "%s", back = %s, anim = %s, icon = %s, normal = %s },'
                      % (e["registry_id"], slug, assets["front"],
                         '"%s"' % assets["back"] if "back" in assets else "false",
                         '"%s"' % assets["anim"] if "anim" in assets else "false",
+                        '"%s"' % assets["icon"] if "icon" in assets else "false",
                         "true" if e["registry_id"] in normal_ids else "false"))
         provides.append({"entry_key": e["entry_key"], "registry_id": e["registry_id"],
                          "definition_sha256": e["definition"]["semantic_sha256"],

@@ -5,6 +5,16 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.84
+
+Private phone test: party icons for twelve added Pokemon.
+
+- The Ralts, Treecko, Starly and Skitty families and Piplup now carry their
+  own party icons, from Essentials GSC (MegamanOmega and EeVeeEe1999;
+  Koolboyman), which you picked over the stand-ins (shared list revision
+  2026-10-31.2). In IPC they are only ever opponents, so nothing you see in
+  cups changes.
+
 ## 1.1.83
 
 Private phone test: shared Pokemon list update.

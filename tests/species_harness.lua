@@ -163,6 +163,19 @@ do
     end
   end
   check(animWant > 0 and animOk == animWant, ("expanded: %d/%d animations with IPC's sheet"):format(animOk, animWant))
+  -- 1.1.84: the twelve Partner Cup species register with IPC's own party
+  -- icon (REQUESTS 356). Record only: the runtime installs it into
+  -- gen2Icons on game.ready, which this harness does not fire.
+  local iconOk, iconWant = 0, 0
+  for _, row in ipairs(index) do
+    if row.icon then
+      iconWant = iconWant + 1
+      local rec = pokemon and pokemon:get(row.id)
+      local image = rec and type(rec.icon) == "table" and rec.icon.image
+      if type(image) == "string" and image:sub(-#row.icon) == row.icon then iconOk = iconOk + 1 end
+    end
+  end
+  check(iconWant == 12 and iconOk == iconWant, ("expanded: %d/%d (want 12) records carry IPC's icon"):format(iconOk, iconWant))
   local e = ipcErrors(run)
   check(#e == 0, "expanded: no errors: " .. table.concat(e, " | "))
   run.release()

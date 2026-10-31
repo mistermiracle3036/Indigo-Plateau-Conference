@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.83"
+  local VERSION = "1.1.84"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -2334,6 +2334,13 @@ return function(mod)
           -- bundled copy. Provider-local path, ignored by sameSpeciesData.
           if type(def.anim) == "table" and row.anim then
             def.anim.sheet = mod.assets:path(row.anim)
+          end
+          -- 1.1.84 (REQUESTS 356, catalog 2026-10-31.2): the twelve Partner Cup
+          -- species ship their own Essentials GSC party icon (16x32, two frames)
+          -- instead of the iconFallback. JQP carries the same field, so the two
+          -- providers' records still match.
+          if row.icon then
+            def.icon = { image = mod.assets:path(row.icon), frames = 2, width = 16, height = 32 }
           end
           -- 1.1.77: runtime 0.8.2 (Expanded-Species 333be78) does what IPC's
           -- 1.1.75/1.1.76 shims did, for every provider alike: converts the
