@@ -5,6 +5,14 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.85
+
+Private phone test: no more square behind the new party icons.
+
+- The twelve new party icons (Ralts, Treecko, Starly and Skitty families,
+  Piplup) had a solid background that showed as a coloured square. It is
+  see-through now (shared list revision 2026-10-31.3).
+
 ## 1.1.84
 
 Private phone test: party icons for twelve added Pokemon.
