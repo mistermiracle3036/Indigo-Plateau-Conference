@@ -5,6 +5,15 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.83
+
+Private phone test: shared Pokemon list update.
+
+- Twelve added Pokemon (the Ralts, Treecko, Starly and Skitty families, and
+  Piplup) now name a proper party icon instead of falling back to Ditto's
+  blob (shared list revision 2026-10-31.1). In IPC they are only ever
+  opponents, so nothing you see in cups changes.
+
 ## 1.1.82
 
 Private phone test: code cleanup only; nothing changes in game.

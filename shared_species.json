@@ -1,6 +1,6 @@
 {
   "contract": "shared-pokemon-identity",
-  "catalog_revision": "2026-10-24.1",
+  "catalog_revision": "2026-10-31.1",
   "generated_by": "tools/gen_expanded.py",
   "provides": [
     {
@@ -127,7 +127,7 @@
     {
       "entry_key": "pokemon:delcatty:default:art:default",
       "registry_id": "DELCATTY",
-      "definition_sha256": "b2b15871b550bf2e0b920c4d68fe83cd3f283cdc8a774b40e80b7d7c8007cedd",
+      "definition_sha256": "c7f16272997339573aba3c4419856443667a76ad218945d033393ddee2f5f8d3",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/delcatty_front.png",
@@ -198,7 +198,7 @@
     {
       "entry_key": "pokemon:gardevoir:default:art:default",
       "registry_id": "GARDEVOIR",
-      "definition_sha256": "4865f4b3a21b71aa430138dbbd020f850b812c9e32ed4e1a7300b11a419ffdb3",
+      "definition_sha256": "5ff9331120800b8edb1fa4753cb32a0b1b0f12625570bffd736f7e3e5c61ebdc",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/gardevoir_front.png",
@@ -239,7 +239,7 @@
     {
       "entry_key": "pokemon:grovyle:default:art:default",
       "registry_id": "GROVYLE",
-      "definition_sha256": "2ce12dba5c260117407f6a71e099499d7f440a20fd3c77a4250c2c4507698735",
+      "definition_sha256": "7a5cb5f63e3e88f7166138eaa0a853d3f70c1bf22b17bdf537c8d3c104007064",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/grovyle_front.png",
@@ -249,7 +249,7 @@
     {
       "entry_key": "pokemon:kirlia:default:art:default",
       "registry_id": "KIRLIA",
-      "definition_sha256": "57bfa23e24aa207928137f044e660887636e9059f61e90e28edafd9753fd5613",
+      "definition_sha256": "c10610415493d6d6df720a6ec5faf90b267d943a0356664e1ab275f63244da23",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/kirlia_front.png",
@@ -419,7 +419,7 @@
     {
       "entry_key": "pokemon:piplup:default:art:default",
       "registry_id": "PIPLUP",
-      "definition_sha256": "4acc1cfe0cc858420bb2d885b9d777f66a56b5db4799c9e85f8e8cc23bbf222f",
+      "definition_sha256": "95ac8f013e57b31c5be88a0740fca0517a1991d1584599c85cf4aa1cb05771ce",
       "credit": "bloodless",
       "assets": {
         "front": "assets/species/piplup_front.png",
@@ -439,7 +439,7 @@
     {
       "entry_key": "pokemon:ralts:default:art:default",
       "registry_id": "RALTS",
-      "definition_sha256": "16fb72f0d48bf96b6af45ecf70565ca8ce9913cd843d31e0e9462377e26b78af",
+      "definition_sha256": "f0a7e7d7f67b3804dac774d02d7c8c3c8389e916ce25dc115a5d342aa075f092",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/ralts_front.png",
@@ -490,7 +490,7 @@
     {
       "entry_key": "pokemon:sceptile:default:art:default",
       "registry_id": "SCEPTILE",
-      "definition_sha256": "d99065ca35773d5979618745510a013539f029805dbaa8ae9f785c6f382b36e7",
+      "definition_sha256": "b8a6efda47df018fb76c50cb02700d35d7a3857ade443dc9377e3b7feab36f3d",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/sceptile_front.png",
@@ -520,7 +520,7 @@
     {
       "entry_key": "pokemon:skitty:default:art:default",
       "registry_id": "SKITTY",
-      "definition_sha256": "f6378ccf6209fb858709a84d66cfe91ff7439216c3a59c29e91fc319aacde89e",
+      "definition_sha256": "631cc786bdf8736bc6b51890dc42229f3456d2265be30d633be7e0eac95fcf4f",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/skitty_front.png",
@@ -540,7 +540,7 @@
     {
       "entry_key": "pokemon:staraptor:default:art:default",
       "registry_id": "STARAPTOR",
-      "definition_sha256": "69ad90723bd3145ee7bbaa68c1ee7c1d2f158477af30d67db74020890deb1264",
+      "definition_sha256": "4a7c62e67631b2b2c79dbc661e672194b1e054de9ac7a24f7264afdaf9e1be93",
       "credit": "bloodless",
       "assets": {
         "front": "assets/species/staraptor_front.png",
@@ -550,7 +550,7 @@
     {
       "entry_key": "pokemon:staravia:default:art:default",
       "registry_id": "STARAVIA",
-      "definition_sha256": "a23dcefb7ccab453eb4697c01d14f1b398a2eb07090ce43db0b413337809ad6b",
+      "definition_sha256": "f7cf75096b8d1eb233e24541dfc118e5976de9a8919e04de2b25eaca6c13e1d6",
       "credit": "bloodless",
       "assets": {
         "front": "assets/species/staravia_front.png",
@@ -560,7 +560,7 @@
     {
       "entry_key": "pokemon:starly:default:art:default",
       "registry_id": "STARLY",
-      "definition_sha256": "c13ae932b6644907829b1aa90b80e5fa04cdf2b56ed3e98b04491748ebae8fbb",
+      "definition_sha256": "ea41cd41776ae913fe122b28284da4be23d7dcfb9d5170c56ab975e045c9bb3b",
       "credit": "COMBOY (front), bloodless (back)",
       "assets": {
         "front": "assets/species/starly_front.png",
@@ -600,7 +600,7 @@
     {
       "entry_key": "pokemon:treecko:default:art:default",
       "registry_id": "TREECKO",
-      "definition_sha256": "a00fa10f4a8957994864d8146843a9c58a89359b3cea5052932978039fac3623",
+      "definition_sha256": "22dbe3f98c409c876898c7601340d4f92c8bdf8431180f64383331c601b43b9b",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/treecko_front.png",

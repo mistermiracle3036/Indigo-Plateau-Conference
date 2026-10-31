@@ -16,6 +16,7 @@ return { {
   evolutions = {{into = "GARDEVOIR", level = 30, method = "EVOLVE_LEVEL"}},
   genderRatio = 127,
   growthRate = "GROWTH_SLOW",
+  iconFallback = "ABRA",
   id = "KIRLIA",
   items = {},
   levelMoves = {{level = 1, move = "GROWL"}, {level = 1, move = "DOUBLE_TEAM"}, {level = 1, move = "CONFUSION"}, {level = 9, move = "HYPNOSIS"}, {level = 15, move = "TELEPORT"}, {level = 18, move = "PSYBEAM"}, {level = 28, move = "CHARM"}, {level = 38, move = "PSYCHIC_M"}, {level = 48, move = "DREAM_EATER"}, {level = 53, move = "FUTURE_SIGHT"}},

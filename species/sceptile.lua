@@ -14,6 +14,7 @@ return { {
   evolutions = {},
   genderRatio = 31,
   growthRate = "GROWTH_MEDIUM_SLOW",
+  iconFallback = "TOTODILE",
   id = "SCEPTILE",
   items = {},
   levelMoves = {{level = 1, move = "FURY_CUTTER"}, {level = 1, move = "FALSE_SWIPE"}, {level = 1, move = "POUND"}, {level = 1, move = "LEER"}, {level = 1, move = "QUICK_ATTACK"}, {level = 5, move = "MEGA_DRAIN"}, {level = 12, move = "DETECT"}, {level = 25, move = "GIGA_DRAIN"}, {level = 30, move = "SLAM"}, {level = 35, move = "DOUBLE_TEAM"}, {level = 49, move = "SCREECH"}},

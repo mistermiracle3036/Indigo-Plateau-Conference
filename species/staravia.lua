@@ -14,6 +14,7 @@ return { {
   evolutions = {{into = "STARAPTOR", level = 34, method = "EVOLVE_LEVEL"}},
   genderRatio = 127,
   growthRate = "GROWTH_MEDIUM_SLOW",
+  iconFallback = "PIDGEY",
   id = "STARAVIA",
   items = {},
   levelMoves = {{level = 1, move = "TACKLE"}, {level = 1, move = "GROWL"}, {level = 1, move = "QUICK_ATTACK"}, {level = 5, move = "QUICK_ATTACK"}, {level = 9, move = "WING_ATTACK"}, {level = 13, move = "DOUBLE_TEAM"}, {level = 23, move = "WHIRLWIND"}, {level = 33, move = "TAKE_DOWN"}, {level = 38, move = "AGILITY"}},

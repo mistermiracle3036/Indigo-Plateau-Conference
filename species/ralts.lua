@@ -14,6 +14,7 @@ return { {
   evolutions = {{into = "KIRLIA", level = 20, method = "EVOLVE_LEVEL"}},
   genderRatio = 127,
   growthRate = "GROWTH_SLOW",
+  iconFallback = "ABRA",
   id = "RALTS",
   items = {},
   levelMoves = {{level = 1, move = "GROWL"}, {level = 3, move = "DOUBLE_TEAM"}, {level = 6, move = "CONFUSION"}, {level = 9, move = "HYPNOSIS"}, {level = 15, move = "TELEPORT"}, {level = 18, move = "PSYBEAM"}, {level = 24, move = "CHARM"}, {level = 30, move = "PSYCHIC_M"}, {level = 36, move = "DREAM_EATER"}, {level = 39, move = "FUTURE_SIGHT"}},

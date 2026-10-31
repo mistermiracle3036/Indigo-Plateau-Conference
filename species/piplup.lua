@@ -16,6 +16,7 @@ return { {
   evolutions = {},
   genderRatio = 31,
   growthRate = "GROWTH_MEDIUM_SLOW",
+  iconFallback = "DELIBIRD",
   id = "PIPLUP",
   items = {},
   levelMoves = {{level = 1, move = "POUND"}, {level = 4, move = "GROWL"}, {level = 8, move = "BUBBLE"}, {level = 15, move = "PECK"}, {level = 18, move = "BUBBLEBEAM"}, {level = 22, move = "BIDE"}, {level = 25, move = "FURY_ATTACK"}, {level = 32, move = "WHIRLPOOL"}, {level = 36, move = "MIST"}, {level = 39, move = "DRILL_PECK"}, {level = 43, move = "HYDRO_PUMP"}},

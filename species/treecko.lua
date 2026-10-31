@@ -14,6 +14,7 @@ return { {
   evolutions = {{into = "GROVYLE", level = 16, method = "EVOLVE_LEVEL"}},
   genderRatio = 31,
   growthRate = "GROWTH_MEDIUM_SLOW",
+  iconFallback = "TOTODILE",
   id = "TREECKO",
   items = {},
   levelMoves = {{level = 1, move = "POUND"}, {level = 1, move = "LEER"}, {level = 6, move = "QUICK_ATTACK"}, {level = 9, move = "MEGA_DRAIN"}, {level = 12, move = "DETECT"}, {level = 21, move = "GIGA_DRAIN"}, {level = 24, move = "SLAM"}, {level = 27, move = "DOUBLE_TEAM"}, {level = 33, move = "SCREECH"}},

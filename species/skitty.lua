@@ -9,6 +9,7 @@
 -- dex is a National Dex reference/order hint; Expanded Species assigns runtime numbers; no index assigned here.
 return {
   {
+    iconFallback = "MEOWTH",
     id = "SKITTY",
     slug = "skitty",
     name = "SKITTY",

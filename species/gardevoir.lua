@@ -14,6 +14,7 @@ return { {
   evolutions = {},
   genderRatio = 127,
   growthRate = "GROWTH_SLOW",
+  iconFallback = "ABRA",
   id = "GARDEVOIR",
   items = {},
   levelMoves = {{level = 1, move = "CHARM"}, {level = 1, move = "GROWL"}, {level = 1, move = "DOUBLE_TEAM"}, {level = 1, move = "CONFUSION"}, {level = 9, move = "HYPNOSIS"}, {level = 15, move = "TELEPORT"}, {level = 18, move = "PSYBEAM"}, {level = 42, move = "PSYCHIC_M"}, {level = 56, move = "DREAM_EATER"}, {level = 63, move = "FUTURE_SIGHT"}},
