@@ -1,0 +1,5638 @@
+{
+ "date": "2026-11-01",
+ "status": "DRAFT for the developer's review (REQUESTS 372)",
+ "request": "developer, 2026-11-01: \"A all cup challengers\"",
+ "note": "Same variant shape as IPC-developer-team-additions.json. Slot 3 is the ace.",
+ "trainers": [
+  {
+   "key": "ALDER",
+   "name": "ALDER",
+   "tier": 4,
+   "class": "CHAMPION",
+   "member": "LANCE",
+   "overworld_palette": "PAL_OW_RED",
+   "theme": "Unova's wandering champion: bugs, fighters and fire",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "LEDYBA",
+       "offset": 0
+      },
+      {
+       "species": "MANKEY",
+       "offset": 0
+      },
+      {
+       "species": "GROWLITHE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "LEDYBA",
+       "offset": 0
+      },
+      {
+       "species": "MANKEY",
+       "offset": 0
+      },
+      {
+       "species": "GROWLITHE",
+       "offset": 1
+      },
+      {
+       "species": "TAUROS",
+       "offset": 0
+      },
+      {
+       "species": "PINECO",
+       "offset": 0
+      },
+      {
+       "species": "MACHOP",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "Venipede",
+       "offset": 0
+      },
+      {
+       "species": "Riolu",
+       "offset": 0
+      },
+      {
+       "species": "GROWLITHE",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "Venipede",
+       "offset": 0
+      },
+      {
+       "species": "Riolu",
+       "offset": 0
+      },
+      {
+       "species": "GROWLITHE",
+       "offset": 1
+      },
+      {
+       "species": "TAUROS",
+       "offset": 0
+      },
+      {
+       "species": "PINECO",
+       "offset": 0
+      },
+      {
+       "species": "MACHOP",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "LEDIAN",
+       "offset": 0
+      },
+      {
+       "species": "PRIMEAPE",
+       "offset": 0
+      },
+      {
+       "species": "ARCANINE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "LEDIAN",
+       "offset": 0
+      },
+      {
+       "species": "PRIMEAPE",
+       "offset": 0
+      },
+      {
+       "species": "ARCANINE",
+       "offset": 1
+      },
+      {
+       "species": "TAUROS",
+       "offset": 0
+      },
+      {
+       "species": "FORRETRESS",
+       "offset": 0
+      },
+      {
+       "species": "MACHOKE",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "Whirlipede",
+       "offset": 0
+      },
+      {
+       "species": "Lucario",
+       "offset": 0
+      },
+      {
+       "species": "ARCANINE",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "Whirlipede",
+       "offset": 0
+      },
+      {
+       "species": "Lucario",
+       "offset": 0
+      },
+      {
+       "species": "ARCANINE",
+       "offset": 1
+      },
+      {
+       "species": "TAUROS",
+       "offset": 0
+      },
+      {
+       "species": "FORRETRESS",
+       "offset": 0
+      },
+      {
+       "species": "MACHOKE",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "HERACROSS",
+       "offset": 0
+      },
+      {
+       "species": "SCIZOR",
+       "offset": 0
+      },
+      {
+       "species": "ARCANINE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "HERACROSS",
+       "offset": 0
+      },
+      {
+       "species": "SCIZOR",
+       "offset": 0
+      },
+      {
+       "species": "ARCANINE",
+       "offset": 1
+      },
+      {
+       "species": "TAUROS",
+       "offset": 0
+      },
+      {
+       "species": "FORRETRESS",
+       "offset": 0
+      },
+      {
+       "species": "MACHAMP",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "Scolipede",
+       "offset": 0
+      },
+      {
+       "species": "Lucario",
+       "offset": 0
+      },
+      {
+       "species": "ARCANINE",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "Scolipede",
+       "offset": 0
+      },
+      {
+       "species": "Lucario",
+       "offset": 0
+      },
+      {
+       "species": "ARCANINE",
+       "offset": 1
+      },
+      {
+       "species": "TAUROS",
+       "offset": 0
+      },
+      {
+       "species": "SCIZOR",
+       "offset": 0
+      },
+      {
+       "species": "MACHAMP",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "ALDER: I wander\nto learn. Today\fI learn from you!",
+    "intro": "ALDER: Show me\nwhat you love!",
+    "win": "Ha! You fight\nwith your heart.",
+    "loss": "A good match is\na gift. Thanks!",
+    "afterWin": "ALDER: Keep that\nfire burning.",
+    "afterLoss": "ALDER: Rest, then\ntry me again!"
+   }
+  },
+  {
+   "key": "BIANCA",
+   "name": "BIANCA",
+   "tier": 2,
+   "class": "COOLTRAINERF",
+   "member": "LOIS",
+   "overworld_palette": "PAL_OW_GREEN",
+   "theme": "cheerful rival from Nuvema: fire starter and cuddly friends",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "DROWZEE",
+       "offset": 0
+      },
+      {
+       "species": "CYNDAQUIL",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "DROWZEE",
+       "offset": 0
+      },
+      {
+       "species": "CYNDAQUIL",
+       "offset": 1
+      },
+      {
+       "species": "HOPPIP",
+       "offset": 0
+      },
+      {
+       "species": "PSYDUCK",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "DROWZEE",
+       "offset": 0
+      },
+      {
+       "species": "Torchic",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "DROWZEE",
+       "offset": 0
+      },
+      {
+       "species": "Torchic",
+       "offset": 1
+      },
+      {
+       "species": "Skitty",
+       "offset": 0
+      },
+      {
+       "species": "PSYDUCK",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "QUILAVA",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "QUILAVA",
+       "offset": 1
+      },
+      {
+       "species": "SKIPLOOM",
+       "offset": 0
+      },
+      {
+       "species": "PSYDUCK",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "Combusken",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "Combusken",
+       "offset": 1
+      },
+      {
+       "species": "Delcatty",
+       "offset": 0
+      },
+      {
+       "species": "PSYDUCK",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "GRANBULL",
+       "offset": 0
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "TYPHLOSION",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "GRANBULL",
+       "offset": 0
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "TYPHLOSION",
+       "offset": 1
+      },
+      {
+       "species": "JUMPLUFF",
+       "offset": 0
+      },
+      {
+       "species": "GOLDUCK",
+       "offset": 0
+      },
+      {
+       "species": "AZUMARILL",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "GRANBULL",
+       "offset": 0
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "Blaziken",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "GRANBULL",
+       "offset": 0
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "Blaziken",
+       "offset": 1
+      },
+      {
+       "species": "Delcatty",
+       "offset": 0
+      },
+      {
+       "species": "GOLDUCK",
+       "offset": 0
+      },
+      {
+       "species": "AZUMARILL",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "BIANCA: Oh! Wait\nup! I got lost\fon the way here.",
+    "intro": "BIANCA: I'll do\nmy very best!",
+    "win": "Waah! You're so\nstrong!",
+    "loss": "I did it! I\nreally did it!",
+    "afterWin": "BIANCA: Next time\nI won't get lost!",
+    "afterLoss": "BIANCA: Yay! Let's\nbattle again!"
+   }
+  },
+  {
+   "key": "BURGH",
+   "name": "BURGH",
+   "tier": 3,
+   "class": "BROCK",
+   "member": "BROCK1",
+   "overworld_palette": "PAL_OW_BROWN",
+   "theme": "Castelia's artist leader: bugs as living art",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "SPINARAK",
+       "offset": 0
+      },
+      {
+       "species": "PINECO",
+       "offset": 0
+      },
+      {
+       "species": "SCYTHER",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SPINARAK",
+       "offset": 0
+      },
+      {
+       "species": "PINECO",
+       "offset": 0
+      },
+      {
+       "species": "SCYTHER",
+       "offset": 1
+      },
+      {
+       "species": "VENONAT",
+       "offset": 0
+      },
+      {
+       "species": "PARAS",
+       "offset": 0
+      },
+      {
+       "species": "WEEDLE",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "Venipede",
+       "offset": 0
+      },
+      {
+       "species": "Nincada",
+       "offset": 0
+      },
+      {
+       "species": "SCYTHER",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "Venipede",
+       "offset": 0
+      },
+      {
+       "species": "Nincada",
+       "offset": 0
+      },
+      {
+       "species": "SCYTHER",
+       "offset": 1
+      },
+      {
+       "species": "Wurmple",
+       "offset": 0
+      },
+      {
+       "species": "PARAS",
+       "offset": 0
+      },
+      {
+       "species": "Wimpod",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "ARIADOS",
+       "offset": 0
+      },
+      {
+       "species": "PINECO",
+       "offset": 0
+      },
+      {
+       "species": "SCYTHER",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "ARIADOS",
+       "offset": 0
+      },
+      {
+       "species": "PINECO",
+       "offset": 0
+      },
+      {
+       "species": "SCYTHER",
+       "offset": 1
+      },
+      {
+       "species": "VENONAT",
+       "offset": 0
+      },
+      {
+       "species": "PARAS",
+       "offset": 0
+      },
+      {
+       "species": "KAKUNA",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "Whirlipede",
+       "offset": 0
+      },
+      {
+       "species": "Ninjask",
+       "offset": 0
+      },
+      {
+       "species": "SCYTHER",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "Whirlipede",
+       "offset": 0
+      },
+      {
+       "species": "Ninjask",
+       "offset": 0
+      },
+      {
+       "species": "SCYTHER",
+       "offset": 1
+      },
+      {
+       "species": "Silcoon",
+       "offset": 0
+      },
+      {
+       "species": "PARAS",
+       "offset": 0
+      },
+      {
+       "species": "Wimpod",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "ARIADOS",
+       "offset": 0
+      },
+      {
+       "species": "FORRETRESS",
+       "offset": 0
+      },
+      {
+       "species": "SCIZOR",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "ARIADOS",
+       "offset": 0
+      },
+      {
+       "species": "FORRETRESS",
+       "offset": 0
+      },
+      {
+       "species": "SCIZOR",
+       "offset": 1
+      },
+      {
+       "species": "VENOMOTH",
+       "offset": 0
+      },
+      {
+       "species": "PARASECT",
+       "offset": 0
+      },
+      {
+       "species": "BEEDRILL",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "Scolipede",
+       "offset": 0
+      },
+      {
+       "species": "Ninjask",
+       "offset": 0
+      },
+      {
+       "species": "SCIZOR",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "Scolipede",
+       "offset": 0
+      },
+      {
+       "species": "Ninjask",
+       "offset": 0
+      },
+      {
+       "species": "SCIZOR",
+       "offset": 1
+      },
+      {
+       "species": "Beautifly",
+       "offset": 0
+      },
+      {
+       "species": "PARASECT",
+       "offset": 0
+      },
+      {
+       "species": "Golisopod",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "BURGH: Every bug\nis a brushstroke.",
+    "intro": "BURGH: Let's\npaint a battle!",
+    "win": "A masterpiece!\nNot mine, though.",
+    "loss": "My canvas is\ncomplete!",
+    "afterWin": "BURGH: You've\ninspired me!",
+    "afterLoss": "BURGH: Art takes\npractice. Return!"
+   }
+  },
+  {
+   "key": "CHEREN",
+   "name": "CHEREN",
+   "tier": 2,
+   "class": "COOLTRAINERM",
+   "member": "AARON",
+   "overworld_palette": "PAL_OW_BLUE",
+   "theme": "serious rival from Nuvema: steady normal types and a water starter",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "SENTRET",
+       "offset": 0
+      },
+      {
+       "species": "MEOWTH",
+       "offset": 0
+      },
+      {
+       "species": "TOTODILE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SENTRET",
+       "offset": 0
+      },
+      {
+       "species": "MEOWTH",
+       "offset": 0
+      },
+      {
+       "species": "TOTODILE",
+       "offset": 1
+      },
+      {
+       "species": "RATTATA",
+       "offset": 0
+      },
+      {
+       "species": "AIPOM",
+       "offset": 0
+      },
+      {
+       "species": "TEDDIURSA",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "SENTRET",
+       "offset": 0
+      },
+      {
+       "species": "Zorua",
+       "offset": 0
+      },
+      {
+       "species": "TOTODILE",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "SENTRET",
+       "offset": 0
+      },
+      {
+       "species": "Zorua",
+       "offset": 0
+      },
+      {
+       "species": "TOTODILE",
+       "offset": 1
+      },
+      {
+       "species": "Starly",
+       "offset": 0
+      },
+      {
+       "species": "AIPOM",
+       "offset": 0
+      },
+      {
+       "species": "TEDDIURSA",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "CROCONAW",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "CROCONAW",
+       "offset": 1
+      },
+      {
+       "species": "RATICATE",
+       "offset": 0
+      },
+      {
+       "species": "AIPOM",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "Zoroark",
+       "offset": 0
+      },
+      {
+       "species": "CROCONAW",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "Zoroark",
+       "offset": 0
+      },
+      {
+       "species": "CROCONAW",
+       "offset": 1
+      },
+      {
+       "species": "Staravia",
+       "offset": 0
+      },
+      {
+       "species": "AIPOM",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "FERALIGATR",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "FERALIGATR",
+       "offset": 1
+      },
+      {
+       "species": "RATICATE",
+       "offset": 0
+      },
+      {
+       "species": "KANGASKHAN",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "Zoroark",
+       "offset": 0
+      },
+      {
+       "species": "FERALIGATR",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "Zoroark",
+       "offset": 0
+      },
+      {
+       "species": "FERALIGATR",
+       "offset": 1
+      },
+      {
+       "species": "Staraptor",
+       "offset": 0
+      },
+      {
+       "species": "KANGASKHAN",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "CHEREN: What does\nstrength mean to\fyou? I still ask.",
+    "intro": "CHEREN: Let's\nfind out.",
+    "win": "I see. I have\nmore to learn.",
+    "loss": "That's one\nanswer, at least.",
+    "afterWin": "CHEREN: You made\nme think.",
+    "afterLoss": "CHEREN: Strong is\nnot the same as\fright. Remember."
+   }
+  },
+  {
+   "key": "CILAN",
+   "name": "CILAN",
+   "tier": 3,
+   "class": "BLAINE",
+   "member": "BLAINE1",
+   "overworld_palette": "PAL_OW_GREEN",
+   "theme": "Striaton connoisseur: grass types, served with flair",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "HOPPIP",
+       "offset": 0
+      },
+      {
+       "species": "SUNKERN",
+       "offset": 0
+      },
+      {
+       "species": "BELLSPROUT",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "HOPPIP",
+       "offset": 0
+      },
+      {
+       "species": "SUNKERN",
+       "offset": 0
+      },
+      {
+       "species": "BELLSPROUT",
+       "offset": 1
+      },
+      {
+       "species": "ODDISH",
+       "offset": 0
+      },
+      {
+       "species": "EXEGGCUTE",
+       "offset": 0
+      },
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "HOPPIP",
+       "offset": 0
+      },
+      {
+       "species": "SUNKERN",
+       "offset": 0
+      },
+      {
+       "species": "Treecko",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "HOPPIP",
+       "offset": 0
+      },
+      {
+       "species": "SUNKERN",
+       "offset": 0
+      },
+      {
+       "species": "Treecko",
+       "offset": 1
+      },
+      {
+       "species": "ODDISH",
+       "offset": 0
+      },
+      {
+       "species": "Roselia",
+       "offset": 0
+      },
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "SKIPLOOM",
+       "offset": 0
+      },
+      {
+       "species": "SUNKERN",
+       "offset": 0
+      },
+      {
+       "species": "WEEPINBELL",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SKIPLOOM",
+       "offset": 0
+      },
+      {
+       "species": "SUNKERN",
+       "offset": 0
+      },
+      {
+       "species": "WEEPINBELL",
+       "offset": 1
+      },
+      {
+       "species": "GLOOM",
+       "offset": 0
+      },
+      {
+       "species": "EXEGGCUTE",
+       "offset": 0
+      },
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "SKIPLOOM",
+       "offset": 0
+      },
+      {
+       "species": "SUNKERN",
+       "offset": 0
+      },
+      {
+       "species": "Grovyle",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "SKIPLOOM",
+       "offset": 0
+      },
+      {
+       "species": "SUNKERN",
+       "offset": 0
+      },
+      {
+       "species": "Grovyle",
+       "offset": 1
+      },
+      {
+       "species": "GLOOM",
+       "offset": 0
+      },
+      {
+       "species": "Roselia",
+       "offset": 0
+      },
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "JUMPLUFF",
+       "offset": 0
+      },
+      {
+       "species": "SUNFLORA",
+       "offset": 0
+      },
+      {
+       "species": "VICTREEBEL",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "JUMPLUFF",
+       "offset": 0
+      },
+      {
+       "species": "SUNFLORA",
+       "offset": 0
+      },
+      {
+       "species": "VICTREEBEL",
+       "offset": 1
+      },
+      {
+       "species": "BELLOSSOM",
+       "offset": 0
+      },
+      {
+       "species": "EXEGGUTOR",
+       "offset": 0
+      },
+      {
+       "species": "GRANBULL",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "JUMPLUFF",
+       "offset": 0
+      },
+      {
+       "species": "SUNFLORA",
+       "offset": 0
+      },
+      {
+       "species": "Sceptile",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "JUMPLUFF",
+       "offset": 0
+      },
+      {
+       "species": "SUNFLORA",
+       "offset": 0
+      },
+      {
+       "species": "Sceptile",
+       "offset": 1
+      },
+      {
+       "species": "BELLOSSOM",
+       "offset": 0
+      },
+      {
+       "species": "Roserade",
+       "offset": 0
+      },
+      {
+       "species": "GRANBULL",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "CILAN: Let me\nsavor this match.",
+    "intro": "CILAN: It's\ntasting time!",
+    "win": "A flavor I\ndidn't expect!",
+    "loss": "A perfect\npairing!",
+    "afterWin": "CILAN: Your style\nhas real taste.",
+    "afterLoss": "CILAN: A dash more\nspice next time!"
+   }
+  },
+  {
+   "key": "DRAYDEN",
+   "name": "DRAYDEN",
+   "tier": 3,
+   "class": "CLAIR",
+   "member": "CLAIR1",
+   "overworld_palette": "PAL_OW_BLUE",
+   "theme": "Opelucid's mayor and dragon master",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "HORSEA",
+       "offset": 0
+      },
+      {
+       "species": "LARVITAR",
+       "offset": 0
+      },
+      {
+       "species": "DRATINI",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "HORSEA",
+       "offset": 0
+      },
+      {
+       "species": "LARVITAR",
+       "offset": 0
+      },
+      {
+       "species": "DRATINI",
+       "offset": 1
+      },
+      {
+       "species": "ONIX",
+       "offset": 0
+      },
+      {
+       "species": "CHARMANDER",
+       "offset": 0
+      },
+      {
+       "species": "GLIGAR",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "HORSEA",
+       "offset": 0
+      },
+      {
+       "species": "Swablu",
+       "offset": 0
+      },
+      {
+       "species": "Gible",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "HORSEA",
+       "offset": 0
+      },
+      {
+       "species": "Swablu",
+       "offset": 0
+      },
+      {
+       "species": "Gible",
+       "offset": 1
+      },
+      {
+       "species": "ONIX",
+       "offset": 0
+      },
+      {
+       "species": "CHARMANDER",
+       "offset": 0
+      },
+      {
+       "species": "GLIGAR",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "SEADRA",
+       "offset": 0
+      },
+      {
+       "species": "PUPITAR",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONAIR",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SEADRA",
+       "offset": 0
+      },
+      {
+       "species": "PUPITAR",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONAIR",
+       "offset": 1
+      },
+      {
+       "species": "ONIX",
+       "offset": 0
+      },
+      {
+       "species": "CHARMELEON",
+       "offset": 0
+      },
+      {
+       "species": "GLIGAR",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "SEADRA",
+       "offset": 0
+      },
+      {
+       "species": "Altaria",
+       "offset": 0
+      },
+      {
+       "species": "Gabite",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "SEADRA",
+       "offset": 0
+      },
+      {
+       "species": "Altaria",
+       "offset": 0
+      },
+      {
+       "species": "Gabite",
+       "offset": 1
+      },
+      {
+       "species": "ONIX",
+       "offset": 0
+      },
+      {
+       "species": "CHARMELEON",
+       "offset": 0
+      },
+      {
+       "species": "GLIGAR",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "KINGDRA",
+       "offset": 0
+      },
+      {
+       "species": "TYRANITAR",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONITE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "KINGDRA",
+       "offset": 0
+      },
+      {
+       "species": "TYRANITAR",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONITE",
+       "offset": 1
+      },
+      {
+       "species": "STEELIX",
+       "offset": 0
+      },
+      {
+       "species": "CHARIZARD",
+       "offset": 0
+      },
+      {
+       "species": "GLIGAR",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "KINGDRA",
+       "offset": 0
+      },
+      {
+       "species": "Altaria",
+       "offset": 0
+      },
+      {
+       "species": "Garchomp",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "KINGDRA",
+       "offset": 0
+      },
+      {
+       "species": "Altaria",
+       "offset": 0
+      },
+      {
+       "species": "Garchomp",
+       "offset": 1
+      },
+      {
+       "species": "STEELIX",
+       "offset": 0
+      },
+      {
+       "species": "CHARIZARD",
+       "offset": 0
+      },
+      {
+       "species": "Gliscor",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "DRAYDEN: Dragons\nteach patience.\fI hope you have\nsome.",
+    "intro": "DRAYDEN: Then\nlet us begin.",
+    "win": "Well fought. You\nearned this.",
+    "loss": "Strength without\nhaste. Remember.",
+    "afterWin": "DRAYDEN: You will\ngo far.",
+    "afterLoss": "DRAYDEN: Train,\nand come again."
+   }
+  },
+  {
+   "key": "ELESA",
+   "name": "ELESA",
+   "tier": 3,
+   "class": "LT_SURGE",
+   "member": "LT_SURGE1",
+   "overworld_palette": "PAL_OW_BLUE",
+   "theme": "Nimbasa's shining model: electric types under the spotlight",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "MAREEP",
+       "offset": 0
+      },
+      {
+       "species": "ELEKID",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MAREEP",
+       "offset": 0
+      },
+      {
+       "species": "ELEKID",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 1
+      },
+      {
+       "species": "PICHU",
+       "offset": 0
+      },
+      {
+       "species": "VOLTORB",
+       "offset": 0
+      },
+      {
+       "species": "CHINCHOU",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "MAREEP",
+       "offset": 0
+      },
+      {
+       "species": "ELEKID",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "MAREEP",
+       "offset": 0
+      },
+      {
+       "species": "ELEKID",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 1
+      },
+      {
+       "species": "PICHU",
+       "offset": 0
+      },
+      {
+       "species": "MAGNEMITE",
+       "offset": 0
+      },
+      {
+       "species": "CHINCHOU",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "FLAAFFY",
+       "offset": 0
+      },
+      {
+       "species": "ELECTABUZZ",
+       "offset": 0
+      },
+      {
+       "species": "JOLTEON",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "FLAAFFY",
+       "offset": 0
+      },
+      {
+       "species": "ELECTABUZZ",
+       "offset": 0
+      },
+      {
+       "species": "JOLTEON",
+       "offset": 1
+      },
+      {
+       "species": "PIKACHU",
+       "offset": 0
+      },
+      {
+       "species": "ELECTRODE",
+       "offset": 0
+      },
+      {
+       "species": "CHINCHOU",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "FLAAFFY",
+       "offset": 0
+      },
+      {
+       "species": "ELECTABUZZ",
+       "offset": 0
+      },
+      {
+       "species": "JOLTEON",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "FLAAFFY",
+       "offset": 0
+      },
+      {
+       "species": "ELECTABUZZ",
+       "offset": 0
+      },
+      {
+       "species": "JOLTEON",
+       "offset": 1
+      },
+      {
+       "species": "PIKACHU",
+       "offset": 0
+      },
+      {
+       "species": "MAGNETON",
+       "offset": 0
+      },
+      {
+       "species": "CHINCHOU",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "AMPHAROS",
+       "offset": 0
+      },
+      {
+       "species": "ELECTABUZZ",
+       "offset": 0
+      },
+      {
+       "species": "JOLTEON",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "AMPHAROS",
+       "offset": 0
+      },
+      {
+       "species": "ELECTABUZZ",
+       "offset": 0
+      },
+      {
+       "species": "JOLTEON",
+       "offset": 1
+      },
+      {
+       "species": "RAICHU",
+       "offset": 0
+      },
+      {
+       "species": "ELECTRODE",
+       "offset": 0
+      },
+      {
+       "species": "LANTURN",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "AMPHAROS",
+       "offset": 0
+      },
+      {
+       "species": "Electivire",
+       "offset": 0
+      },
+      {
+       "species": "JOLTEON",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "AMPHAROS",
+       "offset": 0
+      },
+      {
+       "species": "Electivire",
+       "offset": 0
+      },
+      {
+       "species": "JOLTEON",
+       "offset": 1
+      },
+      {
+       "species": "RAICHU",
+       "offset": 0
+      },
+      {
+       "species": "Magnezone",
+       "offset": 0
+      },
+      {
+       "species": "LANTURN",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "ELESA: The lights\nare on. Ready?",
+    "intro": "ELESA: Dazzle me!",
+    "win": "You stole the\nshow tonight.",
+    "loss": "Shocking, isn't\nit?",
+    "afterWin": "ELESA: You'd look\ngood on a runway.",
+    "afterLoss": "ELESA: Shine a\nlittle brighter!"
+   }
+  },
+  {
+   "key": "GRIMSLEY",
+   "name": "GRIMSLEY",
+   "tier": 4,
+   "class": "KAREN",
+   "member": "KAREN1",
+   "overworld_palette": "PAL_OW_BLUE",
+   "theme": "Elite Four gambler: dark types, all in",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "SNEASEL",
+       "offset": 0
+      },
+      {
+       "species": "MURKROW",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOUR",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SNEASEL",
+       "offset": 0
+      },
+      {
+       "species": "MURKROW",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOUR",
+       "offset": 1
+      },
+      {
+       "species": "MEOWTH",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 0
+      },
+      {
+       "species": "SANDSHREW",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "SNEASEL",
+       "offset": 0
+      },
+      {
+       "species": "Zorua",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOUR",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "SNEASEL",
+       "offset": 0
+      },
+      {
+       "species": "Zorua",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOUR",
+       "offset": 1
+      },
+      {
+       "species": "MEOWTH",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 0
+      },
+      {
+       "species": "SANDSHREW",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "SNEASEL",
+       "offset": 0
+      },
+      {
+       "species": "MURKROW",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOOM",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SNEASEL",
+       "offset": 0
+      },
+      {
+       "species": "MURKROW",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOOM",
+       "offset": 1
+      },
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "UMBREON",
+       "offset": 0
+      },
+      {
+       "species": "SANDSLASH",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "SNEASEL",
+       "offset": 0
+      },
+      {
+       "species": "Zoroark",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOOM",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "SNEASEL",
+       "offset": 0
+      },
+      {
+       "species": "Zoroark",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOOM",
+       "offset": 1
+      },
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "UMBREON",
+       "offset": 0
+      },
+      {
+       "species": "Spiritomb",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "SNEASEL",
+       "offset": 0
+      },
+      {
+       "species": "MURKROW",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOOM",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SNEASEL",
+       "offset": 0
+      },
+      {
+       "species": "MURKROW",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOOM",
+       "offset": 1
+      },
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "UMBREON",
+       "offset": 0
+      },
+      {
+       "species": "TYRANITAR",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "Obstagoon",
+       "offset": 0
+      },
+      {
+       "species": "Zoroark",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOOM",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "Obstagoon",
+       "offset": 0
+      },
+      {
+       "species": "Zoroark",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOOM",
+       "offset": 1
+      },
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "UMBREON",
+       "offset": 0
+      },
+      {
+       "species": "Spiritomb",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "GRIMSLEY: Life's\na gamble. So is\fthis match.",
+    "intro": "GRIMSLEY: All in.",
+    "win": "The dice turned.\nSo it goes.",
+    "loss": "The house\nalways wins.",
+    "afterWin": "GRIMSLEY: Lady\nLuck likes you.",
+    "afterLoss": "GRIMSLEY: Bet\nagain sometime."
+   }
+  },
+  {
+   "key": "IRIS",
+   "name": "IRIS",
+   "tier": 4,
+   "class": "CHAMPION",
+   "member": "LANCE",
+   "overworld_palette": "PAL_OW_PINK",
+   "theme": "young dragon champion from the Village of Dragons",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "LARVITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRATINI",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "LARVITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRATINI",
+       "offset": 1
+      },
+      {
+       "species": "ONIX",
+       "offset": 0
+      },
+      {
+       "species": "OMANYTE",
+       "offset": 0
+      },
+      {
+       "species": "KABUTO",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "LARVITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRATINI",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "LARVITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRATINI",
+       "offset": 1
+      },
+      {
+       "species": "Aron",
+       "offset": 0
+      },
+      {
+       "species": "Archen",
+       "offset": 0
+      },
+      {
+       "species": "Gible",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "PUPITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONAIR",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "PUPITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONAIR",
+       "offset": 1
+      },
+      {
+       "species": "ONIX",
+       "offset": 0
+      },
+      {
+       "species": "OMANYTE",
+       "offset": 0
+      },
+      {
+       "species": "AERODACTYL",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "PUPITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONAIR",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "PUPITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONAIR",
+       "offset": 1
+      },
+      {
+       "species": "Lairon",
+       "offset": 0
+      },
+      {
+       "species": "Archen",
+       "offset": 0
+      },
+      {
+       "species": "Gabite",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "TYRANITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONITE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "TYRANITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONITE",
+       "offset": 1
+      },
+      {
+       "species": "STEELIX",
+       "offset": 0
+      },
+      {
+       "species": "OMASTAR",
+       "offset": 0
+      },
+      {
+       "species": "AERODACTYL",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "TYRANITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONITE",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "TYRANITAR",
+       "offset": 0
+      },
+      {
+       "species": "LAPRAS",
+       "offset": 0
+      },
+      {
+       "species": "DRAGONITE",
+       "offset": 1
+      },
+      {
+       "species": "Aggron",
+       "offset": 0
+      },
+      {
+       "species": "Archeops",
+       "offset": 0
+      },
+      {
+       "species": "Garchomp",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "IRIS: Ooh, you\nlook really\fstrong! Let's go!",
+    "intro": "IRIS: My dragons\nare fired up!",
+    "win": "Aww! You're\nreally good!",
+    "loss": "Yay! The dragons\nand me did it!",
+    "afterWin": "IRIS: Next time\nI'll win for sure!",
+    "afterLoss": "IRIS: That was so\nmuch fun!"
+   }
+  },
+  {
+   "key": "MARSHAL",
+   "name": "MARSHAL",
+   "tier": 4,
+   "class": "BRUNO",
+   "member": "BRUNO1",
+   "overworld_palette": "PAL_OW_BROWN",
+   "theme": "Elite Four fighter, Alder's apprentice",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "MACHOP",
+       "offset": 0
+      },
+      {
+       "species": "MANKEY",
+       "offset": 0
+      },
+      {
+       "species": "TYROGUE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MACHOP",
+       "offset": 0
+      },
+      {
+       "species": "MANKEY",
+       "offset": 0
+      },
+      {
+       "species": "TYROGUE",
+       "offset": 1
+      },
+      {
+       "species": "POLIWAG",
+       "offset": 0
+      },
+      {
+       "species": "HERACROSS",
+       "offset": 0
+      },
+      {
+       "species": "TEDDIURSA",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "MACHOP",
+       "offset": 0
+      },
+      {
+       "species": "Meditite",
+       "offset": 0
+      },
+      {
+       "species": "TYROGUE",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "MACHOP",
+       "offset": 0
+      },
+      {
+       "species": "Meditite",
+       "offset": 0
+      },
+      {
+       "species": "TYROGUE",
+       "offset": 1
+      },
+      {
+       "species": "POLIWAG",
+       "offset": 0
+      },
+      {
+       "species": "HERACROSS",
+       "offset": 0
+      },
+      {
+       "species": "Riolu",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "MACHOKE",
+       "offset": 0
+      },
+      {
+       "species": "PRIMEAPE",
+       "offset": 0
+      },
+      {
+       "species": "HITMONLEE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MACHOKE",
+       "offset": 0
+      },
+      {
+       "species": "PRIMEAPE",
+       "offset": 0
+      },
+      {
+       "species": "HITMONLEE",
+       "offset": 1
+      },
+      {
+       "species": "POLIWHIRL",
+       "offset": 0
+      },
+      {
+       "species": "HERACROSS",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "MACHOKE",
+       "offset": 0
+      },
+      {
+       "species": "Medicham",
+       "offset": 0
+      },
+      {
+       "species": "HITMONLEE",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "MACHOKE",
+       "offset": 0
+      },
+      {
+       "species": "Medicham",
+       "offset": 0
+      },
+      {
+       "species": "HITMONLEE",
+       "offset": 1
+      },
+      {
+       "species": "POLIWHIRL",
+       "offset": 0
+      },
+      {
+       "species": "HERACROSS",
+       "offset": 0
+      },
+      {
+       "species": "Lucario",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "MACHAMP",
+       "offset": 0
+      },
+      {
+       "species": "HITMONCHAN",
+       "offset": 0
+      },
+      {
+       "species": "HITMONLEE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MACHAMP",
+       "offset": 0
+      },
+      {
+       "species": "HITMONCHAN",
+       "offset": 0
+      },
+      {
+       "species": "HITMONLEE",
+       "offset": 1
+      },
+      {
+       "species": "POLIWRATH",
+       "offset": 0
+      },
+      {
+       "species": "HERACROSS",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "MACHAMP",
+       "offset": 0
+      },
+      {
+       "species": "Medicham",
+       "offset": 0
+      },
+      {
+       "species": "HITMONLEE",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "MACHAMP",
+       "offset": 0
+      },
+      {
+       "species": "Medicham",
+       "offset": 0
+      },
+      {
+       "species": "HITMONLEE",
+       "offset": 1
+      },
+      {
+       "species": "POLIWRATH",
+       "offset": 0
+      },
+      {
+       "species": "HERACROSS",
+       "offset": 0
+      },
+      {
+       "species": "Lucario",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "MARSHAL: My master\ntaught me to fight\fwith a calm mind.",
+    "intro": "MARSHAL: Hup!",
+    "win": "Your spirit is\nstrong.",
+    "loss": "Discipline wins.",
+    "afterWin": "MARSHAL: I will\ntrain harder.",
+    "afterLoss": "MARSHAL: Train\nyour body and\fyour mind."
+   }
+  },
+  {
+   "key": "SHAUNTAL",
+   "name": "SHAUNTAL",
+   "tier": 4,
+   "class": "KAREN",
+   "member": "KAREN1",
+   "overworld_palette": "PAL_OW_BLUE",
+   "theme": "Elite Four novelist: ghost types and the stories they tell",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "MISDREAVUS",
+       "offset": 0
+      },
+      {
+       "species": "TENTACOOL",
+       "offset": 0
+      },
+      {
+       "species": "GASTLY",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MISDREAVUS",
+       "offset": 0
+      },
+      {
+       "species": "TENTACOOL",
+       "offset": 0
+      },
+      {
+       "species": "GASTLY",
+       "offset": 1
+      },
+      {
+       "species": "DROWZEE",
+       "offset": 0
+      },
+      {
+       "species": "MURKROW",
+       "offset": 0
+      },
+      {
+       "species": "VULPIX",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "MISDREAVUS",
+       "offset": 0
+      },
+      {
+       "species": "TENTACOOL",
+       "offset": 0
+      },
+      {
+       "species": "GASTLY",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "MISDREAVUS",
+       "offset": 0
+      },
+      {
+       "species": "TENTACOOL",
+       "offset": 0
+      },
+      {
+       "species": "GASTLY",
+       "offset": 1
+      },
+      {
+       "species": "DROWZEE",
+       "offset": 0
+      },
+      {
+       "species": "MURKROW",
+       "offset": 0
+      },
+      {
+       "species": "VULPIX",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "MISDREAVUS",
+       "offset": 0
+      },
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "HAUNTER",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MISDREAVUS",
+       "offset": 0
+      },
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "HAUNTER",
+       "offset": 1
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "MURKROW",
+       "offset": 0
+      },
+      {
+       "species": "VULPIX",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "MISDREAVUS",
+       "offset": 0
+      },
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "HAUNTER",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "MISDREAVUS",
+       "offset": 0
+      },
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "HAUNTER",
+       "offset": 1
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "Spiritomb",
+       "offset": 0
+      },
+      {
+       "species": "VULPIX",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "MISDREAVUS",
+       "offset": 0
+      },
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "GENGAR",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MISDREAVUS",
+       "offset": 0
+      },
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "GENGAR",
+       "offset": 1
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "MURKROW",
+       "offset": 0
+      },
+      {
+       "species": "NINETALES",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "Mismagius",
+       "offset": 0
+      },
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "GENGAR",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "Mismagius",
+       "offset": 0
+      },
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "GENGAR",
+       "offset": 1
+      },
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "Spiritomb",
+       "offset": 0
+      },
+      {
+       "species": "NINETALES",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "SHAUNTAL: Ah! A\nnew character for\fmy next story!",
+    "intro": "SHAUNTAL: Let's\nwrite a chapter.",
+    "win": "What a twist!\nI must write it.",
+    "loss": "And so the tale\nends... for now.",
+    "afterWin": "SHAUNTAL: You'll\nbe my hero.",
+    "afterLoss": "SHAUNTAL: Every\nstory needs a\fsequel."
+   }
+  },
+  {
+   "key": "SKYLA",
+   "name": "SKYLA",
+   "tier": 3,
+   "class": "MISTY",
+   "member": "MISTY1",
+   "overworld_palette": "PAL_OW_BLUE",
+   "theme": "Mistralton's pilot leader: birds of every size",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "HOOTHOOT",
+       "offset": 0
+      },
+      {
+       "species": "NATU",
+       "offset": 0
+      },
+      {
+       "species": "PIDGEY",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "HOOTHOOT",
+       "offset": 0
+      },
+      {
+       "species": "NATU",
+       "offset": 0
+      },
+      {
+       "species": "PIDGEY",
+       "offset": 1
+      },
+      {
+       "species": "SPEAROW",
+       "offset": 0
+      },
+      {
+       "species": "ZUBAT",
+       "offset": 0
+      },
+      {
+       "species": "HOPPIP",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "HOOTHOOT",
+       "offset": 0
+      },
+      {
+       "species": "Swablu",
+       "offset": 0
+      },
+      {
+       "species": "Starly",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "HOOTHOOT",
+       "offset": 0
+      },
+      {
+       "species": "Swablu",
+       "offset": 0
+      },
+      {
+       "species": "Starly",
+       "offset": 1
+      },
+      {
+       "species": "SPEAROW",
+       "offset": 0
+      },
+      {
+       "species": "ZUBAT",
+       "offset": 0
+      },
+      {
+       "species": "HOPPIP",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "NOCTOWL",
+       "offset": 0
+      },
+      {
+       "species": "NATU",
+       "offset": 0
+      },
+      {
+       "species": "PIDGEOTTO",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "NOCTOWL",
+       "offset": 0
+      },
+      {
+       "species": "NATU",
+       "offset": 0
+      },
+      {
+       "species": "PIDGEOTTO",
+       "offset": 1
+      },
+      {
+       "species": "FEAROW",
+       "offset": 0
+      },
+      {
+       "species": "GOLBAT",
+       "offset": 0
+      },
+      {
+       "species": "SKIPLOOM",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "NOCTOWL",
+       "offset": 0
+      },
+      {
+       "species": "Altaria",
+       "offset": 0
+      },
+      {
+       "species": "Staravia",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "NOCTOWL",
+       "offset": 0
+      },
+      {
+       "species": "Altaria",
+       "offset": 0
+      },
+      {
+       "species": "Staravia",
+       "offset": 1
+      },
+      {
+       "species": "FEAROW",
+       "offset": 0
+      },
+      {
+       "species": "GOLBAT",
+       "offset": 0
+      },
+      {
+       "species": "SKIPLOOM",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "NOCTOWL",
+       "offset": 0
+      },
+      {
+       "species": "XATU",
+       "offset": 0
+      },
+      {
+       "species": "PIDGEOT",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "NOCTOWL",
+       "offset": 0
+      },
+      {
+       "species": "XATU",
+       "offset": 0
+      },
+      {
+       "species": "PIDGEOT",
+       "offset": 1
+      },
+      {
+       "species": "FEAROW",
+       "offset": 0
+      },
+      {
+       "species": "CROBAT",
+       "offset": 0
+      },
+      {
+       "species": "JUMPLUFF",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "NOCTOWL",
+       "offset": 0
+      },
+      {
+       "species": "Altaria",
+       "offset": 0
+      },
+      {
+       "species": "Staraptor",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "NOCTOWL",
+       "offset": 0
+      },
+      {
+       "species": "Altaria",
+       "offset": 0
+      },
+      {
+       "species": "Staraptor",
+       "offset": 1
+      },
+      {
+       "species": "FEAROW",
+       "offset": 0
+      },
+      {
+       "species": "CROBAT",
+       "offset": 0
+      },
+      {
+       "species": "JUMPLUFF",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "SKYLA: Cleared for\ntakeoff? Let's\ffly!",
+    "intro": "SKYLA: Up, up and\naway!",
+    "win": "Whoa! You flew\nright past me!",
+    "loss": "Smooth landing!",
+    "afterWin": "SKYLA: I'll catch\nyou on the wind.",
+    "afterLoss": "SKYLA: Keep your\nhead in the sky!"
+   }
+  },
+  {
+   "key": "VALERIE",
+   "name": "VALERIE",
+   "tier": 3,
+   "class": "SABRINA",
+   "member": "SABRINA1",
+   "overworld_palette": "PAL_OW_PINK",
+   "theme": "Laverre's fairy-type designer",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      },
+      {
+       "species": "TOGEPI",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      },
+      {
+       "species": "TOGEPI",
+       "offset": 1
+      },
+      {
+       "species": "CLEFAIRY",
+       "offset": 0
+      },
+      {
+       "species": "JIGGLYPUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      },
+      {
+       "species": "TOGEPI",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      },
+      {
+       "species": "TOGEPI",
+       "offset": 1
+      },
+      {
+       "species": "Ralts",
+       "offset": 0
+      },
+      {
+       "species": "JIGGLYPUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      },
+      {
+       "species": "TOGETIC",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      },
+      {
+       "species": "TOGETIC",
+       "offset": 1
+      },
+      {
+       "species": "CLEFAIRY",
+       "offset": 0
+      },
+      {
+       "species": "JIGGLYPUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      },
+      {
+       "species": "TOGETIC",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "SNUBBULL",
+       "offset": 0
+      },
+      {
+       "species": "MARILL",
+       "offset": 0
+      },
+      {
+       "species": "TOGETIC",
+       "offset": 1
+      },
+      {
+       "species": "Kirlia",
+       "offset": 0
+      },
+      {
+       "species": "JIGGLYPUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "GRANBULL",
+       "offset": 0
+      },
+      {
+       "species": "AZUMARILL",
+       "offset": 0
+      },
+      {
+       "species": "TOGETIC",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "GRANBULL",
+       "offset": 0
+      },
+      {
+       "species": "AZUMARILL",
+       "offset": 0
+      },
+      {
+       "species": "TOGETIC",
+       "offset": 1
+      },
+      {
+       "species": "CLEFABLE",
+       "offset": 0
+      },
+      {
+       "species": "WIGGLYTUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "GRANBULL",
+       "offset": 0
+      },
+      {
+       "species": "AZUMARILL",
+       "offset": 0
+      },
+      {
+       "species": "Togekiss",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "GRANBULL",
+       "offset": 0
+      },
+      {
+       "species": "AZUMARILL",
+       "offset": 0
+      },
+      {
+       "species": "Togekiss",
+       "offset": 1
+      },
+      {
+       "species": "Gardevoir",
+       "offset": 0
+      },
+      {
+       "species": "WIGGLYTUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "VALERIE: Oh...\nhello. I was lost\fin a daydream.",
+    "intro": "VALERIE: Let us\ndance, softly.",
+    "win": "How lovely. You\nare like silk.",
+    "loss": "A fairy tale\nending.",
+    "afterWin": "VALERIE: You have\na gentle power.",
+    "afterLoss": "VALERIE: Come see\nme again."
+   }
+  },
+  {
+   "key": "WALLACE",
+   "name": "WALLACE",
+   "tier": 4,
+   "class": "CHAMPION",
+   "member": "LANCE",
+   "overworld_palette": "PAL_OW_BLUE",
+   "theme": "Hoenn's water champion and contest star",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "TENTACOOL",
+       "offset": 0
+      },
+      {
+       "species": "SEEL",
+       "offset": 0
+      },
+      {
+       "species": "STARYU",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "TENTACOOL",
+       "offset": 0
+      },
+      {
+       "species": "SEEL",
+       "offset": 0
+      },
+      {
+       "species": "STARYU",
+       "offset": 1
+      },
+      {
+       "species": "SHELLDER",
+       "offset": 0
+      },
+      {
+       "species": "PSYDUCK",
+       "offset": 0
+      },
+      {
+       "species": "WOOPER",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "TENTACOOL",
+       "offset": 0
+      },
+      {
+       "species": "Lotad",
+       "offset": 0
+      },
+      {
+       "species": "Feebas",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "TENTACOOL",
+       "offset": 0
+      },
+      {
+       "species": "Lotad",
+       "offset": 0
+      },
+      {
+       "species": "Feebas",
+       "offset": 1
+      },
+      {
+       "species": "SHELLDER",
+       "offset": 0
+      },
+      {
+       "species": "PSYDUCK",
+       "offset": 0
+      },
+      {
+       "species": "Barboach",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "DEWGONG",
+       "offset": 0
+      },
+      {
+       "species": "STARMIE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "DEWGONG",
+       "offset": 0
+      },
+      {
+       "species": "STARMIE",
+       "offset": 1
+      },
+      {
+       "species": "SHELLDER",
+       "offset": 0
+      },
+      {
+       "species": "GOLDUCK",
+       "offset": 0
+      },
+      {
+       "species": "QUAGSIRE",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "Lombre",
+       "offset": 0
+      },
+      {
+       "species": "Milotic",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "Lombre",
+       "offset": 0
+      },
+      {
+       "species": "Milotic",
+       "offset": 1
+      },
+      {
+       "species": "SHELLDER",
+       "offset": 0
+      },
+      {
+       "species": "GOLDUCK",
+       "offset": 0
+      },
+      {
+       "species": "Whiscash",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "GYARADOS",
+       "offset": 0
+      },
+      {
+       "species": "STARMIE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "GYARADOS",
+       "offset": 0
+      },
+      {
+       "species": "STARMIE",
+       "offset": 1
+      },
+      {
+       "species": "CLOYSTER",
+       "offset": 0
+      },
+      {
+       "species": "GOLDUCK",
+       "offset": 0
+      },
+      {
+       "species": "QUAGSIRE",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "Ludicolo",
+       "offset": 0
+      },
+      {
+       "species": "Milotic",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "TENTACRUEL",
+       "offset": 0
+      },
+      {
+       "species": "Ludicolo",
+       "offset": 0
+      },
+      {
+       "species": "Milotic",
+       "offset": 1
+      },
+      {
+       "species": "CLOYSTER",
+       "offset": 0
+      },
+      {
+       "species": "STARMIE",
+       "offset": 0
+      },
+      {
+       "species": "Whiscash",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "WALLACE: Battles\nshould be as\fbeautiful as the\nsea.",
+    "intro": "WALLACE: Shall we\nbegin? Elegantly.",
+    "win": "Magnificent! Truly\nmagnificent.",
+    "loss": "Beauty and\nstrength, as one.",
+    "afterWin": "WALLACE: Your\nstyle is stunning.",
+    "afterLoss": "WALLACE: Polish\nyour grace."
+   }
+  },
+  {
+   "key": "CYCLIST_F",
+   "name": "CYCLIST",
+   "tier": 1,
+   "class": "PICNICKER",
+   "member": "GINA1",
+   "overworld_palette": "PAL_OW_PINK",
+   "theme": "speedy cyclist: fast runners and fliers",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "DODUO",
+       "offset": 0
+      },
+      {
+       "species": "RATTATA",
+       "offset": 0
+      },
+      {
+       "species": "PONYTA",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "DODUO",
+       "offset": 0
+      },
+      {
+       "species": "RATTATA",
+       "offset": 0
+      },
+      {
+       "species": "PONYTA",
+       "offset": 1
+      },
+      {
+       "species": "PIDGEY",
+       "offset": 0
+      },
+      {
+       "species": "SENTRET",
+       "offset": 0
+      },
+      {
+       "species": "VOLTORB",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "DODUO",
+       "offset": 0
+      },
+      {
+       "species": "Nincada",
+       "offset": 0
+      },
+      {
+       "species": "PONYTA",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "DODUO",
+       "offset": 0
+      },
+      {
+       "species": "Nincada",
+       "offset": 0
+      },
+      {
+       "species": "PONYTA",
+       "offset": 1
+      },
+      {
+       "species": "PIDGEY",
+       "offset": 0
+      },
+      {
+       "species": "SENTRET",
+       "offset": 0
+      },
+      {
+       "species": "VOLTORB",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "DODRIO",
+       "offset": 0
+      },
+      {
+       "species": "RATICATE",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "DODRIO",
+       "offset": 0
+      },
+      {
+       "species": "RATICATE",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      },
+      {
+       "species": "PIDGEOTTO",
+       "offset": 0
+      },
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "ELECTRODE",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "DODRIO",
+       "offset": 0
+      },
+      {
+       "species": "Ninjask",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "DODRIO",
+       "offset": 0
+      },
+      {
+       "species": "Ninjask",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      },
+      {
+       "species": "PIDGEOTTO",
+       "offset": 0
+      },
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "ELECTRODE",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "DODRIO",
+       "offset": 0
+      },
+      {
+       "species": "RATICATE",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "DODRIO",
+       "offset": 0
+      },
+      {
+       "species": "RATICATE",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      },
+      {
+       "species": "PIDGEOT",
+       "offset": 0
+      },
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "ELECTRODE",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "DODRIO",
+       "offset": 0
+      },
+      {
+       "species": "Ninjask",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "DODRIO",
+       "offset": 0
+      },
+      {
+       "species": "Ninjask",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      },
+      {
+       "species": "PIDGEOT",
+       "offset": 0
+      },
+      {
+       "species": "FURRET",
+       "offset": 0
+      },
+      {
+       "species": "ELECTRODE",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "CYCLIST: I rode\nhere nonstop!",
+    "intro": "CYCLIST: Let's go,\nfull speed!",
+    "win": "Flat tire!",
+    "loss": "Downhill all\nthe way!",
+    "afterWin": "CYCLIST: You're\nfaster than me!",
+    "afterLoss": "CYCLIST: Wanna\nrace again?"
+   }
+  },
+  {
+   "key": "HARLEQUIN",
+   "name": "HARLEQUIN",
+   "tier": 1,
+   "class": "JUGGLER",
+   "member": "FRITZ",
+   "overworld_palette": "PAL_OW_RED",
+   "theme": "clown: tricksters and mimics",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "DROWZEE",
+       "offset": 0
+      },
+      {
+       "species": "JIGGLYPUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "DROWZEE",
+       "offset": 0
+      },
+      {
+       "species": "JIGGLYPUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      },
+      {
+       "species": "SMOOCHUM",
+       "offset": 0
+      },
+      {
+       "species": "VOLTORB",
+       "offset": 0
+      },
+      {
+       "species": "AIPOM",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "DROWZEE",
+       "offset": 0
+      },
+      {
+       "species": "Skitty",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "DROWZEE",
+       "offset": 0
+      },
+      {
+       "species": "Skitty",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      },
+      {
+       "species": "SMOOCHUM",
+       "offset": 0
+      },
+      {
+       "species": "VOLTORB",
+       "offset": 0
+      },
+      {
+       "species": "AIPOM",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "JIGGLYPUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "JIGGLYPUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      },
+      {
+       "species": "JYNX",
+       "offset": 0
+      },
+      {
+       "species": "ELECTRODE",
+       "offset": 0
+      },
+      {
+       "species": "AIPOM",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "Delcatty",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "Delcatty",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      },
+      {
+       "species": "JYNX",
+       "offset": 0
+      },
+      {
+       "species": "ELECTRODE",
+       "offset": 0
+      },
+      {
+       "species": "AIPOM",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "WIGGLYTUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "WIGGLYTUFF",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      },
+      {
+       "species": "JYNX",
+       "offset": 0
+      },
+      {
+       "species": "ELECTRODE",
+       "offset": 0
+      },
+      {
+       "species": "AIPOM",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "Delcatty",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "HYPNO",
+       "offset": 0
+      },
+      {
+       "species": "Delcatty",
+       "offset": 0
+      },
+      {
+       "species": "MR. MIME",
+       "offset": 1
+      },
+      {
+       "species": "JYNX",
+       "offset": 0
+      },
+      {
+       "species": "ELECTRODE",
+       "offset": 0
+      },
+      {
+       "species": "AIPOM",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "HARLEQUIN: Step\nright up! The\fshow is free!",
+    "intro": "HARLEQUIN: Ta-da!",
+    "win": "My act fell\nflat!",
+    "loss": "Thank you, thank\nyou!",
+    "afterWin": "HARLEQUIN: Tough\ncrowd today.",
+    "afterLoss": "HARLEQUIN: Encore!\nEncore!"
+   }
+  },
+  {
+   "key": "INFER",
+   "name": "INFER",
+   "tier": 2,
+   "class": "PICNICKER",
+   "member": "HOPE",
+   "overworld_palette": "PAL_OW_PINK",
+   "theme": "fire-type girl (sheet name 'Infer')",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "SLUGMA",
+       "offset": 0
+      },
+      {
+       "species": "VULPIX",
+       "offset": 0
+      },
+      {
+       "species": "MAGBY",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "SLUGMA",
+       "offset": 0
+      },
+      {
+       "species": "VULPIX",
+       "offset": 0
+      },
+      {
+       "species": "MAGBY",
+       "offset": 1
+      },
+      {
+       "species": "PONYTA",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOUR",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "SLUGMA",
+       "offset": 0
+      },
+      {
+       "species": "Numel",
+       "offset": 0
+      },
+      {
+       "species": "MAGBY",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "SLUGMA",
+       "offset": 0
+      },
+      {
+       "species": "Numel",
+       "offset": 0
+      },
+      {
+       "species": "MAGBY",
+       "offset": 1
+      },
+      {
+       "species": "PONYTA",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOUR",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "MAGCARGO",
+       "offset": 0
+      },
+      {
+       "species": "VULPIX",
+       "offset": 0
+      },
+      {
+       "species": "MAGMAR",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MAGCARGO",
+       "offset": 0
+      },
+      {
+       "species": "VULPIX",
+       "offset": 0
+      },
+      {
+       "species": "MAGMAR",
+       "offset": 1
+      },
+      {
+       "species": "PONYTA",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOUR",
+       "offset": 0
+      },
+      {
+       "species": "FLAREON",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "MAGCARGO",
+       "offset": 0
+      },
+      {
+       "species": "Camerupt",
+       "offset": 0
+      },
+      {
+       "species": "MAGMAR",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "MAGCARGO",
+       "offset": 0
+      },
+      {
+       "species": "Camerupt",
+       "offset": 0
+      },
+      {
+       "species": "MAGMAR",
+       "offset": 1
+      },
+      {
+       "species": "PONYTA",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOUR",
+       "offset": 0
+      },
+      {
+       "species": "FLAREON",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "MAGCARGO",
+       "offset": 0
+      },
+      {
+       "species": "NINETALES",
+       "offset": 0
+      },
+      {
+       "species": "MAGMAR",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MAGCARGO",
+       "offset": 0
+      },
+      {
+       "species": "NINETALES",
+       "offset": 0
+      },
+      {
+       "species": "MAGMAR",
+       "offset": 1
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOOM",
+       "offset": 0
+      },
+      {
+       "species": "FLAREON",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "MAGCARGO",
+       "offset": 0
+      },
+      {
+       "species": "Camerupt",
+       "offset": 0
+      },
+      {
+       "species": "MAGMAR",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "MAGCARGO",
+       "offset": 0
+      },
+      {
+       "species": "Camerupt",
+       "offset": 0
+      },
+      {
+       "species": "MAGMAR",
+       "offset": 1
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 0
+      },
+      {
+       "species": "HOUNDOOM",
+       "offset": 0
+      },
+      {
+       "species": "FLAREON",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "INFER: Is it hot\nin here, or is it\fjust my team?",
+    "intro": "INFER: Let's heat\nthings up!",
+    "win": "Burned out...",
+    "loss": "Too hot to\nhandle!",
+    "afterWin": "INFER: You put\nmy fire out!",
+    "afterLoss": "INFER: Stay warm!"
+   }
+  },
+  {
+   "key": "INFER_SAGE",
+   "name": "SAGE",
+   "tier": 2,
+   "class": "PSYCHIC_T",
+   "member": "HERMAN",
+   "overworld_palette": "PAL_OW_PINK",
+   "theme": "robed fire sage (sheet name 'Infer sage')",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "GROWLITHE",
+       "offset": 0
+      },
+      {
+       "species": "NATU",
+       "offset": 0
+      },
+      {
+       "species": "PONYTA",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "GROWLITHE",
+       "offset": 0
+      },
+      {
+       "species": "NATU",
+       "offset": 0
+      },
+      {
+       "species": "PONYTA",
+       "offset": 1
+      },
+      {
+       "species": "ABRA",
+       "offset": 0
+      },
+      {
+       "species": "VULPIX",
+       "offset": 0
+      },
+      {
+       "species": "SLUGMA",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "GROWLITHE",
+       "offset": 0
+      },
+      {
+       "species": "NATU",
+       "offset": 0
+      },
+      {
+       "species": "PONYTA",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "GROWLITHE",
+       "offset": 0
+      },
+      {
+       "species": "NATU",
+       "offset": 0
+      },
+      {
+       "species": "PONYTA",
+       "offset": 1
+      },
+      {
+       "species": "ABRA",
+       "offset": 0
+      },
+      {
+       "species": "VULPIX",
+       "offset": 0
+      },
+      {
+       "species": "Beldum",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "ARCANINE",
+       "offset": 0
+      },
+      {
+       "species": "XATU",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "ARCANINE",
+       "offset": 0
+      },
+      {
+       "species": "XATU",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      },
+      {
+       "species": "KADABRA",
+       "offset": 0
+      },
+      {
+       "species": "NINETALES",
+       "offset": 0
+      },
+      {
+       "species": "MAGCARGO",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "ARCANINE",
+       "offset": 0
+      },
+      {
+       "species": "XATU",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "ARCANINE",
+       "offset": 0
+      },
+      {
+       "species": "XATU",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      },
+      {
+       "species": "KADABRA",
+       "offset": 0
+      },
+      {
+       "species": "NINETALES",
+       "offset": 0
+      },
+      {
+       "species": "Metang",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "ARCANINE",
+       "offset": 0
+      },
+      {
+       "species": "XATU",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "ARCANINE",
+       "offset": 0
+      },
+      {
+       "species": "XATU",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      },
+      {
+       "species": "ALAKAZAM",
+       "offset": 0
+      },
+      {
+       "species": "NINETALES",
+       "offset": 0
+      },
+      {
+       "species": "MAGCARGO",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "ARCANINE",
+       "offset": 0
+      },
+      {
+       "species": "XATU",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "ARCANINE",
+       "offset": 0
+      },
+      {
+       "species": "XATU",
+       "offset": 0
+      },
+      {
+       "species": "RAPIDASH",
+       "offset": 1
+      },
+      {
+       "species": "ALAKAZAM",
+       "offset": 0
+      },
+      {
+       "species": "NINETALES",
+       "offset": 0
+      },
+      {
+       "species": "Metagross",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "SAGE: The flame\nreveals the truth.",
+    "intro": "SAGE: Let the fire\njudge us.",
+    "win": "The flame\nhas spoken.",
+    "loss": "As the fire\nforetold.",
+    "afterWin": "SAGE: Your light\nburns bright.",
+    "afterLoss": "SAGE: Meditate\non this loss."
+   }
+  },
+  {
+   "key": "LINEBACKER",
+   "name": "LINEBACKER",
+   "tier": 2,
+   "class": "BLACKBELT_T",
+   "member": "YOSHI",
+   "overworld_palette": "PAL_OW_BROWN",
+   "theme": "football player: heavy rock and ground hitters",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "GEODUDE",
+       "offset": 0
+      },
+      {
+       "species": "CUBONE",
+       "offset": 0
+      },
+      {
+       "species": "RHYHORN",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "GEODUDE",
+       "offset": 0
+      },
+      {
+       "species": "CUBONE",
+       "offset": 0
+      },
+      {
+       "species": "RHYHORN",
+       "offset": 1
+      },
+      {
+       "species": "MANKEY",
+       "offset": 0
+      },
+      {
+       "species": "PHANPY",
+       "offset": 0
+      },
+      {
+       "species": "TEDDIURSA",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "GEODUDE",
+       "offset": 0
+      },
+      {
+       "species": "Wooper",
+       "offset": 0,
+       "form": "Paldean"
+      },
+      {
+       "species": "RHYHORN",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "GEODUDE",
+       "offset": 0
+      },
+      {
+       "species": "Wooper",
+       "offset": 0,
+       "form": "Paldean"
+      },
+      {
+       "species": "RHYHORN",
+       "offset": 1
+      },
+      {
+       "species": "MANKEY",
+       "offset": 0
+      },
+      {
+       "species": "PHANPY",
+       "offset": 0
+      },
+      {
+       "species": "TEDDIURSA",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "GRAVELER",
+       "offset": 0
+      },
+      {
+       "species": "MAROWAK",
+       "offset": 0
+      },
+      {
+       "species": "RHYDON",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "GRAVELER",
+       "offset": 0
+      },
+      {
+       "species": "MAROWAK",
+       "offset": 0
+      },
+      {
+       "species": "RHYDON",
+       "offset": 1
+      },
+      {
+       "species": "PRIMEAPE",
+       "offset": 0
+      },
+      {
+       "species": "DONPHAN",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "GRAVELER",
+       "offset": 0
+      },
+      {
+       "species": "Clodsire",
+       "offset": 0
+      },
+      {
+       "species": "RHYDON",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "GRAVELER",
+       "offset": 0
+      },
+      {
+       "species": "Clodsire",
+       "offset": 0
+      },
+      {
+       "species": "RHYDON",
+       "offset": 1
+      },
+      {
+       "species": "PRIMEAPE",
+       "offset": 0
+      },
+      {
+       "species": "DONPHAN",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "GOLEM",
+       "offset": 0
+      },
+      {
+       "species": "MAROWAK",
+       "offset": 0
+      },
+      {
+       "species": "RHYDON",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "GOLEM",
+       "offset": 0
+      },
+      {
+       "species": "MAROWAK",
+       "offset": 0
+      },
+      {
+       "species": "RHYDON",
+       "offset": 1
+      },
+      {
+       "species": "PRIMEAPE",
+       "offset": 0
+      },
+      {
+       "species": "DONPHAN",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "GOLEM",
+       "offset": 0
+      },
+      {
+       "species": "Clodsire",
+       "offset": 0
+      },
+      {
+       "species": "Rhyperior",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "GOLEM",
+       "offset": 0
+      },
+      {
+       "species": "Clodsire",
+       "offset": 0
+      },
+      {
+       "species": "Rhyperior",
+       "offset": 1
+      },
+      {
+       "species": "PRIMEAPE",
+       "offset": 0
+      },
+      {
+       "species": "DONPHAN",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "LINEBACKER: Huddle\nup! It's game day!",
+    "intro": "LINEBACKER: Hut!\nHut! HIKE!",
+    "win": "Fumble!",
+    "loss": "Touchdown!",
+    "afterWin": "LINEBACKER: You\nbroke my tackle!",
+    "afterLoss": "LINEBACKER: Good\ngame! Shake on it."
+   }
+  },
+  {
+   "key": "ROUGHNECK",
+   "name": "ROUGHNECK",
+   "tier": 1,
+   "class": "BIKER",
+   "member": "ZEKE",
+   "overworld_palette": "PAL_OW_BROWN",
+   "theme": "tough guy: poison, smog and muscle",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "GRIMER",
+       "offset": 0
+      },
+      {
+       "species": "ZUBAT",
+       "offset": 0
+      },
+      {
+       "species": "KOFFING",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "GRIMER",
+       "offset": 0
+      },
+      {
+       "species": "ZUBAT",
+       "offset": 0
+      },
+      {
+       "species": "KOFFING",
+       "offset": 1
+      },
+      {
+       "species": "MACHOP",
+       "offset": 0
+      },
+      {
+       "species": "SANDSHREW",
+       "offset": 0
+      },
+      {
+       "species": "TEDDIURSA",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "Trubbish",
+       "offset": 0
+      },
+      {
+       "species": "ZUBAT",
+       "offset": 0
+      },
+      {
+       "species": "KOFFING",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "Trubbish",
+       "offset": 0
+      },
+      {
+       "species": "ZUBAT",
+       "offset": 0
+      },
+      {
+       "species": "KOFFING",
+       "offset": 1
+      },
+      {
+       "species": "MACHOP",
+       "offset": 0
+      },
+      {
+       "species": "SANDSHREW",
+       "offset": 0
+      },
+      {
+       "species": "TEDDIURSA",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "MUK",
+       "offset": 0
+      },
+      {
+       "species": "GOLBAT",
+       "offset": 0
+      },
+      {
+       "species": "WEEZING",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MUK",
+       "offset": 0
+      },
+      {
+       "species": "GOLBAT",
+       "offset": 0
+      },
+      {
+       "species": "WEEZING",
+       "offset": 1
+      },
+      {
+       "species": "MACHOKE",
+       "offset": 0
+      },
+      {
+       "species": "SANDSLASH",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "Garbodor",
+       "offset": 0
+      },
+      {
+       "species": "GOLBAT",
+       "offset": 0
+      },
+      {
+       "species": "WEEZING",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "Garbodor",
+       "offset": 0
+      },
+      {
+       "species": "GOLBAT",
+       "offset": 0
+      },
+      {
+       "species": "WEEZING",
+       "offset": 1
+      },
+      {
+       "species": "MACHOKE",
+       "offset": 0
+      },
+      {
+       "species": "SANDSLASH",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "MUK",
+       "offset": 0
+      },
+      {
+       "species": "GOLBAT",
+       "offset": 0
+      },
+      {
+       "species": "WEEZING",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MUK",
+       "offset": 0
+      },
+      {
+       "species": "GOLBAT",
+       "offset": 0
+      },
+      {
+       "species": "WEEZING",
+       "offset": 1
+      },
+      {
+       "species": "MACHAMP",
+       "offset": 0
+      },
+      {
+       "species": "SANDSLASH",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "Garbodor",
+       "offset": 0
+      },
+      {
+       "species": "GOLBAT",
+       "offset": 0
+      },
+      {
+       "species": "WEEZING",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "Garbodor",
+       "offset": 0
+      },
+      {
+       "species": "GOLBAT",
+       "offset": 0
+      },
+      {
+       "species": "WEEZING",
+       "offset": 1
+      },
+      {
+       "species": "MACHAMP",
+       "offset": 0
+      },
+      {
+       "species": "SANDSLASH",
+       "offset": 0
+      },
+      {
+       "species": "URSARING",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "ROUGHNECK: What're\nyou lookin' at?",
+    "intro": "ROUGHNECK: You\nasked for it!",
+    "win": "Tch. Lucky.",
+    "loss": "Hah! Too easy.",
+    "afterWin": "ROUGHNECK: ...You\nain't bad, kid.",
+    "afterLoss": "ROUGHNECK: Beat\nit, small fry."
+   }
+  },
+  {
+   "key": "SOCIALITE",
+   "name": "SOCIALITE",
+   "tier": 2,
+   "class": "BEAUTY",
+   "member": "VICTORIA",
+   "overworld_palette": "PAL_OW_BROWN",
+   "theme": "high-society lady: elegant and pampered",
+   "variants": [
+    {
+     "strength": "Early",
+     "gen12_small": [
+      {
+       "species": "MEOWTH",
+       "offset": 0
+      },
+      {
+       "species": "HOPPIP",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "MEOWTH",
+       "offset": 0
+      },
+      {
+       "species": "HOPPIP",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 1
+      },
+      {
+       "species": "ODDISH",
+       "offset": 0
+      },
+      {
+       "species": "SMOOCHUM",
+       "offset": 0
+      },
+      {
+       "species": "STARYU",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "MEOWTH",
+       "offset": 0
+      },
+      {
+       "species": "Wurmple",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "MEOWTH",
+       "offset": 0
+      },
+      {
+       "species": "Wurmple",
+       "offset": 0
+      },
+      {
+       "species": "EEVEE",
+       "offset": 1
+      },
+      {
+       "species": "ODDISH",
+       "offset": 0
+      },
+      {
+       "species": "SMOOCHUM",
+       "offset": 0
+      },
+      {
+       "species": "STARYU",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Middle",
+     "gen12_small": [
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "SKIPLOOM",
+       "offset": 0
+      },
+      {
+       "species": "ESPEON",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "SKIPLOOM",
+       "offset": 0
+      },
+      {
+       "species": "ESPEON",
+       "offset": 1
+      },
+      {
+       "species": "GLOOM",
+       "offset": 0
+      },
+      {
+       "species": "JYNX",
+       "offset": 0
+      },
+      {
+       "species": "STARMIE",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "Beautifly",
+       "offset": 0
+      },
+      {
+       "species": "ESPEON",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "Beautifly",
+       "offset": 0
+      },
+      {
+       "species": "ESPEON",
+       "offset": 1
+      },
+      {
+       "species": "GLOOM",
+       "offset": 0
+      },
+      {
+       "species": "JYNX",
+       "offset": 0
+      },
+      {
+       "species": "STARMIE",
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "strength": "Full",
+     "gen12_small": [
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "JUMPLUFF",
+       "offset": 0
+      },
+      {
+       "species": "ESPEON",
+       "offset": 1
+      }
+     ],
+     "gen12_six": [
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "JUMPLUFF",
+       "offset": 0
+      },
+      {
+       "species": "ESPEON",
+       "offset": 1
+      },
+      {
+       "species": "BELLOSSOM",
+       "offset": 0
+      },
+      {
+       "species": "JYNX",
+       "offset": 0
+      },
+      {
+       "species": "STARMIE",
+       "offset": 0
+      }
+     ],
+     "expanded_small": [
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "Beautifly",
+       "offset": 0
+      },
+      {
+       "species": "ESPEON",
+       "offset": 1
+      }
+     ],
+     "expanded_six": [
+      {
+       "species": "PERSIAN",
+       "offset": 0
+      },
+      {
+       "species": "Beautifly",
+       "offset": 0
+      },
+      {
+       "species": "ESPEON",
+       "offset": 1
+      },
+      {
+       "species": "BELLOSSOM",
+       "offset": 0
+      },
+      {
+       "species": "JYNX",
+       "offset": 0
+      },
+      {
+       "species": "STARMIE",
+       "offset": 0
+      }
+     ]
+    }
+   ],
+   "lines": {
+    "chat": "SOCIALITE: Oh my,\nwhat a quaint\flittle stadium.",
+    "intro": "SOCIALITE: Do try\nto keep up, dear.",
+    "win": "How dreadfully\nrude!",
+    "loss": "Simply\ndivine.",
+    "afterWin": "SOCIALITE: You\nhave some class.",
+    "afterLoss": "SOCIALITE: Tea,\nafterward?"
+   }
+  }
+ ]
+}
