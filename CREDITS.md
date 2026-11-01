@@ -44,7 +44,6 @@ Art from **Polished Crystal**, with per-asset attribution retained:
 | Kuroko Aizawa | Artist, Engineer and Cheryl: overworld and battle sprites |
 | Kuroko Aizawa / JaceDeane | Professor Ivy: overworld and battle sprites |
 | bloodless (BloodlessNS) | Buck, Maylene and Veteran (M): overworld and battle sprites |
-| isamuakai01 | Cynthia and Steven: overworld and battle sprites |
 | SCMidna / Freeline | Riley, Marley and Mira: overworld sprites |
 | Rangi42 / Polished Crystal | Riley, Marley and Mira: battle sprites |
 | Kage | Walker: overworld and battle sprites |
@@ -55,7 +54,6 @@ Art from **Polished Crystal**, with per-asset attribution retained:
 
 This uses art from Polished Crystal, not an attribution to vanilla pokecrystal.
 The supplied color-test conversions are copied without additional editing.
-Steven's supplied battle portrait includes the prepared light-blue hair treatment.
 No unprovided battle art is included: five guests use an existing vanilla
 Gentleman portrait as a temporary stand-in.
 
@@ -99,7 +97,9 @@ permitted. Direct-use approvals and source-page terms are recorded in
 | Modern Red | Red (Modern).png (local cleared source; not bundled) | assets/modern_red.png, assets/modern_red_front.png | Bani |
 | Nate | Nate.png (local cleared source; not bundled) | assets/nate.png, assets/nate_front.png | Bani |
 | A.J. | aj - TheBrawlUnit.png (local approved source; not bundled) | assets/aj.png, assets/aj_front.png | TheBrawlUnit |
-| Barry | Barry.png (local cleared source; not bundled) | assets/barry.png, assets/barry_front.png | NolanKrawczak |
+| Barry | Barry.png (local cleared source; not bundled) | assets/barry.png, assets/barry_front.png | Bani |
+| Cynthia | Cynthia.png (local cleared source; not bundled) | assets/cynthia.png, assets/cynthia_front.png | Bani |
+| Steven | Steven Stone.png (local cleared source; not bundled) | assets/steven.png, assets/steven_front.png | Bani |
 | Bea | `bea.png` | `assets/bea.png`, `assets/bea_front.png` | KIRB/YOSHI |
 | Bill | Bill.png (local cleared source; not bundled) | assets/bill.png, assets/bill_front.png | RoyalGuard |
 | Chef (developer-selector test) | Chef.png (local cleared source; not bundled) | assets/chef.png, assets/chef_front.png | Bani |
@@ -188,7 +188,7 @@ user-approved exception to the normal trainer-only selection rule and remains
 developer-selector-only.
 
 N, Ingo and Nurse Joy use Blaklyte art; Pokémon Breeder uses ArtsyAlraune
-art; and Santa and Modern Red use Bani art. Barry uses NolanKrawczak art;
+art; and Santa, Modern Red, Barry, Cynthia and Steven use Bani art;
 Bill, Colress, Hugh, Maxie and Wally use
 RoyalGuard art; and Gloria, Officer Jenny and Ruin Maniac use
 TeamHistoryWaffles art. The user confirmed that the creator-folder names are

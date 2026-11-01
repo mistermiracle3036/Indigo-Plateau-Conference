@@ -5,6 +5,14 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.86
+
+Private phone test: new art for Barry, Cynthia and Steven.
+
+- Barry, Cynthia and Steven use Bani's sprites, overworld and battle, as you
+  picked them: Barry in green, Cynthia in black, Steven with silver hair.
+  Credits now name Bani for all three.
+
 ## 1.1.85
 
 Private phone test: no more square behind the new party icons.

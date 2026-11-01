@@ -32,7 +32,9 @@ follow-up before public release.
 | Ball Guy custom battle and overworld set | CyUzi | Use confirmed directly by the artist; credit required | Not supplied — Crystal Clear archive is not addressable per file | 2026-08-30 |
 | Volkner custom battle and overworld set | KiravelSoul | User-confirmed creator-folder terms equivalent to or less restrictive than Limesar; visible credit is sufficient | Not supplied — local cleared source | 2026-08-30 |
 | Armored Mewtwo custom battle and overworld set | KiravelSoul | Same confirmed creator-folder terms; user explicitly approved this Pokémon-as-trainer exception | Not supplied — local cleared source | 2026-08-30 |
-| Barry custom battle and overworld set | NolanKrawczak | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
+| Barry custom battle and overworld set | Bani | Same Bani folder as the cleared sheets above; developer's pick 2026-11-01 | Not supplied — approved directly | 2026-11-01 |
+| Cynthia custom battle and overworld set | Bani | Same Bani folder as the cleared sheets above; developer's pick 2026-11-01 | Not supplied — approved directly | 2026-11-01 |
+| Steven custom battle and overworld set | Bani | Same Bani folder as the cleared sheets above; developer's pick 2026-11-01 | Not supplied — approved directly | 2026-11-01 |
 | Bill custom battle and overworld set | RoyalGuard | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
 | Colress custom battle and overworld set | RoyalGuard | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
 | Hugh custom battle and overworld set | RoyalGuard | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
@@ -108,7 +110,7 @@ included; the complete injector sheets are not redistributed.
 Ball Guy's injector sheet is credited to CyUzi. Use was confirmed directly by
 the artist with credit required. Only its native runtime crops are bundled.
 
-The Barry sheet is credited to NolanKrawczak; Bill, Colress, Hugh, Maxie and
+The Barry, Cynthia and Steven sheets are credited to Bani; Bill, Colress, Hugh, Maxie and
 Wally are credited to RoyalGuard; and Gloria, Officer Jenny and Ruin Maniac
 are credited to TeamHistoryWaffles. The user confirmed on 2026-08-30 that the
 folder names identify the creators, that their attribution terms are no more

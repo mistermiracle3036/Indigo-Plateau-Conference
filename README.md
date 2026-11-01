@@ -173,7 +173,7 @@ By **Mister Miracle**
 ([@mistermiracle3036](https://github.com/mistermiracle3036)).
 
 - Custom roster art by **MOLLY**, **SirWhibbles**, **KIRB/YOSHI**, **Santiago
-  Speedpaints a.k.a. Rojimenez**, **Bani**, **NolanKrawczak**,
+  Speedpaints a.k.a. Rojimenez**, **Bani**,
   **RoyalGuard**, **TeamHistoryWaffles**, **KiravelSoul**, and **Yogurcomics** is individually listed in
   [CREDITS.md](CREDITS.md), with their exact permission statement recorded in
   [SPRITE_PERMISSIONS.md](SPRITE_PERMISSIONS.md). The announcer uses Gen 2's own

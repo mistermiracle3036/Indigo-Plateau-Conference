@@ -24,7 +24,6 @@ Art from **Polished Crystal**, with per-asset attribution retained:
 | Kuroko Aizawa | Artist, Engineer and Cheryl: overworld and battle sprites |
 | Kuroko Aizawa / JaceDeane | Professor Ivy: overworld and battle sprites |
 | bloodless (BloodlessNS) | Buck, Maylene and Veteran (M): overworld and battle sprites |
-| isamuakai01 | Cynthia and Steven: overworld and battle sprites |
 | SCMidna / Freeline | Riley, Marley and Mira: overworld sprites |
 | Rangi42 / Polished Crystal | Riley, Marley and Mira: battle sprites |
 | Kage | Walker: overworld and battle sprites |
@@ -35,7 +34,6 @@ Art from **Polished Crystal**, with per-asset attribution retained:
 
 This uses art from Polished Crystal, not an attribution to vanilla pokecrystal.
 The supplied color-test conversions are copied without additional editing.
-Steven's supplied battle portrait includes the prepared light-blue hair treatment.
 No unprovided battle art is included: five guests use an existing vanilla
 Gentleman portrait as a temporary stand-in.
 
@@ -78,8 +76,8 @@ by **MOLLY**; the individual
 sheets state **“Credit is nice, but not required.”** and the grid states
 **“Credit would be nice, but is not required.”** Bea is by
 **KIRB/YOSHI** with **“GIVE CREDIT IF USED.”** Mina is by **Santiago
-Speedpaints a.k.a. Rojimenez** with **“Please, give credit if used.”** Barry is
-by **NolanKrawczak**. Bill, Colress, Hugh, Maxie and Wally are by
+Speedpaints a.k.a. Rojimenez** with **“Please, give credit if used.”** Barry,
+Cynthia and Steven are by **Bani**. Bill, Colress, Hugh, Maxie and Wally are by
 **RoyalGuard**. Gloria, Officer Jenny and Ruin Maniac are by
 **TeamHistoryWaffles**. The user confirmed that visible creator-name credit
 satisfies the terms for those folders. Volkner and the developer-only Armored
@@ -113,7 +111,7 @@ for the fronts and x 375–390, y 53–148 for the walking strips. Bani's Ranger
 walking cell was normalized by a direct four-color luminance substitution;
 CyUzi's Ball Guy walking cell was already normalized and was cropped without
 remapping. The six Duplica, Giselle, and Suzie runtime files were copied
-byte-for-byte from Johto Quest Pack's already-converted assets. The NolanKrawczak,
+byte-for-byte from Johto Quest Pack's already-converted assets. The
 RoyalGuard, TeamHistoryWaffles and KiravelSoul sheets use the same native
 injector regions.
 Those regions are cropped exactly, without resampling. The earlier DracoZ

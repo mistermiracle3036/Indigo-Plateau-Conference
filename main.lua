@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.85"
+  local VERSION = "1.1.86"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -278,7 +278,7 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_LEAR", "lear.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_LILLIE", "lillie.png", "PAL_OW_PINK", 4)
   registerGuestSprite("SPRITE_IPC_LOOKER", "looker.png", "PAL_OW_BROWN", 3)
-  registerGuestSprite("SPRITE_IPC_BARRY", "barry.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_BARRY", "barry.png", "PAL_OW_GREEN", 2)  -- 1.1.86: Bani art, green (REQUESTS 367)
   registerGuestSprite("SPRITE_IPC_BILL", "bill.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_COLRESS", "colress.png", "PAL_OW_BLUE", 1)
   registerGuestSprite("SPRITE_IPC_HUGH", "hugh.png", "PAL_OW_BLUE", 1, true)
