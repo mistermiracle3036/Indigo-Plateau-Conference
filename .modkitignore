@@ -60,6 +60,8 @@ docs/sprite-sources/wes.png
 tests/cups_test.lua
 tests/species_harness.lua
 tools/check_sprites.py
+tools/draft_new_challengers.py
+tools/team_sources/IPC-new-challengers-2026-11-01.json
 tools/gen_dev_lines.py
 tools/gen_expanded.py
 tools/team_sources/IPC-developer-team-additions.json
