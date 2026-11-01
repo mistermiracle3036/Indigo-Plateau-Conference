@@ -365,6 +365,34 @@ add("SOCIALITE", "SOCIALITE", 2, "BEAUTY", "VICTORIA", "PAL_OW_BROWN",
          afterWin="SOCIALITE: You\nhave some class.",
          afterLoss="SOCIALITE: Tea,\nafterward?"))
 
+# The developer's review on the IPC New Challengers page (2026-11-01): all 21
+# approved. Notes are kept verbatim. These five are NOT to be lumped into the
+# carrier's class: each battles under its OWN class with a personal name, e.g.
+# "FIREBRAND JUDY". The carrier class/member above still supplies AI, music and
+# money; only the display changes. Engine fact (v0.3.96): the Gen 2 battle
+# prints opts.trainer.name, which World builds as className .. " " .. name
+# (src/world/gen2/World.lua, "class then name, YOUNGSTER JOEY"), so IPC's
+# existing World.startBattle wrap can set it to the new class plus name.
+# TODO/CONFIRM at wiring: every other place that names the trainer (phone,
+# rematch text, results card) uses the same string. Personal names are the
+# developer's own examples ("whatever name"). The speaker tag in their lines
+# still reads the old class word (INFER:, SAGE:, ...) and is settled at wiring.
+NEW_CLASS = {
+    "INFER": ("FIREBRAND", "JUDY"),
+    "INFER_SAGE": ("SAGE", "CASSANDRA"),
+    "LINEBACKER": ("LINEBACKER", "RAY"),
+    "ROUGHNECK": ("ROUGHNECK", "ROCCO"),
+    "SOCIALITE": ("SOCIALITE", "HOLLY"),
+}
+REVIEW = {
+    "VALERIE": "valerie battle sprite appears to need color",
+    "INFER": "should be a new trainer class named FIREBRAND, so would battle as FIREBRAND JUDY (whatever name)",
+    "INFER_SAGE": "should be a new trainer class named SAGE, so would battle as SAGE CASSANDRA (whatever name)",
+    "LINEBACKER": "should be a new trainer class named LINEBACKER , so would battle as LINEBACKER RAY (whatever name)",
+    "ROUGHNECK": "should be a new trainer class named ROUGHNECK, so would battle as ROUGHNECK ROCCO (whatever name)",
+    "SOCIALITE": "should be a new trainer class named SOCIALITE, so would battle as SOCIALITE HOLLY (whatever name)",
+}
+
 
 def check_lines(c):
     bad = []
@@ -399,12 +427,22 @@ def main():
             variants.append({"strength": st,
                              "gen12_small": g_small, "gen12_six": g_small + g_extra,
                              "expanded_small": e_small, "expanded_six": e_small + e_extra})
-        out.append({"key": c["key"], "name": c["name"], "tier": c["tier"],
-                    "class": c["cls"], "member": c["member"], "overworld_palette": c["pal"],
-                    "theme": c["theme"], "variants": variants, "lines": c["lines"]})
+        row = {"key": c["key"], "name": c["name"], "tier": c["tier"],
+               "class": c["cls"], "member": c["member"], "overworld_palette": c["pal"],
+               "theme": c["theme"], "variants": variants, "lines": c["lines"]}
+        if c["key"] in NEW_CLASS:
+            cls, person = NEW_CLASS[c["key"]]
+            row["new_class"] = {"display_class": cls, "personal_name": person,
+                                "battles_as": f"{cls} {person}"}
+        if c["key"] in REVIEW:
+            row["developer_note"] = REVIEW[c["key"]]
+        out.append(row)
     for f in fails:
         print("FAIL", f)
-    doc = {"date": "2026-11-01", "status": "DRAFT for the developer's review (REQUESTS 372)",
+    doc = {"date": "2026-11-01",
+           "status": "APPROVED: all 21 by the developer on the review page, 2026-11-01 (REQUESTS 372)",
+           "new_classes": "INFER, INFER_SAGE, LINEBACKER, ROUGHNECK and SOCIALITE battle under their own new class + "
+                          "personal name (see new_class); never shown as the carrier's class",
            "request": "developer, 2026-11-01: \"A all cup challengers\"",
            "note": "Same variant shape as IPC-developer-team-additions.json. Slot 3 is the ace.",
            "trainers": out}

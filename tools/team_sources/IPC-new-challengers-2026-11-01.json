@@ -1,6 +1,7 @@
 {
  "date": "2026-11-01",
- "status": "DRAFT for the developer's review (REQUESTS 372)",
+ "status": "APPROVED: all 21 by the developer on the review page, 2026-11-01 (REQUESTS 372)",
+ "new_classes": "INFER, INFER_SAGE, LINEBACKER, ROUGHNECK and SOCIALITE battle under their own new class + personal name (see new_class); never shown as the carrier's class",
  "request": "developer, 2026-11-01: \"A all cup challengers\"",
  "note": "Same variant shape as IPC-developer-team-additions.json. Slot 3 is the ace.",
  "trainers": [
@@ -3486,7 +3487,8 @@
     "loss": "A fairy tale\nending.",
     "afterWin": "VALERIE: You have\na gentle power.",
     "afterLoss": "VALERIE: Come see\nme again."
-   }
+   },
+   "developer_note": "valerie battle sprite appears to need color"
   },
   {
    "key": "WALLACE",
@@ -4558,7 +4560,13 @@
     "loss": "Too hot to\nhandle!",
     "afterWin": "INFER: You put\nmy fire out!",
     "afterLoss": "INFER: Stay warm!"
-   }
+   },
+   "new_class": {
+    "display_class": "FIREBRAND",
+    "personal_name": "JUDY",
+    "battles_as": "FIREBRAND JUDY"
+   },
+   "developer_note": "should be a new trainer class named FIREBRAND, so would battle as FIREBRAND JUDY (whatever name)"
   },
   {
    "key": "INFER_SAGE",
@@ -4826,7 +4834,13 @@
     "loss": "As the fire\nforetold.",
     "afterWin": "SAGE: Your light\nburns bright.",
     "afterLoss": "SAGE: Meditate\non this loss."
-   }
+   },
+   "new_class": {
+    "display_class": "SAGE",
+    "personal_name": "CASSANDRA",
+    "battles_as": "SAGE CASSANDRA"
+   },
+   "developer_note": "should be a new trainer class named SAGE, so would battle as SAGE CASSANDRA (whatever name)"
   },
   {
    "key": "LINEBACKER",
@@ -5096,7 +5110,13 @@
     "loss": "Touchdown!",
     "afterWin": "LINEBACKER: You\nbroke my tackle!",
     "afterLoss": "LINEBACKER: Good\ngame! Shake on it."
-   }
+   },
+   "new_class": {
+    "display_class": "LINEBACKER",
+    "personal_name": "RAY",
+    "battles_as": "LINEBACKER RAY"
+   },
+   "developer_note": "should be a new trainer class named LINEBACKER , so would battle as LINEBACKER RAY (whatever name)"
   },
   {
    "key": "ROUGHNECK",
@@ -5364,7 +5384,13 @@
     "loss": "Hah! Too easy.",
     "afterWin": "ROUGHNECK: ...You\nain't bad, kid.",
     "afterLoss": "ROUGHNECK: Beat\nit, small fry."
-   }
+   },
+   "new_class": {
+    "display_class": "ROUGHNECK",
+    "personal_name": "ROCCO",
+    "battles_as": "ROUGHNECK ROCCO"
+   },
+   "developer_note": "should be a new trainer class named ROUGHNECK, so would battle as ROUGHNECK ROCCO (whatever name)"
   },
   {
    "key": "SOCIALITE",
@@ -5632,7 +5658,13 @@
     "loss": "Simply\ndivine.",
     "afterWin": "SOCIALITE: You\nhave some class.",
     "afterLoss": "SOCIALITE: Tea,\nafterward?"
-   }
+   },
+   "new_class": {
+    "display_class": "SOCIALITE",
+    "personal_name": "HOLLY",
+    "battles_as": "SOCIALITE HOLLY"
+   },
+   "developer_note": "should be a new trainer class named SOCIALITE, so would battle as SOCIALITE HOLLY (whatever name)"
   }
  ]
 }
