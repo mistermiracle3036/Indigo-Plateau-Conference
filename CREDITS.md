@@ -51,6 +51,7 @@ Art from **Polished Crystal**, with per-asset attribution retained:
 | FrenchOrange | Boarder: overworld sprite only |
 | mauvesea | DJ Mary: overworld sprite only |
 | EeVeeEe1999 | Captain, Exterminator and Slot Maniac: overworld sprites only, free to use with credit |
+| Fo0xerz, devamped by Rangi42 | Lawrence III: overworld and battle sprites (1.1.87) |
 
 This uses art from Polished Crystal, not an attribution to vanilla pokecrystal.
 The supplied color-test conversions are copied without additional editing.

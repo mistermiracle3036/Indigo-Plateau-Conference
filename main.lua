@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.86"
+  local VERSION = "1.1.87"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -326,6 +326,11 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_CAPTAIN", "captain.png", "PAL_OW_BLUE", 1, true)
   registerGuestSprite("SPRITE_IPC_EXTERMINATOR", "exterminator.png", "PAL_OW_GREEN", 2)
   registerGuestSprite("SPRITE_IPC_SLOT_MANIAC", "slot_maniac.png", "PAL_OW_BROWN", 3)
+  -- 1.1.87 (REQUESTS 372): Lawrence III's own art replaces the vanilla
+  -- Gentleman he borrowed; BLUE is the Gentleman's own object palette
+  -- (sprites/VANILLA_OBJ_PALETTES.json recommends PAL_NPC_BLUE), so he keeps
+  -- the colour he has always had.
+  registerGuestSprite("SPRITE_IPC_LAWRENCE", "lawrence.png", "PAL_OW_BLUE", 1)
 
   local BATTLE_FRONTS = {
     ARTIST = mod.path .. "/assets/artist_front.png",
@@ -397,6 +402,7 @@ return function(mod)
     SANTA = mod.path .. "/assets/santa_front.png",
     NURSE_JOY = mod.path .. "/assets/nurse_joy_front.png",
     MODERN_RED = mod.path .. "/assets/modern_red_front.png",
+    LAWRENCE = mod.path .. "/assets/lawrence_front.png",
   }
 
   -- These portraits are pre-colored with their chosen Gold palette.
@@ -1045,7 +1051,7 @@ return function(mod)
               { species = "TYPHLOSION", delta = 1 } } },
 
   { key = "LAWRENCE", tier = 3, class = "GENTLEMAN", member = "GREGORY",
-    sprite = "SPRITE_GENTLEMAN", name = "LAWRENCE",
+    sprite = "SPRITE_IPC_LAWRENCE", name = "LAWRENCE",
     chat = "LAWRENCE: My\ncollection lacks\fone thing. You.",
     intro = "LAWRENCE: Consider\nthis an appraisal.",
     win = "Some things can't\nbe collected...",
@@ -2850,6 +2856,38 @@ return function(mod)
   end
 
   installPlayerPartyMenuCap()
+
+  -- REQUESTS 372: Cilan's hair is one-sided, and the engine draws every other
+  -- up/down step as a mirror of frame 3/4 (SpriteRenderer.lua pose()), so the
+  -- hair swapped sides as he walked (developer: "when the sprite flips the
+  -- hair doesn't"). His sheet carries two extra frames, 6 = down and 7 = up,
+  -- with the other foot forward and the head kept. pose() is local, but
+  -- draw()'s frameOverride picks a frame and clears the flip, so only his
+  -- mirrored steps are redirected. Scoped to his sprite id.
+  local CILAN_STEP = { down = 6, up = 7 }
+  local function installCilanSteps()
+    local ok, err = pcall(function()
+      local SpriteRenderer = require("src.render.SpriteRenderer")
+      SpriteRenderer._ipcOriginals = SpriteRenderer._ipcOriginals or {}
+      SpriteRenderer._ipcOriginals.draw = SpriteRenderer._ipcOriginals.draw
+        or SpriteRenderer.draw
+      local original = SpriteRenderer._ipcOriginals.draw
+      if type(original) ~= "function" then error("SpriteRenderer.draw unavailable") end
+      SpriteRenderer.draw = function(self, px, py, camX, camY, facing, walkPhase,
+          stepFlip, topHalf, forceFlip, frameOverride, oamRow)
+        if frameOverride == nil and stepFlip and walkPhase == 1
+            and self.def and self.def.id == "SPRITE_IPC_CILAN"
+            and CILAN_STEP[facing] and self.frames[CILAN_STEP[facing]] then
+          frameOverride = CILAN_STEP[facing]
+        end
+        return original(self, px, py, camX, camY, facing, walkPhase, stepFlip,
+          topHalf, forceFlip, frameOverride, oamRow)
+      end
+    end)
+    if not ok then errs("CILAN STEPS\n%s", tostring(err)) end
+  end
+
+  installCilanSteps()
 
   -- Private 1.1.4+ battle-front tests. Gen 2 normally resolves trainer pictures
   -- by CLASS, so replacing a class table entry would repaint every vanilla

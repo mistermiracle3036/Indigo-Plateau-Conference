@@ -5,6 +5,16 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.87
+
+Private phone test: Lawrence III gets his own look.
+
+- Lawrence III walks and battles with his own sprites (from Polished Crystal,
+  by Fo0xerz, devamped by Rangi42) instead of the borrowed Gentleman. He keeps
+  the Gentleman's blue overworld colour and his team and lines are unchanged.
+- Groundwork for Cilan (not in cups yet): his one-sided hair will stay on the
+  same side as he walks.
+
 ## 1.1.86
 
 Private phone test: new art for Barry, Cynthia and Steven.
