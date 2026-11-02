@@ -5,6 +5,16 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.91
+
+Private phone test: the new challengers' artists are on the CREDITS screen.
+
+- START, then CREDITS now also names the artists behind the 21 new
+  challengers: Azure_Keys, Solo993 and JaceDeane for the Black & White 3:
+  Genesis cast, Bani for Wallace, and Mmmmmm, bloodless, Kuroko Aizawa and
+  Rangi42 for Valerie.
+
+
 ## 1.1.90
 
 Private phone test: the last six challengers, and Lawrence III in colour.
