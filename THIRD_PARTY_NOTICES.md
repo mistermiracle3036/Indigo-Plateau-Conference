@@ -1,5 +1,19 @@
 # Third-party notices
 
+## Private 1.1.88 cup challengers
+
+Alder, Bianca, Cheren, Drayden, Iris, Skyla and the Cyclist, Harlequin,
+Firebrand, Sage, Linebacker, Roughneck and Socialite classes use art from
+**Pokémon Black & White 3: Genesis** by **Azure_Keys**, **Solo993** and
+**JaceDeane** (github.com/AzureKeys/BW3G). Azure_Keys, the hack's author: "The
+project is open source, as long as use of the assets is credited" (release
+thread, pokecommunity.com, page 33). Wallace is by **Bani**, copied from the
+shared canonical store with the developer's approved teal. Valerie's art is
+from **Polished Crystal** (Rangi42), by **Mmmmmm**, **bloodless** and **Kuroko
+Aizawa**; her battle sprite is coloured with Polished Crystal's own palette for
+her (gfx/trainers/valerie.pal). No source sheets are distributed. Registry
+intake is required before public release (REQUESTS 372).
+
 ## Private 1.1.65 Rika test
 
 Commissioned Rika battle and overworld art by **Blaklyte**, cleared in the

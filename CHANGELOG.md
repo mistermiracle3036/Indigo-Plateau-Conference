@@ -5,6 +5,21 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.88
+
+Private phone test: fifteen new cup challengers.
+
+- Fifteen new trainers can now be drawn in the cups, with the teams and lines
+  you approved: Alder, Bianca, Cheren, Drayden, Iris, Skyla, Valerie, Wallace,
+  a Cyclist and a Harlequin, plus five trainers with classes of their own --
+  Firebrand Judy, Sage Cassandra, Linebacker Ray, Roughneck Rocco and
+  Socialite Holly. Each has an Expanded team too.
+- Every one of them is on the DEV first-round guest list ("NEW: ...").
+- Valerie's battle picture is now in colour (her own Polished Crystal pink).
+- Burgh, Elesa, Cilan, Shauntal, Grimsley and Marshal come in a later build,
+  once their walking sprites are ready.
+
+
 ## 1.1.87
 
 Private phone test: Lawrence III gets his own look.

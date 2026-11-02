@@ -116,7 +116,7 @@ leader, not to your team.
 <details>
 <summary>Who is in the roster?</summary>
 
-**89 challengers across four tiers**, with cup- and round-specific tier
+**104 challengers across four tiers**, with cup- and round-specific tier
 weights. A card has four opponents, not necessarily one from each tier.
 
 Broadly: anime one-offs and rookies in tier 1; rivals and specialists in

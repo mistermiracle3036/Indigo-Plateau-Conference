@@ -4296,7 +4296,7 @@
   },
   {
    "key": "INFER",
-   "name": "INFER",
+   "name": "FIREBRAND",
    "tier": 2,
    "class": "PICNICKER",
    "member": "HOPE",
@@ -4554,12 +4554,12 @@
     }
    ],
    "lines": {
-    "chat": "INFER: Is it hot\nin here, or is it\fjust my team?",
-    "intro": "INFER: Let's heat\nthings up!",
+    "chat": "FIREBRAND: Is it\nhot in here, or is\fit just my team?",
+    "intro": "FIREBRAND: Let's\nheat things up!",
     "win": "Burned out...",
     "loss": "Too hot to\nhandle!",
-    "afterWin": "INFER: You put\nmy fire out!",
-    "afterLoss": "INFER: Stay warm!"
+    "afterWin": "FIREBRAND: You put\nmy fire out!",
+    "afterLoss": "FIREBRAND: Stay\nwarm!"
    },
    "new_class": {
     "display_class": "FIREBRAND",

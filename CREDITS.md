@@ -1,5 +1,14 @@
 # Credits
 
+## Private 1.1.88 cup challengers
+
+| Character | Assets | Artist |
+|---|---|---|
+| Alder, Bianca, Cheren, Drayden, Iris, Skyla | overworld and battle sprites | **Azure_Keys**, **Solo993** and **JaceDeane** (Pokémon Black & White 3: Genesis) |
+| Cyclist, Harlequin, Firebrand, Sage, Linebacker, Roughneck, Socialite | overworld and battle sprites | **Azure_Keys**, **Solo993** and **JaceDeane** (Pokémon Black & White 3: Genesis) |
+| Wallace | overworld and battle sprites | **Bani** |
+| Valerie | overworld and battle sprites | **Mmmmmm**, **bloodless** and **Kuroko Aizawa**, via **Polished Crystal** (Rangi42); battle sprite coloured with Polished Crystal's own palette for her |
+
 Rika's battle and overworld art was commissioned from **Blaklyte**.
 The approved teal overworld and battle portrait are reused without modification.
 

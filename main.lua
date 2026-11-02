@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.87"
+  local VERSION = "1.1.88"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -201,6 +201,15 @@ return function(mod)
                                    "SPRITE_IPC_CAPTAIN",
                                    "SPRITE_IPC_EXTERMINATOR",
                                    "SPRITE_IPC_SLOT_MANIAC",
+                                   "SPRITE_IPC_LAWRENCE",
+                                   "SPRITE_IPC_ALDER", "SPRITE_IPC_BIANCA",
+                                   "SPRITE_IPC_CHEREN", "SPRITE_IPC_DRAYDEN",
+                                   "SPRITE_IPC_IRIS", "SPRITE_IPC_SKYLA",
+                                   "SPRITE_IPC_VALERIE", "SPRITE_IPC_WALLACE",
+                                   "SPRITE_IPC_CYCLIST_F", "SPRITE_IPC_HARLEQUIN",
+                                   "SPRITE_IPC_INFER", "SPRITE_IPC_INFER_SAGE",
+                                   "SPRITE_IPC_LINEBACKER", "SPRITE_IPC_ROUGHNECK",
+                                   "SPRITE_IPC_SOCIALITE",
                                  } }
 
   local LOBBY = "POKECENTER_2F"
@@ -331,6 +340,26 @@ return function(mod)
   -- (sprites/VANILLA_OBJ_PALETTES.json recommends PAL_NPC_BLUE), so he keeps
   -- the colour he has always had.
   registerGuestSprite("SPRITE_IPC_LAWRENCE", "lawrence.png", "PAL_OW_BLUE", 1)
+  -- 1.1.88 (REQUESTS 372): the cup challengers. Colours are the developer's
+  -- 2026-11-01 picks ("alder red, elesa blue, grimsley blue, ... valerie
+  -- pink, wallace is supposed to be teal"); the rest keep the boxed colour.
+  -- Wallace is the registry's approved teal sheet (canonical_color), BLUE the
+  -- fallback the registry records.
+  registerGuestSprite("SPRITE_IPC_ALDER", "alder.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_BIANCA", "bianca.png", "PAL_OW_GREEN", 2)
+  registerGuestSprite("SPRITE_IPC_CHEREN", "cheren.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_DRAYDEN", "drayden.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_IRIS", "iris.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_SKYLA", "skyla.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_VALERIE", "valerie.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_WALLACE", "wallace.png", "PAL_OW_BLUE", 1, true)
+  registerGuestSprite("SPRITE_IPC_CYCLIST_F", "cyclist_f.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_HARLEQUIN", "harlequin.png", "PAL_OW_RED", 0)
+  registerGuestSprite("SPRITE_IPC_INFER", "infer.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_INFER_SAGE", "infer_sage.png", "PAL_OW_PINK", 4)
+  registerGuestSprite("SPRITE_IPC_LINEBACKER", "linebacker.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_ROUGHNECK", "roughneck.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_SOCIALITE", "socialite.png", "PAL_OW_BROWN", 3)
 
   local BATTLE_FRONTS = {
     ARTIST = mod.path .. "/assets/artist_front.png",
@@ -404,6 +433,16 @@ return function(mod)
     MODERN_RED = mod.path .. "/assets/modern_red_front.png",
     LAWRENCE = mod.path .. "/assets/lawrence_front.png",
   }
+  -- 1.1.88 (REQUESTS 372): the cup challengers' fronts, all pre-coloured.
+  -- Valerie's is Polished Crystal's grey front put through her own
+  -- gfx/trainers/valerie.pal (developer: "valerie battle sprite appears to
+  -- need color"); exchange/outbox/ipc-new-cast-preview/valerie_colour/.
+  local CUP_CHALLENGERS = { "ALDER", "BIANCA", "CHEREN", "DRAYDEN", "IRIS",
+    "SKYLA", "VALERIE", "WALLACE", "CYCLIST_F", "HARLEQUIN", "INFER",
+    "INFER_SAGE", "LINEBACKER", "ROUGHNECK", "SOCIALITE" }
+  for _, key in ipairs(CUP_CHALLENGERS) do
+    BATTLE_FRONTS[key] = mod.path .. "/assets/" .. key:lower() .. "_front.png"
+  end
 
   -- These portraits are pre-colored with their chosen Gold palette.
   -- Mark only them true-color so their borrowed trainer classes cannot
@@ -472,6 +511,7 @@ return function(mod)
     NURSE_JOY = true,
     MODERN_RED = true,
   }
+  for _, key in ipairs(CUP_CHALLENGERS) do TRUE_COLOR_FRONTS[key] = true end
 
   local ROUNDS = 4
 
@@ -1897,6 +1937,243 @@ return function(mod)
               { species = "ESPEON",    delta = 0 },
               { species = "SNORLAX",   delta = 0 },
               { species = "PIKACHU",   delta = 2 } } },
+
+  -- ============ 1.1.88: CUP CHALLENGERS (REQUESTS 372) ============
+  -- Approved by the developer on the IPC New Challengers page, 2026-11-01.
+  -- Rows generated from tools/team_sources/IPC-new-challengers-2026-11-01.json
+  -- (party = the Full six on Gen 1/2, the same fallback role as every row
+  -- above; the drawn teams come from weighted_teams / expanded_teams).
+  -- battleName: the developer's note on five of them, "should be a new
+  -- trainer class ... so would battle as FIREBRAND JUDY". The carrier class
+  -- still supplies AI, music and money; installPlayerPartyCap's wrap puts
+  -- battleName on the battle screen. name is the personal name, so a failed
+  -- wrap degrades to "PICNICKER JUDY", never a broken battle.
+  -- Burgh, Elesa, Cilan, Shauntal, Grimsley and Marshal join when their
+  -- walkers land in sprites/canonical (REQUESTS 371).
+  { key = "ALDER", tier = 4, customMember = true, class = "CHAMPION", member = "LANCE",
+    sprite = "SPRITE_IPC_ALDER", name = "ALDER",
+    chat = "ALDER: I wander\nto learn. Today\fI learn from you!",
+    intro = "ALDER: Show me\nwhat you love!",
+    win = "Ha! You fight\nwith your heart.",
+    loss = "A good match is\na gift. Thanks!",
+    afterWin = "ALDER: Keep that\nfire burning.",
+    afterLoss = "ALDER: Rest, then\ntry me again!",
+    party = { { species = "HERACROSS", delta = 0 },
+              { species = "SCIZOR", delta = 0 },
+              { species = "ARCANINE", delta = 1 },
+              { species = "TAUROS", delta = 0 },
+              { species = "FORRETRESS", delta = 0 },
+              { species = "MACHAMP", delta = 0 } } },
+
+  { key = "BIANCA", tier = 2, class = "COOLTRAINERF", member = "LOIS",
+    sprite = "SPRITE_IPC_BIANCA", name = "BIANCA",
+    chat = "BIANCA: Oh! Wait\nup! I got lost\fon the way here.",
+    intro = "BIANCA: I'll do\nmy very best!",
+    win = "Waah! You're so\nstrong!",
+    loss = "I did it! I\nreally did it!",
+    afterWin = "BIANCA: Next time\nI won't get lost!",
+    afterLoss = "BIANCA: Yay! Let's\nbattle again!",
+    party = { { species = "GRANBULL", delta = 0 },
+              { species = "HYPNO", delta = 0 },
+              { species = "TYPHLOSION", delta = 1 },
+              { species = "JUMPLUFF", delta = 0 },
+              { species = "GOLDUCK", delta = 0 },
+              { species = "AZUMARILL", delta = 0 } } },
+
+  { key = "CHEREN", tier = 2, class = "COOLTRAINERM", member = "AARON",
+    sprite = "SPRITE_IPC_CHEREN", name = "CHEREN",
+    chat = "CHEREN: What does\nstrength mean to\fyou? I still ask.",
+    intro = "CHEREN: Let's\nfind out.",
+    win = "I see. I have\nmore to learn.",
+    loss = "That's one\nanswer, at least.",
+    afterWin = "CHEREN: You made\nme think.",
+    afterLoss = "CHEREN: Strong is\nnot the same as\fright. Remember.",
+    party = { { species = "FURRET", delta = 0 },
+              { species = "PERSIAN", delta = 0 },
+              { species = "FERALIGATR", delta = 1 },
+              { species = "RATICATE", delta = 0 },
+              { species = "KANGASKHAN", delta = 0 },
+              { species = "URSARING", delta = 0 } } },
+
+  { key = "DRAYDEN", tier = 3, class = "CLAIR", member = "CLAIR1",
+    sprite = "SPRITE_IPC_DRAYDEN", name = "DRAYDEN",
+    chat = "DRAYDEN: Dragons\nteach patience.\fI hope you have\nsome.",
+    intro = "DRAYDEN: Then\nlet us begin.",
+    win = "Well fought. You\nearned this.",
+    loss = "Strength without\nhaste. Remember.",
+    afterWin = "DRAYDEN: You will\ngo far.",
+    afterLoss = "DRAYDEN: Train,\nand come again.",
+    party = { { species = "KINGDRA", delta = 0 },
+              { species = "TYRANITAR", delta = 0 },
+              { species = "DRAGONITE", delta = 1 },
+              { species = "STEELIX", delta = 0 },
+              { species = "CHARIZARD", delta = 0 },
+              { species = "GLIGAR", delta = 0 } } },
+
+  { key = "IRIS", tier = 4, customMember = true, class = "CHAMPION", member = "LANCE",
+    sprite = "SPRITE_IPC_IRIS", name = "IRIS",
+    chat = "IRIS: Ooh, you\nlook really\fstrong! Let's go!",
+    intro = "IRIS: My dragons\nare fired up!",
+    win = "Aww! You're\nreally good!",
+    loss = "Yay! The dragons\nand me did it!",
+    afterWin = "IRIS: Next time\nI'll win for sure!",
+    afterLoss = "IRIS: That was so\nmuch fun!",
+    party = { { species = "TYRANITAR", delta = 0 },
+              { species = "LAPRAS", delta = 0 },
+              { species = "DRAGONITE", delta = 1 },
+              { species = "STEELIX", delta = 0 },
+              { species = "OMASTAR", delta = 0 },
+              { species = "AERODACTYL", delta = 0 } } },
+
+  { key = "SKYLA", tier = 3, class = "MISTY", member = "MISTY1",
+    sprite = "SPRITE_IPC_SKYLA", name = "SKYLA",
+    chat = "SKYLA: Cleared for\ntakeoff? Let's\ffly!",
+    intro = "SKYLA: Up, up and\naway!",
+    win = "Whoa! You flew\nright past me!",
+    loss = "Smooth landing!",
+    afterWin = "SKYLA: I'll catch\nyou on the wind.",
+    afterLoss = "SKYLA: Keep your\nhead in the sky!",
+    party = { { species = "NOCTOWL", delta = 0 },
+              { species = "XATU", delta = 0 },
+              { species = "PIDGEOT", delta = 1 },
+              { species = "FEAROW", delta = 0 },
+              { species = "CROBAT", delta = 0 },
+              { species = "JUMPLUFF", delta = 0 } } },
+
+  { key = "VALERIE", tier = 3, class = "SABRINA", member = "SABRINA1",
+    sprite = "SPRITE_IPC_VALERIE", name = "VALERIE",
+    chat = "VALERIE: Oh...\nhello. I was lost\fin a daydream.",
+    intro = "VALERIE: Let us\ndance, softly.",
+    win = "How lovely. You\nare like silk.",
+    loss = "A fairy tale\nending.",
+    afterWin = "VALERIE: You have\na gentle power.",
+    afterLoss = "VALERIE: Come see\nme again.",
+    party = { { species = "GRANBULL", delta = 0 },
+              { species = "AZUMARILL", delta = 0 },
+              { species = "TOGETIC", delta = 1 },
+              { species = "CLEFABLE", delta = 0 },
+              { species = "WIGGLYTUFF", delta = 0 },
+              { species = "MR__MIME", delta = 0 } } },
+
+  { key = "WALLACE", tier = 4, customMember = true, class = "CHAMPION", member = "LANCE",
+    sprite = "SPRITE_IPC_WALLACE", name = "WALLACE",
+    chat = "WALLACE: Battles\nshould be as\fbeautiful as the\nsea.",
+    intro = "WALLACE: Shall we\nbegin? Elegantly.",
+    win = "Magnificent! Truly\nmagnificent.",
+    loss = "Beauty and\nstrength, as one.",
+    afterWin = "WALLACE: Your\nstyle is stunning.",
+    afterLoss = "WALLACE: Polish\nyour grace.",
+    party = { { species = "TENTACRUEL", delta = 0 },
+              { species = "GYARADOS", delta = 0 },
+              { species = "STARMIE", delta = 1 },
+              { species = "CLOYSTER", delta = 0 },
+              { species = "GOLDUCK", delta = 0 },
+              { species = "QUAGSIRE", delta = 0 } } },
+
+  { key = "CYCLIST_F", tier = 1, class = "PICNICKER", member = "GINA1",
+    sprite = "SPRITE_IPC_CYCLIST_F", name = "CYCLIST",
+    chat = "CYCLIST: I rode\nhere nonstop!",
+    intro = "CYCLIST: Let's go,\nfull speed!",
+    win = "Flat tire!",
+    loss = "Downhill all\nthe way!",
+    afterWin = "CYCLIST: You're\nfaster than me!",
+    afterLoss = "CYCLIST: Wanna\nrace again?",
+    party = { { species = "DODRIO", delta = 0 },
+              { species = "RATICATE", delta = 0 },
+              { species = "RAPIDASH", delta = 1 },
+              { species = "PIDGEOT", delta = 0 },
+              { species = "FURRET", delta = 0 },
+              { species = "ELECTRODE", delta = 0 } } },
+
+  { key = "HARLEQUIN", tier = 1, class = "JUGGLER", member = "FRITZ",
+    sprite = "SPRITE_IPC_HARLEQUIN", name = "HARLEQUIN",
+    chat = "HARLEQUIN: Step\nright up! The\fshow is free!",
+    intro = "HARLEQUIN: Ta-da!",
+    win = "My act fell\nflat!",
+    loss = "Thank you, thank\nyou!",
+    afterWin = "HARLEQUIN: Tough\ncrowd today.",
+    afterLoss = "HARLEQUIN: Encore!\nEncore!",
+    party = { { species = "HYPNO", delta = 0 },
+              { species = "WIGGLYTUFF", delta = 0 },
+              { species = "MR__MIME", delta = 1 },
+              { species = "JYNX", delta = 0 },
+              { species = "ELECTRODE", delta = 0 },
+              { species = "AIPOM", delta = 0 } } },
+
+  { key = "INFER", tier = 2, class = "PICNICKER", member = "HOPE",
+    sprite = "SPRITE_IPC_INFER", name = "JUDY", battleName = "FIREBRAND JUDY",
+    chat = "FIREBRAND: Is it\nhot in here, or is\fit just my team?",
+    intro = "FIREBRAND: Let's\nheat things up!",
+    win = "Burned out...",
+    loss = "Too hot to\nhandle!",
+    afterWin = "FIREBRAND: You put\nmy fire out!",
+    afterLoss = "FIREBRAND: Stay\nwarm!",
+    party = { { species = "MAGCARGO", delta = 0 },
+              { species = "NINETALES", delta = 0 },
+              { species = "MAGMAR", delta = 1 },
+              { species = "RAPIDASH", delta = 0 },
+              { species = "HOUNDOOM", delta = 0 },
+              { species = "FLAREON", delta = 0 } } },
+
+  { key = "INFER_SAGE", tier = 2, class = "PSYCHIC_T", member = "HERMAN",
+    sprite = "SPRITE_IPC_INFER_SAGE", name = "CASSANDRA", battleName = "SAGE CASSANDRA",
+    chat = "SAGE: The flame\nreveals the truth.",
+    intro = "SAGE: Let the fire\njudge us.",
+    win = "The flame\nhas spoken.",
+    loss = "As the fire\nforetold.",
+    afterWin = "SAGE: Your light\nburns bright.",
+    afterLoss = "SAGE: Meditate\non this loss.",
+    party = { { species = "ARCANINE", delta = 0 },
+              { species = "XATU", delta = 0 },
+              { species = "RAPIDASH", delta = 1 },
+              { species = "ALAKAZAM", delta = 0 },
+              { species = "NINETALES", delta = 0 },
+              { species = "MAGCARGO", delta = 0 } } },
+
+  { key = "LINEBACKER", tier = 2, class = "BLACKBELT_T", member = "YOSHI",
+    sprite = "SPRITE_IPC_LINEBACKER", name = "RAY", battleName = "LINEBACKER RAY",
+    chat = "LINEBACKER: Huddle\nup! It's game day!",
+    intro = "LINEBACKER: Hut!\nHut! HIKE!",
+    win = "Fumble!",
+    loss = "Touchdown!",
+    afterWin = "LINEBACKER: You\nbroke my tackle!",
+    afterLoss = "LINEBACKER: Good\ngame! Shake on it.",
+    party = { { species = "GOLEM", delta = 0 },
+              { species = "MAROWAK", delta = 0 },
+              { species = "RHYDON", delta = 1 },
+              { species = "PRIMEAPE", delta = 0 },
+              { species = "DONPHAN", delta = 0 },
+              { species = "URSARING", delta = 0 } } },
+
+  { key = "ROUGHNECK", tier = 1, class = "BIKER", member = "ZEKE",
+    sprite = "SPRITE_IPC_ROUGHNECK", name = "ROCCO", battleName = "ROUGHNECK ROCCO",
+    chat = "ROUGHNECK: What're\nyou lookin' at?",
+    intro = "ROUGHNECK: You\nasked for it!",
+    win = "Tch. Lucky.",
+    loss = "Hah! Too easy.",
+    afterWin = "ROUGHNECK: ...You\nain't bad, kid.",
+    afterLoss = "ROUGHNECK: Beat\nit, small fry.",
+    party = { { species = "MUK", delta = 0 },
+              { species = "GOLBAT", delta = 0 },
+              { species = "WEEZING", delta = 1 },
+              { species = "MACHAMP", delta = 0 },
+              { species = "SANDSLASH", delta = 0 },
+              { species = "URSARING", delta = 0 } } },
+
+  { key = "SOCIALITE", tier = 2, class = "BEAUTY", member = "VICTORIA",
+    sprite = "SPRITE_IPC_SOCIALITE", name = "HOLLY", battleName = "SOCIALITE HOLLY",
+    chat = "SOCIALITE: Oh my,\nwhat a quaint\flittle stadium.",
+    intro = "SOCIALITE: Do try\nto keep up, dear.",
+    win = "How dreadfully\nrude!",
+    loss = "Simply\ndivine.",
+    afterWin = "SOCIALITE: You\nhave some class.",
+    afterLoss = "SOCIALITE: Tea,\nafterward?",
+    party = { { species = "PERSIAN", delta = 0 },
+              { species = "JUMPLUFF", delta = 0 },
+              { species = "ESPEON", delta = 1 },
+              { species = "BELLOSSOM", delta = 0 },
+              { species = "JYNX", delta = 0 },
+              { species = "STARMIE", delta = 0 } } },
   }
 
   -- Cleared September 2026: private comparison identities, never replacements.
@@ -2292,7 +2569,19 @@ return function(mod)
                   { "NEW: Rui", "RUI_CIARA" },
                   { "NEW: Chobin", "CHOBIN_CIARA_GECKO557" },
                   { "NEW: Scissorman", "SCISSORMAN" },
-                  { "NEW: Nessa", "NESSA" } },
+                  { "NEW: Nessa", "NESSA" },
+                  -- 1.1.88: the cup challengers (REQUESTS 372)
+                  { "NEW: Alder", "ALDER" }, { "NEW: Bianca", "BIANCA" },
+                  { "NEW: Cheren", "CHEREN" }, { "NEW: Drayden", "DRAYDEN" },
+                  { "NEW: Iris", "IRIS" }, { "NEW: Skyla", "SKYLA" },
+                  { "NEW: Valerie", "VALERIE" }, { "NEW: Wallace", "WALLACE" },
+                  { "NEW: Cyclist", "CYCLIST_F" },
+                  { "NEW: Harlequin", "HARLEQUIN" },
+                  { "NEW: Firebrand Judy", "INFER" },
+                  { "NEW: Sage Cassandra", "INFER_SAGE" },
+                  { "NEW: Linebacker Ray", "LINEBACKER" },
+                  { "NEW: Roughneck Rocco", "ROUGHNECK" },
+                  { "NEW: Socialite Holly", "SOCIALITE" } },
       default = "" },
   })
 
@@ -2767,6 +3056,16 @@ return function(mod)
       World.startBattle = function(self, opts, onDone)
         if ourBattle then
           activePlayerParty = nil
+          -- 1.1.88: a challenger with its own class (battleName, ROSTER) is
+          -- named on the battle screen as that class, not the carrier's.
+          -- World:startScriptedBattle built opts.trainer.name as "<class
+          -- name> <member name>" (src/world/gen2/World.lua); Battle and
+          -- BattleState read only that field.
+          local foe = spawnedFoeKey and BY_KEY[spawnedFoeKey]
+          if foe and foe.battleName and type(opts) == "table"
+              and type(opts.trainer) == "table" then
+            opts.trainer.name = foe.battleName
+          end
           local save = self and self.game and self.game.save
           local party = save and save.party
           if type(opts) == "table" and type(party) == "table" then
@@ -3968,7 +4267,7 @@ return function(mod)
             end
             mod.world:queueScript({
               { "text", ("ANNOUNCER: ROUND\n%d of %d, folks!"):format(round(), ROUNDS) },
-              { "text", ("Facing you --\n%s!"):format(foe.name or foe.key) },
+              { "text", ("Facing you --\n%s!"):format(foe.battleName or foe.name or foe.key) },
               { "text", (function()
                   local vs = HYPE[round()] or HYPE[#HYPE]
                   return vs[math.random(#vs)]

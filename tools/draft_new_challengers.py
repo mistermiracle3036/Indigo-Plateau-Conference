@@ -290,7 +290,9 @@ add("HARLEQUIN", "HARLEQUIN", 1, "JUGGLER", "FRITZ", "PAL_OW_RED",
          afterWin="HARLEQUIN: Tough\ncrowd today.",
          afterLoss="HARLEQUIN: Encore!\nEncore!"))
 
-add("INFER", "INFER", 2, "PICNICKER", "HOPE", "PAL_OW_PINK",
+# Renamed FIREBRAND by the developer on the review page; the approved words are
+# unchanged, only rewrapped for the longer speaker tag.
+add("INFER", "FIREBRAND", 2, "PICNICKER", "HOPE", "PAL_OW_PINK",
     "fire-type girl (sheet name 'Infer')",
     team(("SLUGMA VULPIX MAGBY+", "PONYTA HOUNDOUR EEVEE"),
          ("MAGCARGO VULPIX MAGMAR+", "PONYTA HOUNDOUR FLAREON"),
@@ -298,12 +300,12 @@ add("INFER", "INFER", 2, "PICNICKER", "HOPE", "PAL_OW_PINK",
     team(("SLUGMA Numel MAGBY+", "PONYTA HOUNDOUR EEVEE"),
          ("MAGCARGO Camerupt MAGMAR+", "PONYTA HOUNDOUR FLAREON"),
          ("MAGCARGO Camerupt MAGMAR+", "RAPIDASH HOUNDOOM FLAREON")),
-    dict(chat="INFER: Is it hot\nin here, or is it\fjust my team?",
-         intro="INFER: Let's heat\nthings up!",
+    dict(chat="FIREBRAND: Is it\nhot in here, or is\fit just my team?",
+         intro="FIREBRAND: Let's\nheat things up!",
          win="Burned out...",
          loss="Too hot to\nhandle!",
-         afterWin="INFER: You put\nmy fire out!",
-         afterLoss="INFER: Stay warm!"))
+         afterWin="FIREBRAND: You put\nmy fire out!",
+         afterLoss="FIREBRAND: Stay\nwarm!"))
 
 add("INFER_SAGE", "SAGE", 2, "PSYCHIC_T", "HERMAN", "PAL_OW_PINK",
     "robed fire sage (sheet name 'Infer sage')",
@@ -375,8 +377,8 @@ add("SOCIALITE", "SOCIALITE", 2, "BEAUTY", "VICTORIA", "PAL_OW_BROWN",
 # existing World.startBattle wrap can set it to the new class plus name.
 # TODO/CONFIRM at wiring: every other place that names the trainer (phone,
 # rematch text, results card) uses the same string. Personal names are the
-# developer's own examples ("whatever name"). The speaker tag in their lines
-# still reads the old class word (INFER:, SAGE:, ...) and is settled at wiring.
+# developer's own examples ("whatever name"). Their lines keep the class word
+# as the speaker tag (FIREBRAND:, SAGE:, ...), as the approved lines read.
 NEW_CLASS = {
     "INFER": ("FIREBRAND", "JUDY"),
     "INFER_SAGE": ("SAGE", "CASSANDRA"),
