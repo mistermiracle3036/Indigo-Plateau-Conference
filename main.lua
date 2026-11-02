@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.88"
+  local VERSION = "1.1.89"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -211,6 +211,25 @@ return function(mod)
                                    "SPRITE_IPC_LINEBACKER", "SPRITE_IPC_ROUGHNECK",
                                    "SPRITE_IPC_SOCIALITE",
                                  } }
+
+  -- IN-GAME ARTIST CREDITS (1.1.89, REQUESTS 109). Artists cleared their art
+  -- on condition of credit, one asked for it in game; THIRD_PARTY_NOTICES.md
+  -- stays, this is in addition to it. lib/credits.lua is SHARED code (Credits
+  -- Book's v3, byte-for-byte) and lib/credits_data.lua is GENERATED from
+  -- sprites/REGISTRY.json (exchange/credits_table.py --mod
+  -- Indigo-Plateau-Conference, copied from exchange/outbox/credits-adoption);
+  -- neither may be edited here -- a local edit forks the screen and loses the
+  -- one-CREDITS-row election. Same call as Kanto Contests' 0.37.33. No save
+  -- key, no option, no dependency; a failure is reported, never fatal.
+  do
+    local function module(path)
+      return assert(load(assert(mod:read(path)), "@" .. mod.id .. "/" .. path))()
+    end
+    local ok, err = pcall(function()
+      module("lib/credits.lua").attach(mod, module("lib/credits_data.lua"))
+    end)
+    if not ok then pcall(Runtime.reportError, MOD_ID, "CREDITS\n" .. tostring(err)) end
+  end
 
   local LOBBY = "POKECENTER_2F"
   local ARENA = "COLOSSEUM"

@@ -5,6 +5,18 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.89
+
+Private phone test: artists credited in game.
+
+- Artists whose work appears in this mod are now credited in game: START,
+  then CREDITS. If another mod already adds a CREDITS row, there is still only
+  one, and it lists everyone.
+- The artists behind the fifteen new challengers from 1.1.88 join that screen
+  once their art is in the shared sprite list; they are credited in the files
+  already.
+
+
 ## 1.1.88
 
 Private phone test: fifteen new cup challengers.
