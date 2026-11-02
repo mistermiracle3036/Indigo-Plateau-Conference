@@ -5,6 +5,18 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.90
+
+Private phone test: the last six challengers, and Lawrence III in colour.
+
+- Burgh, Elesa, Cilan, Shauntal, Grimsley and Marshal join the cups, with the
+  teams and lines you approved. All 21 from the review page are now in.
+- Cilan's one-sided hair stays on the same side as he walks.
+- Lawrence III walks and battles in your colour pick C: blonde hair, purple
+  clothes.
+- All six, and Lawrence, are on the DEV first-round guest list.
+
+
 ## 1.1.89
 
 Private phone test: artists credited in game.

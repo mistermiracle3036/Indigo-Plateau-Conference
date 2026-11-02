@@ -103,7 +103,7 @@ anything rebalances.
 - **A run in progress survives quitting.** The bracket travels with your
   in-game save, so loading an older save rewinds the tournament with it.
 
-**Every new run rolls a weighted card.** The roster is 104 challengers across
+**Every new run rolls a weighted card.** The roster is 110 challengers across
 four tiers. Earlier cups favour weaker trainers; later cups and rounds
 favour stronger trainers without strict tier bans. Each opponent also gets
 an authored Early, Middle or Full team. Recent encounters and same-run
@@ -191,7 +191,8 @@ By **Mister Miracle**
   Ranger battle and overworld art is by **Bani**, cleared for use with Bani
   credit. Duplica, Giselle and Suzie use Bani sheets as documented visual
   substitutes rather than bespoke art of those characters.
-- The 1.1.88 cup challengers: Alder, Bianca, Cheren, Drayden, Iris, Skyla and
+- The 1.1.88-1.1.90 cup challengers: Alder, Bianca, Cheren, Drayden, Iris,
+  Skyla, Burgh, Elesa, Cilan, Shauntal, Grimsley, Marshal and
   the Cyclist, Harlequin, Firebrand, Sage, Linebacker, Roughneck and Socialite
   art is by **Azure_Keys**, **Solo993** and **JaceDeane** (Pokémon Black &
   White 3: Genesis); Wallace is by **Bani**; Valerie is by **Mmmmmm**,

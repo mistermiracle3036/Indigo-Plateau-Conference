@@ -46,7 +46,7 @@ SRC_DEV_ADD = os.path.join(HERE, "team_sources", "IPC-developer-team-additions.j
 # sprites/canonical (REQUESTS 371); a table key with no ROSTER entry would
 # break the draw, so a name leaves this set in the same change that adds it.
 SRC_NEW = os.path.join(HERE, "team_sources", "IPC-new-challengers-2026-11-01.json")
-AWAITING_ART = {"BURGH", "ELESA", "CILAN", "SHAUNTAL", "GRIMSLEY", "MARSHAL"}
+AWAITING_ART = set()   # 1.1.90: the last six landed in canonical (REQUESTS 371)
 CATALOG = os.path.join(WORK, "exchange", "species", "catalog.json")
 RUNTIMES = os.path.join(WORK, "exchange", "species", "runtime.json")
 ES_REPO = os.path.join(WORK, "Expanded-Species")

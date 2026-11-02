@@ -2,7 +2,9 @@
 
 ## Private 1.1.88 cup challengers
 
-Alder, Bianca, Cheren, Drayden, Iris, Skyla and the Cyclist, Harlequin,
+Alder, Bianca, Cheren, Drayden, Iris, Skyla, Burgh, Elesa, Cilan, Shauntal,
+Grimsley, Marshal (1.1.90; their walking frames were made by the portfolio from
+the hack's standing art, developer-approved 2026-11-01) and the Cyclist, Harlequin,
 Firebrand, Sage, Linebacker, Roughneck and Socialite classes use art from
 **Pokémon Black & White 3: Genesis** by **Azure_Keys**, **Solo993** and
 **JaceDeane** (github.com/AzureKeys/BW3G). Azure_Keys, the hack's author: "The

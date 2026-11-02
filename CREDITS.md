@@ -4,7 +4,7 @@
 
 | Character | Assets | Artist |
 |---|---|---|
-| Alder, Bianca, Cheren, Drayden, Iris, Skyla | overworld and battle sprites | **Azure_Keys**, **Solo993** and **JaceDeane** (Pokémon Black & White 3: Genesis) |
+| Alder, Bianca, Cheren, Drayden, Iris, Skyla; Burgh, Elesa, Cilan, Shauntal, Grimsley, Marshal (1.1.90; walking frames and Cilan's extra steps made by the portfolio from the hack's standing art) | overworld and battle sprites | **Azure_Keys**, **Solo993** and **JaceDeane** (Pokémon Black & White 3: Genesis) |
 | Cyclist, Harlequin, Firebrand, Sage, Linebacker, Roughneck, Socialite | overworld and battle sprites | **Azure_Keys**, **Solo993** and **JaceDeane** (Pokémon Black & White 3: Genesis) |
 | Wallace | overworld and battle sprites | **Bani** |
 | Valerie | overworld and battle sprites | **Mmmmmm**, **bloodless** and **Kuroko Aizawa**, via **Polished Crystal** (Rangi42); battle sprite coloured with Polished Crystal's own palette for her |

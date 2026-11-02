@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.89"
+  local VERSION = "1.1.90"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -210,6 +210,9 @@ return function(mod)
                                    "SPRITE_IPC_INFER", "SPRITE_IPC_INFER_SAGE",
                                    "SPRITE_IPC_LINEBACKER", "SPRITE_IPC_ROUGHNECK",
                                    "SPRITE_IPC_SOCIALITE",
+                                   "SPRITE_IPC_BURGH", "SPRITE_IPC_ELESA",
+                                   "SPRITE_IPC_CILAN", "SPRITE_IPC_SHAUNTAL",
+                                   "SPRITE_IPC_GRIMSLEY", "SPRITE_IPC_MARSHAL",
                                  } }
 
   -- IN-GAME ARTIST CREDITS (1.1.89, REQUESTS 109). Artists cleared their art
@@ -259,11 +262,11 @@ return function(mod)
   -- Cleared art test. Every supplied walking set becomes a private six-frame
   -- sprite record. Guest trainer members are appended later; no vanilla
   -- sprite, trainer member, shared portrait or party is replaced.
-  local function registerGuestSprite(id, file, palette, paletteId, trueColor)
+  local function registerGuestSprite(id, file, palette, paletteId, trueColor, frames)
     mod.content.sprites:register(id, {
       id = id,
       image = mod.path .. "/assets/" .. file,
-      frames = 6,
+      frames = frames or 6,
       walker = true,
       spriteType = "WALKING_SPRITE",
       palette = palette,
@@ -358,7 +361,10 @@ return function(mod)
   -- Gentleman he borrowed; BLUE is the Gentleman's own object palette
   -- (sprites/VANILLA_OBJ_PALETTES.json recommends PAL_NPC_BLUE), so he keeps
   -- the colour he has always had.
-  registerGuestSprite("SPRITE_IPC_LAWRENCE", "lawrence.png", "PAL_OW_BLUE", 1)
+  -- 1.1.90 (REQUESTS 374): the developer's colour pick C ("C blonde hair,
+  -- purple clothes"), sprites/canonical_color/lawrence*.png byte-for-byte;
+  -- BLUE stays the registry's fallback palette.
+  registerGuestSprite("SPRITE_IPC_LAWRENCE", "lawrence.png", "PAL_OW_BLUE", 1, true)
   -- 1.1.88 (REQUESTS 372): the cup challengers. Colours are the developer's
   -- 2026-11-01 picks ("alder red, elesa blue, grimsley blue, ... valerie
   -- pink, wallace is supposed to be teal"); the rest keep the boxed colour.
@@ -379,6 +385,15 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_LINEBACKER", "linebacker.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_ROUGHNECK", "roughneck.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_SOCIALITE", "socialite.png", "PAL_OW_BROWN", 3)
+  -- 1.1.90 (REQUESTS 371): the last six, from sprites/canonical. Cilan uses
+  -- the 8-frame sheet: frames 6-7 are his other-foot down/up steps, which
+  -- installCilanSteps draws instead of the engine's mirrored step.
+  registerGuestSprite("SPRITE_IPC_BURGH", "burgh.png", "PAL_OW_BROWN", 3)
+  registerGuestSprite("SPRITE_IPC_ELESA", "elesa.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_CILAN", "cilan_walk_8frame.png", "PAL_OW_GREEN", 2, nil, 8)
+  registerGuestSprite("SPRITE_IPC_SHAUNTAL", "shauntal.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_GRIMSLEY", "grimsley.png", "PAL_OW_BLUE", 1)
+  registerGuestSprite("SPRITE_IPC_MARSHAL", "marshal.png", "PAL_OW_BROWN", 3)
 
   local BATTLE_FRONTS = {
     ARTIST = mod.path .. "/assets/artist_front.png",
@@ -458,7 +473,9 @@ return function(mod)
   -- need color"); exchange/outbox/ipc-new-cast-preview/valerie_colour/.
   local CUP_CHALLENGERS = { "ALDER", "BIANCA", "CHEREN", "DRAYDEN", "IRIS",
     "SKYLA", "VALERIE", "WALLACE", "CYCLIST_F", "HARLEQUIN", "INFER",
-    "INFER_SAGE", "LINEBACKER", "ROUGHNECK", "SOCIALITE" }
+    "INFER_SAGE", "LINEBACKER", "ROUGHNECK", "SOCIALITE",
+    -- 1.1.90 (REQUESTS 371)
+    "BURGH", "ELESA", "CILAN", "SHAUNTAL", "GRIMSLEY", "MARSHAL" }
   for _, key in ipairs(CUP_CHALLENGERS) do
     BATTLE_FRONTS[key] = mod.path .. "/assets/" .. key:lower() .. "_front.png"
   end
@@ -531,6 +548,7 @@ return function(mod)
     MODERN_RED = true,
   }
   for _, key in ipairs(CUP_CHALLENGERS) do TRUE_COLOR_FRONTS[key] = true end
+  TRUE_COLOR_FRONTS.LAWRENCE = true   -- 1.1.90: colour pick C (REQUESTS 374)
 
   local ROUNDS = 4
 
@@ -1967,8 +1985,8 @@ return function(mod)
   -- still supplies AI, music and money; installPlayerPartyCap's wrap puts
   -- battleName on the battle screen. name is the personal name, so a failed
   -- wrap degrades to "PICNICKER JUDY", never a broken battle.
-  -- Burgh, Elesa, Cilan, Shauntal, Grimsley and Marshal join when their
-  -- walkers land in sprites/canonical (REQUESTS 371).
+  -- 1.1.90: Burgh, Elesa, Cilan, Shauntal, Grimsley and Marshal joined when
+  -- their walkers landed in sprites/canonical (REQUESTS 371).
   { key = "ALDER", tier = 4, customMember = true, class = "CHAMPION", member = "LANCE",
     sprite = "SPRITE_IPC_ALDER", name = "ALDER",
     chat = "ALDER: I wander\nto learn. Today\fI learn from you!",
@@ -2193,6 +2211,96 @@ return function(mod)
               { species = "BELLOSSOM", delta = 0 },
               { species = "JYNX", delta = 0 },
               { species = "STARMIE", delta = 0 } } },
+
+  { key = "BURGH", tier = 3, class = "BROCK", member = "BROCK1",
+    sprite = "SPRITE_IPC_BURGH", name = "BURGH",
+    chat = "BURGH: Every bug\nis a brushstroke.",
+    intro = "BURGH: Let's\npaint a battle!",
+    win = "A masterpiece!\nNot mine, though.",
+    loss = "My canvas is\ncomplete!",
+    afterWin = "BURGH: You've\ninspired me!",
+    afterLoss = "BURGH: Art takes\npractice. Return!",
+    party = { { species = "ARIADOS", delta = 0 },
+              { species = "FORRETRESS", delta = 0 },
+              { species = "SCIZOR", delta = 1 },
+              { species = "VENOMOTH", delta = 0 },
+              { species = "PARASECT", delta = 0 },
+              { species = "BEEDRILL", delta = 0 } } },
+
+  { key = "CILAN", tier = 3, class = "BLAINE", member = "BLAINE1",
+    sprite = "SPRITE_IPC_CILAN", name = "CILAN",
+    chat = "CILAN: Let me\nsavor this match.",
+    intro = "CILAN: It's\ntasting time!",
+    win = "A flavor I\ndidn't expect!",
+    loss = "A perfect\npairing!",
+    afterWin = "CILAN: Your style\nhas real taste.",
+    afterLoss = "CILAN: A dash more\nspice next time!",
+    party = { { species = "JUMPLUFF", delta = 0 },
+              { species = "SUNFLORA", delta = 0 },
+              { species = "VICTREEBEL", delta = 1 },
+              { species = "BELLOSSOM", delta = 0 },
+              { species = "EXEGGUTOR", delta = 0 },
+              { species = "GRANBULL", delta = 0 } } },
+
+  { key = "ELESA", tier = 3, class = "LT_SURGE", member = "LT_SURGE1",
+    sprite = "SPRITE_IPC_ELESA", name = "ELESA",
+    chat = "ELESA: The lights\nare on. Ready?",
+    intro = "ELESA: Dazzle me!",
+    win = "You stole the\nshow tonight.",
+    loss = "Shocking, isn't\nit?",
+    afterWin = "ELESA: You'd look\ngood on a runway.",
+    afterLoss = "ELESA: Shine a\nlittle brighter!",
+    party = { { species = "AMPHAROS", delta = 0 },
+              { species = "ELECTABUZZ", delta = 0 },
+              { species = "JOLTEON", delta = 1 },
+              { species = "RAICHU", delta = 0 },
+              { species = "ELECTRODE", delta = 0 },
+              { species = "LANTURN", delta = 0 } } },
+
+  { key = "GRIMSLEY", tier = 4, customMember = true, class = "KAREN", member = "KAREN1",
+    sprite = "SPRITE_IPC_GRIMSLEY", name = "GRIMSLEY",
+    chat = "GRIMSLEY: Life's\na gamble. So is\fthis match.",
+    intro = "GRIMSLEY: All in.",
+    win = "The dice turned.\nSo it goes.",
+    loss = "The house\nalways wins.",
+    afterWin = "GRIMSLEY: Lady\nLuck likes you.",
+    afterLoss = "GRIMSLEY: Bet\nagain sometime.",
+    party = { { species = "SNEASEL", delta = 0 },
+              { species = "MURKROW", delta = 0 },
+              { species = "HOUNDOOM", delta = 1 },
+              { species = "PERSIAN", delta = 0 },
+              { species = "UMBREON", delta = 0 },
+              { species = "TYRANITAR", delta = 0 } } },
+
+  { key = "MARSHAL", tier = 4, customMember = true, class = "BRUNO", member = "BRUNO1",
+    sprite = "SPRITE_IPC_MARSHAL", name = "MARSHAL",
+    chat = "MARSHAL: My master\ntaught me to fight\fwith a calm mind.",
+    intro = "MARSHAL: Hup!",
+    win = "Your spirit is\nstrong.",
+    loss = "Discipline wins.",
+    afterWin = "MARSHAL: I will\ntrain harder.",
+    afterLoss = "MARSHAL: Train\nyour body and\fyour mind.",
+    party = { { species = "MACHAMP", delta = 0 },
+              { species = "HITMONCHAN", delta = 0 },
+              { species = "HITMONLEE", delta = 1 },
+              { species = "POLIWRATH", delta = 0 },
+              { species = "HERACROSS", delta = 0 },
+              { species = "URSARING", delta = 0 } } },
+
+  { key = "SHAUNTAL", tier = 4, customMember = true, class = "KAREN", member = "KAREN1",
+    sprite = "SPRITE_IPC_SHAUNTAL", name = "SHAUNTAL",
+    chat = "SHAUNTAL: Ah! A\nnew character for\fmy next story!",
+    intro = "SHAUNTAL: Let's\nwrite a chapter.",
+    win = "What a twist!\nI must write it.",
+    loss = "And so the tale\nends... for now.",
+    afterWin = "SHAUNTAL: You'll\nbe my hero.",
+    afterLoss = "SHAUNTAL: Every\nstory needs a\fsequel.",
+    party = { { species = "MISDREAVUS", delta = 0 },
+              { species = "TENTACRUEL", delta = 0 },
+              { species = "GENGAR", delta = 1 },
+              { species = "HYPNO", delta = 0 },
+              { species = "MURKROW", delta = 0 },
+              { species = "NINETALES", delta = 0 } } },
   }
 
   -- Cleared September 2026: private comparison identities, never replacements.
@@ -2600,7 +2708,12 @@ return function(mod)
                   { "NEW: Sage Cassandra", "INFER_SAGE" },
                   { "NEW: Linebacker Ray", "LINEBACKER" },
                   { "NEW: Roughneck Rocco", "ROUGHNECK" },
-                  { "NEW: Socialite Holly", "SOCIALITE" } },
+                  { "NEW: Socialite Holly", "SOCIALITE" },
+                  -- 1.1.90 (REQUESTS 371)
+                  { "NEW: Burgh", "BURGH" }, { "NEW: Elesa", "ELESA" },
+                  { "NEW: Cilan", "CILAN" }, { "NEW: Shauntal", "SHAUNTAL" },
+                  { "NEW: Grimsley", "GRIMSLEY" }, { "NEW: Marshal", "MARSHAL" },
+                  { "Lawrence III", "LAWRENCE" } },
       default = "" },
   })
 
