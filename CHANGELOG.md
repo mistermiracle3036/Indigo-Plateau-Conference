@@ -5,9 +5,18 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.93
+
+Private phone test: Guzma gets his own look, and the host faces you.
+
+- Everything in 1.1.92 below (it was built but never reached the phone).
+- The tournament host upstairs now turns to face you when you talk to him,
+  from any side, like the challengers do.
+
 ## 1.1.92
 
-Private phone test: Guzma gets his own look.
+Not published (the host-facing check stopped it; see 1.1.93).
+Guzma gets his own look.
 
 - Guzma walks and battles with his commissioned sprites by Bani instead of the
   borrowed Biker. His team and lines are unchanged. Bani is credited on the

@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.92"
+  local VERSION = "1.1.93"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -4344,7 +4344,13 @@ return function(mod)
       local world = mod.world:overworld()
       if ev.mapId == LOBBY then
         local h = objectNamed(world, LOBBY, HOST_NAME)
-        if h and h.x == ev.x and h.y == ev.y then return talkHost() end
+        if h and h.x == ev.x and h.y == ev.y then
+          -- 1.1.93: the host turns to face you too, like the challenger
+          -- (the publish gate "NPCs talk and turn" found him keeping his
+          -- spawn facing: "turned 1 of 2").
+          faceTowardPlayer(LOBBY, HOST_NAME, h.x, h.y)
+          return talkHost()
+        end
       elseif ev.mapId == ARENA then
         -- With an escort pending, an A press on the just-fought challenger
         -- -- whose def.trainer was stripped, so the press lands here rather
