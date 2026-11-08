@@ -1,6 +1,6 @@
 {
   "contract": "shared-pokemon-identity",
-  "catalog_revision": "2026-11-07.2",
+  "catalog_revision": "2026-11-08.1",
   "generated_by": "tools/gen_expanded.py",
   "provides": [
     {
