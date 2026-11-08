@@ -187,6 +187,7 @@ By **Mister Miracle**
 - No artwork from the earlier Crystal Clear proof-of-concept is included.
 - A.J.'s directly approved custom battle and overworld art is by
   **TheBrawlUnit**.
+- Guzma's battle and overworld art was commissioned from **Bani** (1.1.92).
 - Larry, Ash, Yellow, Nate, Eusine, Juliana, Leaf, Lear, Lillie, Looker, Chef and
   Ranger battle and overworld art is by **Bani**, cleared for use with Bani
   credit. Duplica, Giselle and Suzie use Bani sheets as documented visual

@@ -19,7 +19,7 @@ return {
     source = "sprites/REGISTRY.json" },
   { artist = "Bani",
     works = { "Ash", "Barry", "Cynthia", "Eusine", "Juliana", "Larry", "Lass (RBY) (as Suzie)", "Lass (as Duplica)", "Leaf", "Lear", "Lillie", "Looker", "Modern Red", "Nate", "Ranger", "Santa", "Steven", "Wallace", "White Haired Girl (as Giselle)", "Yellow" },
-    commissions = { "Mr Nobody", "Nessa", "Scissorman" },
+    commissions = { "Guzma", "Mr Nobody", "Nessa", "Scissorman" },
     sections = { "people" },
     mods = { "Indigo Plateau Conference" },
     source = "sprites/REGISTRY.json" },

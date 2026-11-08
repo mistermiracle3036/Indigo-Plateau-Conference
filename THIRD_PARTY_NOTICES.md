@@ -1,5 +1,12 @@
 # Third-party notices
 
+## Private 1.1.92 commissioned Guzma
+
+Commissioned Guzma battle and overworld art by **Bani**, delivered 2026-11-07
+and cleared in the shared sprite registry (`guzma_bani`). Both assets are
+copied byte-for-byte from the canonical store; colours as drawn. No source
+sheet is distributed.
+
 ## Private 1.1.88 cup challengers
 
 Alder, Bianca, Cheren, Drayden, Iris, Skyla, Burgh, Elesa, Cilan, Shauntal,

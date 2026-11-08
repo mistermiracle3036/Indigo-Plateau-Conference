@@ -1,5 +1,11 @@
 # Credits
 
+## Private 1.1.92 commissioned Guzma
+
+Guzma battle and overworld sprite art commissioned from **Bani** (delivered
+2026-11-07), copied byte-for-byte from the shared canonical store. It replaces
+the vanilla Biker he borrowed.
+
 ## Private 1.1.88 cup challengers
 
 | Character | Assets | Artist |

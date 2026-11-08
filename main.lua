@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.91"
+  local VERSION = "1.1.92"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -213,6 +213,7 @@ return function(mod)
                                    "SPRITE_IPC_BURGH", "SPRITE_IPC_ELESA",
                                    "SPRITE_IPC_CILAN", "SPRITE_IPC_SHAUNTAL",
                                    "SPRITE_IPC_GRIMSLEY", "SPRITE_IPC_MARSHAL",
+                                   "SPRITE_IPC_GUZMA",
                                  } }
 
   -- IN-GAME ARTIST CREDITS (1.1.89, REQUESTS 109). Artists cleared their art
@@ -394,6 +395,11 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_SHAUNTAL", "shauntal.png", "PAL_OW_BLUE", 1)
   registerGuestSprite("SPRITE_IPC_GRIMSLEY", "grimsley.png", "PAL_OW_BLUE", 1)
   registerGuestSprite("SPRITE_IPC_MARSHAL", "marshal.png", "PAL_OW_BROWN", 3)
+  -- 1.1.92 (REQUESTS 563): Guzma's commissioned Bani art replaces the vanilla
+  -- Biker he borrowed. sprites/canonical/guzma_bani*.png byte-for-byte; the
+  -- walker is coloured as drawn and the registry records no palette, so it
+  -- registers trueColor with none, as Trainer-Association's SPRITE_TA_SCOTT.
+  registerGuestSprite("SPRITE_IPC_GUZMA", "guzma_bani.png", nil, nil, true)
 
   local BATTLE_FRONTS = {
     ARTIST = mod.path .. "/assets/artist_front.png",
@@ -549,6 +555,9 @@ return function(mod)
   }
   for _, key in ipairs(CUP_CHALLENGERS) do TRUE_COLOR_FRONTS[key] = true end
   TRUE_COLOR_FRONTS.LAWRENCE = true   -- 1.1.90: colour pick C (REQUESTS 374)
+  -- 1.1.92 (REQUESTS 563): Guzma battles with his commissioned Bani front.
+  BATTLE_FRONTS.GUZMA = mod.path .. "/assets/guzma_bani_front.png"
+  TRUE_COLOR_FRONTS.GUZMA = true
 
   local ROUNDS = 4
 
@@ -1090,7 +1099,7 @@ return function(mod)
               { species = "SKARMORY", delta = 1 } } },
 
   { key = "GUZMA", tier = 3, class = "BIKER", member = "ZEKE",
-    sprite = "SPRITE_BIKER", name = "GUZMA",
+    sprite = "SPRITE_IPC_GUZMA", name = "GUZMA",   -- 1.1.92: Bani commission (REQUESTS 563)
     chat = "GUZMA: Y'all know\nwho it is.",
     intro = "GUZMA: It's your\nboy! Beat down\ftime!",
     win = "What is wrong\nwith me?!",

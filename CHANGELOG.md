@@ -5,6 +5,17 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.92
+
+Private phone test: Guzma gets his own look.
+
+- Guzma walks and battles with his commissioned sprites by Bani instead of the
+  borrowed Biker. His team and lines are unchanged. Bani is credited on the
+  CREDITS screen and in the credit files.
+- Behind the scenes: IPC's shared-Pokémon list is updated to the latest
+  catalog. Nothing you see changes.
+
+
 ## 1.1.91
 
 Private phone test: the new challengers' artists are on the CREDITS screen.
