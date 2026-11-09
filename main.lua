@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.93"
+  local VERSION = "1.1.94"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -399,6 +399,9 @@ return function(mod)
   -- Biker he borrowed. sprites/canonical/guzma_bani*.png byte-for-byte; the
   -- walker is coloured as drawn and the registry records no palette, so it
   -- registers trueColor with none, as Trainer-Association's SPRITE_TA_SCOTT.
+  -- 1.1.94 (REQUESTS 601): the walker is now sprites/canonical_color/
+  -- guzma_bani.png, Bani's beige skin swapped for Crystal's overworld peach
+  -- (developer 2026-11-09: "B for Guzma"); the battle front stays as drawn.
   registerGuestSprite("SPRITE_IPC_GUZMA", "guzma_bani.png", nil, nil, true)
 
   local BATTLE_FRONTS = {

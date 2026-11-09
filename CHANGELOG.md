@@ -5,6 +5,15 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.94
+
+Private phone test: Guzma's skin tone.
+
+- Guzma's overworld sprite uses Crystal's own skin colour now (your pick B),
+  so his face no longer reads as yellow. His battle picture is unchanged.
+- Behind the scenes: IPC's shared-Pokémon list is on the latest catalog.
+
+
 ## 1.1.93
 
 Private phone test: Guzma gets his own look, and the host faces you.
