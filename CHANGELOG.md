@@ -5,6 +5,15 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.95
+
+Private phone test: the new credits screen.
+
+- START, then CREDITS now shows one artist a page, with each character's
+  sprite beside their name. Press A on a character for their own page:
+  battle picture and who drew what.
+
+
 ## 1.1.94
 
 Private phone test: Guzma's skin tone.
