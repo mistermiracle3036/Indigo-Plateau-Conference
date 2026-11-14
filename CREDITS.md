@@ -99,7 +99,7 @@ permitted. Direct-use approvals and source-page terms are recorded in
 | Larry | larry - Bani.png (local cleared source; not bundled) | assets/larry.png, assets/larry_front.png | Bani |
 | Ash | ash - bani.png (local cleared source; not bundled) | assets/ash.png, assets/ash_front.png | Bani |
 | Yellow | yellow - Bani.png (local cleared source; not bundled) | assets/yellow.png, assets/yellow_front.png | Bani |
-| Eusine | Eusine.png (local cleared source; not bundled) | assets/eusine.png, assets/eusine_front.png | Bani |
+| Eusine | Eusine.png (local cleared source; not bundled) | assets/eusine.png (walker only since 1.1.96; his battle picture is Crystal's own MYSTICALMAN) | Bani |
 | Juliana | Julianna (Violet).png (local cleared source; not bundled) | assets/juliana.png, assets/juliana_front.png | Bani |
 | Leaf | Leaf.png (local cleared source; not bundled) | assets/leaf.png, assets/leaf_front.png | Bani |
 | Lear | Lear.png (local cleared source; not bundled) | assets/lear.png, assets/lear_front.png | Bani |
@@ -117,7 +117,7 @@ permitted. Direct-use approvals and source-page terms are recorded in
 | Cynthia | Cynthia.png (local cleared source; not bundled) | assets/cynthia.png, assets/cynthia_front.png | Bani |
 | Steven | Steven Stone.png (local cleared source; not bundled) | assets/steven.png, assets/steven_front.png | Bani |
 | Bea | `bea.png` | `assets/bea.png`, `assets/bea_front.png` | KIRB/YOSHI |
-| Bill | Bill.png (local cleared source; not bundled) | assets/bill.png, assets/bill_front.png | RoyalGuard |
+| Bill | Bill.png (local cleared source; not bundled) | assets/bill_front.png (battle only since 1.1.96; he walks as Crystal's own Bill) | RoyalGuard |
 | Chef (developer-selector test) | Chef.png (local cleared source; not bundled) | assets/chef.png, assets/chef_front.png | Bani |
 | Duplica (visual substitute) | Lass.png (local cleared source; not bundled) | assets/duplica.png, assets/duplica_front.png | Bani — `Lass` used as a visual substitute, not bespoke Duplica art |
 | Giselle (visual substitute) | White Haired Girl.png (local cleared source; not bundled) | assets/giselle.png, assets/giselle_front.png | Bani — `White Haired Girl` used as a visual substitute, not bespoke Giselle art |

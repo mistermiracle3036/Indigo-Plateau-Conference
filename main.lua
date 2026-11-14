@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.95"
+  local VERSION = "1.1.96"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -162,7 +162,6 @@ return function(mod)
                                    "SPRITE_IPC_LILLIE",
                                    "SPRITE_IPC_LOOKER",
                                    "SPRITE_IPC_BARRY",
-                                   "SPRITE_IPC_BILL",
                                    "SPRITE_IPC_COLRESS",
                                    "SPRITE_IPC_HUGH",
                                    "SPRITE_IPC_MAXIE",
@@ -311,7 +310,6 @@ return function(mod)
   registerGuestSprite("SPRITE_IPC_LILLIE", "lillie.png", "PAL_OW_PINK", 4)
   registerGuestSprite("SPRITE_IPC_LOOKER", "looker.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_BARRY", "barry.png", "PAL_OW_GREEN", 2)  -- 1.1.86: Bani art, green (REQUESTS 367)
-  registerGuestSprite("SPRITE_IPC_BILL", "bill.png", "PAL_OW_BROWN", 3)
   registerGuestSprite("SPRITE_IPC_COLRESS", "colress.png", "PAL_OW_BLUE", 1)
   registerGuestSprite("SPRITE_IPC_HUGH", "hugh.png", "PAL_OW_BLUE", 1, true)
   registerGuestSprite("SPRITE_IPC_MAXIE", "maxie.png", "PAL_OW_RED", 0, true)
@@ -423,7 +421,6 @@ return function(mod)
     LARRY = mod.path .. "/assets/larry_front.png",
     ASH = mod.path .. "/assets/ash_front.png",
     YELLOW = mod.path .. "/assets/yellow_front.png",
-    EUSINE = mod.path .. "/assets/eusine_front.png",
     JULIANA = mod.path .. "/assets/juliana_front.png",
     LEAF = mod.path .. "/assets/leaf_front.png",
     LEAR = mod.path .. "/assets/lear_front.png",
@@ -511,7 +508,6 @@ return function(mod)
     LARRY = true,
     ASH = true,
     YELLOW = true,
-    EUSINE = true,
     JULIANA = true,
     LEAF = true,
     LEAR = true,
@@ -1443,7 +1439,10 @@ return function(mod)
               { species = "RAPIDASH",  delta = 1 } } },
 
   { key = "BILL", tier = 1, class = "SCIENTIST", member = "ROSS",
-    sprite = "SPRITE_IPC_BILL", name = "BILL",
+    -- 1.1.96 (REQUESTS 688): Crystal's own four-way Bill walker, with the
+    -- RED the vanilla maps place him in (VANILLA_OBJ_PALETTES recommended 8);
+    -- the custom bill.png no longer ships. His battle front stays custom.
+    sprite = "SPRITE_BILL", palette = 8, name = "BILL",
     chat = "BILL: This setup\nis fascinating!",
     intro = "BILL: Let's test\nour connection!",
     win = "Back to the\ndrawing board!",
@@ -3357,9 +3356,13 @@ return function(mod)
         local front = ourBattle and BATTLE_FRONTS[spawnedFoeKey]
         -- These pictures are loaded from the player's imported ROM cache.
         -- Never distribute copies or replace a shared trainer class record.
+        -- 1.1.96 (REQUESTS 684/745): Eusine battles with Crystal's own
+        -- MYSTICALMAN picture (developer 2026-11-10: "we should use vanilla
+        -- battle portrait for Eusine ... make sure that we arent shipping that
+        -- as asset"); eusine_front.png no longer ships.
         local romClasses = { DUPLICA = "LASS", SUZIE = "LASS",
           OAK = "POKEMON_PROF", PETREL = "EXECUTIVEM",
-          ROCKET_EXECUTIVE = "EXECUTIVEM" }
+          ROCKET_EXECUTIVE = "EXECUTIVEM", EUSINE = "MYSTICALMAN" }
         local romClass = ourBattle and romClasses[spawnedFoeKey]
         if romClass then
           local hud = game and game.data and game.data.gen2MenuGfx

@@ -5,6 +5,18 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.96
+
+Private phone test: Crystal's own art for Eusine and Bill.
+
+- Eusine battles with Crystal's own picture of him (the Mystic Man) instead of
+  the custom one, as you decided. He still walks in Bani's sprite.
+- Bill walks as Crystal's own Bill sprite (in red, as the game shows him).
+  His battle picture is unchanged.
+- Guzma's battle picture has its white parts back (the Checker's fix,
+  around his shoes).
+
+
 ## 1.1.95
 
 Private phone test: the new credits screen.

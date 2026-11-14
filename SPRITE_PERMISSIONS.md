@@ -11,7 +11,7 @@ follow-up before public release.
 | Larry custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-24 |
 | Ash custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-24 |
 | Yellow custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-24 |
-| Eusine custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-28 |
+| Eusine custom overworld sprite (battle front retired 1.1.96 for Crystal's MYSTICALMAN) | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-28 |
 | Juliana (Violet) custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-28 |
 | Leaf custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-28 |
 | Lear custom battle and overworld set | Bani | User-confirmed cleared for use with Bani credit | Not supplied — approved directly | 2026-08-28 |
@@ -39,7 +39,7 @@ follow-up before public release.
 | Wallace custom battle and overworld set | Bani | Same Bani folder as the cleared sheets above; canonical store, developer's teal 2026-11-01 | Not supplied — approved directly | 2026-11-01 |
 | Alder, Bianca, Cheren, Drayden, Iris, Skyla, Burgh, Elesa, Cilan, Shauntal, Grimsley, Marshal, Cyclist, Harlequin, Firebrand, Sage, Linebacker, Roughneck and Socialite battle and overworld sets | Azure_Keys, Solo993, JaceDeane (Pokémon Black & White 3: Genesis) | "The project is open source, as long as use of the assets is credited" (Azure_Keys) | https://www.pokecommunity.com/threads/pokemon-black-and-white-3-genesis-complete.444114/page-33 | 2026-11-01 |
 | Valerie battle and overworld set | Mmmmmm, bloodless, Kuroko Aizawa (Polished Crystal, Rangi42) | Same Polished Crystal per-asset attribution as the 1.1.50 set | Not supplied — local Polished Crystal source | 2026-11-01 |
-| Bill custom battle and overworld set | RoyalGuard | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
+| Bill custom battle sprite (walker retired 1.1.96 for Crystal's SPRITE_BILL) | RoyalGuard | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
 | Colress custom battle and overworld set | RoyalGuard | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
 | Hugh custom battle and overworld set | RoyalGuard | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
 | Maxie custom battle and overworld set | RoyalGuard | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |

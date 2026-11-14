@@ -329,7 +329,7 @@ return {
     mods = { "Indigo Plateau Conference" },
     used = { "COLOSSEUM" },
     characters = {
-      { battleBy = "RoyalGuard", credit = "Bill", files = { indigo_conference = { front = "assets/bill_front.png", walk = "assets/bill.png" } }, front = "bill_front.png", name = "Bill", pal = 3, used = { "COLOSSEUM" }, walk = "bill.png", walkBy = "RoyalGuard" },
+      { battleBy = "RoyalGuard", credit = "Bill", files = { indigo_conference = { front = "assets/bill_front.png" } }, front = "bill_front.png", name = "Bill", pal = 3, used = { "COLOSSEUM" }, walk = "bill.png", walkBy = "RoyalGuard" },
       { battleBy = "RoyalGuard", credit = "Colress", files = { indigo_conference = { front = "assets/colress_front.png", frontColour = true, walk = "assets/colress.png" } }, front = "colress_front.png", name = "Colress", pal = 1, used = { "COLOSSEUM" }, walk = "colress.png", walkBy = "RoyalGuard" },
       { battleBy = "RoyalGuard", credit = "Hugh", files = { indigo_conference = { front = "assets/hugh_front.png", frontColour = true, walk = "assets/hugh.png", walkColour = true } }, front = "hugh_front.png", name = "Hugh", pal = 1, used = { "COLOSSEUM" }, walk = "hugh.png", walkBy = "RoyalGuard" },
       { battleBy = "RoyalGuard", credit = "Lorelei", files = { indigo_conference = { front = "assets/lorelei_front.png", frontColour = true, walk = "assets/lorelei.png", walkColour = true } }, front = "lorelei_front.png", name = "Lorelei", pal = 0, used = { "COLOSSEUM" }, walk = "lorelei.png", walkBy = "RoyalGuard" },
