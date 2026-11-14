@@ -43,7 +43,7 @@
 local Runtime = require("src.mods.Runtime")
 
 return function(mod)
-  local VERSION = "1.1.96"
+  local VERSION = "1.1.97"
   local MOD_ID = "indigo_conference"
   local weightedTeams = assert(load(assert(mod:read("weighted_teams.lua")), "IPC teams"))()
   -- 1.1.69 (A-0080): the approved expanded track, the reviewed developer
@@ -433,7 +433,6 @@ return function(mod)
     MAXIE = mod.path .. "/assets/maxie_front.png",
     WALLY = mod.path .. "/assets/wally_front.png",
     GLORIA = mod.path .. "/assets/gloria_front.png",
-    OFFICER_JENNY = mod.path .. "/assets/officer_jenny_front.png",
     RUIN_MANIAC = mod.path .. "/assets/ruin_maniac_front.png",
     CHEF = mod.path .. "/assets/chef_front.png",
     VOLKNER = mod.path .. "/assets/volkner_front.png",
@@ -520,7 +519,6 @@ return function(mod)
     MAXIE = true,
     WALLY = true,
     GLORIA = true,
-    OFFICER_JENNY = true,
     RUIN_MANIAC = true,
     CHEF = true,
     VOLKNER = true,
@@ -1517,7 +1515,13 @@ return function(mod)
               { species = "TYPHLOSION", delta = 0 },
               { species = "SKARMORY",   delta = 1 } } },
 
-  { key = "OFFICER_JENNY", tier = 1, class = "OFFICER", member = "KEITH",
+  -- 1.1.97: RETIRED from the cups (developer 2026-11-14, via the Desk:
+  -- "Remove Jenny from the cups"). Her battle picture was Nintendo-derived
+  -- (registry officer_jenny: blocked) and Crystal has none, so she is never
+  -- drawn again until cleared art exists. The row stays so a card saved
+  -- before 1.1.97 that names her still validates instead of being redrawn;
+  -- without the blocked front she battles under the carrier's OFFICER picture.
+  { key = "OFFICER_JENNY", tier = 1, retired = true, class = "OFFICER", member = "KEITH",
     sprite = "SPRITE_OFFICER", palette = 9, name = "JENNY",
     chat = "JENNY: Keep this\nbattle orderly!",
     intro = "JENNY: You're\nclear to begin!",
@@ -2686,7 +2690,6 @@ return function(mod)
                   { "Colress", "COLRESS" },
                   { "Guzma", "GUZMA" },   -- 1.1.69: last of the 15 expanded normals
                   { "Gloria", "GLORIA" },
-                  { "Officer Jenny", "OFFICER_JENNY" },
                   { "Volkner", "VOLKNER" },
                   { "Giselle", "GISELLE" },
                   { "Suzie", "SUZIE" },

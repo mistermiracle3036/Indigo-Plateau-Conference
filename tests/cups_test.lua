@@ -143,5 +143,33 @@ local e = Cups.draw("INDIGO_PLATEAU_POKECENTER_1F", byKey, {}, lcg(3), nil, "exp
 local copy = Cups.clone(e); copy.track = "nonsense"
 check(not Cups.valid(copy, byKey), "unknown track rejected")
 
+-- 7. A retired challenger (1.1.97: Officer Jenny) is never drawn again, yet a
+--    card saved before 1.1.97 that names her still validates (no redraw).
+local retiredKey = Cups.teams("gen12").OFFICER_JENNY and "OFFICER_JENNY"
+check(retiredKey ~= nil, "OFFICER_JENNY still in the gen12 table")
+local savedWithHer
+for _, id in ipairs(venues) do
+  for seed = 1, 2000 do
+    local c = Cups.draw(id, byKey, {}, lcg(seed))
+    for _, k in ipairs(c.keys) do if k == retiredKey then savedWithHer = savedWithHer or c end end
+  end
+end
+check(savedWithHer ~= nil, "before retiring, draws can name her (fixture)")
+local retiredByKey = {}
+for k, v in pairs(byKey) do retiredByKey[k] = v end
+retiredByKey[retiredKey] = { key = retiredKey, retired = true }
+local drawnAgain = 0
+for _, id in ipairs(venues) do
+  for _, track in ipairs({ "gen12", "expanded" }) do
+    for seed = 1, 2000 do
+      for _, k in ipairs(Cups.draw(id, retiredByKey, {}, lcg(seed), nil, track).keys) do
+        if k == retiredKey then drawnAgain = drawnAgain + 1 end
+      end
+    end
+  end
+end
+check(drawnAgain == 0, ("retired challenger never drawn (%d)"):format(drawnAgain))
+check(savedWithHer == nil or Cups.valid(savedWithHer, retiredByKey), "a saved card naming her still validates")
+
 print(("%d PASS, %d FAIL"):format(pass, fail))
 os.exit(fail == 0 and 0 or 1)

@@ -4,7 +4,7 @@ return {
   tags = { "quest", "tournament", "postgame" },
   differences = {
     "Fantina uses Mismagius when Polished Species Pack is installed",
-    "110 challengers across four tiers",
+    "109 challengers across four tiers",
     "Fantina and the other custom guests selectable in round one",
     "Three-on-three preliminaries and a six-on-six final",
     "Defeating Roxie can unlock her one-night Sandalwood Villa band show",
@@ -27,7 +27,7 @@ return {
     "Alder, Bianca, Cheren, Drayden, Iris, Skyla, Burgh, Elesa, Cilan, Shauntal, Grimsley, Marshal, Cyclist, Harlequin, Firebrand, Sage, Linebacker, Roughneck and Socialite sprites by Azure_Keys, Solo993 and JaceDeane (Pokemon Black & White 3: Genesis)",
     "Valerie sprites by Mmmmmm, bloodless and Kuroko Aizawa; Lawrence III by Fo0xerz, devamped by Rangi42 (Polished Crystal)",
     "Colress, Hugh, Maxie and Wally sprite layouts and Bill's battle portrait by RoyalGuard",
-    "Gloria and Ruin Maniac sprites, and Officer Jenny battle portrait, by TeamHistoryWaffles",
+    "Gloria and Ruin Maniac sprites by TeamHistoryWaffles",
     "Jessie & James portrait by MOLLY; Oak portrait uses the player's ROM",
     "Giovanni, Lorelei, Agatha, Archer, Ariana and Proton sprite layouts by SirWhibbles",
     "Commissioned Roxie battle and overworld sprite art by tharkka",

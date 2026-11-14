@@ -45,7 +45,7 @@ follow-up before public release.
 | Maxie custom battle and overworld set | RoyalGuard | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
 | Wally custom battle and overworld set | RoyalGuard | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
 | Gloria custom battle and overworld set | TeamHistoryWaffles | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
-| Officer Jenny custom battle and overworld set | TeamHistoryWaffles | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
+| Officer Jenny custom battle portrait (NOT SHIPPED since 1.1.97: registry marks it blocked, Nintendo-derived; she is retired from the cups) | TeamHistoryWaffles | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
 | Ruin Maniac custom battle and overworld set | TeamHistoryWaffles | User-confirmed creator-name credit is sufficient for use | Not supplied — approved directly | 2026-08-30 |
 | A.J. custom battle and overworld set | TheBrawlUnit | User-confirmed direct express approval from the creator to use the sprite | Not supplied — approved directly | 2026-08-24 |
 | Bea | KIRB/YOSHI | “GIVE CREDIT IF USED.” | Not supplied — local custom sheet | 2026-08-19 |

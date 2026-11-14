@@ -142,7 +142,7 @@ permitted. Direct-use approvals and source-page terms are recorded in
 | Mina | `mina.png` | `assets/mina.png`, `assets/mina_front.png` | Santiago Speedpaints a.k.a. Rojimenez |
 | Colress | Colress.png (local cleared source; not bundled) | assets/colress.png, assets/colress_front.png | RoyalGuard |
 | Maxie | Maxie.png (local cleared source; not bundled) | assets/maxie.png, assets/maxie_front.png | RoyalGuard |
-| Officer Jenny | Officer_Jenny.png (local cleared source; not bundled) | assets/officer_jenny.png, assets/officer_jenny_front.png | TeamHistoryWaffles |
+| Officer Jenny (retired from the cups in 1.1.97; the battle portrait no longer ships) | Officer_Jenny.png (local cleared source; not bundled) | none since 1.1.97 | TeamHistoryWaffles |
 | Professor Oak candidate | `many misc characters.png` | `assets/oak_front.png` | MOLLY |
 | Stadium Trainer (Pokémon Stadium 1 design) | `pokemon stadium.png` | `assets/stadium_player.png`, `assets/stadium_player_front.png` | MOLLY |
 | Rosa | `rosa.png` | `assets/rosa.png`, `assets/rosa_front.png` | MOLLY |

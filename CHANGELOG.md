@@ -5,9 +5,20 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.97
+
+Private phone test: Officer Jenny leaves the cups.
+
+- Everything in 1.1.96 below (it was built but never reached the phone).
+- Officer Jenny is no longer drawn for a cup, as you decided: her battle
+  picture was copied from Pokémon Yellow and can't ship. She can come back
+  once there is cleared art for her. A tournament you already started with
+  her on the card plays out as drawn.
+
 ## 1.1.96
 
-Private phone test: Crystal's own art for Eusine and Bill.
+Not published (folded into 1.1.97).
+Crystal's own art for Eusine and Bill.
 
 - Eusine battles with Crystal's own picture of him (the Mystic Man) instead of
   the custom one, as you decided. He still walks in Bani's sprite.

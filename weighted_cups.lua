@@ -95,8 +95,10 @@ return function(tracks)
     local cup=assert(M.cups[id]); rng=rng or math.random
     local pools={{},{},{},{}}
     -- Stable ordering means a deterministic RNG is reproducible across platforms.
+    -- 1.1.97: a `retired` challenger is never drawn again, but stays in the
+    -- tables so a card saved with them still validates (no silent redraw).
     for key,def in pairs(teams) do
-      if byKey[key] and not byKey[key].devOnly then table.insert(pools[def.tier],key) end
+      if byKey[key] and not byKey[key].devOnly and not byKey[key].retired then table.insert(pools[def.tier],key) end
     end
     for _,pool in ipairs(pools) do table.sort(pool) end
     local card={schema=M.schema,venue=id,rounds={},keys={},encountered={},track=track or 'gen12'}

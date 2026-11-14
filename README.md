@@ -103,7 +103,7 @@ anything rebalances.
 - **A run in progress survives quitting.** The bracket travels with your
   in-game save, so loading an older save rewinds the tournament with it.
 
-**Every new run rolls a weighted card.** The roster is 110 challengers across
+**Every new run rolls a weighted card.** The roster is 109 challengers across
 four tiers. Earlier cups favour weaker trainers; later cups and rounds
 favour stronger trainers without strict tier bans. Each opponent also gets
 an authored Early, Middle or Full team. Recent encounters and same-run

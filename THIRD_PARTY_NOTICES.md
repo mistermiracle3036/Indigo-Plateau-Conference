@@ -173,8 +173,9 @@ Executive use ROM Rocket walkers with explicit green/red palettes and the
 ROM male Executive portrait. Duplica/Suzie portraits use ROM Lass; Oak uses
 ROM Professor. These ROM graphics are referenced at runtime, not shipped.
 Historical attribution below does not license or describe these removed
-assets in the current build. Retained Chef/Jenny custom battle portraits
-remain credited to Bani/TeamHistoryWaffles respectively. Generated registry
+assets in the current build. The retained Chef custom battle portrait
+remains credited to Bani. Officer Jenny's custom portrait no longer ships
+(1.1.97: blocked as Nintendo-derived; she is retired from the cups). Generated registry
 credits are to be refreshed by the owning agent AFTER intake registry rebuild.
 
 # Approved Ciara assets and commissioned Miror B (private build 1.1.58)
