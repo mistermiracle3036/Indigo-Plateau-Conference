@@ -19,6 +19,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "FURY_CUTTER"}, {level = 1, move = "FALSE_SWIPE"}, {level = 1, move = "POUND"}, {level = 1, move = "LEER"}, {level = 1, move = "QUICK_ATTACK"}, {level = 5, move = "MEGA_DRAIN"}, {level = 12, move = "DETECT"}, {level = 25, move = "GIGA_DRAIN"}, {level = 30, move = "SLAM"}, {level = 35, move = "DOUBLE_TEAM"}, {level = 49, move = "SCREECH"}},
   name = "SCEPTILE",
+  anim = {tiles = 7, play = {{1, 6}, {2, 16}, {254, 5}, {3, 5}, {2, 5}, {253, 3}, {3, 5}, {4, 5}}, idle = {{5, 6}, {0, 6}, {5, 6}, {0, 6}, {5, 6}}},
   palette = {normal = {{107, 197, 25}, {181, 33, 33}}, shiny = {{90, 181, 255}, {189, 107, 0}}},
   slug = "sceptile",
   source = "official-stats",

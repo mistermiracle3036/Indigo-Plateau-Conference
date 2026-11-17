@@ -29,6 +29,7 @@ return {
     evolutions = {},
     items = {},
     cryBase = "WOOPER",
+    anim = {tiles = 7, play = {{0, 4}, {1, 20}, {2, 10}, {3, 10}, {4, 16}}, idle = {{254, 2}, {5, 8}, {0, 8}, {253, 1}}},
     palette = {normal = {{255, 206, 25}, {49, 66, 181}}, shiny = {{247, 156, 25}, {99, 74, 156}}},
     dexEntry = {kind = "WHISKERS", heightFt = 2, heightIn = 11, weightLbs = 52.0, text = "Sighting Whiscash<NEXT>leaping from the<NEXT>water is believed", text2 = "to herald an<NEXT>earthquake."},
     entry_key = "pokemon:whiscash:default:art:default",

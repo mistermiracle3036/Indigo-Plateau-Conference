@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "DOUBLE_KICK"}, {level = 1, move = "FIRE_PUNCH"}, {level = 1, move = "FLAMETHROWER"}, {level = 1, move = "SCRATCH"}, {level = 1, move = "GROWL"}, {level = 1, move = "EMBER"}, {level = 1, move = "QUICK_ATTACK"}, {level = 12, move = "DETECT"}, {level = 15, move = "SAND_ATTACK"}, {level = 25, move = "SLASH"}, {level = 35, move = "FOCUS_ENERGY"}, {level = 56, move = "REVERSAL"}},
   name = "BLAZIKEN",
+  anim = {tiles = 7, play = {{1, 3}, {4, 5}, {5, 5}, {254, 4}, {2, 4}, {3, 4}, {253, 4}, {4, 5}, {5, 5}, {1, 4}}, idle = {{6, 6}, {0, 6}, {6, 6}, {0, 6}, {6, 6}}},
   palette = {normal = {{255, 189, 90}, {239, 41, 25}}, shiny = {{255, 148, 16}, {181, 33, 33}}},
   slug = "blaziken",
   source = "official-stats",

@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "QUICK_ATTACK"}, {level = 1, move = "LEER"}, {level = 3, move = "ROCK_THROW"}, {level = 6, move = "WING_ATTACK"}, {level = 9, move = "DRAGONBREATH"}, {level = 12, move = "ANCIENTPOWER"}, {level = 24, move = "ROCK_SLIDE"}, {level = 27, move = "SCARY_FACE"}, {level = 30, move = "CRUNCH"}, {level = 33, move = "AGILITY"}, {level = 42, move = "THRASH"}},
   name = "ARCHEN",
+  anim = {tiles = 7, play = {{1, 6}, {2, 16}, {254, 2}, {3, 8}, {4, 8}, {253, 3}}, idle = {{254, 2}, {1, 8}, {0, 8}, {253, 1}, {1, 8}}},
   palette = {normal = {{255, 197, 49}, {222, 58, 58}}, shiny = {{197, 214, 123}, {197, 99, 49}}},
   slug = "archen",
   source = "official-stats",

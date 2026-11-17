@@ -28,6 +28,7 @@ return {
     evolutions = {{method = "EVOLVE_LEVEL", into = "MEDICHAM", level = 37}},
     items = {},
     cryBase = "MACHOP",
+    anim = {tiles = 7, play = {{1, 8}, {2, 18}, {3, 12}, {1, 8}}, idle = {{254, 3}, {0, 6}, {4, 6}, {253, 1}}},
     palette = {normal = {{206, 206, 214}, {99, 140, 214}}, shiny = {{222, 181, 222}, {214, 25, 33}}},
     dexEntry = {kind = "MEDITATE", heightFt = 2, heightIn = 0, weightLbs = 24.7, text = "It eats just one<NEXT>berry a day. By<NEXT>enduring hunger,", text2 = "its spirit is<NEXT>tempered and made<NEXT>sharper."},
     entry_key = "pokemon:meditite:default:art:default",

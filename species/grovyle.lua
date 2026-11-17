@@ -19,6 +19,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "FURY_CUTTER"}, {level = 1, move = "FALSE_SWIPE"}, {level = 1, move = "POUND"}, {level = 1, move = "LEER"}, {level = 1, move = "QUICK_ATTACK"}, {level = 9, move = "MEGA_DRAIN"}, {level = 12, move = "PROTECT"}, {level = 25, move = "GIGA_DRAIN"}, {level = 30, move = "SLAM"}, {level = 35, move = "DOUBLE_TEAM"}, {level = 45, move = "SCREECH"}},
   name = "GROVYLE",
+  anim = {tiles = 7, play = {{1, 14}, {2, 14}, {1, 17}, {2, 10}, {3, 4}, {4, 6}, {2, 8}, {3, 4}, {4, 8}}, idle = {{5, 6}, {0, 6}, {5, 6}}},
   palette = {normal = {{58, 165, 49}, {58, 99, 115}}, shiny = {{99, 214, 206}, {255, 49, 58}}},
   slug = "grovyle",
   source = "official-stats",

@@ -19,6 +19,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "GROWL"}, {level = 3, move = "DOUBLE_TEAM"}, {level = 6, move = "CONFUSION"}, {level = 9, move = "HYPNOSIS"}, {level = 15, move = "TELEPORT"}, {level = 18, move = "PSYBEAM"}, {level = 24, move = "CHARM"}, {level = 30, move = "PSYCHIC_M"}, {level = 36, move = "DREAM_EATER"}, {level = 39, move = "FUTURE_SIGHT"}},
   name = "RALTS",
+  anim = {tiles = 7, play = {{1, 6}, {2, 8}, {3, 18}, {2, 12}, {1, 8}}, idle = {{4, 10}, {0, 10}, {5, 10}, {0, 10}, {4, 10}}},
   palette = {normal = {{82, 214, 82}, {214, 66, 41}}, shiny = {{66, 173, 197}, {214, 99, 41}}},
   slug = "ralts",
   source = "official-stats",

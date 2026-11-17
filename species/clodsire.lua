@@ -28,6 +28,7 @@ return {
     evolutions = {},
     items = {},
     cryBase = "WOOPER",
+    anim = {tiles = 7, play = {{1, 9}, {2, 6}, {3, 46}, {1, 8}}, idle = {{1, 8}, {0, 8}, {1, 10}}},
     palette = {normal = {{181, 107, 82}, {115, 58, 33}}, shiny = {{90, 115, 156}, {33, 49, 115}}},
     dexEntry = {kind = "SPINY FISH", heightFt = 5, heightIn = 11, weightLbs = 491.6, text = "When attacked, it<NEXT>will retaliate by<NEXT>sticking thick", text2 = "spines out from<NEXT>its body. It's a<NEXT>risky move."},
     entry_key = "pokemon:clodsire:default:art:default",

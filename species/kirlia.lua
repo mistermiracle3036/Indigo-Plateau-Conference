@@ -21,6 +21,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "GROWL"}, {level = 1, move = "DOUBLE_TEAM"}, {level = 1, move = "CONFUSION"}, {level = 9, move = "HYPNOSIS"}, {level = 15, move = "TELEPORT"}, {level = 18, move = "PSYBEAM"}, {level = 28, move = "CHARM"}, {level = 38, move = "PSYCHIC_M"}, {level = 48, move = "DREAM_EATER"}, {level = 53, move = "FUTURE_SIGHT"}},
   name = "KIRLIA",
+  anim = {tiles = 7, play = {{1, 12}, {254, 3}, {2, 8}, {3, 8}, {253, 2}}, idle = {{4, 6}, {0, 6}, {4, 6}}},
   palette = {normal = {{74, 214, 82}, {197, 49, 33}}, shiny = {{74, 181, 222}, {206, 115, 33}}},
   slug = "kirlia",
   source = "official-stats",

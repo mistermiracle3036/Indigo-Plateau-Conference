@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "BATON_PASS"}, {level = 1, move = "POISON_STING"}, {level = 1, move = "DEFENSE_CURL"}, {level = 1, move = "ROLLOUT"}, {level = 1, move = "PROTECT"}, {level = 16, move = "SCREECH"}, {level = 34, move = "TAKE_DOWN"}, {level = 42, move = "AGILITY"}, {level = 50, move = "TOXIC"}, {level = 66, move = "DOUBLE_EDGE"}, {level = 74, move = "MEGAHORN"}},
   name = "SCOLIPEDE",
+  anim = {tiles = 7, play = {{1, 12}, {254, 5}, {2, 4}, {3, 4}, {4, 4}, {5, 4}, {253, 2}, {1, 8}}, idle = {{254, 3}, {0, 6}, {6, 6}, {253, 1}}},
   palette = {normal = {{230, 33, 214}, {189, 0, 74}}, shiny = {{33, 189, 206}, {197, 0, 0}}},
   slug = "scolipede",
   source = "official-stats",

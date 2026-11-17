@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "HARDEN"}, {level = 1, move = "HARDEN"}},
   name = "SILCOON",
+  anim = {tiles = 7, play = {{0, 4}, {1, 6}, {2, 8}, {1, 8}, {2, 8}, {1, 8}, {0, 12}, {1, 12}}, idle = {{254, 3}, {3, 6}, {0, 6}, {253, 1}}},
   palette = {normal = {{132, 132, 165}, {206, 66, 41}}, shiny = {{222, 156, 0}, {16, 82, 197}}},
   slug = "silcoon",
   source = "official-stats",

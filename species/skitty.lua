@@ -29,6 +29,7 @@ return {
     evolutions = {{method = "EVOLVE_ITEM", into = "DELCATTY", item = "MOON_STONE"}},
     items = {},
     cryBase = "MEOWTH",
+    anim = {tiles = 7, play = {{1, 26}, {254, 3}, {0, 8}, {2, 8}, {253, 2}}, idle = {{2, 10}}},
     palette = {normal = {{247, 222, 115}, {239, 99, 99}}, shiny = {{255, 247, 115}, {206, 41, 41}}},
     dexEntry = {kind = "KITTEN", heightFt = 2, heightIn = 0, weightLbs = 24.3, text = "It shows its cute<NEXT>side by chasing<NEXT>its own tail until", text2 = "it gets dizzy."},
     entry_key = "pokemon:skitty:default:art:default",

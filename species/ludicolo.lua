@@ -28,6 +28,7 @@ return {
     evolutions = {},
     items = {},
     cryBase = "POLIWAG",
+    anim = {tiles = 7, play = {{1, 8}, {2, 4}, {0, 12}, {254, 2}, {3, 10}, {0, 10}, {4, 10}, {0, 10}, {253, 4}}, idle = {{5, 10}, {0, 10}, {6, 6}, {0, 6}, {6, 6}}},
     palette = {normal = {{255, 197, 66}, {90, 189, 49}}, shiny = {{255, 173, 66}, {49, 189, 140}}},
     dexEntry = {kind = "CAREFREE", heightFt = 4, heightIn = 11, weightLbs = 121.3, text = "If it hears<NEXT>festive music, it<NEXT>begins moving in", text2 = "rhythm in order to<NEXT>amplify its power."},
     entry_key = "pokemon:ludicolo:default:art:default",

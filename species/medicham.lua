@@ -27,6 +27,7 @@ return {
     evolutions = {},
     items = {},
     cryBase = "MACHOP",
+    anim = {tiles = 7, play = {{1, 4}, {254, 2}, {2, 8}, {1, 6}, {3, 8}, {1, 6}, {253, 2}}, idle = {{254, 2}, {4, 6}, {0, 6}, {253, 1}, {5, 12}, {0, 12}, {6, 12}}},
     palette = {normal = {{206, 189, 148}, {230, 90, 107}}, shiny = {{214, 173, 99}, {58, 115, 206}}},
     dexEntry = {kind = "MEDITATE", heightFt = 4, heightIn = 3, weightLbs = 69.4, text = "Through yoga<NEXT>training, it has<NEXT>honed its sixth", text2 = "sense. Its<NEXT>movements are<NEXT>elegant."},
     entry_key = "pokemon:medicham:default:art:default",

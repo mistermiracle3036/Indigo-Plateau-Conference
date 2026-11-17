@@ -32,6 +32,7 @@ return {
     evolutions = {{method = "EVOLVE_LEVEL", into = "NINJASK", level = 20}},
     items = {},
     cryBase = "PARAS",
+    anim = {tiles = 7, play = {{1, 8}, {2, 8}, {1, 8}, {2, 6}, {1, 6}, {3, 8}, {0, 8}, {3, 8}}, idle = {{254, 3}, {3, 6}, {0, 6}, {253, 1}}},
     palette = {normal = {{99, 181, 33}, {206, 132, 99}}, shiny = {{41, 173, 8}, {197, 165, 41}}},
     dexEntry = {kind = "TRAINEE", heightFt = 1, heightIn = 8, weightLbs = 12.1, text = "Because it lived<NEXT>almost entirely<NEXT>underground, it is", text2 = "nearly blind. It<NEXT>uses its antennae<NEXT>instead."},
     entry_key = "pokemon:nincada:default:art:default",

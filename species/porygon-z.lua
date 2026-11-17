@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "TACKLE"}, {level = 1, move = "CONVERSION"}, {level = 7, move = "PSYBEAM"}, {level = 12, move = "AGILITY"}, {level = 18, move = "RECOVER"}, {level = 23, move = "GROWTH"}, {level = 29, move = "AURORA_BEAM"}, {level = 34, move = "PAIN_SPLIT"}, {level = 40, move = "BARRIER"}, {level = 45, move = "THUNDERBOLT"}, {level = 50, move = "TRI_ATTACK"}, {level = 56, move = "MIRROR_COAT"}, {level = 62, move = "ZAP_CANNON"}, {level = 67, move = "HYPER_BEAM"}},
   name = "PORYGON-Z",
+  anim = {tiles = 7, play = {{1, 16}, {2, 6}, {0, 6}, {2, 6}, {254, 3}, {3, 4}, {0, 4}, {253, 5}, {3, 6}, {0, 6}, {3, 6}}, idle = {{3, 8}}},
   palette = {normal = {{206, 74, 82}, {82, 99, 197}}, shiny = {{66, 90, 189}, {165, 156, 197}}},
   slug = "porygon-z",
   source = "polished-crystal data/pokemon/base_stats/porygon_z.asm@8f3c7e9651e988d876e32a4c7ad9ef1bb76702a8",

@@ -19,6 +19,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "PECK"}, {level = 1, move = "GROWL"}, {level = 12, move = "FURY_ATTACK"}, {level = 20, move = "DRAGONBREATH"}, {level = 24, move = "SAFEGUARD"}, {level = 28, move = "SING"}, {level = 38, move = "TAKE_DOWN"}, {level = 50, move = "PERISH_SONG"}, {level = 56, move = "SKY_ATTACK"}, {level = 81, move = "MIST"}},
   name = "ALTARIA",
+  anim = {tiles = 7, play = {{0, 4}, {1, 20}, {2, 12}, {3, 12}, {4, 12}, {0, 12}, {4, 12}}, idle = {{4, 12}, {5, 6}, {0, 6}, {5, 6}}},
   palette = {normal = {{181, 181, 206}, {49, 107, 197}}, shiny = {{239, 247, 99}, {214, 156, 8}}},
   slug = "altaria",
   source = "official-stats",

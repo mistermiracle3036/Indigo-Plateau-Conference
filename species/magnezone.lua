@@ -18,6 +18,7 @@ return { {
   items = {"METAL_COAT"},
   levelMoves = {{level = 1, move = "TRI_ATTACK"}, {level = 1, move = "MIRROR_COAT"}, {level = 1, move = "BARRIER"}, {level = 1, move = "SUPERSONIC"}, {level = 1, move = "TACKLE"}, {level = 5, move = "THUNDERSHOCK"}, {level = 7, move = "THUNDER_WAVE"}, {level = 11, move = "QUICK_ATTACK"}, {level = 13, move = "LIGHT_SCREEN"}, {level = 17, move = "SONICBOOM"}, {level = 19, move = "SPARK"}, {level = 23, move = "SWIFT"}, {level = 25, move = "SCREECH"}, {level = 29, move = "THUNDERBOLT"}, {level = 39, move = "EXPLOSION"}, {level = 43, move = "HIDDEN_POWER"}, {level = 49, move = "AGILITY"}, {level = 59, move = "THUNDER"}, {level = 63, move = "ZAP_CANNON"}},
   name = "MAGNEZONE",
+  anim = {tiles = 7, play = {{254, 7}, {1, 4}, {0, 4}, {253, 1}, {1, 4}, {254, 3}, {2, 5}, {3, 5}, {253, 6}}, idle = {{0, 8}, {3, 8}, {0, 8}, {3, 8}}},
   palette = {normal = {{123, 140, 197}, {255, 49, 16}}, shiny = {{107, 132, 148}, {8, 189, 222}}},
   slug = "magnezone",
   source = "polished-crystal data/pokemon/base_stats/magnezone.asm@8f3c7e9651e988d876e32a4c7ad9ef1bb76702a8",

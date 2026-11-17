@@ -32,6 +32,7 @@ return {
     evolutions = {{method = "EVOLVE_ITEM", into = "ROSERADE", item = "SUN_STONE"}},
     items = {},
     cryBase = "BELLSPROUT",
+    anim = {tiles = 7, play = {{1, 4}, {2, 18}, {3, 8}, {4, 4}}, idle = {{1, 22}}},
     palette = {normal = {{90, 189, 49}, {230, 82, 115}}, shiny = {{115, 181, 41}, {181, 41, 197}}},
     dexEntry = {kind = "THORN", heightFt = 1, heightIn = 0, weightLbs = 4.4, text = "ROSELIA raised on<NEXT>clean drinking<NEXT>water are known to", text2 = "grow vividly<NEXT>colored flowers."},
     entry_key = "pokemon:roselia:default:art:default",

@@ -34,6 +34,7 @@ return {
     evolutions = {},
     items = {},
     cryBase = "PARAS",
+    anim = {tiles = 7, play = {{1, 8}, {254, 2}, {2, 4}, {1, 4}, {253, 2}, {254, 3}, {2, 3}, {1, 3}, {253, 6}}, idle = {{1, 8}}},
     palette = {normal = {{255, 222, 74}, {132, 66, 41}}, shiny = {{255, 206, 99}, {165, 16, 16}}},
     dexEntry = {kind = "NINJA", heightFt = 2, heightIn = 7, weightLbs = 26.5, text = "Because it moves<NEXT>so quickly, it<NEXT>sometimes becomes", text2 = "unseeable. It<NEXT>congregates around<NEXT>tree sap."},
     entry_key = "pokemon:ninjask:default:art:default",

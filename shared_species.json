@@ -1,6 +1,6 @@
 {
   "contract": "shared-pokemon-identity",
-  "catalog_revision": "2026-11-08.1",
+  "catalog_revision": "2026-11-14.1",
   "generated_by": "tools/gen_expanded.py",
   "provides": [
     {
@@ -17,61 +17,67 @@
     {
       "entry_key": "pokemon:altaria:default:art:default",
       "registry_id": "ALTARIA",
-      "definition_sha256": "3f0bd1dd9c37322a59f2f290082312a8f47e1e76424addeda796d9e03b277806",
+      "definition_sha256": "efcde13f8ded86bc5ca24af402e72b299cd96dea989c3802b199ea77ae97ad81",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/altaria_front.png",
-        "back": "assets/species/altaria_back.png"
+        "back": "assets/species/altaria_back.png",
+        "anim": "assets/species/altaria_anim.png"
       }
     },
     {
       "entry_key": "pokemon:archen:default:art:default",
       "registry_id": "ARCHEN",
-      "definition_sha256": "32bd6d06d678b45a46c7a18d9f5de32f27893bdbd25124e9586685dc77647269",
+      "definition_sha256": "6845686d66f35c35df62f3df80c8a4d89f2ea7f459c8775dc209a0c2489a78c3",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/archen_front.png",
-        "back": "assets/species/archen_back.png"
+        "back": "assets/species/archen_back.png",
+        "anim": "assets/species/archen_anim.png"
       }
     },
     {
       "entry_key": "pokemon:archeops:default:art:default",
       "registry_id": "ARCHEOPS",
-      "definition_sha256": "27f2322ab0956e33a18c80f5a82f42957856f6bf390a3c8e6c80ff9c7633da85",
+      "definition_sha256": "7dfc0cf45859e576f31c7f3ff505be28331a62cd443e8f1dee3f19fd994a7c15",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/archeops_front.png",
-        "back": "assets/species/archeops_back.png"
+        "back": "assets/species/archeops_back.png",
+        "anim": "assets/species/archeops_anim.png"
       }
     },
     {
       "entry_key": "pokemon:aron:default:art:default",
       "registry_id": "ARON",
-      "definition_sha256": "5354520a517575325cd543de608a2c41618b9778646ff92d39d0849ea29a9f45",
+      "definition_sha256": "c645f9519e5b02cfed6192dbfd76f5a34d7b8b90647b8077dfbee23ea70687e5",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/aron_front.png",
-        "back": "assets/species/aron_back.png"
+        "back": "assets/species/aron_back.png",
+        "anim": "assets/species/aron_anim.png"
       }
     },
     {
       "entry_key": "pokemon:barboach:default:art:default",
       "registry_id": "BARBOACH",
-      "definition_sha256": "7dd54fcceba17629bb009f487e7c9c0ff97fc13c3bb648f360c5ec082aa08333",
+      "definition_sha256": "50aadd819e2d6a03e71a245b6a3a3fce733af2280171c1067a704fdf2d145368",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/barboach_front.png",
-        "back": "assets/species/barboach_back.png"
+        "back": "assets/species/barboach_back.png",
+        "anim": "assets/species/barboach_anim.png"
       }
     },
     {
       "entry_key": "pokemon:beautifly:default:art:default",
       "registry_id": "BEAUTIFLY",
-      "definition_sha256": "1bb4d36155c5454d5f94ce3db5d783a37a979799a7719fa86b8a331e02a253dc",
+      "definition_sha256": "95025d746129686827c0905f10795133fdb819655a80957710b39dce791fc1ba",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/beautifly_front.png",
-        "back": "assets/species/beautifly_back.png"
+        "back": "assets/species/beautifly_back.png",
+        "anim": "assets/species/beautifly_anim.png"
       }
     },
     {
@@ -87,51 +93,56 @@
     {
       "entry_key": "pokemon:blaziken:default:art:default",
       "registry_id": "BLAZIKEN",
-      "definition_sha256": "36ffef2e25d6f251160a8a6bd937b57c84fe436b8faca6e776785dcf827c129b",
+      "definition_sha256": "180839a7b2353a88ef66f732a507f36d810a8441af20ccda9f02e7a468d322ed",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/blaziken_front.png",
-        "back": "assets/species/blaziken_back.png"
+        "back": "assets/species/blaziken_back.png",
+        "anim": "assets/species/blaziken_anim.png"
       }
     },
     {
       "entry_key": "pokemon:camerupt:default:art:default",
       "registry_id": "CAMERUPT",
-      "definition_sha256": "711f0be70bed3eef55ebfa0fd0fbaf38b6451582203f7f6a57d01e9c1e45def3",
+      "definition_sha256": "314cf318e60635287aab8de764ecf0c003b3f2c184af87a3e3ab93af345230f9",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/camerupt_front.png",
-        "back": "assets/species/camerupt_back.png"
+        "back": "assets/species/camerupt_back.png",
+        "anim": "assets/species/camerupt_anim.png"
       }
     },
     {
       "entry_key": "pokemon:clodsire:default:art:default",
       "registry_id": "CLODSIRE",
-      "definition_sha256": "69e0feeca1a54f47892f2136732fe0c03f58dd3a352dd2763401829128c243f1",
+      "definition_sha256": "620ccd593d1e1a0bb06f5189898b14b476fcac09f612c67d8218ef5ea06787d5",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/clodsire_front.png",
-        "back": "assets/species/clodsire_back.png"
+        "back": "assets/species/clodsire_back.png",
+        "anim": "assets/species/clodsire_anim.png"
       }
     },
     {
       "entry_key": "pokemon:combusken:default:art:default",
       "registry_id": "COMBUSKEN",
-      "definition_sha256": "29877781ced96ccadd9b720d2945c7e52ff819fe9ad847c2cb57126cb98fa1df",
+      "definition_sha256": "664190243f80910713b6c7e59a93eeceeb3a69a32710f9d11c628173dc93fa53",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/combusken_front.png",
-        "back": "assets/species/combusken_back.png"
+        "back": "assets/species/combusken_back.png",
+        "anim": "assets/species/combusken_anim.png"
       }
     },
     {
       "entry_key": "pokemon:delcatty:default:art:default",
       "registry_id": "DELCATTY",
-      "definition_sha256": "c7f16272997339573aba3c4419856443667a76ad218945d033393ddee2f5f8d3",
+      "definition_sha256": "4c0a5b302629e44ad6ffec5ba0ae209428b11d8de0ae79e817bd8db963327755",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/delcatty_front.png",
         "back": "assets/species/delcatty_back.png",
+        "anim": "assets/species/delcatty_anim.png",
         "icon": "assets/species/delcatty_icon.png"
       }
     },
@@ -149,11 +160,12 @@
     {
       "entry_key": "pokemon:electivire:default:art:default",
       "registry_id": "ELECTIVIRE",
-      "definition_sha256": "84838c6acc8d3ea368ce1f1cb4b2df31476bb9e2b7104c836ac39b8c7c70a447",
+      "definition_sha256": "324bb80aa6075395d71af1e25f2d3be09bfdc8b2b3d4c879ed6925f32910e316",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/electivire_front.png",
-        "back": "assets/species/electivire_back.png"
+        "back": "assets/species/electivire_back.png",
+        "anim": "assets/species/electivire_anim.png"
       }
     },
     {
@@ -199,11 +211,12 @@
     {
       "entry_key": "pokemon:gardevoir:default:art:default",
       "registry_id": "GARDEVOIR",
-      "definition_sha256": "5ff9331120800b8edb1fa4753cb32a0b1b0f12625570bffd736f7e3e5c61ebdc",
+      "definition_sha256": "26799ec80b0e64eb5b18617692a37729cc0ba616fe58a3f6c40d510181d6370b",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/gardevoir_front.png",
         "back": "assets/species/gardevoir_back.png",
+        "anim": "assets/species/gardevoir_anim.png",
         "icon": "assets/species/gardevoir_icon.png"
       }
     },
@@ -241,53 +254,58 @@
     {
       "entry_key": "pokemon:grovyle:default:art:default",
       "registry_id": "GROVYLE",
-      "definition_sha256": "7a5cb5f63e3e88f7166138eaa0a853d3f70c1bf22b17bdf537c8d3c104007064",
+      "definition_sha256": "56f25dcacb5811e709ebe97b240f96eb647d3565d49469e345fc387198adc651",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/grovyle_front.png",
         "back": "assets/species/grovyle_back.png",
+        "anim": "assets/species/grovyle_anim.png",
         "icon": "assets/species/grovyle_icon.png"
       }
     },
     {
       "entry_key": "pokemon:kirlia:default:art:default",
       "registry_id": "KIRLIA",
-      "definition_sha256": "c10610415493d6d6df720a6ec5faf90b267d943a0356664e1ab275f63244da23",
+      "definition_sha256": "f035dcc8bb314269b9779e3e37dcafc5c4b05dcc260af37f6e4fb850c5e83be2",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/kirlia_front.png",
         "back": "assets/species/kirlia_back.png",
+        "anim": "assets/species/kirlia_anim.png",
         "icon": "assets/species/kirlia_icon.png"
       }
     },
     {
       "entry_key": "pokemon:lairon:default:art:default",
       "registry_id": "LAIRON",
-      "definition_sha256": "50deebc3c3312f25e6e88236deb10902535243f2963240d9922d4f61de6754c3",
+      "definition_sha256": "218698734683c68a8616b22d75ea069a022c759b095e36104c8e0bcadb6877f3",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/lairon_front.png",
-        "back": "assets/species/lairon_back.png"
+        "back": "assets/species/lairon_back.png",
+        "anim": "assets/species/lairon_anim.png"
       }
     },
     {
       "entry_key": "pokemon:lombre:default:art:default",
       "registry_id": "LOMBRE",
-      "definition_sha256": "c77a6ed853ff4b6dfcb0f9099505afc42bbd7d09ea398f6814b7bb223d6207b0",
+      "definition_sha256": "4eb6f546d32c59c65404e6296f0ef1bb03e61999ac016a5d32ea361dc2635701",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/lombre_front.png",
-        "back": "assets/species/lombre_back.png"
+        "back": "assets/species/lombre_back.png",
+        "anim": "assets/species/lombre_anim.png"
       }
     },
     {
       "entry_key": "pokemon:lotad:default:art:default",
       "registry_id": "LOTAD",
-      "definition_sha256": "2ae7532a21da4c669e753ab0fe41476ec7811ca33fdb8579d892e23fa28c073a",
+      "definition_sha256": "5f839247184f77abf9ea612a4b21776b87895060183e16ff983c3697e6d3560a",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/lotad_front.png",
-        "back": "assets/species/lotad_back.png"
+        "back": "assets/species/lotad_back.png",
+        "anim": "assets/species/lotad_anim.png"
       }
     },
     {
@@ -303,41 +321,45 @@
     {
       "entry_key": "pokemon:ludicolo:default:art:default",
       "registry_id": "LUDICOLO",
-      "definition_sha256": "48ff482c6a0b2e1bbeeb14358e311e8d6a66f9760daf2e123db76b2becc3fd04",
+      "definition_sha256": "00eb2150e3202b56d51ea49a0dcaf8beb16297b3849875fcc12d9312cef91cc8",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/ludicolo_front.png",
-        "back": "assets/species/ludicolo_back.png"
+        "back": "assets/species/ludicolo_back.png",
+        "anim": "assets/species/ludicolo_anim.png"
       }
     },
     {
       "entry_key": "pokemon:magnezone:default:art:default",
       "registry_id": "MAGNEZONE",
-      "definition_sha256": "fb4d6289b621b938ae037b8246b154732bd610dd8504dc2424c77a321359e0d0",
+      "definition_sha256": "13fed000f3adc6ab8284af1bd9b2b6f1069ac4da170420412ade8ce31275ffab",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/magnezone_front.png",
-        "back": "assets/species/magnezone_back.png"
+        "back": "assets/species/magnezone_back.png",
+        "anim": "assets/species/magnezone_anim.png"
       }
     },
     {
       "entry_key": "pokemon:medicham:default:art:default",
       "registry_id": "MEDICHAM",
-      "definition_sha256": "fe739df29d730103fd8666754ed27598b3bfbe64d8dd707641340472c1fd7e3d",
+      "definition_sha256": "bd145726696e50bccd1e083d8a71d6863cbdfb1e07fcbcd5d8f35ea60738eb11",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/medicham_front.png",
-        "back": "assets/species/medicham_back.png"
+        "back": "assets/species/medicham_back.png",
+        "anim": "assets/species/medicham_anim.png"
       }
     },
     {
       "entry_key": "pokemon:meditite:default:art:default",
       "registry_id": "MEDITITE",
-      "definition_sha256": "2c9d434a911d094436041f2d0a2fb8920e6b6824e58773a94fb9f196b79f7a70",
+      "definition_sha256": "b1c4574c8ec0ac077d3f6f0d8fcba6d3659da0f7f59613f7f1c80abd10961421",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/meditite_front.png",
-        "back": "assets/species/meditite_back.png"
+        "back": "assets/species/meditite_back.png",
+        "anim": "assets/species/meditite_anim.png"
       }
     },
     {
@@ -384,31 +406,34 @@
     {
       "entry_key": "pokemon:nincada:default:art:default",
       "registry_id": "NINCADA",
-      "definition_sha256": "0db19709d56a0090c98d069c2dc12039d7a1137b18cf23b5a881b236ae4a8484",
+      "definition_sha256": "e3b09625caad87a42063a1d64b60f411292fbe6cd8d0e96f3345648a6a0165a7",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/nincada_front.png",
-        "back": "assets/species/nincada_back.png"
+        "back": "assets/species/nincada_back.png",
+        "anim": "assets/species/nincada_anim.png"
       }
     },
     {
       "entry_key": "pokemon:ninjask:default:art:default",
       "registry_id": "NINJASK",
-      "definition_sha256": "f641afe3ae1f491eee89b6377380e11e651b7d243d2bd5c927ae4cd335ff8a95",
+      "definition_sha256": "2d1a7759528ffd05771a9ed2238e3812e0bbe62f60862ec2f242b8c9f99060f2",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/ninjask_front.png",
-        "back": "assets/species/ninjask_back.png"
+        "back": "assets/species/ninjask_back.png",
+        "anim": "assets/species/ninjask_anim.png"
       }
     },
     {
       "entry_key": "pokemon:numel:default:art:default",
       "registry_id": "NUMEL",
-      "definition_sha256": "707bf3ca72698072a085ba3c478a6d3d0e54d502b4897a59cbf3c1dbaf0fd287",
+      "definition_sha256": "446d238d50adba52265611bff86cc589c3d0b0fd71f3dced4b2e6420692e31db",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/numel_front.png",
-        "back": "assets/species/numel_back.png"
+        "back": "assets/species/numel_back.png",
+        "anim": "assets/species/numel_anim.png"
       }
     },
     {
@@ -434,21 +459,23 @@
     {
       "entry_key": "pokemon:porygon-z:default:art:default",
       "registry_id": "PORYGON_Z",
-      "definition_sha256": "10d82cef14c5007d325e3b2b572f7137a8028f12a44a344dc0ed5707a93bd50a",
+      "definition_sha256": "8abba271036ba09c264fa0ad42c2f5554e10767343a6fd5e5e75a4632dcd3893",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/porygon-z_front.png",
-        "back": "assets/species/porygon-z_back.png"
+        "back": "assets/species/porygon-z_back.png",
+        "anim": "assets/species/porygon-z_anim.png"
       }
     },
     {
       "entry_key": "pokemon:ralts:default:art:default",
       "registry_id": "RALTS",
-      "definition_sha256": "f0a7e7d7f67b3804dac774d02d7c8c3c8389e916ce25dc115a5d342aa075f092",
+      "definition_sha256": "444d0e6b960dbda42c046be571561ef679f6f8005e64216cb8e9bcd8b64b4b17",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/ralts_front.png",
         "back": "assets/species/ralts_back.png",
+        "anim": "assets/species/ralts_anim.png",
         "icon": "assets/species/ralts_icon.png"
       }
     },
@@ -476,11 +503,12 @@
     {
       "entry_key": "pokemon:roselia:default:art:default",
       "registry_id": "ROSELIA",
-      "definition_sha256": "5885b664da455b69f7150b16daea9d9769edb1887b09a4fb0920b2c9697e6b98",
+      "definition_sha256": "209a6a6003c944fb49391f60d477867012f4afa1ef63abb7fbd764848adf91db",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/roselia_front.png",
-        "back": "assets/species/roselia_back.png"
+        "back": "assets/species/roselia_back.png",
+        "anim": "assets/species/roselia_anim.png"
       }
     },
     {
@@ -496,53 +524,58 @@
     {
       "entry_key": "pokemon:sceptile:default:art:default",
       "registry_id": "SCEPTILE",
-      "definition_sha256": "b8a6efda47df018fb76c50cb02700d35d7a3857ade443dc9377e3b7feab36f3d",
+      "definition_sha256": "93b998055fdd1893632041bc87b6acab03d7b19a7f8c13219422c8626a368ea3",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/sceptile_front.png",
         "back": "assets/species/sceptile_back.png",
+        "anim": "assets/species/sceptile_anim.png",
         "icon": "assets/species/sceptile_icon.png"
       }
     },
     {
       "entry_key": "pokemon:scolipede:default:art:default",
       "registry_id": "SCOLIPEDE",
-      "definition_sha256": "57442e6263151c158875950979de2e7cec6e23453a1586a7bcfb7517b0e000e9",
+      "definition_sha256": "8f6f7b15924722c85e075b110a66f2b6e3830d10575111d3b0031157af1a0f6d",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/scolipede_front.png",
-        "back": "assets/species/scolipede_back.png"
+        "back": "assets/species/scolipede_back.png",
+        "anim": "assets/species/scolipede_anim.png"
       }
     },
     {
       "entry_key": "pokemon:silcoon:default:art:default",
       "registry_id": "SILCOON",
-      "definition_sha256": "f5c342049b98103ff468d069bd5cf2663873cb70b6d609f9ab4164ff5750df0c",
+      "definition_sha256": "699063f4b670dfc9e55a588d300ed3ac067124497ab339050a309ef16c13f7a6",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/silcoon_front.png",
-        "back": "assets/species/silcoon_back.png"
+        "back": "assets/species/silcoon_back.png",
+        "anim": "assets/species/silcoon_anim.png"
       }
     },
     {
       "entry_key": "pokemon:skitty:default:art:default",
       "registry_id": "SKITTY",
-      "definition_sha256": "631cc786bdf8736bc6b51890dc42229f3456d2265be30d633be7e0eac95fcf4f",
+      "definition_sha256": "149a65c0871a49ad67f58cbe15f383132afb13dabdd61ea74ecb22b0d9297673",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/skitty_front.png",
         "back": "assets/species/skitty_back.png",
+        "anim": "assets/species/skitty_anim.png",
         "icon": "assets/species/skitty_icon.png"
       }
     },
     {
       "entry_key": "pokemon:spiritomb:default:art:default",
       "registry_id": "SPIRITOMB",
-      "definition_sha256": "47456a838639a07583a81a63d12bf5f9181a332c66841b00ea05767c7e0b0f63",
+      "definition_sha256": "2512f9b590b41116603ba46c0078dfe0d517c2d7d60e39833dc2171ee46982e4",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/spiritomb_front.png",
-        "back": "assets/species/spiritomb_back.png"
+        "back": "assets/species/spiritomb_back.png",
+        "anim": "assets/species/spiritomb_anim.png"
       }
     },
     {
@@ -581,41 +614,45 @@
     {
       "entry_key": "pokemon:swablu:default:art:default",
       "registry_id": "SWABLU",
-      "definition_sha256": "b6ca40bb7263d3a7cbb952682d872aa2927cc758cca2798a2dd9b5c22c41f714",
+      "definition_sha256": "33e9afd577548b0b49e18ce1f82f66dcb3f75c7e1d1d7f5e5a25e8de8c9fe46f",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/swablu_front.png",
-        "back": "assets/species/swablu_back.png"
+        "back": "assets/species/swablu_back.png",
+        "anim": "assets/species/swablu_anim.png"
       }
     },
     {
       "entry_key": "pokemon:togekiss:default:art:default",
       "registry_id": "TOGEKISS",
-      "definition_sha256": "a580c1f01a5a801cdb82147956c1443d67d1f51a0607aedc9e54afddef0082f2",
+      "definition_sha256": "8be2975ebd6efdeb60ff563fba170eee30f63547bfd2dc3d1c4cc2e24e28ae85",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/togekiss_front.png",
-        "back": "assets/species/togekiss_back.png"
+        "back": "assets/species/togekiss_back.png",
+        "anim": "assets/species/togekiss_anim.png"
       }
     },
     {
       "entry_key": "pokemon:torchic:default:art:default",
       "registry_id": "TORCHIC",
-      "definition_sha256": "f8e751f62e2fce5872e4634a2909a0201e21a1f0c3f31b8cecd706b69811354a",
+      "definition_sha256": "2d959f3fc7f232de69f498b32bb2b583c81d2a8ff9bb8ea10d0701fb4e4b0ad2",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/torchic_front.png",
-        "back": "assets/species/torchic_back.png"
+        "back": "assets/species/torchic_back.png",
+        "anim": "assets/species/torchic_anim.png"
       }
     },
     {
       "entry_key": "pokemon:treecko:default:art:default",
       "registry_id": "TREECKO",
-      "definition_sha256": "22dbe3f98c409c876898c7601340d4f92c8bdf8431180f64383331c601b43b9b",
+      "definition_sha256": "7d1ed1b791a8c44c132f56334074f9555d44c1f0efb077ac7668c1a16dde53db",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/treecko_front.png",
         "back": "assets/species/treecko_back.png",
+        "anim": "assets/species/treecko_anim.png",
         "icon": "assets/species/treecko_icon.png"
       }
     },
@@ -632,31 +669,34 @@
     {
       "entry_key": "pokemon:venipede:default:art:default",
       "registry_id": "VENIPEDE",
-      "definition_sha256": "e2e0096ff4a5d3f843c5303180bc1fb8c5db796bd9ffcd36cc4ab3a65d401187",
+      "definition_sha256": "e933abff6a426bc2374d64b38002031bb0d5659f91e046f2e7ed157e38192df5",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/venipede_front.png",
-        "back": "assets/species/venipede_back.png"
+        "back": "assets/species/venipede_back.png",
+        "anim": "assets/species/venipede_anim.png"
       }
     },
     {
       "entry_key": "pokemon:whirlipede:default:art:default",
       "registry_id": "WHIRLIPEDE",
-      "definition_sha256": "2ec949a3aea2f21fc4f1ce744c25dd761c3adc0a0b7b72607d6728e32e7f080d",
+      "definition_sha256": "d3a01dcbbbb59fa321c9d7245dcce27d1e8a3c2c533e9e874db4eaa05299151b",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/whirlipede_front.png",
-        "back": "assets/species/whirlipede_back.png"
+        "back": "assets/species/whirlipede_back.png",
+        "anim": "assets/species/whirlipede_anim.png"
       }
     },
     {
       "entry_key": "pokemon:whiscash:default:art:default",
       "registry_id": "WHISCASH",
-      "definition_sha256": "c998c587d439a624a52e89b8206073c2bdeb620ec5dc5a0507e746e7fd28519e",
+      "definition_sha256": "c2bd5087ad869b68820a2c45c13aec330999364eaaf970de1f737628b630c33a",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/whiscash_front.png",
-        "back": "assets/species/whiscash_back.png"
+        "back": "assets/species/whiscash_back.png",
+        "anim": "assets/species/whiscash_anim.png"
       }
     },
     {
@@ -672,21 +712,23 @@
     {
       "entry_key": "pokemon:wooper:paldean:art:paldean",
       "registry_id": "WOOPER_PALDEAN",
-      "definition_sha256": "40119b28923ac38789c77de916e1b92ed33981cfd46f993496d9d0cfc85c75c8",
+      "definition_sha256": "2ce406e986c5f06cc5adc5fcf21f5442371c8234a179211e3be163b1831ce47d",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/wooper-paldean_front.png",
-        "back": "assets/species/wooper-paldean_back.png"
+        "back": "assets/species/wooper-paldean_back.png",
+        "anim": "assets/species/wooper-paldean_anim.png"
       }
     },
     {
       "entry_key": "pokemon:wurmple:default:art:default",
       "registry_id": "WURMPLE",
-      "definition_sha256": "72c78c3d8df43ded6d8fd56425244b2b3c6745523486ac4d6777295a0455360a",
+      "definition_sha256": "e3bb1e6b81734c7dcf9c26090c30965c5ed47752abc49d1bc4392917666afb45",
       "credit": "Nuuk",
       "assets": {
         "front": "assets/species/wurmple_front.png",
-        "back": "assets/species/wurmple_back.png"
+        "back": "assets/species/wurmple_back.png",
+        "anim": "assets/species/wurmple_anim.png"
       }
     },
     {

@@ -19,6 +19,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "CHARM"}, {level = 1, move = "GROWL"}, {level = 1, move = "DOUBLE_TEAM"}, {level = 1, move = "CONFUSION"}, {level = 9, move = "HYPNOSIS"}, {level = 15, move = "TELEPORT"}, {level = 18, move = "PSYBEAM"}, {level = 42, move = "PSYCHIC_M"}, {level = 56, move = "DREAM_EATER"}, {level = 63, move = "FUTURE_SIGHT"}},
   name = "GARDEVOIR",
+  anim = {tiles = 7, play = {{1, 4}, {2, 8}, {254, 3}, {3, 10}, {4, 6}, {5, 8}, {6, 6}, {253, 3}, {1, 4}}, idle = {{7, 6}, {0, 6}, {7, 6}}},
   palette = {normal = {{66, 189, 90}, {214, 16, 16}}, shiny = {{66, 165, 197}, {222, 107, 16}}},
   slug = "gardevoir",
   source = "official-stats",

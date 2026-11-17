@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "POISON_STING"}, {level = 1, move = "DEFENSE_CURL"}, {level = 1, move = "ROLLOUT"}, {level = 1, move = "PROTECT"}, {level = 16, move = "SCREECH"}, {level = 32, move = "TAKE_DOWN"}, {level = 38, move = "AGILITY"}, {level = 44, move = "TOXIC"}, {level = 56, move = "DOUBLE_EDGE"}},
   name = "WHIRLIPEDE",
+  anim = {tiles = 7, play = {{254, 5}, {1, 4}, {2, 4}, {253, 1}, {1, 8}, {2, 8}}, idle = {{1, 8}, {2, 8}}},
   palette = {normal = {{189, 58, 206}, {173, 16, 41}}, shiny = {{140, 58, 206}, {0, 99, 8}}},
   slug = "whirlipede",
   source = "official-stats",

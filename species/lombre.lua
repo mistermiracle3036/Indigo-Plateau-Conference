@@ -28,6 +28,7 @@ return {
     evolutions = {{method = "EVOLVE_ITEM", into = "LUDICOLO", item = "WATER_STONE"}},
     items = {},
     cryBase = "POLIWAG",
+    anim = {tiles = 7, play = {{1, 8}, {2, 18}, {3, 22}, {2, 14}, {1, 8}}, idle = {{254, 2}, {0, 8}, {4, 8}, {253, 1}}},
     palette = {normal = {{181, 239, 189}, {41, 165, 8}}, shiny = {{181, 230, 107}, {16, 107, 90}}},
     dexEntry = {kind = "JOLLY", heightFt = 3, heightIn = 11, weightLbs = 71.7, text = "It is nocturnal<NEXT>and becomes active<NEXT>at nightfall. It", text2 = "feeds on aquatic<NEXT>mosses that grow<NEXT>in the riverbed."},
     entry_key = "pokemon:lombre:default:art:default",

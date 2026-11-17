@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "ROCK_SLIDE"}, {level = 1, move = "ROCK_SLIDE"}, {level = 1, move = "FISSURE"}, {level = 1, move = "GROWL"}, {level = 1, move = "TACKLE"}, {level = 1, move = "EMBER"}, {level = 1, move = "FOCUS_ENERGY"}, {level = 8, move = "EMBER"}, {level = 8, move = "FOCUS_ENERGY"}, {level = 12, move = "MAGNITUDE"}, {level = 19, move = "AMNESIA"}, {level = 29, move = "CURSE"}, {level = 31, move = "TAKE_DOWN"}, {level = 46, move = "EARTHQUAKE"}, {level = 59, move = "FISSURE"}},
   name = "CAMERUPT",
+  anim = {tiles = 7, play = {{1, 10}, {2, 16}, {3, 14}, {2, 18}, {4, 8}, {0, 8}, {4, 8}}, idle = {{4, 10}}},
   palette = {normal = {{189, 173, 74}, {239, 58, 0}}, shiny = {{206, 123, 58}, {82, 58, 115}}},
   slug = "camerupt",
   source = "official-stats",

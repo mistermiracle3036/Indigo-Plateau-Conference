@@ -28,6 +28,7 @@ return {
     evolutions = {{method = "EVOLVE_LEVEL", into = "WHISCASH", level = 30}},
     items = {},
     cryBase = "WOOPER",
+    anim = {tiles = 7, play = {{1, 16}, {254, 4}, {2, 4}, {3, 4}, {253, 2}}, idle = {{254, 2}, {4, 8}, {0, 8}, {253, 1}}},
     palette = {normal = {{181, 181, 189}, {82, 90, 255}}, shiny = {{197, 214, 214}, {222, 156, 0}}},
     dexEntry = {kind = "WHISKERS", heightFt = 1, heightIn = 4, weightLbs = 4.2, text = "It probes muddy<NEXT>riverbeds with its<NEXT>two long whiskers.", text2 = "A slimy film<NEXT>protects its body."},
     entry_key = "pokemon:barboach:default:art:default",

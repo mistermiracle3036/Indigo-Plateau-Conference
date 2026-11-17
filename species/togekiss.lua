@@ -30,6 +30,7 @@ return {
     evolutions = {},
     items = {},
     cryBase = "TOGETIC",
+    anim = {tiles = 7, play = {{254, 2}, {1, 12}, {2, 12}, {3, 12}, {2, 12}, {253, 1}}, idle = {{4, 6}, {0, 6}, {4, 6}}},
     palette = {normal = {{189, 189, 230}, {222, 0, 0}}, shiny = {{255, 222, 90}, {0, 123, 197}}},
     dexEntry = {kind = "JUBILEE", heightFt = 4, heightIn = 11, weightLbs = 83.8, text = "It shares many<NEXT>blessings with<NEXT>people who respect", text2 = "one another's<NEXT>rights and avoid<NEXT>needless strife."},
     entry_key = "pokemon:togekiss:default:art:default",

@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "GUST"}, {level = 1, move = "GUST"}, {level = 12, move = "ABSORB"}, {level = 15, move = "STUN_SPORE"}, {level = 17, move = "MORNING_SUN"}, {level = 22, move = "MEGA_DRAIN"}, {level = 27, move = "ATTRACT"}, {level = 30, move = "WHIRLWIND"}, {level = 32, move = "GIGA_DRAIN"}, {level = 37, move = "RAGE"}},
   name = "BEAUTIFLY",
+  anim = {tiles = 7, play = {{0, 4}, {1, 12}, {2, 18}, {1, 8}, {254, 3}, {0, 6}, {3, 6}, {253, 5}}, idle = {{254, 2}, {3, 10}, {0, 10}, {253, 1}}},
   palette = {normal = {{66, 90, 189}, {255, 41, 25}}, shiny = {{8, 115, 132}, {255, 82, 132}}},
   slug = "beautifly",
   source = "official-stats",

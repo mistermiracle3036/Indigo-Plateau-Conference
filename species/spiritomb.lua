@@ -28,6 +28,7 @@ return {
     evolutions = {},
     items = {},
     cryBase = "GASTLY",
+    anim = {tiles = 7, play = {{0, 4}, {254, 2}, {1, 12}, {2, 12}, {3, 12}, {253, 2}, {254, 2}, {1, 8}, {2, 8}, {3, 8}, {253, 7}}, idle = {{4, 12}, {5, 12}, {4, 12}, {0, 8}, {5, 8}}},
     palette = {normal = {{74, 189, 16}, {189, 58, 206}}, shiny = {{222, 58, 197}, {58, 181, 206}}},
     dexEntry = {kind = "FORBIDDEN", heightFt = 3, heightIn = 3, weightLbs = 238.1, text = "It was bound to a<NEXT>fissure in an odd<NEXT>keystone as", text2 = "punishment for<NEXT>misdeeds 500 years<NEXT>ago."},
     entry_key = "pokemon:spiritomb:default:art:default",

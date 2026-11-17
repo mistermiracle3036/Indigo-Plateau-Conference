@@ -28,6 +28,7 @@ return {
     evolutions = {{method = "EVOLVE_LEVEL", into = "AGGRON", level = 42}},
     items = {},
     cryBase = "RHYHORN",
+    anim = {tiles = 7, play = {{1, 4}, {254, 2}, {2, 8}, {3, 16}, {4, 10}, {253, 2}}, idle = {{254, 2}, {0, 6}, {5, 6}, {253, 1}, {6, 10}, {7, 16}}},
     palette = {normal = {{165, 173, 197}, {82, 82, 115}}, shiny = {{214, 181, 173}, {74, 123, 132}}},
     dexEntry = {kind = "IRON ARMOR", heightFt = 2, heightIn = 11, weightLbs = 264.6, text = "Lairon fight over<NEXT>territory, and<NEXT>when their steel", text2 = "bodies collide,<NEXT>sparks fly."},
     entry_key = "pokemon:lairon:default:art:default",

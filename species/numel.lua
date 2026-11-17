@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "GROWL"}, {level = 1, move = "TACKLE"}, {level = 5, move = "EMBER"}, {level = 8, move = "FOCUS_ENERGY"}, {level = 12, move = "MAGNITUDE"}, {level = 19, move = "AMNESIA"}, {level = 29, move = "CURSE"}, {level = 31, move = "TAKE_DOWN"}, {level = 40, move = "EARTHQUAKE"}, {level = 43, move = "FLAMETHROWER"}, {level = 47, move = "DOUBLE_EDGE"}},
   name = "NUMEL",
+  anim = {tiles = 7, play = {{1, 8}, {2, 8}, {3, 10}, {2, 10}, {3, 18}, {4, 6}}, idle = {{5, 8}, {0, 8}, {5, 8}}},
   palette = {normal = {{255, 197, 8}, {82, 140, 16}}, shiny = {{206, 165, 74}, {16, 123, 156}}},
   slug = "numel",
   source = "official-stats",

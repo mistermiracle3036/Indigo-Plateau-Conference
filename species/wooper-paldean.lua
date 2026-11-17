@@ -28,6 +28,7 @@ return {
     evolutions = {{method = "EVOLVE_LEVEL", into = "CLODSIRE", level = 20}},
     items = {},
     cryBase = "WOOPER",
+    anim = {tiles = 7, play = {{254, 2}, {1, 8}, {2, 8}, {253, 1}, {0, 8}, {3, 8}}, idle = {{254, 2}, {0, 6}, {4, 6}, {253, 1}}},
     palette = {normal = {{165, 107, 74}, {107, 33, 107}}, shiny = {{99, 148, 206}, {148, 66, 90}}},
     dexEntry = {kind = "POISON FISH", heightFt = 1, heightIn = 4, weightLbs = 24.3, text = "They line up in<NEXT>groups of three or<NEXT>four and help each", text2 = "other as they walk<NEXT>across the danger-<NEXT>ous wetlands."},
     entry_key = "pokemon:wooper:paldean:art:paldean",

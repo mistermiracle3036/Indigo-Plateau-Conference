@@ -5,6 +5,19 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.99
+
+Private phone test: animated Pokémon and a tidier credits menu.
+
+- 42 of the added Pokémon (Treecko, Torchic, Ralts, Gardevoir, Skitty,
+  Togekiss and more) now animate when a challenger sends them out, and in
+  their Summary.
+- The START menu's description for CREDITS fits its box instead of running
+  into the frame.
+- The credits pictures take their colours straight from the game, so they
+  look right whatever other mods you run.
+
+
 ## 1.1.98
 
 Private phone test: Polished Crystal art in the credits.

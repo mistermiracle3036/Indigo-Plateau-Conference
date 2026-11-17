@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "FIRE_PUNCH"}, {level = 1, move = "QUICK_ATTACK"}, {level = 1, move = "LEER"}, {level = 5, move = "THUNDERSHOCK"}, {level = 8, move = "LOW_KICK"}, {level = 12, move = "SWIFT"}, {level = 19, move = "THUNDER_WAVE"}, {level = 22, move = "KARATE_CHOP"}, {level = 26, move = "LIGHT_SCREEN"}, {level = 29, move = "THUNDERPUNCH"}, {level = 36, move = "SCREECH"}, {level = 42, move = "CROSS_CHOP"}, {level = 49, move = "THUNDERBOLT"}, {level = 55, move = "THUNDER"}},
   name = "ELECTIVIRE",
+  anim = {tiles = 7, play = {{1, 8}, {2, 24}, {254, 4}, {3, 3}, {2, 3}, {253, 3}, {254, 2}, {3, 6}, {2, 6}, {253, 7}}, idle = {{254, 2}, {4, 6}, {0, 6}, {253, 1}, {5, 8}}},
   palette = {normal = {{255, 255, 41}, {197, 132, 41}}, shiny = {{255, 206, 0}, {148, 165, 0}}},
   slug = "electivire",
   source = "polished-crystal data/pokemon/base_stats/electivire.asm@8f3c7e9651e988d876e32a4c7ad9ef1bb76702a8",

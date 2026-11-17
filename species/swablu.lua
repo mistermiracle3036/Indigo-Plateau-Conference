@@ -19,6 +19,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "PECK"}, {level = 1, move = "GROWL"}, {level = 8, move = "MIST"}, {level = 12, move = "FURY_ATTACK"}, {level = 20, move = "DRAGONBREATH"}, {level = 24, move = "SAFEGUARD"}, {level = 28, move = "SING"}, {level = 36, move = "TAKE_DOWN"}, {level = 44, move = "PERISH_SONG"}},
   name = "SWABLU",
+  anim = {tiles = 7, play = {{0, 4}, {1, 18}, {2, 12}, {3, 12}, {254, 2}, {2, 8}, {3, 8}, {253, 5}}, idle = {{4, 12}, {0, 8}, {4, 12}}},
   palette = {normal = {{181, 206, 206}, {49, 107, 197}}, shiny = {{239, 230, 140}, {197, 148, 0}}},
   slug = "swablu",
   source = "official-stats",

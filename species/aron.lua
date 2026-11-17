@@ -29,6 +29,7 @@ return {
     evolutions = {{method = "EVOLVE_LEVEL", into = "LAIRON", level = 32}},
     items = {},
     cryBase = "RHYHORN",
+    anim = {tiles = 7, play = {{0, 4}, {1, 8}, {2, 14}, {254, 2}, {3, 6}, {2, 6}, {253, 4}}, idle = {{254, 2}, {4, 6}, {0, 6}, {253, 1}}},
     palette = {normal = {{181, 189, 206}, {16, 132, 255}}, shiny = {{165, 222, 173}, {214, 90, 25}}},
     dexEntry = {kind = "IRON ARMOR", heightFt = 1, heightIn = 4, weightLbs = 132.3, text = "When it evolves,<NEXT>it sheds the steel<NEXT>carapace that", text2 = "covered its whole<NEXT>body and develops<NEXT>a new one."},
     entry_key = "pokemon:aron:default:art:default",

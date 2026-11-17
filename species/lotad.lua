@@ -29,6 +29,7 @@ return {
     evolutions = {{method = "EVOLVE_LEVEL", into = "LOMBRE", level = 14}},
     items = {},
     cryBase = "POLIWAG",
+    anim = {tiles = 7, play = {{1, 4}, {2, 16}, {1, 8}, {0, 8}, {1, 8}}, idle = {{254, 3}, {0, 6}, {3, 6}, {253, 1}}},
     palette = {normal = {{58, 165, 49}, {66, 90, 132}}, shiny = {{49, 173, 123}, {123, 33, 82}}},
     dexEntry = {kind = "WATER WEED", heightFt = 1, heightIn = 8, weightLbs = 5.7, text = "It looks like an<NEXT>aquatic plant and<NEXT>serves as a ferry", text2 = "to Pokémon that<NEXT>can't swim."},
     entry_key = "pokemon:lotad:default:art:default",

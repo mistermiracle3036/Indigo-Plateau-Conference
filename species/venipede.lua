@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "POISON_STING"}, {level = 1, move = "DEFENSE_CURL"}, {level = 4, move = "ROLLOUT"}, {level = 8, move = "PROTECT"}, {level = 16, move = "SCREECH"}, {level = 28, move = "TAKE_DOWN"}, {level = 32, move = "AGILITY"}, {level = 36, move = "TOXIC"}, {level = 44, move = "DOUBLE_EDGE"}},
   name = "VENIPEDE",
+  anim = {tiles = 7, play = {{254, 3}, {1, 6}, {2, 6}, {253, 1}}, idle = {{3, 6}, {0, 6}, {3, 6}}},
   palette = {normal = {{49, 148, 41}, {197, 33, 49}}, shiny = {{107, 156, 33}, {156, 49, 8}}},
   slug = "venipede",
   source = "official-stats",

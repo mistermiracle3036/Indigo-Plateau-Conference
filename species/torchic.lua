@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "SCRATCH"}, {level = 1, move = "GROWL"}, {level = 3, move = "EMBER"}, {level = 6, move = "QUICK_ATTACK"}, {level = 12, move = "DETECT"}, {level = 15, move = "SAND_ATTACK"}, {level = 21, move = "SLASH"}, {level = 27, move = "FOCUS_ENERGY"}, {level = 30, move = "FLAMETHROWER"}, {level = 36, move = "REVERSAL"}},
   name = "TORCHIC",
+  anim = {tiles = 7, play = {{1, 8}, {2, 6}, {3, 5}, {4, 6}, {3, 20}, {5, 8}}, idle = {{6, 6}, {0, 6}, {6, 6}}},
   palette = {normal = {{255, 197, 41}, {247, 66, 25}}, shiny = {{255, 173, 41}, {165, 156, 25}}},
   slug = "torchic",
   source = "official-stats",

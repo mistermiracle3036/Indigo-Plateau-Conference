@@ -20,6 +20,7 @@ return { {
   items = {"PSNCUREBERRY"},
   levelMoves = {{level = 1, move = "TACKLE"}, {level = 1, move = "STRING_SHOT"}, {level = 5, move = "POISON_STING"}},
   name = "WURMPLE",
+  anim = {tiles = 7, play = {{254, 2}, {1, 12}, {2, 8}, {3, 8}, {253, 1}}, idle = {{254, 3}, {4, 6}, {0, 6}, {253, 1}}},
   palette = {normal = {{255, 173, 25}, {222, 49, 41}}, shiny = {{255, 230, 25}, {189, 25, 189}}},
   slug = "wurmple",
   source = "official-stats",

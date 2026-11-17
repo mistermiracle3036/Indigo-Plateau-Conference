@@ -18,6 +18,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "DOUBLE_KICK"}, {level = 1, move = "DOUBLE_KICK"}, {level = 1, move = "FLAMETHROWER"}, {level = 1, move = "SCRATCH"}, {level = 1, move = "GROWL"}, {level = 1, move = "EMBER"}, {level = 1, move = "QUICK_ATTACK"}, {level = 12, move = "DETECT"}, {level = 15, move = "SAND_ATTACK"}, {level = 25, move = "SLASH"}, {level = 35, move = "FOCUS_ENERGY"}, {level = 50, move = "REVERSAL"}},
   name = "COMBUSKEN",
+  anim = {tiles = 7, play = {{0, 4}, {1, 20}, {2, 8}, {1, 28}, {0, 8}, {3, 8}}, idle = {{4, 6}, {0, 6}, {4, 6}}},
   palette = {normal = {{255, 206, 66}, {214, 49, 0}}, shiny = {{247, 197, 99}, {123, 49, 41}}},
   slug = "combusken",
   source = "official-stats",

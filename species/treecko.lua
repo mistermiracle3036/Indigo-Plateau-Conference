@@ -19,6 +19,7 @@ return { {
   items = {},
   levelMoves = {{level = 1, move = "POUND"}, {level = 1, move = "LEER"}, {level = 6, move = "QUICK_ATTACK"}, {level = 9, move = "MEGA_DRAIN"}, {level = 12, move = "DETECT"}, {level = 21, move = "GIGA_DRAIN"}, {level = 24, move = "SLAM"}, {level = 27, move = "DOUBLE_TEAM"}, {level = 33, move = "SCREECH"}},
   name = "TREECKO",
+  anim = {tiles = 7, play = {{2, 4}, {1, 8}, {2, 8}, {1, 22}, {2, 8}, {0, 10}, {3, 10}}, idle = {{4, 6}, {0, 6}, {4, 6}, {0, 6}, {4, 6}}},
   palette = {normal = {{132, 230, 0}, {66, 140, 107}}, shiny = {{123, 230, 255}, {255, 41, 58}}},
   slug = "treecko",
   source = "official-stats",

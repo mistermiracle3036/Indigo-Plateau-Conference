@@ -29,6 +29,7 @@ return {
     evolutions = {},
     items = {},
     cryBase = "MEOWTH",
+    anim = {tiles = 7, play = {{1, 4}, {254, 3}, {1, 8}, {2, 6}, {3, 6}, {253, 2}}, idle = {{254, 2}, {4, 6}, {0, 6}, {253, 1}}},
     palette = {normal = {{255, 206, 82}, {189, 66, 132}}, shiny = {{255, 239, 82}, {239, 49, 25}}},
     dexEntry = {kind = "PRIM", heightFt = 3, heightIn = 7, weightLbs = 71.9, text = "It is highly<NEXT>popular among<NEXT>female Trainers", text2 = "for its sublime<NEXT>fur. It does not<NEXT>keep a nest."},
     entry_key = "pokemon:delcatty:default:art:default",
