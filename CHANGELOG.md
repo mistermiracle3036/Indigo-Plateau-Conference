@@ -5,6 +5,15 @@ Format follows [keep a changelog](https://keepachangelog.com/); the top
 heading always equals the version in `manifest.json`.
 
 
+## 1.1.98
+
+Private phone test: Polished Crystal art in the credits.
+
+- The CREDITS screen now shows the pictures for characters drawn from
+  Polished Crystal art (Lawrence III, Marley, Ivy, Buck and others) and for
+  the added Pokémon, not just their names.
+
+
 ## 1.1.97
 
 Private phone test: Officer Jenny leaves the cups.
